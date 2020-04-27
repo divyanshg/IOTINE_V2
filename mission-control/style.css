@@ -1755,7 +1755,7 @@ height:100px;
     background-color:white;
     z-index:2;
 }
-#dash_settings{
+.settings{
     background: white;
     border-radius: 3px;
     border: 1px solid gray;
@@ -1765,7 +1765,7 @@ height:100px;
     color:black !important;
 }
 
-#dash_settings button{
+.settings button{
     width: 100%;
     padding: 10px;
     border: none;
@@ -1774,6 +1774,6 @@ height:100px;
     transition: 0.3s ease all;
 }
 
-#dash_settings button:hover{
+.settings button:hover{
     background-color: whitesmoke;
 }

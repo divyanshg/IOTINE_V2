@@ -28,7 +28,9 @@
             </div>
         </div>
     </div>
-
+    <div class="side-settings settings" style="display: none;">
+        
+    </div>
     <div class="devicesContainer">
         <div class="searchForm">
             <input v-model='searchedDevice' @keyup="searchInList" class="sc-dBaXSw fCqdz" id="header-search" type="text"
@@ -117,7 +119,7 @@
                             <button><i class="material-icons">notifications_none</i></button>
                             <button onclick="toggleDis('#dash_settings')"><i class="material-icons">settings</i></button>
                         </div>
-                        <div id="dash_settings" style="display: none;">
+                        <div id="dash_settings" class="settings" style="display: none;">
                             <button>Settings</button>
                             <button>More</button>
                             <button>Fake</button>

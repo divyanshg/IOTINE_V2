@@ -43,30 +43,6 @@ var widgetSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
     res.json(getWidgets(req.params.userId, req.params.appId))
-    /*res.json(
-        [
-            {
-                name: "Distance",
-                feed: ["retg54"],
-                type: "chart",
-                datasets:[{
-                    label: "retg54",
-                    data: [],
-                    backgroundColor: "transparent",
-                    borderColor: "red",
-                    borderWidth: 1
-                }],
-                config: {
-                    labels: [],
-                    type:"line",
-                    prevTime: 're',
-                    device:"qwerty12",
-                    tab:"ghjk213"
-                }
-
-            }
-        ]
-    );*/
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
@@ -86,6 +62,10 @@ app.get('/tabs/:userId/:appId', (req, res) => {
             }
         ]
     )
+})
+
+app.post('/newWidget/:userId/:appId', (req, res) => {
+    res.json(req.body.name)
 })
 
 var getWidgets = (user, app) => {

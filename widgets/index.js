@@ -1,3 +1,5 @@
+require('dotenv').config()
+var cors = require('cors')
 const express = require('express');
 var mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -68,7 +70,8 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 })
 
 app.get('/newWidget/:userId/:appId', (req, res) => {
-    res.json(req.body)
+    var widget = req.body
+    console.log(widget)
 })
 
 var getWidgets = (user, app) => {

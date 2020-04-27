@@ -6,7 +6,7 @@ GET http://192.168.31.72:3002/tabs/userHII/app
 
 ###
 
-POST http://192.168.31.249:3002/newWidget/divyanshg21/shome
+GET http://192.168.31.249:3002/newWidget/divyanshg21/shome
 Content-Type: 'application/json'
 
 {

@@ -421,6 +421,7 @@
     <script>
 var socket = io();
 var tabs;
+getTabs("divyanshg21", "shome")
 function getTabs(user, app){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -432,7 +433,6 @@ function getTabs(user, app){
     xhttp.open("GET", "http://192.168.31.249:3002/tabs/"+user+"/"+app, true);
     xhttp.send();
 }
-getTabs("divyanshg21", "shome")
 
 console.log(tabs)
 

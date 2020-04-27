@@ -19,14 +19,53 @@ con.connect(function(err) {
    console.log("Connected!");
 });
 
-var schema = {
-    
+var schema =   {
+    "name": "",
+    "feed":'',
+    "type": "",
+    "datasets":{
+        "label": "",
+        "data": [],
+        "backgroundColor": "",
+        "borderColor": "",
+        "borderWidth": ''
+      },
+    "config": {
+      "labels": [],
+      "type": "",
+      "prevTime": "",
+      "device": "",
+      "tab": ""
+    }
 }
 
+var widgetSchema = []
+
 app.get('/widgets/:userId/:appId', (req, res) => {
-    con.query("select * from widgets", function (err, results) {
+    con.query("select * from widgets", function (err, widgets) {
         if (err) throw err;
-        res.json(results)
+        widgets.forEach(widget => {
+            //BASICS
+            schema.name = widget.name;
+            schema.feed = widget.feed;
+            schema.type = widget.type;
+            //DATASETS
+            schema.datasets.label = widget.label;
+            schema.datasets.data  = widget.data;
+            schema.datasets.backgroundColor = widget.backgroundColor;
+            schema.datasets.borderColor = widget.borderColor;
+            schema.datasets.borderWidth = widget.borderWidth;
+            //CONFIGS
+            schema.config.labels = widget.labels;
+            schema.config.type = widget.ctype;
+            schema.config.prevTime = widget.prevTime;
+            schema.config.device = widget.device;
+            schema.config.tab = widget.tab;
+
+            widgetSchema.push(schema)
+
+            res.json(widgetSchema)
+        })
     });
     /*res.json(
         [

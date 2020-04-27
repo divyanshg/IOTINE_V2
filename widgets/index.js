@@ -44,29 +44,28 @@ var schema =   {
     }
 }
 
+var tabschema = {
+    "id": '',
+    "name": ''
+}
+
 var widgetSchema = []
+var tabSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
     res.json(getWidgets(req.params.userId, req.params.appId))
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
-    res.json(
-        [
-            {
-                name:"GRAPHS",
-                id:"ghjk213"
-            },
-            {
-                name:"TAB2",
-                id:"dpkgk213"
-            },
-            {
-                 name:"Fridge Control",
-                 id:"rertre"     
-            }
-        ]
-    )
+    getTabs(req.params.userId, req.params.appId).then(tabs => {
+        tabs.forEach(tab => {
+            tabschema.id = tab.tabId;
+            tabschema.name = tab.name;
+
+            tabSchema.push(tab)
+        })
+        res.json(tabSchema)
+    }).catch((err) => setImmediate(() => { throw err; }))
 })
 
 app.get('/newWidget/:userId/:appId', (req, res) => {
@@ -111,6 +110,15 @@ var saveWidget = (user, app, widget) => {
     con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
         if(err) throw err;
         return 1
+    })
+}
+
+var getTabs = (user, app) => {
+    return new Promise((resolve, reject) => {
+        con.query('select * from tabs where user =? and app = ?', [user, app], (err, tabs) => {
+            if(err) return reject(err);
+            resolve(tabs)
+        })
     })
 }
 app.listen(port, () => console.log("Server running on : "+port))

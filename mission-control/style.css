@@ -1777,3 +1777,8 @@ height:100px;
 .settings button:hover{
     background-color: whitesmoke;
 }
+.side-settings{
+    margin-left: 73px;
+    position: fixed;
+    bottom: 75px;
+}

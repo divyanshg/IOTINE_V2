@@ -106,9 +106,10 @@ var saveWidget = (user, app, widget) => {
     var widgets = [
         [null, widget.user, widget.app, widget.name, widget.feed, widget.type,widget.datasets.label, widget.datasets.data, widget.datasets.backgroundColor, widget.datasets.borderColor, widget.datasets.borderWidth, widget.config.labels, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
     ]
+    console.log(widgets)
     con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
         if(err) throw err;
-        res.send("Widget Saved!")
+        return 1
     })
 }
 app.listen(port, () => console.log("Server running on : "+port))

@@ -1762,4 +1762,5 @@ height:100px;
     height: fit-content;
     min-height: 20px;
     cursor: pointer;
+    color:black !important;
 }

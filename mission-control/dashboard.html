@@ -420,7 +420,6 @@
     </script>
     <script>
 var socket = io();
-var tabs;
 function getTabs(user, app){
     return new Promise((resolve, reject) => { 
         var xhttp = new XMLHttpRequest();
@@ -434,8 +433,6 @@ function getTabs(user, app){
         xhttp.send();
     })
 }
-
-console.log(tabs)
 
 var widgets = [{
     name: "Distance",

@@ -204,6 +204,14 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://192.168.31.249/iot-wave/mission-control/components.js" type="text/javascript"></script>
     <script>
+        function toggle(elm){
+            var elm = document.querySelector(elm);
+            if(elm.style.display = "none"){
+                elm.style.display = "block"
+            }else{
+                elm.style.display = "none"
+            }
+        }
         function linkactive(elm) {
             var prev = document.querySelector('.active')
             prev.classList.remove("active")

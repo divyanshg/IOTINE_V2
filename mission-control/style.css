@@ -1738,6 +1738,7 @@ height:100px;
 /* Create an active/current tablink class */
 .tab button.active {
   border-bottom:1px solid rgb(56, 128, 255);
+  color:white !important;
 }
 
 /* Style the tab content */
@@ -1785,7 +1786,7 @@ height:100px;
 p.ndt {
     position: relative;
     top: 35%;
-    left: 33%;
+    left: 30%;
     text-transform: uppercase;
     font-weight: bold;
 }

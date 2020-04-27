@@ -738,6 +738,9 @@ function lineChart(id, config, widgetBdy, prev) {
     chartContainer.width = "325"
     chartContainer.height = "180"
     chartContainer.style.display = "block";
+    if(config.datsets[0].data == ""){
+        chartContainer.innerHTML += "No data to show!"
+    }
 
 
     widgetBdy.appendChild(chartContainer)

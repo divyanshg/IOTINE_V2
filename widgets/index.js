@@ -153,7 +153,7 @@ var saveTab = (user, app, name) => {
 }
 
 function makeid() {
-    var length = 5;
+    var length = 10;
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;

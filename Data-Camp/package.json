@@ -1,0 +1,14 @@
+{
+  "name": "data-camp",
+  "version": "1.0.0",
+  "description": "A secure place to host all your IOT data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "Divyansh Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

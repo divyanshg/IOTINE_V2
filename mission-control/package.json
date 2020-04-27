@@ -1,0 +1,19 @@
+{
+  "name": "mission-control",
+  "version": "1.0.0",
+  "description": "Mission Control For IOT DEVICES",
+  "main": "index.js",
+  "dependencies": {
+    "mqtt": "^3.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "Divyansh Gupta",
+  "license": "ISC"
+}

@@ -1,0 +1,4 @@
+GET http://192.168.31.249:8080/subscribe/iub54i6bibu64/SkNCX1RSVUNLXzAxYWFk/retg54
+
+###
+POST http://192.168.31.249:8080/publish/iub54i6bibu64/SkNCX1RSVUNLXzAxYWFk/retg54/89

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+</head>
+
+<body>
+    <canvas height="225" width="400" id="chart"></canvas>
+    <h1><button onclick="send()">SEND</button></h1>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var numbers = [];
+    var numbers2 = [];
+    var labels = [];
+    var clr = getRandomColor();
+
+    var context = document.getElementById("chart");
+    var config = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature',
+                data: numbers,
+                backgroundColor: clr,
+                borderColor: clr,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            animation: false
+        }
+    }
+    var chart = new Chart(context, config);
+
+    var socket = io();
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function send() {
+        /* socket.emit('publish', {
+             user: 'iub54i6bibu64',
+             deviceId: 'SkNCX1RSVUNLXzAxYWFk',
+             feed: 'retg54',
+             value: Math.floor(Math.random() * 100) +10,
+             time: new Date().toLocaleTimeString()
+         })*/
+        socket.broadcast.emit('tester', 'hi')
+    }
+
+    socket.on("tester", msg => console.info(msg))
+    socket.on('subscribe', msg => {
+        if (numbers.length == 5) {
+            numbers.shift();
+            //numbers2.shift();
+            labels.shift()
+            numbers.push(msg.value);
+            //numbers2.push(Math.floor(Math.random() * 100) +10);
+            labels.push(msg.time)
+            clr = getRandomColor()
+            chart.update();
+        } else {
+            numbers.push(msg.value);
+            //numbers2.push(Math.floor(Math.random() * 100) +10);
+            labels.push(msg.time)
+            clr = getRandomColor()
+            chart.update();
+        }
+    })
+</script>
+
+</html>

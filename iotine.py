@@ -6,11 +6,6 @@ import RPi.GPIO as GPIO
 import math
 import json
 import string
-from Crypto.Cipher import AES
-
-obj = AES.new('Let this be a Key something more random to make this key super long', AES.MODE_CBC, 'This is an IV456')
-#Fernet.generate_key()
-f = Fernet(key)
 
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"

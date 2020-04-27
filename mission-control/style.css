@@ -1764,3 +1764,11 @@ height:100px;
     cursor: pointer;
     color:black !important;
 }
+
+#dash_settings button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid whitesmoke;
+}

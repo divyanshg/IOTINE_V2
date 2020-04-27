@@ -22,9 +22,9 @@ con.connect(function(err) {
 app.get('/widgets/:userId/:appId', (req, res) => {
     con.query("select * from widgets", function (err, result) {
         if (err) throw err;
-        console.log("Result: " + JSON.stringify(result));
+        res.json(result)
     });
-    res.json(
+    /*res.json(
         [
             {
                 name: "Distance",
@@ -47,7 +47,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
             }
         ]
-    );
+    );*/
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {

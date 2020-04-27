@@ -739,7 +739,7 @@ function lineChart(id, config, widgetBdy, prev) {
     chartContainer.height = "180"
     chartContainer.style.display = "block";
     if(config.labels == ""){
-        widgetBdy.innerHTML += "No data to show!"
+        widgetBdy.innerHTML += "<p class='ndt'>No data to show!</p>"
     }
 
 
@@ -939,6 +939,7 @@ function updateChart(id, ctx, msg, feed) {
     if(widget.datasets[j].data.length >= 5){
         widget.datasets[j].data.shift()
         config.labels.shift()
+        $(".ndt").remove()
         chart.update()
     }else{
         chart.update()

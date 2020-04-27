@@ -41,6 +41,34 @@ var schema =   {
 
 var widgetSchema = []
 
+var getWidgets = () => {
+    con.query("select * from widgets", function (err, widgets) {
+        if (err) throw err;
+        widgets.forEach(widget => {
+            //BASICS
+            schema.name = widget.name;
+            schema.feed = widget.feed;
+            schema.type = widget.type;
+            //DATASETS
+            schema.datasets.label = widget.label;
+            schema.datasets.data  = widget.data;
+            schema.datasets.backgroundColor = widget.backgroundColor;
+            schema.datasets.borderColor = widget.borderColor;
+            schema.datasets.borderWidth = widget.borderWidth;
+            //CONFIGS
+            schema.config.labels = widget.labels;
+            schema.config.type = widget.chartType;
+            schema.config.prevTime = widget.prevTime;
+            schema.config.device = widget.device;
+            schema.config.tab = widget.tab;
+
+            widgetSchema.push(schema)
+        })
+    });
+
+    return widgetSchema;
+}
+
 app.get('/widgets/:userId/:appId', (req, res) => {
     var made = false;
     
@@ -91,31 +119,5 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     )
 })
 
-var getWidgets = () => {
-    con.query("select * from widgets", function (err, widgets) {
-        if (err) throw err;
-        widgets.forEach(widget => {
-            //BASICS
-            schema.name = widget.name;
-            schema.feed = widget.feed;
-            schema.type = widget.type;
-            //DATASETS
-            schema.datasets.label = widget.label;
-            schema.datasets.data  = widget.data;
-            schema.datasets.backgroundColor = widget.backgroundColor;
-            schema.datasets.borderColor = widget.borderColor;
-            schema.datasets.borderWidth = widget.borderWidth;
-            //CONFIGS
-            schema.config.labels = widget.labels;
-            schema.config.type = widget.chartType;
-            schema.config.prevTime = widget.prevTime;
-            schema.config.device = widget.device;
-            schema.config.tab = widget.tab;
 
-            widgetSchema.push(schema)
-        })
-    });
-
-    return widgetSchema
-}
 app.listen(port, () => console.log("Server running on : "+port))

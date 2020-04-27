@@ -57,7 +57,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.datasets.borderWidth = widget.borderWidth;
             //CONFIGS
             schema.config.labels = widget.labels;
-            schema.config.type = widget.ctype;
+            schema.config.type = widget.chartType;
             schema.config.prevTime = widget.prevTime;
             schema.config.device = widget.device;
             schema.config.tab = widget.tab;

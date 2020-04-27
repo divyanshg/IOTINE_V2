@@ -42,10 +42,7 @@ var schema =   {
 var widgetSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
-    var {made, widgets} = getWidgets();
-
-    if(!made) return;
-    res.json(widgets)
+    res.json(getWidgets())
     /*res.json(
         [
             {
@@ -92,7 +89,6 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 })
 
 var getWidgets = () => {
-    var made = false;
     con.query("select * from widgets", function (err, widgets) {
         if (err) throw err;
         widgets.forEach(widget => {
@@ -114,10 +110,9 @@ var getWidgets = () => {
             schema.config.tab = widget.tab;
 
             widgetSchema.push(schema)
-            made = true
         })
     });
 
-    return {made, widgetSchema}
+    return widgetSchema
 }
 app.listen(port, () => console.log("Server running on : "+port))

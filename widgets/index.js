@@ -24,35 +24,32 @@ con.connect(function(err) {
    console.log("Connected!");
 });
 
-var schema =   {
-    "name": "",
-    "feed":'',
-    "type": "",
-    "datasets":{
-        "label": "",
-        "data": [],
-        "backgroundColor": "",
-        "borderColor": "",
-        "borderWidth": ''
-      },
-    "config": {
-      "labels": [],
-      "type": "",
-      "prevTime": "",
-      "device": "",
-      "tab": ""
-    }
-}
-
-var tabschema = {
-    "id": '',
-    "name": ''
-}
-
-var widgetSchema = []
-var tabSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
+
+
+    var schema =   {
+        "name": "",
+        "feed":'',
+        "type": "",
+        "datasets":{
+            "label": "",
+            "data": [],
+            "backgroundColor": "",
+            "borderColor": "",
+            "borderWidth": ''
+        },
+        "config": {
+        "labels": [],
+        "type": "",
+        "prevTime": "",
+        "device": "",
+        "tab": ""
+        }
+    };
+
+    var widgetSchema = [];
+
     getWidgets(req.params.userId, req.params.appId).then(widgets => {
         widgets.forEach(widget => {
             //BASICS
@@ -80,6 +77,14 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
+
+    var tabschema = {
+        "id": '',
+        "name": ''
+    };
+    
+    var tabSchema = [];
+
     getTabs(req.params.userId, req.params.appId).then(tabs => {
         tabs.forEach(tab => {
             tabschema.id = tab.tabId;

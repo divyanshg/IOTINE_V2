@@ -65,7 +65,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 })
 
 app.post('/newWidget/:userId/:appId', (req, res) => {
-    res.json(req.body.name)
+    res.json(req.body)
 })
 
 var getWidgets = (user, app) => {

@@ -10,11 +10,11 @@ POST http://192.168.31.249:3002/newWidget/divyanshg21/shome
 Content-Type: application/json
 
 {
-        "name": "Demo3",
+        "name": "Demo4",
         "feed": "Web_Sensor",
         "type": "chart",
         "datasets": {
-            "label": "Temperature",
+            "label": "Temperature4",
             "data": "",
             "backgroundColor": "transparent",
             "borderColor": "green",
@@ -23,11 +23,11 @@ Content-Type: application/json
         "config": {
             "labels": "",
             "type": "bar",
-            "prevTime": "ret",
+            "prevTime": "ret4",
             "device": "qwerty12",
-            "tab": "ghjk213"
+            "tab": "Drone2"
         }
 }
 ###
 
-POST http://192.168.31.249:3002/newTab/divyanshg21/shome/Drone
+POST http://192.168.31.249:3002/newTab/divyanshg21/shome/Drone2

@@ -1755,3 +1755,11 @@ height:100px;
     background-color:white;
     z-index:2;
 }
+#dash_settings{
+    background: white;
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: fit-content;
+    min-height: 20px;
+    cursor: pointer;
+}

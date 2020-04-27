@@ -19,10 +19,14 @@ con.connect(function(err) {
    console.log("Connected!");
 });
 
+var schema = {
+    
+}
+
 app.get('/widgets/:userId/:appId', (req, res) => {
-    con.query("select * from widgets", function (err, result) {
+    con.query("select * from widgets", function (err, results) {
         if (err) throw err;
-        res.json(result[0].datasets)
+        res.json(results)
     });
     /*res.json(
         [

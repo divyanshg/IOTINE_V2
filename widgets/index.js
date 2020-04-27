@@ -88,7 +88,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     var tabSchema = [];
 
     getTabs(req.params.userId, req.params.appId).then(tabs => {
-        
+
         tabs.forEach(tab => {
             tabschema.id = tab.tabId;
             tabschema.name = tab.name;
@@ -102,11 +102,17 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 
-app.get('/newWidget/:userId/:appId', (req, res) => {
+app.post('/newWidget/:userId/:appId', (req, res) => {
     var widget = req.body
     saveWidget(req.params.userId, req.params.appId, widget)
     res.send("Widget Saved!")
-})
+});
+
+app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
+    var tab = req.params.tabName;
+    saveTab(req.params.userId, req.params.appId, tab)
+    res.send("Tab Saved!")
+});
 
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
@@ -135,4 +141,25 @@ var getTabs = (user, app) => {
         })
     })
 }
+
+var saveTab = (user, app, name) => {
+    var tab = [
+        [null, user, app, name, makeid()]
+    ]
+    con.query('insert into tabs(id, user, app, name, tabId) VALUES ?', [tab], (err, res) => {
+        if(err) throw err;
+        return 1
+    })
+}
+
+function makeid() {
+    var length = 5;
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
 app.listen(port, () => console.log("Server running on : "+port))

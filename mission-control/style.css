@@ -1782,3 +1782,10 @@ height:100px;
     position: fixed;
     bottom: 75px;
 }
+p.ndt {
+    position: relative;
+    top: 35%;
+    left: 33%;
+    text-transform: uppercase;
+    font-weight: bold;
+}

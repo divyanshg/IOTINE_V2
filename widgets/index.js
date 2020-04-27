@@ -8,7 +8,7 @@ app.use(express.json());
 const port = process.env.PORT || 3002;
 
 var con = mysql.createConnection({
-    host: "http://192.168.31.249",
+    host: "localhost",
     user: "divyanshg21",
     password: "potty_khale"
   });

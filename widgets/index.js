@@ -63,10 +63,9 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.config.tab = widget.tab;
 
             widgetSchema.push(schema)
-
-            res.json(widgetSchema)
         })
     });
+    res.json(widgetSchema)
     /*res.json(
         [
             {

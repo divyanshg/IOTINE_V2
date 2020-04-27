@@ -42,7 +42,7 @@ var schema =   {
 var widgetSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
-    res.json(getWidgets())
+    res.json(getWidgets(req.params.userId, req.params.appId))
     /*res.json(
         [
             {
@@ -88,8 +88,8 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     )
 })
 
-var getWidgets = () => {
-    con.query("select * from widgets", function (err, widgets) {
+var getWidgets = (user, app) => {
+    con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
         if (err) throw err;
         widgets.forEach(widget => {
             //BASICS

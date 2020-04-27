@@ -429,7 +429,7 @@ function getTabs(user, app){
             // Typical action to be performed when the document is ready:
             return JSON.parse(xhttp.responseText)
             }else{
-                return reject(err)
+                return reject("error")
             }
         };
         xhttp.open("GET", "http://192.168.31.249:3002/tabs/"+user+"/"+app, true);

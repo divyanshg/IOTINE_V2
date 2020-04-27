@@ -224,29 +224,6 @@
             elm.className += ' active'
         }
         var openedPanels = '';
-        var appcount = 2 //Apps.data.items.length
-        var Apps = new River({
-            el: '#app',
-            data: {
-                items: [{
-                    num: 1,
-                    name: "Smart Home",
-                    id: "smart_home",
-                    url: "smart_home.divyanshg809.iotine.com"
-                }, {
-                    num: 2,
-                    name: "Shop 1",
-                    id: "shop1",
-                    url: "shop1.divyanshg809.iotine.com"
-                }],
-                appcount: appcount
-            },
-            methods: {
-                warn: (item) => {
-                    alert(item)
-                }
-            }
-        })
 
         var sideBar = new River({
             el: '.sidebar',
@@ -359,7 +336,7 @@
                 addDevice() {
                     devices.devices.push({
                         name: document.getElementById('Devicename').value,
-                        type: "testDevice"
+                        type: document.querySelector("#dTemplate").value
                     })
                     $('.mainBackDrop').toggle()
                     $(".newDeviceModal").toggle()
@@ -739,7 +716,7 @@ function lineChart(id, config, widgetBdy, prev) {
     chartContainer.height = "180"
     chartContainer.style.display = "block";
     if(config.labels == ""){
-        widgetBdy.innerHTML += "<p class='ndt'>No data to show!</p>"
+        widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
     }
 
 

@@ -31,7 +31,7 @@ def on_message(client, userdata, message):
             GPIO.output(17, GPIO.HIGH)
         elif msg == "OFF":
             GPIO.output(17, GPIO.LOW)  
-    print({"topic":message.topic, "message":msg})
+    print(message.topic, "/",msg)
 
 while True:
     IOTINE.publish("retg54", random.randint(-30, 30), '')

@@ -45,7 +45,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
     var made = false;
     
     if(!made) return
-    res.json(getWidgets)
+    res.json(getWidgets())
     /*res.json(
         [
             {

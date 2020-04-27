@@ -71,7 +71,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 
 app.get('/newWidget/:userId/:appId', (req, res) => {
     var widget = req.body
-    console.log(widget)
+    saveWidget(req.params.userId, req.params.appId, widget)
 })
 
 var getWidgets = (user, app) => {

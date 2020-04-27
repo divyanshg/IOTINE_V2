@@ -73,6 +73,8 @@ app.get('/widgets/:userId/:appId', (req, res) => {
         })
 
         res.json(widgetSchema)
+
+        schema = {}
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 
@@ -86,13 +88,17 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     var tabSchema = [];
 
     getTabs(req.params.userId, req.params.appId).then(tabs => {
+        
         tabs.forEach(tab => {
             tabschema.id = tab.tabId;
             tabschema.name = tab.name;
 
             tabSchema.push(tab)
         })
+
         res.json(tabSchema)
+
+        tabschema = {}
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 

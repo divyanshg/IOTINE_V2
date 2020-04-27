@@ -420,20 +420,20 @@
     </script>
     <script>
 var socket = io();
-
+var tabs;
 function getTabs(user, app){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
          // Typical action to be performed when the document is ready:
          tabs = xhttp.responseText
-         console.log(tabs)
         }
     };
     xhttp.open("GET", "http://192.168.31.249:3002/tabs/"+user+"/"+app, true);
     xhttp.send();
 }
-var tabs = getTabs("divyanshg21", "shome")
+getTabs("divyanshg21", "shome")
+
 console.log(tabs)
 
 var widgets = [{

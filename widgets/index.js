@@ -53,7 +53,30 @@ var widgetSchema = []
 var tabSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
-    res.json(getWidgets(req.params.userId, req.params.appId))
+    getWidgets(req.params.userId, req.params.appId).then(widgets => {
+        widgets.forEach(widget => {
+            //BASICS
+            schema.name = widget.name;
+            schema.feed = widget.feed;
+            schema.type = widget.type;
+            //DATASETS
+            schema.datasets.label = widget.label;
+            schema.datasets.data  = widget.data;
+            schema.datasets.backgroundColor = widget.backgroundColor;
+            schema.datasets.borderColor = widget.borderColor;
+            schema.datasets.borderWidth = widget.borderWidth;
+            //CONFIGS
+            schema.config.labels = widget.labels;
+            schema.config.type = widget.chartType;
+            schema.config.prevTime = widget.prevTime;
+            schema.config.device = widget.device;
+            schema.config.tab = widget.tab;
+
+            widgetSchema.push(schema)
+        })
+
+        res.json(widgetSchema)
+    })
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
@@ -76,31 +99,12 @@ app.get('/newWidget/:userId/:appId', (req, res) => {
 })
 
 var getWidgets = (user, app) => {
-    con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
-        if (err) throw err;
-        widgets.forEach(widget => {
-            //BASICS
-            schema.name = widget.name;
-            schema.feed = widget.feed;
-            schema.type = widget.type;
-            //DATASETS
-            schema.datasets.label = widget.label;
-            schema.datasets.data  = widget.data;
-            schema.datasets.backgroundColor = widget.backgroundColor;
-            schema.datasets.borderColor = widget.borderColor;
-            schema.datasets.borderWidth = widget.borderWidth;
-            //CONFIGS
-            schema.config.labels = widget.labels;
-            schema.config.type = widget.chartType;
-            schema.config.prevTime = widget.prevTime;
-            schema.config.device = widget.device;
-            schema.config.tab = widget.tab;
-
-            widgetSchema.push(schema)
-        })
-    });
-
-    return widgetSchema
+    return new Promise((resolve, reject) => {
+        con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
+            if (err) return reject(err);
+            resolve(widgets)
+        });
+    })
 }
 
 var saveWidget = (user, app, widget) => {

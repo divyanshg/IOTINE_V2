@@ -2,7 +2,7 @@ GET http://192.168.31.249:3002/widgets/divyanshg/shome
 
 ###
 
-GET http://192.168.31.249:3002/tabs/userHII/app
+GET http://192.168.31.249:3002/tabs/divyanshg21/shome
 
 ###
 

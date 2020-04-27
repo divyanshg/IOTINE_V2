@@ -1,0 +1,40 @@
+[
+    {
+        "name": "Demo",
+        "feed": "Web_Sensor",
+        "type": "chart",
+        "datasets": {
+            "label": "TEmperature",
+            "data": "",
+            "backgroundColor": "transparent",
+            "borderColor": "green",
+            "borderWidth": 1
+        },
+        "config": {
+            "labels": "",
+            "type": "bar",
+            "prevTime": "ret",
+            "device": "qwerty12",
+            "tab": "ghjk213"
+        }
+    },
+    {
+        "name": "Demo",
+        "feed": "Web_Sensor",
+        "type": "chart",
+        "datasets": {
+            "label": "TEmperature",
+            "data": "",
+            "backgroundColor": "transparent",
+            "borderColor": "green",
+            "borderWidth": 1
+        },
+        "config": {
+            "labels": "",
+            "type": "bar",
+            "prevTime": "ret",
+            "device": "qwerty12",
+            "tab": "ghjk213"
+        }
+    }
+]

@@ -1,14 +1,30 @@
-GET http://192.168.31.72:3002/widgets/userHII/app
+GET http://192.168.31.249:3002/widgets/divyanshg/shome
 
 ###
 
-GET http://192.168.31.72:3002/tabs/userHII/app
+GET http://192.168.31.249:3002/tabs/userHII/app
 
 ###
 
 GET http://192.168.31.249:3002/newWidget/divyanshg21/shome
-Content-Type: 'application/json'
+Content-Type: application/json
 
 {
-    name: "divy"
+        "name": "Demo",
+        "feed": "Web_Sensor",
+        "type": "chart",
+        "datasets": {
+            "label": "Temperature",
+            "data": "",
+            "backgroundColor": "transparent",
+            "borderColor": "green",
+            "borderWidth": 1
+        },
+        "config": {
+            "labels": "",
+            "type": "bar",
+            "prevTime": "ret",
+            "device": "qwerty12",
+            "tab": "ghjk213"
+        }
 }

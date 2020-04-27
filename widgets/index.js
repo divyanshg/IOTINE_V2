@@ -101,4 +101,14 @@ var getWidgets = (user, app) => {
 
     return widgetSchema
 }
+
+var saveWidget = (user, app, widget) => {
+    var widget = [
+        [null, widget.user, widget.app, widget.name, widget.datasets.feed, widget.datasets.label, widget.datasets.data, widget.datasets.backgroundColor, widget.datasets.borderColor, widget.datasets.borderWidth, widget.config.labels, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
+    ]
+    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [value], (err, res) => {
+        if(err) throw err;
+        res.send("Widget Saved!")
+    })
+}
 app.listen(port, () => console.log("Server running on : "+port))

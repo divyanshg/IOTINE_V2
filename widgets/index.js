@@ -103,10 +103,10 @@ var getWidgets = (user, app) => {
 }
 
 var saveWidget = (user, app, widget) => {
-    var widget = [
+    var widgets = [
         [null, widget.user, widget.app, widget.name, widget.datasets.feed, widget.datasets.label, widget.datasets.data, widget.datasets.backgroundColor, widget.datasets.borderColor, widget.datasets.borderWidth, widget.config.labels, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
     ]
-    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [value], (err, res) => {
+    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
         if(err) throw err;
         res.send("Widget Saved!")
     })

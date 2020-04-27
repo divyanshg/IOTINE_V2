@@ -1771,4 +1771,9 @@ height:100px;
     border: none;
     background: transparent;
     border-bottom: 1px solid whitesmoke;
+    transition: 0.3s ease all;
+}
+
+#dash_settings button:hover{
+    background-color: whitesmoke;
 }

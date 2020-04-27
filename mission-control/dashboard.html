@@ -116,7 +116,7 @@
                         <div class="commands">
                             <button><i class="material-icons">edit</i></button>
                             <button><i class="material-icons">notifications_none</i></button>
-                            <button onclick="toggle('#dash_settings')"><i class="material-icons">settings</i></button>
+                            <button onclick="toggleDis('#dash_settings')"><i class="material-icons">settings</i></button>
                         </div>
                         <div id="dash_settings">
                             <h4>HI THere</h4>
@@ -204,7 +204,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://192.168.31.249/iot-wave/mission-control/components.js" type="text/javascript"></script>
     <script>
-        function toggle(elm){
+        function toggleDis(elm){
             var elm = document.querySelector(elm);
             if(elm.style.display = "none"){
                 elm.style.display = "block"

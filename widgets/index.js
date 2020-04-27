@@ -22,7 +22,7 @@ con.connect(function(err) {
 app.get('/widgets/:userId/:appId', (req, res) => {
     con.query("select * from widgets", function (err, result) {
         if (err) throw err;
-        console.log("Result: " + json.stringify(result));
+        console.log("Result: " + JSON.stringify(result));
     });
     res.json(
         [

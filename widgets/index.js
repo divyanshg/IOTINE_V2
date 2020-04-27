@@ -42,7 +42,7 @@ var schema =   {
 var widgetSchema = []
 
 app.get('/widgets/:userId/:appId', (req, res) => {
-    await getWidgets().then(widgets => res.json(widgets))
+    res.json(getWidgets())
     /*res.json(
         [
             {
@@ -88,7 +88,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     )
 })
 
-async function getWidgets(){
+var getWidgets = () => {
     con.query("select * from widgets", function (err, widgets) {
         if (err) throw err;
         widgets.forEach(widget => {

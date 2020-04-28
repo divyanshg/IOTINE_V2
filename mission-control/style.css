@@ -1791,3 +1791,9 @@ p.ndt {
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.wid-seps{
+    margin-left:20px;
+    color:black;
+    text-decoration: underline;
+}

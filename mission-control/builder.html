@@ -371,8 +371,13 @@
                 type: config.type,
                  data: {
                         labels: ["Delhi",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo"],
-                        datasets: datas
-                    },
+                        datasets: [{
+                            label: datas[0].label, // Name the series
+                            data: datas[0].data,
+                            borderColor: datas[0].borderColor, // Add custom color border (Line)
+                            backgroundColor: datas[0].backgroundColor, // Add custom color background (Points and Fill)
+                            borderWidth: datas[0].borderColor // Specify bar border width
+                        }]},
                     options: {
                     responsive: true, // Instruct chart js to respond nicely.
                     maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 

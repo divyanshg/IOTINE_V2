@@ -919,10 +919,7 @@ async function createWidget() {
         
                 if (widget.type == "chart") {
                     var prev = ''
-                    for(i =0; i < widget.feed.length;i++){
-                        lineChart(widget.feed[i], widget.config, widgetBdy, prev)
-                        prev = widget.feed[i]
-                    }
+                    lineChart(widget.feed, widget.config, widgetBdy, prev)
                 }else if(widget.type=="button"){
                     createButton(widget.feed, widget.config, widgetBdy)
                 }else if(widget.type == "map"){

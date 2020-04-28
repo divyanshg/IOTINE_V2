@@ -345,12 +345,13 @@
             var name = prompt("Template name :")
 
             var newtopt = document.createElement('option')
-            newopt.value = name;
 
             document.querySelector("#dTemplate").appendChild(newopt)
             newopt.innerHTML = name
+            newopt.value = name;
             document.querySelector("#dTemplate").value = name
         }
+
         async function saveDevice(name, templ, did){
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {

@@ -1797,14 +1797,17 @@ p.ndt {
     color:black;
 }
 .btmPanel{
-    position:fixed;
-    bottom:0px;
+    position:absolute;
+    bottom:60px;
     left:0px;
+    width:100%;
+    height:50px;
     display:flex;
 }
 .btmPanel button{
-    width:40%;
+    width:50%;
     margin:auto;
     padding:15px;
     border:none;
+    height:50px;
 }

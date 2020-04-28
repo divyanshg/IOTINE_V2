@@ -351,7 +351,7 @@
             createWidget([schema])
         }
 
-        function lineChart(id, config, widgetBdy, prev) {
+        function lineChart(id, data,config, widgetBdy, prev) {
             var chartContainer;
             if(prev == ""){
                 chartContainer = document.createElement("canvas");
@@ -366,11 +366,12 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
+            widget.datasets[0].data.push(["1", "2", "3", "4", "5"])
             var chart = new Chart(chartContainer.getContext('2d'), {
             type: config.type,
             data: {
                 labels: ["sample 1","sample 2","sample 3","sample 4","sample 5"],
-                datasets: ["1","2","3","4","5"]
+                datasets: widget.datasets
             },
             options: {
                 scales: {
@@ -418,7 +419,7 @@
         
                 if (type == "chart") {
                     var prev = ''
-                    lineChart(widget.feed, widget.config, widgetBdy, prev)
+                    lineChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
                 }/*else if(widget.type=="button"){
                     createButton(widget.feed, widget.config, widgetBdy)
                 }else if(widget.type == "map"){

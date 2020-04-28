@@ -247,7 +247,10 @@
             //createWidget([{name:"TEST", config:{}, type}])
         }
 
-        async function loadFeeds(dev, templ){
+        async function loadFeeds(txt){
+            var dev = txt.split("/")[1];
+            var templ = txt.split("/")[0];
+
             var feedLst = document.querySelector("#devFeeds");
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {

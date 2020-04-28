@@ -103,6 +103,13 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 
+app.get('/user/:name', (req, res) => {
+    con.query('select user_id from users where username = ? limit 1', req.params.name, (err, resp) => {
+        if(err) throw err;
+        res.send(resp)
+    })
+});
+
 app.post('/newWidget/:userId/:appId', (req, res) => {
     var widget = req.body
     saveWidget(req.params.userId, req.params.appId, widget)

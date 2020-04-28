@@ -5,12 +5,14 @@
     --sidebar: rgb(243, 245, 249);
     --widBorder:#d2d2d2;
     --cmds: black; 
+    --tabsclr: black;
     /*--appInner: black;
     --title: white;
     --navLink:white;
     --sidebar: rgb(49, 49, 49);
     --cmds: white;
-    --widBorder:#2a2a2a;*/
+    --widBorder:#2a2a2a;
+    --tabsclr: white;*/
 }
 body {
     font-family: Eina, Helvetica Neue, Helvetica, sans-serif;
@@ -1737,7 +1739,7 @@ height:100px;
 /* Create an active/current tablink class */
 .tab button.active {
   border-bottom:1px solid rgb(56, 128, 255);
-  color:white !important;
+  color:var(--tabsclr) !important;
 }
 
 /* Style the tab content */

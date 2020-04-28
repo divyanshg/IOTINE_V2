@@ -60,40 +60,40 @@
                     <ul>
                         <label class="wid-seps" for="">CHARTS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="chart" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="chart" class="sc-ePZHVD ePRQm"><a data-wtype="chart"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Line Chart</div>
                                 </a>
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="chart" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div class="sc-ePZHVD ePRQm"><a data-wtype="chart" aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Bar Chart</div>
                                 </a>
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="chart" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="chart" class="sc-ePZHVD ePRQm"><a data-wtype="chart"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Pie Chart</div>
                                 </a>
                             </div>
                         </li>
                         <label class="wid-seps" for="">BUTTONS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="btn" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="btn" class="sc-ePZHVD ePRQm"><a data-wtype="btn"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>ON / OFF</div>
                                 </a>
                             </div>
                         </li>
                         <label class="wid-seps" for="">MAPS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="maps" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="maps" class="sc-ePZHVD ePRQm"><a data-wtype="maps"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Google Maps</div>
                                 </a>
                             </div>
                         </li>
                         <label class="wid-seps" for="">SLIDERS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="range" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="range" class="sc-ePZHVD ePRQm"><a data-wtype="range"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Range Sliders</div>
                                 </a>
                             </div>
@@ -106,25 +106,25 @@
                         </li>
                         <label class="wid-seps" for="">MISCELLANEOUS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="log" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="log" class="sc-ePZHVD ePRQm"><a data-wtype="log"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Data Log</div>
                                 </a>
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="img" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="img" class="sc-ePZHVD ePRQm"><a data-wtype="img"" aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Image</div>
                                 </a>
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="vid" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="vid" class="sc-ePZHVD ePRQm"><a data-wtype="vid"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>Video</div>
                                 </a>
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="iframe" class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink " href="#"
+                            <div data-wtype="iframe" class="sc-ePZHVD ePRQm"><a data-wtype="iframe"  aria-current="page" class="navlink " href="#"
                                     onclick=""><div>IFrame</div>
                                 </a>
                             </div>
@@ -239,14 +239,12 @@
                 elm.style.display = "block"
             }else if(elm.style.display == "block"){
                 elm.style.display = "none"
-                console.log("here")
             }
         }
 
         var navLinks = document.getElementsByClassName("navlink");
         for(i =0; i < navLinks.length; i++){
             navLinks[i].addEventListener('click', function() {
-                console.log(this.classList)
                 propertySelector(this.getAttribute("data-wtype"));
             })
         }

@@ -256,8 +256,8 @@
                     var feeds = JSON.parse(xhttp.responseText)
                     console.log(feeds.length)
                     if(feeds.length != 0){
+                    $("#devFeeds").empty(); 
                     feeds.forEach(feed => {
-                        $("#devFeeds").empty(); 
                         var opt = document.createElement('option')
                         opt.innerHTML = feed.name
                         opt.value = feed.name;

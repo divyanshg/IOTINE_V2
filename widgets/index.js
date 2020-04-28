@@ -122,7 +122,7 @@ app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
     res.send("Tab Saved!")
 });
 
-app.get('/devices/:userID', (req, res) => {
+app.get('/devices/:userId', (req, res) => {
     var devicesScehma = []
     getDevices(req.params.userId).then(devices => {
         devices.forEach(device => {

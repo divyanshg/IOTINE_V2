@@ -141,37 +141,6 @@
         </div>
     </div>
     </div>
-
-    <div class="newAppModal modal" style="display: none;">
-        <div class="newAppInner">
-            <h1>New Application<span onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()"
-                    class="clsBtn">&times;</span></h1>
-            <h4>Answer a few quick questions and we'll get your app up and running.</h4>
-            <div class="form">
-                <form action="/action_page.php">
-                    <label for="appname">Application Name</label>
-                    <input v-model="newAppName" type="text" id="appname" name="appname">
-
-                    <label for="appurl">URL</label>
-                    <div class="url">
-                        <input type="text" id="appurl" name="appurl" :value="newAppName">
-                        <p id="mainurl">.divyanshg809.iotine.com</p>
-                    </div>
-                    <label for="country">Country</label>
-                    <select id="country" name="country">
-                        <option value="usa">India</option>
-                        <option value="australia">Australia</option>
-                        <option value="canada">Canada</option>
-                        <option value="usa">USA</option>
-                    </select>
-
-                    <input type="button" v-on:click="addDevice" class="save" value="Create">
-                    <input type="button" class="cancel" value="Cancel"
-                        onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()">
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="newDeviceModal modal" style="display: none;">
         <div class="newAppInner">
             <h1>New Device<span onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle()"

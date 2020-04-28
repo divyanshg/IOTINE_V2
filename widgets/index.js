@@ -122,6 +122,16 @@ app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
     res.send("Tab Saved!")
 });
 
+app.get('/devices/:userID', (req, res) => {
+    getDevices(req.params.userId).then(devices => {
+        var devicesScehma = []
+        devices.forEach(device => {
+            devicesScehma.push(device)
+        })
+        res.json(devicesScehma)
+    }).catch((err) => setImmediate(() => { throw err; }))
+});
+
 app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
     var device = req.params;
     saveDevice(device.userId, device.name, device.did, device.templ)
@@ -167,14 +177,19 @@ var saveTab = (user, app, name) => {
 }
 
 var getDevices = (user) => {
-
+    return new Promise((resolve, reject) => {
+        con.query('select dName,template from devices where user = ?', [user], (err, devices) =>{
+            if(err) return reject(err);
+            resolve(devices)
+        })
+    })
 }
 
 var saveDevice = (user, name, did, templ) => {
     var device = [
         [null, did, name, templ, user]
     ]
-    con.query('insert into devices(id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
+    con.query('insert into devices(_id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
         if(err) throw err;
         return 1;
     })

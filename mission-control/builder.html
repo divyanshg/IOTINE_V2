@@ -688,14 +688,15 @@ function openTab(evt, id){
 
   document.querySelector("#"+id).style.display = "block";
   evt.currentTarget.className += " active";
-  crrntTab = tabcontent.id
+  
 }
 
 function addClicks(){
     var tabLink = document.getElementsByClassName("tablinks");
     for (i = 0; i < tabLink.length; i++) {
         tabLink[i].addEventListener('click', function(){
-            openTab(event, this.classList[1])  
+            openTab(event, this.classList[1])
+            crrntTab = this.id  
         })    
     }
 }

@@ -265,6 +265,11 @@
                     })
                     }else{
                         $("#devFeeds").empty(); 
+                        var opt = document.createElement('option')
+                        opt.innerHTML = "No feeds found"
+                        opt.value = 0;
+
+                        feedLst.appendChild(opt)
                         return
                     }
                 }

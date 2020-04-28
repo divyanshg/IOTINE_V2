@@ -129,7 +129,7 @@ app.get('/devices/:userID', (req, res) => {
             devicesScehma.push(device)
         })
 
-        console.log(device)
+        console.log(devicesScehma)
         res.json(devicesScehma)
 
     }).catch((err) => setImmediate(() => { throw err; }))

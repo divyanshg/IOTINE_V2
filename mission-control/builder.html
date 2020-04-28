@@ -247,7 +247,7 @@
                     var resdevice = JSON.parse(xhttp.responseText)
                     resdevice.forEach(device => {
                         var opt = document.createElement('option')
-                        opt.innerHTML = device.template+"/"+device.dName
+                        opt.innerHTML = device.template+" / "+device.dName
                         opt.value = device.dName;
 
                         devList.appendChild(opt)

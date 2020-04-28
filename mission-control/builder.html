@@ -162,6 +162,13 @@
                 console.log("here")
             }
         }
+
+        var navLinks = document.getElementsByClassName("navlink");
+        for(i =0; i < navLinks.length; i++){
+            navLinks[i].addEventListener('click', function() {
+                console.log(this)
+            })
+        }
     </script>
    <!-- <script>
          getUser();

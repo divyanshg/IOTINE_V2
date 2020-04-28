@@ -261,7 +261,7 @@
         }
 
         function propertySelector(typ){
-            type = "chart";
+            type = typ;
             $('.propane').toggle();
             getDevices();
             //createWidget([{name:"TEST", config:{}, type}])
@@ -365,12 +365,38 @@
             chartContainer.width = "325"
             chartContainer.height = "180"
             chartContainer.style.display = "block";
+
+            var chart = new Chart(ctx, {
+            type: config.type,
+            data: {
+                labels: ["sample 1","sample 2","sample 3","sample 4","sample 5"],
+                datasets: [Math.random() *10,Math.random() *10,Math.random() *10,Math.random() *10,Math.random() *10]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: true,
+                autoSkip:false,
+                legend: {
+                    display: true
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
     /*if(config.labels == ""){
         widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
     }*/
 
 
             widgetBdy.appendChild(chartContainer)
+            chart.update()
         }
 
         async function createWidget(widgets) {

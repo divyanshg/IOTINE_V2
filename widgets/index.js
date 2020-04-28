@@ -221,7 +221,7 @@ var saveTemplate =  (user, name) => {
 
 var getFeeds = (user,dev,templ) => {
     return new Promise((resolve, reject) => {
-            con.query('select * from feed_vals ', (err, feeds) => {
+            con.query('select name from feed_vals ', (err, feeds) => {
                 if(err) return reject(err);
                 resolve(feeds)
             })

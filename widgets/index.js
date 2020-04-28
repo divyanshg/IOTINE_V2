@@ -129,8 +129,8 @@ app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
     res.send("Device Saved!")
 });
 
-app.get('/feeds/:userId/:dev/:templ', (req,res) => {
-    getFeeds(req.params.user, req.params.dev, req.params.templ).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => { throw err; }))
+app.get('/feeds/:userId/:dev', (req,res) => {
+    getFeeds(req.params.user, req.params.dev).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => { throw err; }))
 })
 
 app.get('/templates/:user', (req, res) => {
@@ -190,9 +190,9 @@ var saveTab = (user, app, name) => {
     })
 }
 
-var getDevices = (user) => {
+var getDevices = (user, dev) => {
     return new Promise((resolve, reject) => {
-        con.query('select dName,template from devices where uName = ?', [user], (err, devices) =>{
+        con.query('select dName,template,deviceID from devices where uName = ?', [user], (err, devices) =>{
             if(err) return reject(err);
             resolve(devices)
         })
@@ -221,7 +221,7 @@ var saveTemplate =  (user, name) => {
 
 var getFeeds = (user,dev,templ) => {
     return new Promise((resolve, reject) => {
-            con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, res[0].deviceID], (err, feeds) => {
+            con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, dev], (err, feeds) => {
                 if(err) return reject(err);
                 resolve(feeds)
             })

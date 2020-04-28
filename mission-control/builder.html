@@ -247,11 +247,7 @@
             //createWidget([{name:"TEST", config:{}, type}])
         }
 
-        async function loadFeeds(txt){
-            console.log(txt.split("/"))
-            var dev = txt.split("/")[1];
-            var templ = txt.split("/")[0];
-
+        async function loadFeeds(dev){
             var feedLst = document.querySelector("#devFeeds");
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -267,7 +263,7 @@
                     })
                 }
         };
-        xhttp.open("GET", "http://192.168.31.249:3002/feeds/"+user+"/"+dev+"/"+templ, true);
+        xhttp.open("GET", "http://192.168.31.249:3002/feeds/"+user+"/"+dev, true);
         await xhttp.send();
         }
 
@@ -281,7 +277,7 @@
                     resdevice.forEach(device => {
                         var opt = document.createElement('option')
                         opt.innerHTML = device.template+" / "+device.dName
-                        opt.value = device.template+"/"+device.dName;
+                        opt.value = device.deviceID;
 
                         devList.appendChild(opt)
                     })

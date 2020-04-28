@@ -183,11 +183,11 @@
                     <input type="text" id="Devicename" name="Devicename" value="">
 
                     <label for="dTemplate">Device Template</label>
-                    <select onchange="console.log('changed')" id="dTemplate" name="dTemplate">
+                    <select onchange="console.log(this.value)" id="dTemplate" name="dTemplate">
                         <option value="fan">Fan</option>
                         <option value="light">Light</option>
                         <option value="temp_sns">Temperature</option>
-                        <option v-on:click="addTemplate"><a href="#" style="color:blue;">+ Create new template</a></option>
+                        <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>
                     </select>
 
                     <label for="Deviceurl">Device Connection String</label>

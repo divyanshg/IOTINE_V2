@@ -281,7 +281,7 @@
                     resdevice.forEach(device => {
                         var opt = document.createElement('option')
                         opt.innerHTML = device.template+" / "+device.dName
-                        opt.value = device.dName;
+                        opt.value = device.template+" / "+device.dName;
 
                         devList.appendChild(opt)
                     })

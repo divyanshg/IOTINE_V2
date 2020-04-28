@@ -1,7 +1,10 @@
+var cors = require('cors')
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var mqtt = require('mqtt')
+
+app.use(cors())
 
 const crypto = require('crypto');  
 const secret = 'Let this be a Key something more random to make this key super long';  

@@ -6,11 +6,11 @@ GET http://192.168.31.249:3002/tabs/divyanshg21/shome
 
 ###
 
-POST http://192.168.31.249:3002/newWidget/divyanshg21/shome
+POST http://192.168.31.249:3002/newWidget/iub54i6bibu64/shome
 Content-Type: application/json
 
 {
-        "name": "Demo4",
+        "name": "Demo5",
         "feed": "Web_Sensor",
         "type": "chart",
         "datasets": {

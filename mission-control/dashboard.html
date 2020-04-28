@@ -347,7 +347,7 @@
                     newopt.innerHTML = name
                     newopt.value = name;
                     document.querySelector("#dTemplate").value = name;
-                    
+
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -500,7 +500,7 @@ function getTabs(){
         xhttp.send();
     })
 }
-
+/*
 var widgets = [{
     name: "Distance",
     feed: ["retg54"],
@@ -752,7 +752,7 @@ var widgets = [{
         tab:"dpkgk213"
     }    
 }]
-
+*/
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -896,45 +896,54 @@ function createIFrame(feed, config, bdy){
     bdy.appendChild(iframeCont)
 }
 
-function createWidget() {
-    widgets.forEach(widget => {
-        var widgetBdy = document.createElement('div')
-        var head = document.createElement('h4');
-        var latestData = document.createElement('p');
+async function createWidget() {
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                var widgets = JSON.parse(xhttp.responseText)
+                widgets.forEach(widget => {
+                var widgetBdy = document.createElement('div')
+                var head = document.createElement('h4');
+                var latestData = document.createElement('p');
         
-        latestData.className += " latData";
-        head.className += " wid-head"
-        widgetBdy.appendChild(head)
-        widgetBdy.appendChild(latestData)
-        head.innerHTML = widget.name;
+                latestData.className += " latData";
+                head.className += " wid-head"
+                widgetBdy.appendChild(head)
+                widgetBdy.appendChild(latestData)
+                head.innerHTML = widget.name;
                 
-        widgetBdy.className += 'widget';
+                widgetBdy.className += 'widget';
         
-        document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
+                document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
         
-        if (widget.type == "chart") {
-            var prev = ''
-            for(i =0; i < widget.feed.length;i++){
-                lineChart(widget.feed[i], widget.config, widgetBdy, prev)
-                prev = widget.feed[i]
+                if (widget.type == "chart") {
+                    var prev = ''
+                    for(i =0; i < widget.feed.length;i++){
+                        lineChart(widget.feed[i], widget.config, widgetBdy, prev)
+                        prev = widget.feed[i]
+                    }
+                }else if(widget.type=="button"){
+                    createButton(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "map"){
+                    createMap(widget.feed, widget.config, widgetBdy)    
+                }else if(widget.type == "range"){
+                    createRange(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "log"){
+                    createLog(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "video"){
+                    createVideo(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "image"){
+                    createImg(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "iframe"){
+                    createIFrame(widget.feed, widget.config, widgetBdy)
+                }
+        
+            })
             }
-        }else if(widget.type=="button"){
-             createButton(widget.feed, widget.config, widgetBdy)
-        }else if(widget.type == "map"){
-             createMap(widget.feed, widget.config, widgetBdy)    
-        }else if(widget.type == "range"){
-            createRange(widget.feed, widget.config, widgetBdy)
-        }else if(widget.type == "log"){
-            createLog(widget.feed, widget.config, widgetBdy)
-        }else if(widget.type == "video"){
-            createVideo(widget.feed, widget.config, widgetBdy)
-        }else if(widget.type == "image"){
-            createImg(widget.feed, widget.config, widgetBdy)
-        }else if(widget.type == "iframe"){
-            createIFrame(widget.feed, widget.config, widgetBdy)
-        }
-        
-    })
+        };
+        xhttp.open("GET", "http://192.168.31.249:3002/widgets/"+user+"/"+app, true);
+        await xhttp.send();
 }
 
 function getWidget(feed){

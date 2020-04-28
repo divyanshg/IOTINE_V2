@@ -419,7 +419,8 @@
         
     </script>
     <script>
-        console.log("path : "+window.location.pathname)
+        var user = window.location.pathname.split("/")[0]
+        console.log("path : "+user)
 var socket = io();
 function getTabs(user, app){
     return new Promise((resolve, reject) => { 

@@ -111,7 +111,7 @@
                                 <div class="sc-fjmCvl sLkAJ" size="24"><img
                                         src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
                                         alt=""></div>
-                                <h2>Welcome, Divyansh Gupta</h2>
+                                <h2 class="wlcm">Welcome, </h2>
                             </div>
                         </span>
                     </div>
@@ -420,7 +420,8 @@
     </script>
     <script>
         var user = window.location.pathname.split("/")[1];
-        var app = window.location.pathname.split("/")[2]
+        var app = window.location.pathname.split("/")[2];
+        $(".wlcm").innerHTML += user
 var socket = io();
 function getTabs(){
     return new Promise((resolve, reject) => { 

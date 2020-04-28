@@ -419,7 +419,7 @@
         
     </script>
     <script>
-        await getUser();
+        getUser();
         var user;
         var app = window.location.pathname.split("/")[2];
 var socket = io();
@@ -434,7 +434,7 @@ async function getUser(){
             }
         };
         xhttp.open("GET", "http://192.168.31.249:3002/user/"+username, true);
-        xhttp.send();
+        await xhttp.send();
 }
 
 document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]

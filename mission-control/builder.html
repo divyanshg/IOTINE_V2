@@ -249,7 +249,7 @@
 
         async function loadFeeds(txt){
             console.log(txt.split("/"))
-            var dev = txt.split("/")[1].replace(" ");
+            var dev = txt.split("/")[1];
             var templ = txt.split("/")[0];
 
             var feedLst = document.querySelector("#devFeeds");
@@ -281,7 +281,7 @@
                     resdevice.forEach(device => {
                         var opt = document.createElement('option')
                         opt.innerHTML = device.template+" / "+device.dName
-                        opt.value = device.template+" / "+device.dName;
+                        opt.value = device.template+"/"+device.dName;
 
                         devList.appendChild(opt)
                     })

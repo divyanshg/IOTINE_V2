@@ -74,6 +74,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
         })
 
         res.json(widgetSchema)
+        console.log(schema)
 
         schema = {}
     }).catch((err) => setImmediate(() => { throw err; }))

@@ -71,12 +71,11 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.config.tab = widget.tab;
 
             widgetSchema.push(schema)
+            schema = {}
         })
 
         res.json(widgetSchema)
         console.log(schema)
-
-        schema = {}
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 
@@ -127,7 +126,6 @@ var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
             if (err) return reject(err);
-            console.log(widgets)
             resolve(widgets)
         });
     })

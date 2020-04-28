@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <script>if(window.localStorage.getItem('status') == ''){window.location.replace('/')}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrameWork Tester</title>
@@ -121,8 +121,8 @@
                     <div class="  sc-jwKygS lfArOz" id="main-container">
                         <header class="sc-hEsumM felvod">
                             <div class="sc-cIShpX dQDczm">
-                                <div class="title"><span class="sc-jqCOkK gstZGj sc-frDJqD bvdgMY" size="9"
-                                        font-weight="bold" letter-spacing="tight">Your Apps</span></div>
+                                <div class="title"><span class="sc-jqCOkK gstZGj sc-frDJqD bvdgMY userTEST" size="9"
+                                        font-weight="bold" letter-spacing="tight">Your Apps, </span></div>
                                 <div class="sc-feJyhm cznHAf"><button
                                         class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
                                         onclick="newApp()"><span>Add
@@ -284,6 +284,18 @@
     <script src="river_v1.js"></script>
 
     <script>
+        function find(name) {
+            var url = window.location.search;
+            var num = url.search(name);
+            var namel = name.length;
+            var frontlength = namel + num + 1; //length of everything before the value
+            var front = url.substring(0, frontlength);
+            url = url.replace(front, "");
+            num = url.search("&");
+            if (num >= 0) return url.substr(0, num);
+            if (num < 0) return url;
+        }
+        document.querySelector('.userTEST').innerHTML += find("user")
         function linkactive(elm) {
             var prev = document.querySelector('.active')
             prev.classList.remove("active")

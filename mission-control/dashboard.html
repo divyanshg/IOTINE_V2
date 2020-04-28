@@ -422,7 +422,7 @@
         var user = window.location.pathname.split("/")[1];
         var app = window.location.pathname.split("/")[2]
 var socket = io();
-function getTabs(user, app){
+function getTabs(){
     return new Promise((resolve, reject) => { 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -1082,7 +1082,7 @@ function addClicks(){
 }
 
 function createTabs(){ 
-    getTabs("divyanshg21", "shome").then(tabs => { 
+    getTabs().then(tabs => { 
     for(var i =0; i < tabs.length; i++) {
         var tabbar = document.querySelector(".tab")
         var tabLink = document.createElement("button")

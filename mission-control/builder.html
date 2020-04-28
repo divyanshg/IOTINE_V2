@@ -319,7 +319,7 @@
         function saveWid(){
             var name = $("#name").val();
             var device = $("#devProp").val();
-            var feed = $("#devFeeds").val();
+            var feed = $("#devFeeds").val().split("/")[1];
             var bgc = $("#bgc").val();
             var brdc = $("#brdc").val();
             var brdw = $("#brdw").val();

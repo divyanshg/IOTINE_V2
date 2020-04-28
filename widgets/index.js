@@ -223,10 +223,11 @@ var getFeeds = (user,dev,templ) => {
     return new Promise((resolve, reject) => {
         con.query("select deviceID from devices where uName = ? and dName = ? and template = ? limit 1", [user, dev, templ], (err, res) => {
             if(err) return reject(err);
-            con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, res[0].deviceID], (err, feeds) => {
+            console.log(res);resolve(res)
+            /*con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, res[0].deviceID], (err, feeds) => {
                 if(err) return reject(err);
                 resolve(feeds)
-            })
+            })*/
         })
     })
 }

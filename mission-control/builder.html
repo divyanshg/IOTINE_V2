@@ -368,12 +368,12 @@
 
             datas[0].data.push([1,2,3,4,5])
             var chart = new Chart(chartContainer.getContext('2d'), {
-                type: "line",
+                type: config.type,
                  data: {
                         labels: ["Delhi",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo"],
                         datasets: [{
                             label: datas[0].label, // Name the series
-                            data: datas[0].data,
+                            data: [10,12,8,19,15],
                             borderColor: datas[0].borderColor, // Add custom color border (Line)
                             backgroundColor: datas[0].backgroundColor, // Add custom color background (Points and Fill)
                             borderWidth: datas[0].borderColor // Specify bar border width

@@ -366,14 +366,13 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
-            datas[0].data.push([1,2,3,4,5])
             var chart = new Chart(chartContainer.getContext('2d'), {
                 type: config.type,
                  data: {
                         labels: ["Delhi",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo"],
                         datasets: [{
                             label: datas[0].label, // Name the series
-                            data: [10,12,8,19,10],
+                            data: [Math.floor(Math.random()*10),Math.floor(Math.random()*10),Math.floor(Math.random()*10),Math.floor(Math.random()*10),Math.floor(Math.random()*10)],
                             borderColor: datas[0].borderColor, // Add custom color border (Line)
                             backgroundColor: datas[0].backgroundColor, // Add custom color background (Points and Fill)
                             borderWidth: datas[0].borderWidth // Specify bar border width

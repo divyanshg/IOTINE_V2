@@ -419,11 +419,11 @@
         
     </script>
     <script>
-        getUser();
+        await getUser();
         var user;
         var app = window.location.pathname.split("/")[2];
 var socket = io();
-function getUser(){
+async function getUser(){
     var username = window.location.pathname.split("/")[1];
     var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

@@ -945,21 +945,19 @@ async function createWidget() {
 
 function getWidget(feed){
     for(i =0; i < widgets.length; i++){
-        for(j =0; j < widgets[i].feed.length; j++){
-           if(widgets[i].feed[j] == feed){
-               var obj = {widget:widgets[i], index:j}
+           if(widgets[i].feed == feed){
+               var obj = widgets[i]
                return obj
             }
-    }
     }
 }
 
 function updateChart(id, ctx, msg, feed) {
-    var {widget, j} = {widget:getWidget(feed).widget, j:getWidget(feed).index}
+    var widget = getWidget(feed).widget
     //console.log(/\d/.test(msg.value))
     var config = widget.config
     
-    widget.datasets[j].data.push(msg.value)
+    widget.datasets.data.push(msg.value)
     
     config.labels.push(msg.time)
     
@@ -988,8 +986,8 @@ function updateChart(id, ctx, msg, feed) {
         }
     });
     
-    if(widget.datasets[j].data.length >= 5){
-        widget.datasets[j].data.shift()
+    if(widget.datasets.data.length >= 5){
+        widget.datasets.data.shift()
         config.labels.shift()
         //$(".ndt").remove()
         chart.update()

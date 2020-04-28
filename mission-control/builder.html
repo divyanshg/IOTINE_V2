@@ -255,7 +255,7 @@
                 // Typical action to be performed when the document is ready:
                     var feeds = JSON.parse(xhttp.responseText)
                     console.log(feeds.length)
-                    if(feeds.length == 0) $("#devFeeds").empty(); return
+                    if(feeds.length != 0){
                     feeds.forEach(feed => {
                         var opt = document.createElement('option')
                         opt.innerHTML = feed.name
@@ -263,6 +263,10 @@
 
                         feedLst.appendChild(opt)
                     })
+                    }else{
+                        $("#devFeeds").empty(); 
+                        return
+                    }
                 }
         };
         xhttp.open("GET", "http://192.168.31.249:3002/feeds/"+user+"/"+dev, true);

@@ -127,6 +127,7 @@ var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
             if (err) return reject(err);
+            console.log(widgets)
             resolve(widgets)
         });
     })

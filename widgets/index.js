@@ -123,13 +123,15 @@ app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
 });
 
 app.get('/devices/:userID', (req, res) => {
+    var devicesScehma = []
     getDevices(req.params.userId).then(devices => {
-        var devicesScehma = []
         devices.forEach(device => {
             devicesScehma.push(device)
-            console.log(device)
-            res.json(devicesScehma)
         })
+
+        console.log(device)
+        res.json(devicesScehma)
+
     }).catch((err) => setImmediate(() => { throw err; }))
 });
 

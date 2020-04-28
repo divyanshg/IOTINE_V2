@@ -272,15 +272,7 @@
         var devices = new River({
             el: '.devicesList',
             data: {
-                devices: [{
-                    id: "1",
-                    name: "Street Light 1",
-                    type: "street_light"
-                }, {
-                    id: "2",
-                    name: "Street Light 2",
-                    type: "street_light"
-                }]
+                devices: []
             }
         })
 
@@ -331,6 +323,18 @@
             el: '.newDeviceModal',
             data: {
                 connstring: makeid(32)
+            },
+            methods: {
+                addDevice() {
+                    devices.devices.push({
+                        name: document.getElementById('Devicename').value,
+                        type: document.querySelector("#dTemplate").value
+                    })
+                    $('.mainBackDrop').toggle()
+                    $(".newDeviceModal").toggle()
+                    openedPanels = ''
+                    sideBar.toggleDevices()
+                }
             }
         })
 

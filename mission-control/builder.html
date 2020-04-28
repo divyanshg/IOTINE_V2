@@ -166,7 +166,7 @@
         var navLinks = document.getElementsByClassName("navlink");
         for(i =0; i < navLinks.length; i++){
             navLinks[i].addEventListener('click', function() {
-                createWidget({name:"TEST", config:{}})
+                createWidget({name:"TEST", config:{}, type:"chart"})
             })
         }
 
@@ -187,7 +187,7 @@
         
                 //document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
         
-                if (widget.type == "chart") {
+                /*if (widget.type == "chart") {
                     var prev = ''
                     lineChart(widget.feed, widget.config, widgetBdy, prev)
                 }else if(widget.type=="button"){
@@ -204,7 +204,7 @@
                     createImg(widget.feed, widget.config, widgetBdy)
                 }else if(widget.type == "iframe"){
                     createIFrame(widget.feed, widget.config, widgetBdy)
-                }
+                }*/
             })
         }
     </script>

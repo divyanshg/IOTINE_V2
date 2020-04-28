@@ -15,6 +15,10 @@ app.get('/:userId/:appId', function (req, res) {
     res.sendFile(__dirname + '/dashboard.html');
 });
 
+app.get('/builder/:userId/:app', (req,res) => {
+    res.sendFile(__dirname +'/builder')
+});
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []

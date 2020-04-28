@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOTINE DASHBOARD (BETA v2.0.1)</title>
+
+    <link rel="stylesheet" href="http://192.168.31.249/IOTINE_V2/mission-control/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="http://192.168.31.249/analDash/chart.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="inner">
+            <div class="main-panel">
+                <button onclick="window.location.replace('./')"><img title="IOTINE" src="http://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""></button>
+                <button v-on:click="toggleDevices"> <i class="material-icons">{{ icon }}</i> </button>
+                <button onclick="toggleNav()"> <i class="material-icons">add</i> </button>
+            </div>
+            <div class="bottom-panel">
+                <button><i class="material-icons">settings</i></button>
+                <button onclick="toggleDis('.side-settings')"><img
+                        src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
+                        alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="side-settings settings" style="display: none;">
+        <button>Settings</button>
+        <button>More</button>
+        <button>Fake</button>
+    </div>
+    <div class="devicesContainer">
+        <div class="searchForm">
+            <input v-model='searchedDevice' @keyup="searchInList" class="sc-dBaXSw fCqdz" id="header-search" type="text"
+                name="search" placeholder="Search my devices" autocomplete="off">
+        </div>
+        <ul id="devices" class="devicesList">
+            <li :id='device.name' v-for="device in devices" class="sc-dRCTWM rvBkA sc-jKJlTe jtqumW"><a href="#">
+                    <div class=" dash-size-regular sc-kGXeez fkEHRF">
+                        <div class="sc-kAzzGY eMCnFW"><img class="avatar"
+                                src="https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1"></div>
+                        <div class="sc-kpOJdX iQYOlv">
+                            <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
+                            <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
+                        </div>
+                    </div>
+                </a></li>
+        </ul>
+        <div class="actions">
+            <button v-on:click="newDev" class="addDevice">ADD DEVICE</button>
+        </div>
+    </div>
+
+    <div id="app">
+        <div class="sc-gleUXh jZiiGj">
+            <div class="header-notification" style="height: auto; display: block; background-color: rgb(255, 203, 44);">
+                <div class="notification-container">
+                    <div class="notification-text">
+                        <p class="notification-info" style="color: rgb(73, 51, 0); text-shadow: none;">Your email
+                            address is divyanshg809@gmail.com. We need to verify your email to continue using the
+                            service.</p>
+                    </div>
+                    <div class="notification-action"><button onclick="$('.jZiiGj').toggle()"
+                            class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
+                            style="color: rgb(73, 51, 0);"><span>Resend verification email</span></button><img
+                            class="close-btn" src="" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-gtfDJT diMILA" style="display:block;">
+            <div class="sc-jMMfwr lhmKww">
+                <div class=" dash-size-regular sc-kGXeez fkEHRF">
+                    <div class="sc-kpOJdX iQYOlv">
+                        <div class="title-text sc-chPdSV jgeneq">Personal</div>
+                        <div class="sub-text sc-kgoBCf cTHQrV"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sc-fOICqy eEQKgH">
+                <div class="sc-jtRlXQ dPoHcy">
+                    <ul>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink active" href="#"
+                                    onclick="loadLink('/dashboard.html', this)"><i class="material-icons">dashboard</i>
+                                    <div>Dashboard</div>
+                                </a></div>
+                        </li>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm"><a class="navlink " onclick="linkactive(this)"
+                                    href="/personal/usage"><i class="material-icons">repeat</i>
+                                    <div>Rules</div>
+                                </a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="appInner" id="appInner" style="display:none;"></div>
+        <div class="appInner mainappin" style="width: calc(100% - 230px)">
+            <header class="sc-hEsumM felvod">
+                <div class="sc-cIShpX dQDczm">
+                    <div class="title">
+                        <span class="sc-jqCOkK gstZGj sc-frDJqD bvdgMY" size="9" font-weight="bold"
+                            letter-spacing="tight">
+                            <div class="sc-gbOuXE hMamKJ">
+                                <div class="sc-fjmCvl sLkAJ" size="24"><img
+                                        src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
+                                        alt=""></div>
+                                <h2 class="wlcm">Welcome, </h2>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="controls">
+                        <div class="commands">
+                            <button><i class="material-icons">edit</i></button>
+                            <button><i class="material-icons">notifications_none</i></button>
+                            <button onclick="toggleDis('#dash_settings')"><i class="material-icons">settings</i></button>
+                        </div>
+                        <div id="dash_settings" class="settings" style="display: none;">
+                            <button>Settings</button>
+                            <button>More</button>
+                            <button>Fake</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- TAB LINKS -->
+            <div class="maindash">
+            <div class="tab">
+                      
+            </div>
+            <!-- CONTENT -->
+            
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="newAppModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>New Application<span onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()"
+                    class="clsBtn">&times;</span></h1>
+            <h4>Answer a few quick questions and we'll get your app up and running.</h4>
+            <div class="form">
+                <form action="/action_page.php">
+                    <label for="appname">Application Name</label>
+                    <input v-model="newAppName" type="text" id="appname" name="appname">
+
+                    <label for="appurl">URL</label>
+                    <div class="url">
+                        <input type="text" id="appurl" name="appurl" :value="newAppName">
+                        <p id="mainurl">.divyanshg809.iotine.com</p>
+                    </div>
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="usa">India</option>
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+
+                    <input type="button" v-on:click="addDevice" class="save" value="Create">
+                    <input type="button" class="cancel" value="Cancel"
+                        onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="newDeviceModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>New Device<span onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle()"
+                    class="clsBtn">&times;</span></h1>
+            <h4>Answer a few quick questions and we'll get your device up and running.</h4>
+            <div class="form">
+                <form action="/action_page.php">
+                    <label for="Devicename">Device Name</label>
+                    <input type="text" id="Devicename" name="Devicename" value="">
+
+                    <label for="dTemplate">Device Template</label>
+                <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
+                        <option value="fan">Fan</option>
+                        <option value="light">Light</option>
+                        <option value="temp_sns">Temperature</option>
+                        <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>
+                    </select>
+
+                    <label for="Deviceurl">Device Connection String</label>
+                    <h4>This helps your device securely connect with us.</h4>
+                    <div class="url">
+                        <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
+                    </div>
+                    <input type="button" v-on:click="addDevice" class="save" value="Create">
+                    <input type="button" class="cancel" value="Cancel"
+                        onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle();sideBar.toggleDevices()">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
+    <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
+    <script src="http://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://192.168.31.249/IOTINE_V2/mission-control/components.js" type="text/javascript"></script>
+    <script>
+        function toggleDis(elm){
+            var elm = document.querySelector(elm);
+            if(elm.style.display == "none"){
+                elm.style.display = "block"
+            }else if(elm.style.display == "block"){
+                elm.style.display = "none"
+                console.log("here")
+            }
+        }
+        function linkactive(elm) {
+            var prev = document.querySelector('.active')
+            prev.classList.remove("active")
+            elm.className += ' active'
+        }
+        var openedPanels = '';
+
+        var sideBar = new River({
+            el: '.sidebar',
+            data: {
+                icon: 'device_hub'
+            },
+            methods: {
+                toggleDevices: () => {
+                    var container = document.querySelector('.devicesContainer')
+                    var backDrop = document.querySelector('.backDrop')
+
+                    if (container.style.width == '0px' || !container.style.width) {
+                        this.icon = 'chevron_left'
+                        backDrop.style.opacity = 1;
+                        container.style.width = '300px';
+                        backDrop.style.display = 'block'
+                        container.style.opacity = 1;
+                        openedPanels = container;
+                        sideBar.icon = 'arrow_back'
+                    } else {
+                        container.style.width = '0px'
+                        container.style.opacity = 0;
+                        backDrop.style.opacity = 0;
+                        backDrop.style.display = 'none'
+                        openedPanels = '';
+                        sideBar.icon = 'device_hub'
+                    }
+                },
+
+                deviceInfo() {
+
+                },
+                
+            }
+        })
+        
+        function makeid(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+        var devices = new River({
+            el: '.devicesList',
+            data: {
+                devices: []
+            }
+        })
+
+        var searchForm = new River({
+            el: '.searchForm',
+            data: {
+                searchedDevice: ''
+            },
+            methods: {
+                searchInList() {
+                    if (this.searchedDevice == '') return $('.rvBkA').show()
+                    devices.devices.forEach(device => {
+                        var res = device.name.search(this.searchedDevice)
+                        if (res != -1) {
+                            $('#' + this.searchedDevice).hide()
+                            var matches = document.getElementsByClassName("rvBkA")
+                            for (i = 0; i < matches.length; i++) {
+                                var id = matches[i].id.search()
+                                if (id != -1) {
+                                    $('#' + matches[i].id).show()
+                                    if (matches[i].id != this.searchedDevice) {
+                                        $('#' + matches[i].id).hide()
+                                    } else {
+                                        $('#' + matches[i].id).show()
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+        var deviceActions = new River({
+            el: '.actions',
+            methods: {
+                newDev() {
+                    sideBar.toggleDevices()
+                    newdevice.connstring = makeid(32)
+                    $('.mainBackDrop').toggle()
+                    $(".newDeviceModal").toggle()
+                    openedPanels = '.newDeviceModal'
+                }
+            }
+        })
+
+        var newdevice = new River({
+            el: '.newDeviceModal',
+            data: {
+                connstring: makeid(32)
+            },
+            methods: {
+                addDevice() {
+                    devices.devices.push({
+                        name: document.getElementById('Devicename').value,
+                        type: document.querySelector("#dTemplate").value
+                    })
+                    saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate").value, document.querySelector("#Deviceurl").value)
+                    $('.mainBackDrop').toggle()
+                    $(".newDeviceModal").toggle()
+                    openedPanels = ''
+                    sideBar.toggleDevices()
+                },
+                async addTemplate(){
+                    if(document.querySelector("#dTemplate").value != "CNT") return
+                    confirm("Do you want to make a new Template?")
+                    var name = prompt("Template name :")
+
+                    var newopt = document.createElement('option')
+
+                    document.querySelector("#dTemplate").appendChild(newopt)
+                    newopt.innerHTML = name
+                    newopt.value = name;
+                    document.querySelector("#dTemplate").value = name;
+
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                        // Typical action to be performed when the document is ready:
+                            console.log("%c TEMPLATE HAS BEEN SAVED.", "color:palegreen;")
+                        }
+                    };
+                    xhttp.open("POST", "http://192.168.31.249:3002/newTempl/"+user+"/"+name, true);
+                    await xhttp.send();
+                }
+                
+            }
+        })
+
+        async function saveDevice(name, templ, did){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                    console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
+                }
+            };
+            xhttp.open("POST", "http://192.168.31.249:3002/newDevice/"+user+"/"+name+"/"+did+"/"+templ, true);
+            await xhttp.send();
+        }
+
+        var newAppModal = new River({
+            el: '.form',
+            data: {
+                newAppName: ''
+            },
+            methods: {
+                addDevice() {
+                    Apps.items.push({
+                        name: document.getElementById('appname').value,
+                        id: document.getElementById('appname').value.replace(" ", "_").toLowerCase(),
+                        url: document.getElementById('appurl').value.replace(" ", "_").toLowerCase() +
+                            '.divyanshg809.iotine.com'
+                    })
+                    $('.newAppModal').toggle();
+                    $('.mainBackDrop').toggle()
+                    openedPanels = '.newAppModal'
+                }
+            }
+        })
+        var backDrop = new River({
+            el: '.backDrop',
+            methods: {
+                hideOpenedPanel() {
+                    sideBar.toggleDevices()
+                    backDrop.style.opacity = 0;
+                    backDrop.style.display = 'none'
+                }
+            }
+        })
+
+        const newApp = () => {
+            $(".mainBackDrop").toggle()
+            $(".newAppModal").toggle()
+            openedPanels = '.newAppModal'
+        }
+
+        const hideAll = () => {
+            $(".mainBackDrop").toggle()
+            $(openedPanels).toggle()
+        }
+
+        const openMore = elm => {
+            $('#drop_' + elm).toggle().css({
+                'top': '45px',
+                'margin-left': '5px'
+            })
+            //console.log(document.getElementById('drop_'+elm).className = 'open')
+            //$("#"+elm).closest(".toggle").siblings(".dash-dropdown").classList += 'open';
+        }
+
+
+        function loadLink(lnk, elm) {
+            if (lnk == '/apps') {
+                $("#appInner").hide()
+                linkactive(elm)
+            } else {
+
+                $('#appInner').load(lnk, function () {
+                    linkactive(elm)
+                    $("#appInner").show()
+                    //$(".content-new").show()
+                    //var modal = document.getElementById("preld");
+                    //var modalC = document.querySelector(".preld");
+                    //modal.style.display = "block";
+                    //$(".mainBody").hide()
+                    //setTimeout('$("#preld").hide()', 500);
+                });
+            }
+        }
+        
+        
+    </script>
+    <script>
+        getUser();
+        var user;
+        var app = window.location.pathname.split("/")[2];
+var socket = io();
+async function getUser(){
+    var username = window.location.pathname.split("/")[1];
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            user = xhttp.responseText;
+            getDevices()
+            createTabs()
+            }
+        };
+        xhttp.open("GET", "http://192.168.31.249:3002/user/"+username, true);
+        await xhttp.send();
+}
+
+document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
+
+async function getDevices(){
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                var resdevice = JSON.parse(xhttp.responseText)
+                resdevice.forEach(device => {
+                    devices.devices.push({
+                        name: device.dName,
+                        type: device.template
+                    })
+                })
+            }
+        };
+        xhttp.open("GET", "http://192.168.31.249:3002/devices/"+user, true);
+        await xhttp.send();
+}
+
+
+function getTabs(){
+    return new Promise((resolve, reject) => { 
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            resolve(JSON.parse(xhttp.responseText))
+            }
+        };
+        xhttp.open("GET", "http://192.168.31.249:3002/tabs/"+user+"/"+app, true);
+        xhttp.send();
+    })
+}
+/*
+var widgets = [{
+    name: "Distance",
+    feed: ["retg54"],
+    type: "chart",
+    datasets:[{
+        label: "retg54",
+        data: [],
+        backgroundColor: "transparent",
+        borderColor: "red",
+        borderWidth: 1
+    }],
+    config: {
+        labels: [],
+        type:"line",
+        prevTime: 're',
+        device:"qwerty12",
+        tab:"ghjk213"
+    }
+
+},{
+    name: "Temperature",
+    feed: ["Web_Sensor"],
+    type: "chart",
+    datasets:[{
+        label: "Web_Sensor",
+        data: [],
+        backgroundColor: "#f8c66c",
+        borderColor: "#f8c66c",
+        borderWidth: 1
+    },],
+    config: {
+        labels: [],
+        type:"bar",
+        prevTime: '',
+        device:"qwerty12",
+        tab:"ghjk213"
+    }
+},{
+    name: "Light Intensity",
+    feed: ["else"],
+    type: "chart",
+    datasets:[{
+        label: "else",
+        data: [],
+        backgroundColor: "palegreen",
+        borderColor: "palegreen",
+        borderWidth: 1
+    },],
+    config: {
+        labels: [],
+        type:"bar",
+        prevTime: '',
+        device:"qwerty12",
+        tab:"ghjk213"
+    }
+}
+,{
+    name: "Ligh Intensity",
+    feed: ["distance"],
+    type: "chart",
+    datasets:[{
+        label: "distance",
+        data: [],
+        backgroundColor: "cyan",
+        borderColor: "cyan",
+        borderWidth: 1
+    },],
+    config: {
+        labels: [],
+        type:"line",
+        prevTime: '',
+        device:"qwerty12",
+        tab:"ghjk213"
+    }
+},{
+    name:"test",
+    feed:"else",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"Flash",
+    feed:"etg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"RGB L",
+    feed:"retg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"est",
+    feed:"etg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"test",
+    feed:"retg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"est",
+    feed:"etg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"ONOFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"test",
+    feed:"retg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"OFF",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{
+    name:"World View",
+    feed:"randomLoc",
+    type:"map",
+    config:{
+        device:"qwerty12",
+        tab:"ghjk213"
+    }
+},{
+    name:"World View",
+    feed:"raspiLoc",
+    type:"map",
+    config:{
+        device:"qwerty12" ,
+        tab:"ghjk213"  
+    }
+},
+{
+    name:"Zoom Control",
+    feed:"else",
+    type:"range",
+    config:{
+        minval: 1,
+        maxval: 100,
+        value: 1,
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},
+{
+    name:"Extra Control",
+    feed:"Web_Sensor",
+    type:"range",
+    config:{
+        minval: 10,
+        maxval: 100,
+        value: 50,
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+},{  name:"Fridge Switch",
+    feed:"retg54",
+    type:"button",
+    config: {
+        bgcolor: "transparent",
+        borderColor: "cyan",
+        textColor: "red",
+        text: "ON",
+        changeText: "Off",
+        type:"OFF",
+        device:"qwerty12",
+        tab:"rertre"
+    }    
+},{
+    name:"Fake Live",
+    feed:"someVideo",
+    type:"image",
+    config:{
+       src:"http://192.168.31.212:8080/video",
+       tab:"dpkgk213"  
+    }    
+},{
+    name:"Youtube Stream",
+    feed:"",
+    type:"iframe",
+    config:{
+        src: "https://www.youtube.com/embed/C6CNvG89FcQ",
+        tab: "dpkgk213"
+    }
+},{
+    name:"retg54 log",
+    feed:"retg54",
+    type:"log",
+    config:{
+        color: "#00b10f",
+        device:"qwerty12",
+        tab:"dpkgk213"
+    }    
+}]
+*/
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
+
+var dataa = []
+var labla = []
+var colors = []
+var feeds = []
+
+function lineChart(id, config, widgetBdy, prev) {
+    var chartContainer;
+    if(prev == ""){
+        chartContainer = document.createElement("canvas");
+        chartContainer.className += "chart chartjs-render-monitor"
+    }else{
+        chartContainer = document.querySelector(".chart-"+prev)
+    }
+
+    chartContainer.className += " chart-" + id
+
+    chartContainer.width = "325"
+    chartContainer.height = "180"
+    chartContainer.style.display = "block";
+    /*if(config.labels == ""){
+        widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
+    }*/
+
+
+    widgetBdy.appendChild(chartContainer)
+
+    feeds.push(id)
+}
+
+function createGauge(id, config, widgetBdy) {
+    var gaugeContainer = document.createElement("canvas");
+    gaugeContainer.className += "chart"
+
+    gaugeContainer.id = "gauge-" + id
+
+    gaugeContainer.width = "325"
+    gaugeContainer.height = "180"
+
+
+    widgetBdy.appendChild(gaugeContainer)
+
+    updateGauge(gaugeContainer.id, gaugeContainer.getContext('2d'), "hi", "retg54")
+    
+    feeds.push(id)
+}
+
+function createButton(id, config, bdy){
+    var buttonCont = document.createElement("button")
+    var btnId= "btn-"+id
+    buttonCont.className += " wid-btn " + "btn-"+id
+    
+    bdy.className += " btn-wid"
+    
+    buttonCont.innerHTML = config.text
+    buttonCont.style.backgroundColor = config.bgcolor
+    buttonCont.style.borderColor = config.borderColor
+    buttonCont.style.color = config.textColor
+    
+    buttonCont.addEventListener('click', () => {pubii(buttonCont, id, config)})
+    
+    bdy.appendChild(buttonCont)
+}
+
+function createMap(id, config, bdy){
+    var mapCont = document.createElement('img')
+    mapCont.className += 'map-wid map-'+id
+    mapCont.src = "https://media.nationalgeographic.org/assets/photos/333/793/fb1e4408-26be-4821-b667-8010401f20d6.jpg"
+    
+    bdy.className += " wid-map"
+    
+    bdy.appendChild(mapCont);  
+}
+
+function createRange(feed, config, bdy){    
+    var slider = document.createElement('input')
+    slider.className += "slider range-"+feed
+    slider.type = "range"
+    slider.min = config.minval
+    slider.max = config.maxval
+    slider.value = config.value
+    
+    slider.addEventListener('input', function(){
+       publishRange(".range-"+feed, feed, config)
+    })
+    
+    bdy.className += " wid-range"
+    
+    bdy.appendChild(slider)
+}
+
+function createLog(feed, config, bdy){
+    var logCont = document.createElement("code")
+    logCont.className += " log-"+feed
+    logCont.style.color = config.color + " !important"
+    
+    logCont.innerHTML += "CONNECTED TO "+config.device+"/"+feed+"<br>Waiting For Data...<br>"
+    
+    bdy.className += " wid-txt"
+    
+    bdy.appendChild(logCont)
+}
+
+function createImg(feed, config, bdy){    
+    var imgCont = document.createElement("img")
+    imgCont.src = config.src
+    imgCont.height = "180"
+    imgCont.width = "380"
+    
+    bdy.appendChild(imgCont)
+}
+
+function createVideo(feed, config, bdy){    
+    var videoCont = document.createElement("video")
+    videoCont.src = config.src
+    videoCont.height = "180"
+    videoCont.width = "380"
+    
+    bdy.appendChild(videoCont)
+}
+
+function createIFrame(feed, config, bdy){    
+    var iframeCont = document.createElement("iframe")
+    iframeCont.src = config.src
+    iframeCont.height = "180"
+    iframeCont.width = "380"
+    iframeCont.gesture="media"
+    iframeCont.allow="encrypted-media"
+    
+    bdy.appendChild(iframeCont)
+}
+var widgets;
+async function createWidget() {
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                widgets = JSON.parse(xhttp.responseText)
+                widgets.forEach(widget => {
+                var widgetBdy = document.createElement('div')
+                var head = document.createElement('h4');
+                var latestData = document.createElement('p');
+        
+                latestData.className += " latData";
+                head.className += " wid-head"
+                widgetBdy.appendChild(head)
+                widgetBdy.appendChild(latestData)
+                head.innerHTML = widget.name;
+                
+                widgetBdy.className += 'widget';
+        
+                document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
+        
+                if (widget.type == "chart") {
+                    var prev = ''
+                    lineChart(widget.feed, widget.config, widgetBdy, prev)
+                }else if(widget.type=="button"){
+                    createButton(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "map"){
+                    createMap(widget.feed, widget.config, widgetBdy)    
+                }else if(widget.type == "range"){
+                    createRange(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "log"){
+                    createLog(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "video"){
+                    createVideo(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "image"){
+                    createImg(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "iframe"){
+                    createIFrame(widget.feed, widget.config, widgetBdy)
+                }
+        
+            })
+            }
+        };
+        xhttp.open("GET", "http://192.168.31.249:3002/widgets/"+user+"/"+app, true);
+        await xhttp.send();
+}
+
+function getWidget(feed){
+    for(i =0; i < widgets.length; i++){
+           if(widgets[i].feed == feed){
+               var obj = widgets[i]
+               return obj
+            }
+    }
+}
+
+function updateChart(id, ctx, msg, feed) {
+    var widget = getWidget(feed)
+    //console.log(/\d/.test(msg.value))
+    var config = widget.config
+    
+    widget.datasets[0].data.push(msg.value)
+    
+    config.labels.push(msg.time)
+    
+    var chart = new Chart(ctx, {
+        type: config.type,
+        data: {
+            labels: config.labels,
+            datasets: widget.datasets
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            animation: true,
+            autoSkip:false,
+            legend: {
+                display: true
+            },
+            tooltips: {
+                enabled: true
+            }
+        }
+    });
+    
+    if(widget.datasets[0].data.length >= 5){
+        widget.datasets[0].data.shift()
+        config.labels.shift()
+        //$(".ndt").remove()
+        chart.update()
+    }else{
+        //$(".ndt").remove()
+        chart.update()
+    }
+   
+}
+
+function updateButton(classname, msg, feed){
+   var btn = document.querySelector("."+classname)
+   for(i = 0; i < widgets.length; i++){
+       var widget = widgets[i]
+       var config = widget.config 
+       if(widget.type == "button"){
+   if(msg.value == "ON"){
+       config.text = "ON"
+       config.changeText = "OFF"
+       btn.innerHTML = msg.value
+   }else if(msg.value == "OFF"){
+       config.text = "OFF"
+       config.changeText = "ON"
+       btn.innerHTML = msg.value
+   }    
+   }
+}
+}
+
+function updateGauge(id, ctx, msg, feed){
+    var myPieChart = new Chart(ctx, {type: "pie",
+        data: {
+            labels: ["yo", ""],
+            datasets: [{
+                label: "jii",
+                data: [30, 70],
+                backgroundColor: ["red", "black"],
+                borderColor: ["red", "black"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            animation: false,
+            autoSkip:false
+        }
+    });
+}
+
+function updateRange(id, msg, feed){
+    var range = document.querySelector(id) || false;
+    
+    if(!range) return 
+    
+    range.value = msg;
+}
+
+function updateLog(id, msg, feed){
+    var logCont = document.querySelector(id) || false;
+    if(!logCont) return
+    var cont = logCont.parentNode
+    logCont.innerHTML += "<kbd>"+msg.time+"</kbd> : Message Recieved "+msg.value+"<br>"
+    cont.scrollTop = cont.scrollHeight - cont.clientHeight
+}
+
+socket.on('subscribe', (feed, msg) => {
+    
+    feeds.forEach(mfeed => {
+        if (mfeed== feed) {
+            updateButton("btn-"+feed, msg, feed)
+            updateLog(".log-"+feed,msg, feed)
+            var chart = document.querySelector(".chart-" + feed)
+            var latestData = chart.previousSibling
+            latestData.innerHTML = msg.value
+            var ctx = chart.getContext("2d")
+            updateChart("chart-" + feed, ctx, msg, feed)
+            var range = document.querySelector(".range-" + feed) || false
+            if(!range) return
+            var latestData = range.previousSibling
+            latestData.innerHTML = msg.value
+            updateRange(".range-"+feed, msg.value, feed)
+       } else {
+           return
+       }
+    })
+});
+
+function publishRange(id, feed, config){
+    var slider = document.querySelector(id)
+     socket.emit('publish', {
+            deviceId: config.device,
+            feed: feed,
+            value: slider.value,
+            time: new Date().toLocaleTimeString()
+        })
+    var latestData = slider.previousSibling
+    latestData.innerHTML = slider.value    
+    updateRange(".range-"+feed, slider.value, feed)
+}
+
+function pubii(id, feed, config){
+ if(config.text == "ON"){
+  socket.emit('publish', {
+            deviceId: config.device,
+            feed: feed,
+            value: "OFF",
+            time: new Date().toLocaleTimeString()
+  })
+    
+  config.text = "OFF"
+  config.changeText = "ON"
+  
+  id.innerHTML = "OFF";  
+  
+  return
+  
+ }else if(config.text == "OFF"){
+  socket.emit('publish', {
+            deviceId: config.device,
+            feed: feed,
+            value: "ON",
+            time: new Date().toLocaleTimeString()
+  })
+    
+  config.text = "ON"
+  config.changeText = "OFF"
+  
+  id.innerHTML = "ON"
+    }
+}
+
+function openTab(evt, id){
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.querySelector("#"+id).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+function addClicks(){
+    var tabLink = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tabLink.length; i++) {
+        tabLink[i].addEventListener('click', function(){
+            openTab(event, this.classList[1])  
+        })    
+    }
+}
+
+function createTabs(){ 
+    getTabs().then(tabs => { 
+    for(var i =0; i < tabs.length; i++) {
+        var tabbar = document.querySelector(".tab")
+        var tabLink = document.createElement("button")
+        var tabCont = document.createElement("div")
+    
+        tabLink.className += "tablinks"
+        tabCont.className += "tabcontent"
+        
+        
+        var tab = tabs[i]
+        tabLink.innerHTML = tab.name
+        
+        
+        tabLink.className += " "+tab.tabId
+        
+        tabCont.id = tab.tabId
+        
+        tabbar.appendChild(tabLink)
+        
+        var dash = document.querySelector(".maindash")
+        dash.appendChild(tabCont)
+        
+        
+        if(i == 0){
+             tabCont.style.display = "block"
+             tabLink.className += " active"
+        }
+    }
+    
+    addClicks()
+createWidget()
+})
+}
+
+function toggleNav(){
+            var nav = document.querySelector(".diMILA")
+            if(nav.style.display == "block" || !nav.style.display){
+                nav.style.display = "none";
+                expandMainApp("100% !important")
+             }else{
+                nav.style.display = "block"; 
+                expandMainApp("calc(100%-230px) !important")   
+            }   
+        }
+        function expandMainApp(val){
+            document.querySelector(".mainappin").style.width = val
+        }
+    </script>
+</body>
+
+</html>

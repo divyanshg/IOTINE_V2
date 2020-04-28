@@ -373,15 +373,28 @@
                         labels: ["Delhi",	"Mumbai",	"Mexico City",	"Shanghai",	"Sao Paulo"],
                         datasets: [{
                             label: datas[0].label, // Name the series
-                            data: [10,12,8,19,15],
+                            data: [10,12,8,19,10],
                             borderColor: datas[0].borderColor, // Add custom color border (Line)
                             backgroundColor: datas[0].backgroundColor, // Add custom color background (Points and Fill)
                             borderWidth: datas[0].borderColor // Specify bar border width
                         }]},
-                    options: {
-                    responsive: true, // Instruct chart js to respond nicely.
-                    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-                    }
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            animation: true,
+                            autoSkip:false,
+                            legend: {
+                                display: true
+                            },
+                            tooltips: {
+                                enabled: true
+                            }
+                        }
         });
     /*if(config.labels == ""){
         widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"

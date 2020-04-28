@@ -59,12 +59,12 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.type = widget.type;
             //DATASETS
             schema.datasets[0].label = widget.label;
-            schema.datasets[0].data  = widget.data;
+            schema.datasets[0].data  = [];
             schema.datasets[0].backgroundColor = widget.backgroundColor;
             schema.datasets[0].borderColor = widget.borderColor;
             schema.datasets[0].borderWidth = widget.borderWidth;
             //CONFIGS
-            schema.config.labels = widget.labels;
+            schema.config.labels = [];
             schema.config.type = widget.chartType;
             schema.config.prevTime = widget.prevTime;
             schema.config.device = widget.device;

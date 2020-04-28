@@ -183,7 +183,7 @@
                     <input type="text" id="Devicename" name="Devicename" value="">
 
                     <label for="dTemplate">Device Template</label>
-                    <select onchange="console.log(this.value)" id="dTemplate" name="dTemplate">
+                <select v-on:change="if(this.value == 'CNT'){addTemplate()}" id="dTemplate" name="dTemplate">
                         <option value="fan">Fan</option>
                         <option value="light">Light</option>
                         <option value="temp_sns">Temperature</option>

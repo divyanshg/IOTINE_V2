@@ -16,7 +16,7 @@ app.get('/:userId/:appId', function (req, res) {
 });
 
 app.get('/builder/:userId/:app', (req,res) => {
-    res.sendFile(__dirname +'/builder')
+    res.sendFile(__dirname +'/builder.html')
 });
 
 var rooms = [{

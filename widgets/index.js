@@ -221,7 +221,7 @@ var saveTemplate =  (user, name) => {
 
 var getFeeds = (user,dev,templ) => {
     return new Promise((resolve, reject) => {
-        con.query("select deviceID from devices where uName = ? and dName = ?", [user, dev], (err, res) => {
+        con.query("select user_id from users where username = ? limit 1", [user], (err, res) => {
             if(err) return reject(err);
             console.log(res);resolve(res)
             /*con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, res[0].deviceID], (err, feeds) => {

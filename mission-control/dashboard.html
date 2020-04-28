@@ -784,9 +784,9 @@ function lineChart(id, config, widgetBdy, prev) {
     chartContainer.width = "325"
     chartContainer.height = "180"
     chartContainer.style.display = "block";
-    if(config.labels == ""){
+    /*if(config.labels == ""){
         widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
-    }
+    }*/
 
 
     widgetBdy.appendChild(chartContainer)
@@ -994,10 +994,10 @@ function updateChart(id, ctx, msg, feed) {
     if(widget.datasets[j].data.length >= 5){
         widget.datasets[j].data.shift()
         config.labels.shift()
-        $(".ndt").remove()
+        //$(".ndt").remove()
         chart.update()
     }else{
-        $(".ndt").remove()
+        //$(".ndt").remove()
         chart.update()
     }
    

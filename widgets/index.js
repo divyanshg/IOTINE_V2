@@ -123,23 +123,24 @@ app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
 });
 
 app.get('/devices/:userId', (req, res) => {
-    var devicesScehma = []
-    getDevices(req.params.userId).then(devices => {
-        devices.forEach(device => {
-            devicesScehma.push(device)
-        })
-
-        console.log(devicesScehma)
-        res.json(devicesScehma)
-
-    }).catch((err) => setImmediate(() => { throw err; }))
+    getDevices(req.params.userId).then(devices => res.json(devices)).catch((err) => setImmediate(() => { throw err; }))
 });
 
 app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
     var device = req.params;
     saveDevice(device.userId, device.name, device.did, device.templ)
     res.send("Device Saved!")
+});
+
+app.get('/templates/:user', (req, res) => {
+    getTemplate(req.params.user).then(templates => res.json(templates)).catch((err) => setImmediate(() => { throw err; }))
 })
+
+app.post('/newTempl/:userId/:name', (req, res) => {
+    var templ = req.params
+    saveTemplate(templ.userId, templ.name)
+    res.send("Template Saved!")
+});
 
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
@@ -147,6 +148,15 @@ var getWidgets = (user, app) => {
             if (err) return reject(err);
             resolve(widgets)
         });
+    })
+}
+
+var getTemplate = (user) => {
+    return new Promise((resolve, reject) => {
+        con.query('select name from template where user = ?', [user], (err, templates) => {
+            if(err) return reject(err);
+            resolve(templates)
+        })
     })
 }
 
@@ -193,6 +203,16 @@ var saveDevice = (user, name, did, templ) => {
         [null, did, name, templ, user]
     ]
     con.query('insert into devices(_id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
+        if(err) throw err;
+        return 1;
+    })
+}
+
+var saveTemplate =  (user, name) => {
+    var template = [
+        [null, name, user]
+    ]
+    con.query('insert into template(id, name, user) values ?', [template], (err, res) => {
         if(err) throw err;
         return 1;
     })

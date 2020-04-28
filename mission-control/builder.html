@@ -261,7 +261,7 @@
         }
 
         function propertySelector(type){
-            type = type;
+            type = "chart";
             $('.propane').toggle();
             getDevices();
             //createWidget([{name:"TEST", config:{}, type}])
@@ -374,7 +374,6 @@
         }
 
         async function createWidget(widgets) {
-            console.log(widgets[0])
                 widgets.forEach(widget => {
                 var widgetBdy = document.createElement('div')
                 var head = document.createElement('h4');

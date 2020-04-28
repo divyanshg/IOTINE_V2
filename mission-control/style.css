@@ -1796,3 +1796,15 @@ p.ndt {
     margin-left:20px;
     color:black;
 }
+.btmPanel{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    display:flex;
+}
+.btmPanel button{
+    width:40%;
+    margin:auto;
+    padding:15px;
+    border:none;
+}

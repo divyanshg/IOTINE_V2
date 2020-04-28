@@ -366,6 +366,9 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
+
+
+            widgetBdy.appendChild(chartContainer)
             var chart = new Chart(chartContainer.getContext('2d'), {
                 type: config.type,
                  data: {
@@ -399,8 +402,6 @@
         widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
     }*/
 
-
-            widgetBdy.appendChild(chartContainer)
         }
 
         async function createWidget(widgets) {

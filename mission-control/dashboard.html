@@ -437,7 +437,7 @@ function getUser(){
         xhttp.send();
 }
 
-document.querySelector(".wlcm").innerHTML += user
+document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
 
 function getTabs(){
     return new Promise((resolve, reject) => { 

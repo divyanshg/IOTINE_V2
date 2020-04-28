@@ -183,7 +183,7 @@
                     <input type="text" id="Devicename" name="Devicename" value="">
 
                     <label for="dTemplate">Device Template</label>
-                <select v-on:change="if(this.value == 'CNT'){addTemplate()}" id="dTemplate" name="dTemplate">
+                <select onchange="if(this.value == 'CNT'){addTemplate()}" id="dTemplate" name="dTemplate">
                         <option value="fan">Fan</option>
                         <option value="light">Light</option>
                         <option value="temp_sns">Temperature</option>
@@ -336,13 +336,21 @@
                     openedPanels = ''
                     sideBar.toggleDevices()
                 },
-                addTemplate(){
-                    confirm("Do you want to make a new Template?")
-                    prompt("Template name :")
-                }
+                
             }
         })
 
+        function addTemplate(){
+            confirm("Do you want to make a new Template?")
+            var name = prompt("Template name :")
+
+            var newtOpt = document.createElement('option')
+            newOpt.innerHTML = name
+            newOpt.value = name;
+
+            document.querySelector("#dTemplate").appendChild(newOpt)
+            document.querySelector("#dTemplate").value = name
+        }
         async function saveDevice(name, templ, did){
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {

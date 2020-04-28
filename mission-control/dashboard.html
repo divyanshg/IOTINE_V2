@@ -331,18 +331,6 @@
             el: '.newDeviceModal',
             data: {
                 connstring: makeid(32)
-            },
-            methods: {
-                addDevice() {
-                    devices.devices.push({
-                        name: document.getElementById('Devicename').value,
-                        type: document.querySelector("#dTemplate").value
-                    })
-                    $('.mainBackDrop').toggle()
-                    $(".newDeviceModal").toggle()
-                    openedPanels = ''
-                    sideBar.toggleDevices()
-                }
             }
         })
 

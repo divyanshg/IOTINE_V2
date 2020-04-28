@@ -80,27 +80,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
-
-    var tabschema = {
-        "id": '',
-        "name": ''
-    };
-    
-    var tabSchema = [];
-
-    getTabs(req.params.userId, req.params.appId).then(tabs => {
-
-        tabs.forEach(tab => {
-            tabschema.id = tab.tabId;
-            tabschema.name = tab.name;
-
-            tabSchema.push(tab)
-        })
-
-        res.json(tabSchema)
-
-        tabschema = {}
-    }).catch((err) => setImmediate(() => { throw err; }))
+    getTabs(req.params.userId, req.params.appId).then(tabs => res.json(tabs)).catch((err) => setImmediate(() => { throw err; }))
 })
 
 app.get('/user/:name', (req, res) => {
@@ -172,7 +152,7 @@ var saveWidget = (user, app, widget) => {
 
 var getTabs = (user, app) => {
     return new Promise((resolve, reject) => {
-        con.query('select * from tabs where user =? and app = ?', [user, app], (err, tabs) => {
+        con.query('select name, tabId from tabs where user =? and app = ?', [user, app], (err, tabs) => {
             if(err) return reject(err);
             resolve(tabs)
         })

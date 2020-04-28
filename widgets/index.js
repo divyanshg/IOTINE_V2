@@ -127,6 +127,7 @@ app.get('/devices/:userID', (req, res) => {
         var devicesScehma = []
         devices.forEach(device => {
             devicesScehma.push(device)
+            console.log(device)
             res.json(devicesScehma)
         })
     }).catch((err) => setImmediate(() => { throw err; }))

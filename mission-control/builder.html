@@ -170,8 +170,19 @@
             })
         }
 
+        function loadLink(lnk) {
+            if (lnk == '/widgets') {
+                $("#appInner").hide()
+            } else {
+                $('#appInner').load(lnk, function () {
+                    $("#appInner").show()
+                });
+            }
+        }
+
         function propertySelector(type){
-            createWidget([{name:"TEST", config:{}, type}])
+            loadLink("http://192.168.31.249/IOTINE_V2/misssion-control/builder/"+type+".html")
+            //createWidget([{name:"TEST", config:{}, type}])
         }
 
         async function createWidget(widgets) {

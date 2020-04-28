@@ -184,7 +184,7 @@
 
                     <label for="dTemplate">Device Template</label>
                 <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
-                        <option value="">Select Template</option>
+                        <option id="null_temp" value="">Select Template</option>
                         <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>
                     </select>
 
@@ -336,7 +336,7 @@
                     sideBar.toggleDevices()
                 },
                 async getTemplates(){
-                    var tempList = document.querySelector("#dTemplate")
+                    var tempList = $("#null_temp")
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -348,7 +348,7 @@
                             opt.value = template.name;
                             opt.innerHTML = template.name;
 
-                            tempList.appendChild(opt)
+                            tempList.after(opt)
                         })
                     }else{return}
                         }

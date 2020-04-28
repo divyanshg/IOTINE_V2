@@ -183,7 +183,7 @@
                     <input type="text" id="Devicename" name="Devicename" value="">
 
                     <label for="dTemplate">Device Template</label>
-                <select onchange="if(this.value == 'CNT'){addTemplate()}" id="dTemplate" name="dTemplate">
+                <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
                         <option value="fan">Fan</option>
                         <option value="light">Light</option>
                         <option value="temp_sns">Temperature</option>
@@ -335,22 +335,22 @@
                     $(".newDeviceModal").toggle()
                     openedPanels = ''
                     sideBar.toggleDevices()
+                },
+                addTemplate(){
+                    if(document.querySelector("#dTemplate").value != "CNT") return
+                    confirm("Do you want to make a new Template?")
+                    var name = prompt("Template name :")
+
+                    var newopt = document.createElement('option')
+
+                    document.querySelector("#dTemplate").appendChild(newopt)
+                    newopt.innerHTML = name
+                    newopt.value = name;
+                    document.querySelector("#dTemplate").value = name
                 }
                 
             }
         })
-
-        function addTemplate(){
-            confirm("Do you want to make a new Template?")
-            var name = prompt("Template name :")
-
-            var newopt = document.createElement('option')
-
-            document.querySelector("#dTemplate").appendChild(newopt)
-            newopt.innerHTML = name
-            newopt.value = name;
-            document.querySelector("#dTemplate").value = name
-        }
 
         async function saveDevice(name, templ, did){
             var xhttp = new XMLHttpRequest();

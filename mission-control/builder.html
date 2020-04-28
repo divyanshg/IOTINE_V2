@@ -149,7 +149,7 @@
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm">
                                 <label for="">Name : </label>
-                                <input type="text">
+                                <input id="name" type="text">
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
@@ -171,25 +171,25 @@
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm">
                                 <label for="">Backgr<br>ound Color : </label>
-                                <input type="text">
+                                <input id="bgc" type="text">
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm">
                                 <label for="">Border Color : </label>
-                                <input type="text">
+                                <input id="brdc" type="text">
                             </div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm">
                                 <label for="">Border Width : </label>
-                                <input type="text">
+                                <input id="brdw" type="text">
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="btmPanel">
-                    <button style="background-color: #aadcff;">Save</button>
+                    <button style="background-color: #aadcff;" onclick="saveWid()">Save</button>
                     <button style="background-color: #ffaaaa;" onclick="$('.propane').toggle()">Cancel</button>
                 </div>
             </div>
@@ -316,6 +316,36 @@
         await xhttp.send();
 }
 
+        function saveWid(){
+            var name = $("#name");
+            var device = $("#devProp");
+            var feed = $("#devFeeds");
+            var bgc = $("#bgc");
+            var brdc = $("#brdc");
+            var brdw = $("#brdw");
+
+            var schema = {
+                name: name,
+                feed: feed,
+                type: "chart",
+                datasets:[{
+                    label: feed,
+                    data: [],
+                    backgroundColor: bgc,
+                    borderColor: brdc,
+                    borderWidth: brdw
+                }],
+                config: {
+                    labels: [],
+                    type:"line",
+                    prevTime: 're',
+                    device:device,
+                    tab:"ghjk213"
+                }
+            }
+
+            createWidget([schema])
+        }
         async function createWidget(widgets) {
                 widgets.forEach(widget => {
                 var widgetBdy = document.createElement('div')

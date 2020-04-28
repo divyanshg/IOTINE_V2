@@ -122,6 +122,12 @@ app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
     res.send("Tab Saved!")
 });
 
+app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
+    var device = req.params;
+    saveDevice(device.userId, device.name, device.did, device.templ)
+    res.send("Device Saved!")
+})
+
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
@@ -157,6 +163,20 @@ var saveTab = (user, app, name) => {
     con.query('insert into tabs(id, user, app, name, tabId) VALUES ?', [tab], (err, res) => {
         if(err) throw err;
         return 1
+    })
+}
+
+var getDevices = (user) => {
+
+}
+
+var saveDevice = (user, name, did, templ) => {
+    var device = [
+        [null, did, name, templ, user]
+    ]
+    con.query('insert into devices(id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
+        if(err) throw err;
+        return 1;
     })
 }
 

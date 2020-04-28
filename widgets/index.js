@@ -130,7 +130,7 @@ app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
 });
 
 app.get('/feeds/:userId/:dev', (req,res) => {
-    getFeeds(req.params.user, req.params.dev).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => { throw err; }))
+    getFeeds(req.params.userId, req.params.dev).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => { throw err; }))
 })
 
 app.get('/templates/:user', (req, res) => {
@@ -221,8 +221,7 @@ var saveTemplate =  (user, name) => {
 
 var getFeeds = (user,dev,templ) => {
     return new Promise((resolve, reject) => {
-        console.log(user)
-            con.query('select name from feed_vals where user_id = ?',[user], (err, feeds) => {
+            con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, dev], (err, feeds) => {
                 if(err) return reject(err);
                 resolve(feeds)
             })

@@ -166,8 +166,12 @@
         var navLinks = document.getElementsByClassName("navlink");
         for(i =0; i < navLinks.length; i++){
             navLinks[i].addEventListener('click', function() {
-                createWidget([{name:"TEST", config:{}, type:"chart"}])
+                propertySelector("chart");
             })
+        }
+
+        function propertySelector(type){
+            createWidget([{name:"TEST", config:{}, type}])
         }
 
         async function createWidget(widgets) {
@@ -182,7 +186,7 @@
                 widgetBdy.appendChild(latestData)
                 head.innerHTML = widget.name;
                 
-                widgetBdy.className += 'widget';
+                widgetBdy.className += 'widget ';
                 document.querySelector('.maindash').appendChild(widgetBdy)
         
                 //document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)

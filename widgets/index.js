@@ -33,13 +33,13 @@ app.get('/widgets/:userId/:appId', (req, res) => {
         "name": "",
         "feed":'',
         "type": "",
-        "datasets":{
+        "datasets":[{
             "label": "",
             "data": [],
             "backgroundColor": "",
             "borderColor": "",
             "borderWidth": ''
-        },
+        }],
         "config": {
         "labels": [],
         "type": "",
@@ -58,11 +58,11 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.feed = widget.feed;
             schema.type = widget.type;
             //DATASETS
-            schema.datasets.label = widget.label;
-            schema.datasets.data  = widget.data;
-            schema.datasets.backgroundColor = widget.backgroundColor;
-            schema.datasets.borderColor = widget.borderColor;
-            schema.datasets.borderWidth = widget.borderWidth;
+            schema.datasets[0].label = widget.label;
+            schema.datasets[0].data  = widget.data;
+            schema.datasets[0].backgroundColor = widget.backgroundColor;
+            schema.datasets[0].borderColor = widget.borderColor;
+            schema.datasets[0].borderWidth = widget.borderWidth;
             //CONFIGS
             schema.config.labels = widget.labels;
             schema.config.type = widget.chartType;
@@ -75,13 +75,13 @@ app.get('/widgets/:userId/:appId', (req, res) => {
                 "name": "",
                 "feed":'',
                 "type": "",
-                "datasets":{
+                "datasets":[{
                     "label": "",
                     "data": [],
                     "backgroundColor": "",
                     "borderColor": "",
                     "borderWidth": ''
-                },
+                }],
                 "config": {
                 "labels": [],
                 "type": "",

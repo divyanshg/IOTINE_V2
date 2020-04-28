@@ -168,6 +168,24 @@
                                 </select>
                             </div>
                         </li>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm">
+                                <label for="">Background Color : </label>
+                                <input type="text">
+                            </div>
+                        </li>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm">
+                                <label for="">Border Color : </label>
+                                <input type="text">
+                            </div>
+                        </li>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm">
+                                <label for="">Border Width : </label>
+                                <input type="text">
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="btmPanel">
@@ -254,13 +272,12 @@
                 if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
                     var feeds = JSON.parse(xhttp.responseText)
-                    console.log(feeds.length)
                     if(feeds.length != 0){
                     $("#devFeeds").empty(); 
                     feeds.forEach(feed => {
                         var opt = document.createElement('option')
                         opt.innerHTML = feed.name
-                        opt.value = feed.name;
+                        opt.value = dev+"/"+feed.name;
 
                         feedLst.appendChild(opt)
                     })

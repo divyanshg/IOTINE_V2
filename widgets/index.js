@@ -71,11 +71,28 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.config.tab = widget.tab;
 
             widgetSchema.push(schema)
-            schema = {}
+            schema = {
+                "name": "",
+                "feed":'',
+                "type": "",
+                "datasets":{
+                    "label": "",
+                    "data": [],
+                    "backgroundColor": "",
+                    "borderColor": "",
+                    "borderWidth": ''
+                },
+                "config": {
+                "labels": [],
+                "type": "",
+                "prevTime": "",
+                "device": "",
+                "tab": ""
+                }
+            }
         })
 
         res.json(widgetSchema)
-        console.log(schema)
     }).catch((err) => setImmediate(() => { throw err; }))
 })
 

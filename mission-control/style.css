@@ -1815,7 +1815,7 @@ p.ndt {
     height:50px;
     color:black !important;
 }
-.propane input{
+.propane input,select{
     margin-left: 25px;
     height: 30px;
     border-radius: 10px;

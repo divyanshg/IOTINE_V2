@@ -166,7 +166,45 @@
         var navLinks = document.getElementsByClassName("navlink");
         for(i =0; i < navLinks.length; i++){
             navLinks[i].addEventListener('click', function() {
-                this.style.color = "#3880ff"
+                createWidget({name:"TEST", config:{}})
+            })
+        }
+
+        async function createWidget(widgets) {
+                widgets.forEach(widget => {
+                var widgetBdy = document.createElement('div')
+                var head = document.createElement('h4');
+                var latestData = document.createElement('p');
+        
+                latestData.className += " latData";
+                head.className += " wid-head"
+                widgetBdy.appendChild(head)
+                widgetBdy.appendChild(latestData)
+                head.innerHTML = widget.name;
+                
+                widgetBdy.className += 'widget';
+                document.querySelector('.mainDash').appendChild(widgetBdy)
+        
+                //document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
+        
+                if (widget.type == "chart") {
+                    var prev = ''
+                    lineChart(widget.feed, widget.config, widgetBdy, prev)
+                }else if(widget.type=="button"){
+                    createButton(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "map"){
+                    createMap(widget.feed, widget.config, widgetBdy)    
+                }else if(widget.type == "range"){
+                    createRange(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "log"){
+                    createLog(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "video"){
+                    createVideo(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "image"){
+                    createImg(widget.feed, widget.config, widgetBdy)
+                }else if(widget.type == "iframe"){
+                    createIFrame(widget.feed, widget.config, widgetBdy)
+                }
             })
         }
     </script>

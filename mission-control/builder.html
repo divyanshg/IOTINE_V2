@@ -246,7 +246,7 @@
         var navLinks = document.getElementsByClassName("navlink");
         for(i =0; i < navLinks.length; i++){
             navLinks[i].addEventListener('click', function() {
-                console.log(this.getAttribute("data-wtype"))
+                console.log(this.getAttribute("class"))
                 propertySelector(this.getAttribute("data-wtype"));
             })
         }

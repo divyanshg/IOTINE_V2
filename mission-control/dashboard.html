@@ -419,7 +419,8 @@
         
     </script>
     <script>
-        var user = window.location.pathname.split("/")[1];
+        getUser();
+        var user;
         var app = window.location.pathname.split("/")[2];
 var socket = io();
 async function getUser(){
@@ -428,13 +429,15 @@ async function getUser(){
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
-            user = xhttp.responseText
-            console.log(user)
+            user = xhttp.responseText;
+            createTabs()
             }
         };
         xhttp.open("GET", "http://192.168.31.249:3002/user/"+username, true);
         await xhttp.send();
 }
+
+document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
 
 function getTabs(){
     return new Promise((resolve, reject) => { 
@@ -1131,8 +1134,6 @@ function createTabs(){
 createWidget()
 })
 }
-
-createTabs()
 
 function toggleNav(){
             var nav = document.querySelector(".diMILA")

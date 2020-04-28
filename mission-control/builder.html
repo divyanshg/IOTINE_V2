@@ -366,7 +366,7 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
-            datas[0].data.push(["1", "2", "3", "4", "5"])
+            datas[0].data.push([1,2,3,4,5])
             var chart = new Chart(chartContainer.getContext('2d'), {
             type: config.type,
             data: {
@@ -398,6 +398,7 @@
 
             widgetBdy.appendChild(chartContainer)
             chart.update()
+            console.log(datas[0].data)
         }
 
         async function createWidget(widgets) {

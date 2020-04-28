@@ -249,7 +249,7 @@
 
         async function loadFeeds(txt){
             console.log(txt.split("/"))
-            var dev = txt.split("/")[1];
+            var dev = txt.split("/")[1].replace(" ");
             var templ = txt.split("/")[0];
 
             var feedLst = document.querySelector("#devFeeds");

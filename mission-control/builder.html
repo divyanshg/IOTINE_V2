@@ -257,6 +257,7 @@
                     console.log(feeds.length)
                     if(feeds.length != 0){
                     feeds.forEach(feed => {
+                        $("#devFeeds").empty(); 
                         var opt = document.createElement('option')
                         opt.innerHTML = feed.name
                         opt.value = feed.name;

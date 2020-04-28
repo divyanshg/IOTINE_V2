@@ -187,7 +187,7 @@
                         <option value="fan">Fan</option>
                         <option value="light">Light</option>
                         <option value="temp_sns">Temperature</option>
-                        <option><a href="#" style="color:blue;">+ Create new template</a></option>
+                        <option v-on:click="addTemplate"><a href="#" style="color:blue;">+ Create new template</a></option>
                     </select>
 
                     <label for="Deviceurl">Device Connection String</label>
@@ -335,6 +335,10 @@
                     $(".newDeviceModal").toggle()
                     openedPanels = ''
                     sideBar.toggleDevices()
+                },
+                addTemplate(){
+                    confirm("Do you want to make a new Template?")
+                    prompt("Template name :")
                 }
             }
         })

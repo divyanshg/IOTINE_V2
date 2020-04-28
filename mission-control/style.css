@@ -1796,6 +1796,9 @@ p.ndt {
     margin-left:20px;
     color:black;
 }
+.propane{
+    width: 300px !important;
+}
 .btmPanel{
     position:absolute;
     bottom:60px;
@@ -1811,4 +1814,15 @@ p.ndt {
     border:none;
     height:50px;
     color:black !important;
+}
+.propane input{
+    margin-left: 25px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #dedede;
+}
+.propane label{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: initial;
 }

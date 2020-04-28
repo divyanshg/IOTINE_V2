@@ -127,8 +127,8 @@ app.get('/devices/:userID', (req, res) => {
         var devicesScehma = []
         devices.forEach(device => {
             devicesScehma.push(device)
+            res.json(devicesScehma)
         })
-        res.json(devicesScehma)
     }).catch((err) => setImmediate(() => { throw err; }))
 });
 

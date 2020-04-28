@@ -218,6 +218,7 @@
         getUser();
         var user;
         var app = window.location.pathname.split("/")[3];
+        var type;
 
         async function getUser(){
         var username = window.location.pathname.split("/")[2];
@@ -260,6 +261,7 @@
         }
 
         function propertySelector(type){
+            type = type;
             $('.propane').toggle();
             getDevices();
             //createWidget([{name:"TEST", config:{}, type}])
@@ -323,11 +325,12 @@
             var bgc = $("#bgc").val();
             var brdc = $("#brdc").val();
             var brdw = $("#brdw").val();
-
+            
+            if(type == "chart"){
             var schema = {
                 name: name,
                 feed: feed,
-                type: "chart",
+                type: type,
                 datasets:[{
                     label: feed,
                     data: [],
@@ -343,9 +346,35 @@
                     tab:"ghjk213"
                 }
             }
+            }
             $(".propane").toggle();
             createWidget([schema])
         }
+
+        function lineChart(id, config, widgetBdy, prev) {
+            var chartContainer;
+            if(prev == ""){
+                chartContainer = document.createElement("canvas");
+                chartContainer.className += "chart chartjs-render-monitor"
+            }else{
+                chartContainer = document.querySelector(".chart-"+prev)
+            }
+
+            chartContainer.className += " chart-" + id
+
+            chartContainer.width = "325"
+            chartContainer.height = "180"
+            chartContainer.style.display = "block";
+    /*if(config.labels == ""){
+        widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
+    }*/
+
+
+            widgetBdy.appendChild(chartContainer)
+
+            feeds.push(id)
+        }
+
         async function createWidget(widgets) {
             console.log(widgets[0])
                 widgets.forEach(widget => {
@@ -364,10 +393,10 @@
         
                 //document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
         
-                /*if (widget.type == "chart") {
+                if (type == "chart") {
                     var prev = ''
                     lineChart(widget.feed, widget.config, widgetBdy, prev)
-                }else if(widget.type=="button"){
+                }/*else if(widget.type=="button"){
                     createButton(widget.feed, widget.config, widgetBdy)
                 }else if(widget.type == "map"){
                     createMap(widget.feed, widget.config, widgetBdy)    

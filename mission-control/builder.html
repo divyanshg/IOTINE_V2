@@ -317,12 +317,12 @@
 }
 
         function saveWid(){
-            var name = $("#name");
-            var device = $("#devProp");
-            var feed = $("#devFeeds");
-            var bgc = $("#bgc");
-            var brdc = $("#brdc");
-            var brdw = $("#brdw");
+            var name = $("#name").value;
+            var device = $("#devProp").value;
+            var feed = $("#devFeeds").value;
+            var bgc = $("#bgc").value;
+            var brdc = $("#brdc").value;
+            var brdw = $("#brdw").value;
 
             var schema = {
                 name: name,
@@ -343,7 +343,7 @@
                     tab:"ghjk213"
                 }
             }
-
+            $(".propane").toggle();
             createWidget([schema])
         }
         async function createWidget(widgets) {

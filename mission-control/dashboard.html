@@ -207,7 +207,7 @@
 
     <div class="settingsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Dashboard Settings<span @click="toggleSettingsMenu"
+            <h1>Dashboard Settings<span @click="dashSettings.toggleSettingsMenu"
                     class="clsBtn">&times;</span></h1>
             <h4>Here you can easily customize your dashboard experience.</h4>
         </div>
@@ -262,7 +262,7 @@
         }
         var openedPanels = '';
 
-        var dashSEttings = new River({
+        var dashSettings = new River({
             el: '#dash_settings',
             data: {
                 icon: ''

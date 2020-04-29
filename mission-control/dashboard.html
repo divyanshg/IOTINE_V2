@@ -843,49 +843,50 @@
             var allElms = $(".chart-" + feed).show()
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
-                var widget = getWidget(feed)
-                console.log(widget[i])
-                //console.log(/\d/.test(msg.value))
-                var config = widget.config
+                var widgets = getWidget(feed)
+                widgets.forEach(widget => {
+                    //console.log(/\d/.test(msg.value))
+                    var config = widget.config
 
-                widget.datasets[0].data.push(msg.value)
+                    widget.datasets[0].data.push(msg.value)
 
-                config.labels.push(msg.time)
+                    config.labels.push(msg.time)
 
-                var chart = new Chart(ctx, {
-                    type: config.type,
-                    data: {
-                        labels: config.labels,
-                        datasets: widget.datasets
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
+                    var chart = new Chart(ctx, {
+                        type: config.type,
+                        data: {
+                            labels: config.labels,
+                            datasets: widget.datasets
                         },
-                        animation: true,
-                        autoSkip: false,
-                        legend: {
-                            display: true
-                        },
-                        tooltips: {
-                            enabled: true
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            animation: true,
+                            autoSkip: false,
+                            legend: {
+                                display: true
+                            },
+                            tooltips: {
+                                enabled: true
+                            }
                         }
-                    }
-                });
+                    });
 
-                if (widget.datasets[0].data.length >= 5) {
-                    widget.datasets[0].data.shift()
-                    config.labels.shift()
-                    //$(".ndt").remove()
-                    chart.update()
-                } else {
-                    //$(".ndt").remove()
-                    chart.update()
-                }
+                    if (widget.datasets[0].data.length >= 5) {
+                        widget.datasets[0].data.shift()
+                        config.labels.shift()
+                        //$(".ndt").remove()
+                        chart.update()
+                    } else {
+                        //$(".ndt").remove()
+                        chart.update()
+                    }
+                })
             }
 
         }

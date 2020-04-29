@@ -13,13 +13,13 @@ Content-Type: application/json
         "name": "Demo5",
         "feed": "Web_Sensor",
         "type": "chart",
-        "datasets": {
+        "datasets": [{
             "label": "Temperature4",
             "data": "",
             "backgroundColor": "transparent",
             "borderColor": "green",
             "borderWidth": 1
-        },
+        }],
         "config": {
             "labels": "",
             "type": "bar",

@@ -839,22 +839,11 @@
             return obj
         }
 
-        function debugUpdates(id, ctx, msg, feed){
-            var allElms = $("chart-" + feed).show()
+        function updateChart(id, ctx, msg, feed) {
+            var allElms = $(".chart-" + feed).show()
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
-                var widget = getWidget(feed)
-                console.log(widget)
-            }
-        }
-
-        function updateChart(id, ctx, msg, feed) {
-            debugUpdates(id, ctx, msg, feed)
-            //var allElms = $("chart-" + feed).show()
-            //for (i = 0; i < allElms.length; i++) {
-                //ctx = allElms[i].getContext('2d')
-                var widget = getWidget(feed)[0]
-                //console.log("here")
+                var widget = getWidget(feed)[i]
                 //console.log(/\d/.test(msg.value))
                 var config = widget.config
 
@@ -896,7 +885,7 @@
                     //$(".ndt").remove()
                     chart.update()
                 }
-            //}
+            }
 
         }
 

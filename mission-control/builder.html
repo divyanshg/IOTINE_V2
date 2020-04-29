@@ -747,13 +747,24 @@
             chartContainer.width = "325"
             chartContainer.height = "180"
             chartContainer.style.display = "block";
+
+            var ctx = chartContainer.getContext('2d')
+
+            ctx.fillStyle = "#3880ff";
+            ctx.font = '15px Arial';
+
+            var textString = "CHART DATA WILL NOT BE SHOWN IN EDIT MODE",
+                textWidth = ctx.measureText(textString).width;
+
+
+            ctx.fillText(textString, (chartContainer.width / 2) - (textWidth / 2), 100);
+
             /*if(config.labels == ""){
                 widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
             }*/
 
 
             widgetBdy.appendChild(chartContainer)
-            widgetBdy.innerHTML += "<br> CHART DATA WILL NOT BE SHOW HERE"
 
             feeds.push(id)
         }

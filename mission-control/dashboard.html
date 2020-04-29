@@ -127,7 +127,7 @@
                         <div id="dash_settings" class="settings" style="display: none;">
                             <button>Settings</button>
                             <button>More</button>
-                            <button>Fake</button>
+                            <button @click="toggleTheme">Change Theme</button>
                         </div>
                     </div>
                 </div>
@@ -227,6 +227,22 @@
             elm.className += ' active'
         }
         var openedPanels = '';
+
+        var dashSEttings = new River({
+            el: '#dash_settings',
+            data: {
+                icon: ''
+            },
+            methods:{
+                toggleSettingsMenu: () => {
+
+                },
+                toggleTheme: () => {
+                    var lastTheme = window.localStorage.getItem("theme") || "light";
+                    console.log(lastTheme)
+                }
+            }
+        })
 
         var sideBar = new River({
             el: '.sidebar',

@@ -9,7 +9,7 @@
         let root = document.documentElement;
         var lastTheme = window.localStorage.getItem("theme") || "light";
 
-        if (lastTheme == "light") {
+        if (lastTheme == "dark") {
             window.localStorage.setItem("theme", "dark")
 
             root.style.setProperty("--appInner", "black")

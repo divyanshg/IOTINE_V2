@@ -473,21 +473,110 @@
                     var prev = ''
                     lChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
                 } else if (type == "button") {
-                    createButton(widget.feed, widget.config, widgetBdy)
+                    cButton(widget.feed, widget.config, widgetBdy)
                 } else if (type == "map") {
-                    createMap(widget.feed, widget.config, widgetBdy)
+                    cMap(widget.feed, widget.config, widgetBdy)
                 } else if (type == "range") {
-                    createRange(widget.feed, widget.config, widgetBdy)
+                    cRange(widget.feed, widget.config, widgetBdy)
                 } else if (type == "log") {
-                    createLog(widget.feed, widget.config, widgetBdy)
+                    cLog(widget.feed, widget.config, widgetBdy)
                 } else if (type == "video") {
-                    createVideo(widget.feed, widget.config, widgetBdy)
+                    cVideo(widget.feed, widget.config, widgetBdy)
                 } else if (type == "image") {
-                    createImg(widget.feed, widget.config, widgetBdy)
+                    cImg(widget.feed, widget.config, widgetBdy)
                 } else if (type == "iframe") {
-                    createIFrame(widget.feed, widget.config, widgetBdy)
+                    cIFrame(widget.feed, widget.config, widgetBdy)
                 }
             })
+        }
+
+
+        function cButton(id, config, bdy) {
+            var buttonCont = document.createElement("button")
+            var btnId = "btn-" + id
+            buttonCont.className += " wid-btn " + "btn-" + id
+
+            bdy.className += " btn-wid"
+
+            buttonCont.innerHTML = config.text
+            buttonCont.style.backgroundColor = config.bgcolor
+            buttonCont.style.borderColor = config.borderColor
+            buttonCont.style.color = config.textColor
+
+            buttonCont.addEventListener('click', () => {
+                pubii(buttonCont, id, config)
+            })
+
+            bdy.appendChild(buttonCont)
+        }
+
+        function cMap(id, config, bdy) {
+            var mapCont = document.createElement('img')
+            mapCont.className += 'map-wid map-' + id
+            mapCont.src =
+                "https://media.nationalgeographic.org/assets/photos/333/793/fb1e4408-26be-4821-b667-8010401f20d6.jpg"
+
+            bdy.className += " wid-map"
+
+            bdy.appendChild(mapCont);
+        }
+
+        function cRange(feed, config, bdy) {
+            var slider = document.createElement('input')
+            slider.className += "slider range-" + feed
+            slider.type = "range"
+            slider.min = config.minval
+            slider.max = config.maxval
+            slider.value = config.value
+
+            slider.addEventListener('input', function () {
+                publishRange(".range-" + feed, feed, config)
+            })
+
+            bdy.className += " wid-range"
+
+            bdy.appendChild(slider)
+        }
+
+        function cLog(feed, config, bdy) {
+            var logCont = document.createElement("code")
+            logCont.className += " log-" + feed
+            logCont.style.color = config.color + " !important"
+
+            logCont.innerHTML += "CONNECTED TO " + config.device + "/" + feed + "<br>Waiting For Data...<br>"
+
+            bdy.className += " wid-txt"
+
+            bdy.appendChild(logCont)
+        }
+
+        function cImg(feed, config, bdy) {
+            var imgCont = document.createElement("img")
+            imgCont.src = config.src
+            imgCont.height = "180"
+            imgCont.width = "380"
+
+            bdy.appendChild(imgCont)
+        }
+
+        function cVideo(feed, config, bdy) {
+            var videoCont = document.createElement("video")
+            videoCont.src = config.src
+            videoCont.height = "180"
+            videoCont.width = "380"
+
+            bdy.appendChild(videoCont)
+        }
+
+        function cIFrame(feed, config, bdy) {
+            var iframeCont = document.createElement("iframe")
+            iframeCont.src = config.src
+            iframeCont.height = "180"
+            iframeCont.width = "380"
+            iframeCont.gesture = "media"
+            iframeCont.allow = "encrypted-media"
+
+            bdy.appendChild(iframeCont)
         }
     </script>
     <script>

@@ -208,6 +208,26 @@
                         <div class="mapcnt" style="display: none;">
 
                         </div>
+                        <div class="rangecnt" style="display: none;">
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Min Value : </label>
+                                    <input id="minval" type="text">
+                                </div>
+                            </li>
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Max Val : </label>
+                                    <input id="maxval" type="text">
+                                </div>
+                            </li>
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Default Val : </label>
+                                    <input id="defval" type="text">
+                                </div>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <div class="btmPanel">
@@ -363,6 +383,9 @@
             var bgc = $("#bgc").val();
             var brdc = $("#brdc").val();
             var brdw = $("#brdw").val();
+            var minval = $("#minval").val();
+            var maxval = $("#maxval").val();
+            var defval = $("#defval").val();
             var schema;
 
             if (type == "chart") {
@@ -412,6 +435,18 @@
                     }
                 }
             } else if (type == "range") {
+                schema = {
+                    name: name,
+                    feed: feed,
+                    type: "range",
+                    config: {
+                        minval: minval,
+                        maxval: maxval,
+                        value: defval,
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
 
             } else if (type == "log") {
 

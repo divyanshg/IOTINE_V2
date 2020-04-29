@@ -838,8 +838,8 @@
         }
 
         function updateChart(id, ctx, msg, feed) {
-            var allElms = document.getElementsByClassName(id);
-
+            var allElms = $("chart."+id).show()
+            console.log(allElms)
             //for (i = 0; i < allElms.length; i++) {
                 //ctx = allElms[i].getContext('2d');
 

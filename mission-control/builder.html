@@ -182,7 +182,27 @@
                                 </select>
                             </div>
                         </li>
-                        <div class="chartcnt">
+                        <div class="chartcnt" style="display: none;"> 
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Backgr<br>ound Color : </label>
+                                    <input id="bgc" type="text">
+                                </div>
+                            </li>
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Border Color : </label>
+                                    <input id="brdc" type="text">
+                                </div>
+                            </li>
+                            <li class="sc-bEjcJn joFqRi">
+                                <div class="sc-ePZHVD ePRQm">
+                                    <label for="">Border Width : </label>
+                                    <input id="brdw" type="text">
+                                </div>
+                            </li>
+                        </div>
+                        <div class="btncnt" style="display: none;"> 
                             <li class="sc-bEjcJn joFqRi">
                                 <div class="sc-ePZHVD ePRQm">
                                     <label for="">Backgr<br>ound Color : </label>
@@ -206,7 +226,7 @@
                 </div>
                 <div class="btmPanel">
                     <button style="background-color: #aadcff;" onclick="saveWid()">Save</button>
-                    <button style="background-color: #ffaaaa;" onclick="$('.propane').toggle()">Cancel</button>
+                    <button style="background-color: #ffaaaa;" onclick="cancelWid()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -259,6 +279,17 @@
             }
         }
 
+        var cancelWid = () => {
+            $('.propane').toggle();
+            var name = $("#name").val("");
+            var device = $("#devProp").val("");
+            var feed = $("#devFeeds").val("");
+            var bgc = $("#bgc").val("");
+            var brdc = $("#brdc").val("");
+            var brdw = $("#brdw").val("");
+            $(openedPropsOF).toggle()
+        }
+
         var navLinks = document.getElementsByClassName("navlink");
         for (i = 0; i < navLinks.length; i++) {
             navLinks[i].addEventListener('click', function () {
@@ -276,8 +307,12 @@
             }
         }
 
+        var openedPropsOF;
+
         function propertySelector(typ) {
             type = typ;
+            $("."+typ+"cnt").toggle()
+            openedPropsOF = "."+typ+"cnt";
             $('.propane').toggle();
             getDevices();
             //createWidget([{name:"TEST", config:{}, type}])
@@ -394,6 +429,14 @@
             }
             $(".propane").toggle();
             makeWidget([schema])
+            $('.propane').toggle();
+            var name = $("#name").val("");
+            var device = $("#devProp").val("");
+            var feed = $("#devFeeds").val("");
+            var bgc = $("#bgc").val("");
+            var brdc = $("#brdc").val("");
+            var brdw = $("#brdw").val("");
+            $(openedPropsOF).toggle()
         }
 
         function lChart(id, datas, config, widgetBdy, prev) {

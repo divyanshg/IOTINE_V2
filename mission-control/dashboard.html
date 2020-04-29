@@ -999,7 +999,7 @@
             logCont.innerHTML += "<kbd>" + msg.time + "</kbd> : Message Recieved " + msg.value + "<br>"
             cont.scrollTop = cont.scrollHeight - cont.clientHeight
         }
-
+        socket.emit("JoinTheMess", user)
         socket.on('subscribe', (feed, msg) => {
 
             feeds.forEach(mfeed => {

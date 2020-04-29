@@ -493,12 +493,8 @@ var feeds = []
 
 function lineChart(id, config, widgetBdy, prev) {
     var chartContainer;
-    if(prev == ""){
-        chartContainer = document.createElement("canvas");
-        chartContainer.className += "chart chartjs-render-monitor"
-    }else{
-        chartContainer = document.querySelector(".chart-"+prev)
-    }
+    chartContainer = document.createElement("canvas");
+    chartContainer.className += "chart chartjs-render-monitor"
 
     chartContainer.className += " chart-" + id
 

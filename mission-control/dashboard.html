@@ -844,7 +844,8 @@
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
                 var widgets = getWidget(feed)
-                widgets.forEach(widget => {
+                for (j = 0; j < widgets.length; j++) {
+                    widget = widgets[j]
                     console.log(widgets.length)
                     //console.log(/\d/.test(msg.value))
                     var config = widget.config
@@ -887,7 +888,7 @@
                         //$(".ndt").remove()
                         chart.update()
                     }
-                })
+                }
             }
 
         }

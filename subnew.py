@@ -4,8 +4,9 @@ import random
 import time
 import requests as req
 
-IOTINE.CONNSTRING = "qwerty12"
-IOTINE.DEVICENAME = "qwerty12"
+IOTINE.CONNSTRING = "SkNCX1RSVUNLXzAxYWFk"
+IOTINE.DEVICENAME = "SkNCX1RSVUNLXzAxYWFk"
+IOTINE.USER = "iub54i6bibu64" 
 
 print(IOTINE.CONNECT())
 

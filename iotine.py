@@ -11,6 +11,7 @@ GPIO = GPIO
 IOTINE_HOST="192.168.31.249"
 CONNSTRING = ''
 DEVICENAME = ''
+USER = ''
 
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
@@ -43,9 +44,9 @@ def will(topic, payload=None, qos=0, retain=False):
 
 def publish(feed, val, callback=None):
     if callback == '':
-        client.publish(CONNSTRING+"/"+feed, str(val))
+        client.publish(CONNSTRING+"/"+feed+"/"+user, str(val))
     else:    
-        client.publish(CONNSTRING+"/"+feed, str(val), callback=callback)
+        client.publish(CONNSTRING+"/"+feed+"/"+user, str(val), callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

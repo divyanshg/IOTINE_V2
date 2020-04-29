@@ -242,7 +242,7 @@
             <!-- TAB LINKS -->
             <div class="maindash">
                 <div class="tab">
-
+                    <button id="nTAB" class="tablinks newTab" data-cont="newTab">+</button>
                 </div>
                 <!-- CONTENT -->
 
@@ -552,10 +552,6 @@
             slider.min = config.minval
             slider.max = config.maxval
             slider.value = config.value
-
-            slider.addEventListener('input', function () {
-                publishRange(".range-" + feed, feed, config)
-            })
 
             bdy.className += " wid-range"
 
@@ -909,15 +905,31 @@
             for (i = 0; i < tabLink.length; i++) {
                 tabLink[i].addEventListener('click', function () {
                     crrntTab = this.getAttribute("data-cont")
-                    openTab(event, this.classList[1])
+                    if (crrntTab != "newTab") {
+                        openTab(event, this.classList[1])
+                    } else {
+                        createNewTab(prompt("name"))
+                    }
                 })
             }
+        }
+
+        function createNewTab(name) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    createTabs()
+                }
+            };
+            xhttp.open("POST", "http://192.168.31.249:3002/newTab/" + username+"/"+app+"/"+name, true);
+            xhttp.send();
         }
 
         function createTabs() {
             getTabs().then(tabs => {
                 for (var i = 0; i < tabs.length; i++) {
-                    var tabbar = document.querySelector(".tab")
+                    var tabbar = document.querySelector("#nTAB")
                     var tabLink = document.createElement("button")
                     var tabCont = document.createElement("div")
 
@@ -934,7 +946,7 @@
                     tabCont.id = tab.tabId
                     tabLink.setAttribute("data-cont", tab.tabId)
 
-                    tabbar.appendChild(tabLink)
+                    $("#nTAB").before(tabLink)
 
                     var dash = document.querySelector(".maindash")
                     dash.appendChild(tabCont)

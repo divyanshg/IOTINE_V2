@@ -1,5 +1,5 @@
 :root{
-    transition: 0.3s ease all;
+    transition: 0.3s ease all !important;
     --appInner: white;
     --title: black;
     --navLink:rgb(103, 111, 128);

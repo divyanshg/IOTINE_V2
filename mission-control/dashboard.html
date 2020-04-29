@@ -829,19 +829,21 @@
         }
 
         function getWidget(feed) {
+            var obj = [];
             for (i = 0; i < widgets.length; i++) {
                 if (widgets[i].feed == feed) {
-                    var obj = widgets[i]
-                    return obj
+                    obj.push(widgets[i])
+
                 }
             }
+            return obj
         }
 
         function updateChart(id, ctx, msg, feed) {
             var allElms = $("chart-" + feed).show()
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
-                var widget = getWidget(feed)
+                var widget = getWidget(feed)[i]
                 //console.log(/\d/.test(msg.value))
                 var config = widget.config
 

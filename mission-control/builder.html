@@ -680,7 +680,6 @@ function openTab(evt, id){
   
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
-    crrntTab = tabcontent[i].id
   }
 
   tablinks = document.getElementsByClassName("tablinks");
@@ -697,6 +696,7 @@ function addClicks(){
     var tabLink = document.getElementsByClassName("tablinks");
     for (i = 0; i < tabLink.length; i++) {
         tabLink[i].addEventListener('click', function(){
+            crrntTab = this.getAttribute("data-cont")
             openTab(event, this.classList[1])
         })    
     }
@@ -720,6 +720,7 @@ function createTabs(){
         tabLink.className += " "+tab.tabId
         
         tabCont.id = tab.tabId
+        tabbar.setAttribute("data-cont", tab.tabId)
         
         tabbar.appendChild(tabLink)
         

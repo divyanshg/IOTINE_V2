@@ -44,9 +44,9 @@ def will(topic, payload=None, qos=0, retain=False):
 
 def publish(feed, val, callback=None):
     if callback == '':
-        client.publish(CONNSTRING+"/"+feed+"/"+user, str(val))
+        client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val))
     else:    
-        client.publish(CONNSTRING+"/"+feed+"/"+user, str(val), callback=callback)
+        client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val), callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

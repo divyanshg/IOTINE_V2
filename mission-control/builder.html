@@ -182,7 +182,7 @@
                                 </select>
                             </div>
                         </li>
-                        <div class="chartcnt" style="display: none;"> 
+                        <div class="chartcnt" style="display: none;">
                             <li class="sc-bEjcJn joFqRi">
                                 <div class="sc-ePZHVD ePRQm">
                                     <label for="">Backgr<br>ound Color : </label>
@@ -202,8 +202,11 @@
                                 </div>
                             </li>
                         </div>
-                        <div class="btncnt" style="display: none;"> 
-                            
+                        <div class="btncnt" style="display: none;">
+
+                        </div>
+                        <div class="mapcnt" style="display: none;">
+
                         </div>
                     </ul>
                 </div>
@@ -294,8 +297,8 @@
 
         function propertySelector(typ) {
             type = typ;
-            $("."+typ+"cnt").toggle()
-            openedPropsOF = "."+typ+"cnt";
+            $("." + typ + "cnt").toggle()
+            openedPropsOF = "." + typ + "cnt";
             $('.propane').toggle();
             getDevices();
             //createWidget([{name:"TEST", config:{}, type}])
@@ -398,7 +401,15 @@
                     }
                 }
             } else if (type == "map") {
-
+                schema = {
+                    name: name,
+                    feed: feed,
+                    type: "map",
+                    config: {
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
             } else if (type == "range") {
 
             } else if (type == "log") {

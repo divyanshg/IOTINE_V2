@@ -597,6 +597,8 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:
                     user = xhttp.responseText;
+
+                    socket.emit("JoinTheMess", user)
                     getDevices()
                     createTabs()
                 }
@@ -830,7 +832,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:
                     widgets = JSON.parse(xhttp.responseText)
-                    if(widgets.length > 0){
+                    if (widgets.length > 0) {
                         document.querySelector("#nowid").style.display = "none"
                     }
                     widgets.forEach(widget => {
@@ -999,7 +1001,6 @@
             logCont.innerHTML += "<kbd>" + msg.time + "</kbd> : Message Recieved " + msg.value + "<br>"
             cont.scrollTop = cont.scrollHeight - cont.clientHeight
         }
-        socket.emit("JoinTheMess", user)
         socket.on('subscribe', (feed, msg) => {
 
             feeds.forEach(mfeed => {

@@ -848,9 +848,9 @@
                     widget = widgets[j]
                     if(feed == "Web_Sensor") console.log(widget)
                     //console.log(/\d/.test(msg.value))
-                    var config = widget.config
+                    var config = widgets[j].config
 
-                    widget.datasets[0].data.push(msg.value)
+                    widgets[j].datasets[0].data.push(msg.value)
 
                     config.labels.push(msg.time)
 
@@ -858,7 +858,7 @@
                         type: config.type,
                         data: {
                             labels: config.labels,
-                            datasets: widget.datasets
+                            datasets: widgets[j].datasets
                         },
                         options: {
                             scales: {
@@ -879,8 +879,8 @@
                         }
                     });
 
-                    if (widget.datasets[0].data.length >= 5) {
-                        widget.datasets[0].data.shift()
+                    if (widgets[j].datasets[0].data.length >= 5) {
+                        widgets[j].datasets[0].data.shift()
                         config.labels.shift()
                         //$(".ndt").remove()
                         chart.update()

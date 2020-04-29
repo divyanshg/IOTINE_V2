@@ -124,7 +124,7 @@
                             <button onclick="toggleDis('#dash_settings')"><i
                                     class="material-icons">settings</i></button>
                         </div>
-                        <div id="dash_settings" class="settings" style="display: none;">
+                        <div onclick="$(this).toggle()" id="dash_settings" class="settings" style="display: none;">
                             <button @click="toggleSettingsMenu">Settings</button>
                             <button>More</button>
                             <button @click="toggleTheme">Change Theme</button>
@@ -210,6 +210,7 @@
             <h1>Dashboard Settings<span onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}" class="clsBtn">&times;</span></h1>
             <h4>From here you can easily customize your dashboard experience.</h4>
         </div>
+
     </div>
 
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>

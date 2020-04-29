@@ -424,7 +424,7 @@
                         ],
                         borderColor: datas[0].borderColor, // Add custom color border (Line)
                         backgroundColor: datas[0]
-                        .backgroundColor, // Add custom color background (Points and Fill)
+                            .backgroundColor, // Add custom color background (Points and Fill)
                         borderWidth: datas[0].borderWidth // Specify bar border width
                     }]
                 },
@@ -452,43 +452,6 @@
 
         }
 
-        async function makeWidget(widgets) {
-            widgets.forEach(widget => {
-                var widgetBdy = document.createElement('div')
-                var head = document.createElement('h4');
-                var latestData = document.createElement('p');
-
-                latestData.className += " latData";
-                head.className += " wid-head"
-                widgetBdy.appendChild(head)
-                widgetBdy.appendChild(latestData)
-                head.innerHTML = widget.name;
-
-                widgetBdy.className += 'widget ';
-                document.querySelector('.maindash').appendChild(widgetBdy)
-
-                document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
-
-                if (type == "chart") {
-                    var prev = ''
-                    lChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
-                } else if (type == "button") {
-                    cButton(widget.feed, widget.config, widgetBdy)
-                } else if (type == "map") {
-                    cMap(widget.feed, widget.config, widgetBdy)
-                } else if (type == "range") {
-                    cRange(widget.feed, widget.config, widgetBdy)
-                } else if (type == "log") {
-                    cLog(widget.feed, widget.config, widgetBdy)
-                } else if (type == "video") {
-                    cVideo(widget.feed, widget.config, widgetBdy)
-                } else if (type == "image") {
-                    cImg(widget.feed, widget.config, widgetBdy)
-                } else if (type == "iframe") {
-                    cIFrame(widget.feed, widget.config, widgetBdy)
-                }
-            })
-        }
 
 
         function cButton(id, config, bdy) {
@@ -577,6 +540,44 @@
             iframeCont.allow = "encrypted-media"
 
             bdy.appendChild(iframeCont)
+        }
+
+        async function makeWidget(widgets) {
+            widgets.forEach(widget => {
+                var widgetBdy = document.createElement('div')
+                var head = document.createElement('h4');
+                var latestData = document.createElement('p');
+
+                latestData.className += " latData";
+                head.className += " wid-head"
+                widgetBdy.appendChild(head)
+                widgetBdy.appendChild(latestData)
+                head.innerHTML = widget.name;
+
+                widgetBdy.className += 'widget ';
+                document.querySelector('.maindash').appendChild(widgetBdy)
+
+                document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
+
+                if (type == "chart") {
+                    var prev = ''
+                    lChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
+                } else if (type == "button") {
+                    cButton(widget.feed, widget.config, widgetBdy)
+                } else if (type == "map") {
+                    cMap(widget.feed, widget.config, widgetBdy)
+                } else if (type == "range") {
+                    cRange(widget.feed, widget.config, widgetBdy)
+                } else if (type == "log") {
+                    cLog(widget.feed, widget.config, widgetBdy)
+                } else if (type == "video") {
+                    cVideo(widget.feed, widget.config, widgetBdy)
+                } else if (type == "image") {
+                    cImg(widget.feed, widget.config, widgetBdy)
+                } else if (type == "iframe") {
+                    cIFrame(widget.feed, widget.config, widgetBdy)
+                }
+            })
         }
     </script>
     <script>

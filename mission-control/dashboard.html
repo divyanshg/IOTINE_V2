@@ -697,6 +697,12 @@
             chartContainer.width = "325"
             chartContainer.height = "180"
             chartContainer.style.display = "block";
+
+            var myImg = new Image();
+            img.onload = function () {
+                chartContainer.getContext('2d').drawImage(myImg, 0, 0);
+            };
+            img.src = 'http://192.168.31.249/IOTINE_V2/mission-control/332.gif';
             /*if(config.labels == ""){
                 widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
             }*/
@@ -872,7 +878,6 @@
 
         function updateChart(id, ctx, msg, feed) {
             var allElms = $(".chart-" + feed).show()
-            $(".chart-"+feed).parent().css({"background": ""})
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
                 var widgets = getWidget(feed)

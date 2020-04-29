@@ -922,6 +922,7 @@
                     $(".maindash").empty()
                     var tabsHolder = document.createElement("div")
                     tabsHolder.className = "tab";
+                    $(tabsHolder).html(' <button id="nTAB" class="tablinks newTab" data-cont="newTab">+</button>')
                     $(".maindash").append(tabsHolder)
                     createTabs()
                 }

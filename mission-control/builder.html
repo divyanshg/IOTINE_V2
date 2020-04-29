@@ -85,7 +85,7 @@
                         </li>
                         <label class="wid-seps" for="">BUTTONS</label><br>
                         <li class="sc-bEjcJn joFqRi">
-                            <div data-wtype="btn" class="sc-ePZHVD ePRQm"><a data-wtype="btn" aria-current="page"
+                            <div class="sc-ePZHVD ePRQm"><a data-wtype="btn" aria-current="page"
                                     class="navlink " href="#" onclick="">
                                     <div>ON / OFF</div>
                                 </a>
@@ -452,9 +452,8 @@
 
         }
 
-
-
         function cButton(id, config, bdy) {
+            console.log("here")
             var buttonCont = document.createElement("button")
             var btnId = "btn-" + id
             buttonCont.className += " wid-btn " + "btn-" + id

@@ -169,7 +169,7 @@
 
                 </div>
                 <!-- CONTENT -->
-                <h3>Your Widgets will appear here.</h3>
+                <h3 id="nowid" style="display: block;">Your Widgets will appear here.</h3>
 
             </div>
         </div>
@@ -830,6 +830,9 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:
                     widgets = JSON.parse(xhttp.responseText)
+                    if(widgets.length > 0){
+                        document.querySelector("#nowid").style.display = "none"
+                    }
                     widgets.forEach(widget => {
                         var widgetBdy = document.createElement('div')
                         var head = document.createElement('h4');

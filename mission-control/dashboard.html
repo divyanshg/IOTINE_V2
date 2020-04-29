@@ -266,7 +266,14 @@
             },
             methods: {
                 toggleSettingsMenu: () => {
+                    $('.mainBackDrop').toggle()
                     $(".settingsModal").toggle()
+                    
+                    if(document.querySelector(".settingsModal").style.display = "block"){
+                        openedPanels = ".settingsModal"
+                    }else{
+                        openedPanels = ''
+                    }
                 },
                 toggleTheme: () => {
                     var lastTheme = window.localStorage.getItem("theme") || "light";

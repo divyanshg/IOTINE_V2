@@ -872,6 +872,7 @@
 
         function updateChart(id, ctx, msg, feed) {
             var allElms = $(".chart-" + feed).show()
+            $(".chart-"+feed).parent().css({"background": ""})
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
                 var widgets = getWidget(feed)

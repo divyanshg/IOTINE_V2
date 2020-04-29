@@ -240,6 +240,17 @@
                 toggleTheme: () => {
                     var lastTheme = window.localStorage.getItem("theme") || "light";
                     console.log(lastTheme)
+                    var usrTheme = confirm("Change Theme?");
+
+                    if(usrTheme){
+                        if(lastTheme == "light"){
+                            window.localStorage.setItem("theme", "dark")
+                        }else{
+                            window.localStorage.setItem("theme", "light")
+                        }
+                    }else{
+                        alet("Canceling theme change!")
+                    }
                 }
             }
         })

@@ -163,9 +163,9 @@ var getTemplate = (user) => {
 
 var saveWidget = (user, app, widget) => {
     var widgets = [
-        [null, user, app, widget.name, widget.feed, widget.type,widget.datasets[0].label, widget.datasets[0].data, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.labels, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
+        [null, user, app, widget.name, widget.feed, widget.type,widget.datasets[0].label, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
     ]
-    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`, `data`, `backgroundColor`, `borderColor`, `borderWidth`, `labels`, `chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
+    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`,  `backgroundColor`, `borderColor`, `borderWidth`,`chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
         if(err) throw err;
         return 1
     })

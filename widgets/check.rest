@@ -25,7 +25,7 @@ Content-Type: application/json
             "type": "bar",
             "prevTime": "ret4",
             "device": "qwerty12",
-            "tab": "Drone2"
+            "tab": "z1lPCMArNK"
         }
 }
 ###

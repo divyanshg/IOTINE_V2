@@ -341,7 +341,7 @@
                 config: {
                     labels: [],
                     type:"line",
-                    prevTime: 're',
+                    prevTime: '',
                     device:device,
                     tab:crrntTab
                 }
@@ -493,8 +493,12 @@ var feeds = []
 
 function lineChart(id, config, widgetBdy, prev) {
     var chartContainer;
-    chartContainer = document.createElement("canvas");
-    chartContainer.className += "chart chartjs-render-monitor"
+    if(prev == ""){
+        chartContainer = document.createElement("canvas");
+        chartContainer.className += "chart chartjs-render-monitor"
+    }else{
+        chartContainer = document.querySelector(".chart-"+prev)
+    }
 
     chartContainer.className += " chart-" + id
 

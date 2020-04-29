@@ -5,7 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDIT DASHBOARD</title>
+    <script>
+        let root = document.documentElement;
+        var lastTheme = window.localStorage.getItem("theme") || "light";
 
+        if (lastTheme == "light") {
+            window.localStorage.setItem("theme", "dark")
+
+            root.style.setProperty("--appInner", "black")
+            root.style.setProperty("--title", "white")
+            root.style.setProperty("--navLink", "white")
+            root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
+            root.style.setProperty("--cmds", "white")
+            root.style.setProperty("--widBorder", "#2a2a2a")
+            root.style.setProperty("--tabsclr", "white")
+        } else {
+            window.localStorage.setItem("theme", "light")
+
+            root.style.setProperty("--appInner", "white")
+            root.style.setProperty("--title", "black")
+            root.style.setProperty("--navLink", "rgb(103, 111, 128)")
+            root.style.setProperty("--sidebar", "rgb(243, 245, 249)")
+            root.style.setProperty("--cmds", "black")
+            root.style.setProperty("--widBorder", "#d2d2d2")
+            root.style.setProperty("--tabsclr", "black")
+        }
+    </script>
     <link rel="stylesheet" href="http://192.168.31.249/IOTINE_V2/mission-control/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -457,11 +482,11 @@
             } else if (type == "iframe") {
 
             }
-            
+
             var xhttp = new XMLHttpRequest();
 
             xhttp.open("POST", "http://192.168.31.249:3002/newWidget/" + user + "/" + app, true);
-            xhttp.setRequestHeader("Content-Type", "application/json"); 
+            xhttp.setRequestHeader("Content-Type", "application/json");
 
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {

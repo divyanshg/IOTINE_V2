@@ -1,20 +1,14 @@
-:root{
+:root {
     transition: 0.3s ease all !important;
     --appInner: white;
     --title: black;
-    --navLink:rgb(103, 111, 128);
+    --navLink: rgb(103, 111, 128);
     --sidebar: rgb(243, 245, 249);
-    --widBorder:#d2d2d2;
-    --cmds: black; 
+    --widBorder: #d2d2d2;
+    --cmds: black;
     --tabsclr: black;
-    /*--appInner: black;
-    --title: white;
-    --navLink:white;
-    --sidebar: rgb(49, 49, 49);
-    --cmds: white;
-    --widBorder:#2a2a2a;
-    --tabsclr: white;*/
 }
+
 body {
     font-family: Eina, Helvetica Neue, Helvetica, sans-serif;
     font-weight: 400;
@@ -420,7 +414,8 @@ textarea {
     position: fixed;
     width: 230px;
     height: 100vh;
-    background-color: var(--sidebar); /*rgb(49, 49, 49)*/
+    background-color: var(--sidebar);
+    /*rgb(49, 49, 49)*/
     flex-direction: column;
     display: flex;
     z-index: 1;
@@ -877,7 +872,8 @@ button:focus {
     width: 200px;
     height: 65px;
     border-bottom: 1px solid rgb(236, 239, 244);
-    color: var(--cmds); /*white*/
+    color: var(--cmds);
+    /*white*/
 }
 
 .controls .commands {
@@ -1524,7 +1520,7 @@ div.form {
 .maindash {
     width: 100%;
     height: 85%;
-    overflow:auto;
+    overflow: auto;
 }
 
 .widget {
@@ -1541,14 +1537,15 @@ div.form {
     margin: 10px;
 
     display: inline-block;
-    margin-bottom:20px;
-}
-.wid-head{
-    margin:2px !important;
-    text-transform:uppercase;
+    margin-bottom: 20px;
 }
 
-.chart{
+.wid-head {
+    margin: 2px !important;
+    text-transform: uppercase;
+}
+
+.chart {
     width: 378px !important;
     height: 190px !important;
 }
@@ -1638,76 +1635,88 @@ div.form {
     transition: all 1s ease-out;
 
 }
-.btn-wid{
+
+.btn-wid {
     width: 100px;
     height: 100px;
 }
-.wid-btn{
+
+.wid-btn {
     background-color: rgb(10, 10, 10);
     color: white;
     border: none;
     height: 80%;
-    width:100%;
+    width: 100%;
     border-radius: 4px;
-    padding: 10px;  
+    padding: 10px;
 }
-.wid-btn:hover{
-background-color:rgba(255, 255, 255, 0.0196078431372549) !important;
+
+.wid-btn:hover {
+    background-color: rgba(255, 255, 255, 0.0196078431372549) !important;
 }
-.latData{
+
+.latData {
     float: right;
     margin-top: -20px;
     margin-bottom: -1px;
 }
 
-.map-wid{
-margin-top:10px;
-height:85%;
-width:100%;
-border-radius:4px;
+.map-wid {
+    margin-top: 10px;
+    height: 85%;
+    width: 100%;
+    border-radius: 4px;
 }
 
-.wid-range{
-height:100px;
+.wid-range {
+    height: 100px;
 }
 
 .slidecontainer {
-  width: 100%; /* Width of the outside container */
+    width: 100%;
+    /* Width of the outside container */
 }
 
 .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;  
-  background: #272727;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  margin-top:20px;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #272727;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-top: 20px;
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
-  background: #4877ce;
-  cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4877ce;
+    cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4877ce;
-  cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4877ce;
+    cursor: pointer;
 }
-.wid-txt{overflow:auto;}
-.wid-txt .wid-head{margin-bottom:5px;}
-.wid-txt code{
+
+.wid-txt {
+    overflow: auto;
+}
+
+.wid-txt .wid-head {
+    margin-bottom: 5px;
+}
+
+.wid-txt code {
     color: #00b10f;
     margin-top: 5px;
     overflow-y: auto;
@@ -1716,59 +1725,60 @@ height:100px;
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
-  background-color: transparent;
+    overflow: hidden;
+    background-color: transparent;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  margin-right:10px;
-  transition: 0.3s;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    margin-right: 10px;
+    transition: 0.3s;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #1b1b1b45;
+    background-color: #1b1b1b45;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  border-bottom:1px solid rgb(56, 128, 255);
-  color:var(--tabsclr) !important;
+    border-bottom: 1px solid rgb(56, 128, 255);
+    color: var(--tabsclr) !important;
 }
 
 /* Style the tab content */
 .tabcontent {
-  margin-top:10px;
-  display: none;
-  border-top: none;
-  height:auto;
-  width:100%;
+    margin-top: 10px;
+    display: none;
+    border-top: none;
+    height: auto;
+    width: 100%;
 }
 
-.side-settings{
-    height:100px;
-    width:150px;
-    background-color:white;
-    z-index:2;
+.side-settings {
+    height: 100px;
+    width: 150px;
+    background-color: white;
+    z-index: 2;
 }
-.settings{
+
+.settings {
     background: white;
     border-radius: 3px;
     border: 1px solid gray;
     height: fit-content;
     min-height: 20px;
     cursor: pointer;
-    color:black !important;
+    color: black !important;
 }
 
-.settings button{
+.settings button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -1777,14 +1787,16 @@ height:100px;
     transition: 0.3s ease all;
 }
 
-.settings button:hover{
+.settings button:hover {
     background-color: whitesmoke;
 }
-.side-settings{
+
+.side-settings {
     margin-left: 73px;
     position: fixed;
     bottom: 30px;
 }
+
 p.ndt {
     position: relative;
     top: 35%;
@@ -1793,39 +1805,45 @@ p.ndt {
     font-weight: bold;
 }
 
-.wid-seps{
-    margin-left:20px;
-    color:black;
+.wid-seps {
+    margin-left: 20px;
+    color: black;
 }
-.propane{
+
+.propane {
     width: 300px !important;
 }
-.btmPanel{
-    position:absolute;
-    bottom:60px;
-    left:0px;
-    width:100%;
-    height:50px;
-    display:flex;
+
+.btmPanel {
+    position: absolute;
+    bottom: 60px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    display: flex;
 }
-.btmPanel button{
-    width:45%;
-    margin:auto;
-    padding:15px;
-    border:none;
-    height:50px;
-    color:black !important;
+
+.btmPanel button {
+    width: 45%;
+    margin: auto;
+    padding: 15px;
+    border: none;
+    height: 50px;
+    color: black !important;
 }
-.propane input,select{
+
+.propane input,
+select {
     width: 190px !important;
-    padding:5px !important;
+    padding: 5px !important;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #dedede;
 }
-.propane label{
+
+.propane label {
     font-weight: bold;
     text-transform: uppercase;
     font-size: initial;
-    margin-right:25px;
+    margin-right: 25px;
 }

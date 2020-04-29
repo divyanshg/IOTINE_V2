@@ -698,7 +698,7 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
-            var myImg = GIF();
+            var myImg = new GIF();
             myImg.onload = function () {
                 chartContainer.getContext('2d').drawImage(myImg.image, 0, 0);
             };

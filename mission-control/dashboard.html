@@ -838,13 +838,13 @@
             }
             return obj
         }
-        var widget;
+
         function updateChart(id, ctx, msg, feed) {
             var allElms = $(".chart-" + feed).show()
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
-                widget = getWidget(feed)[i]
-                console.log(widget)
+                var widget = getWidget(feed)
+                console.log(widget.length)
                 //console.log(/\d/.test(msg.value))
                 var config = widget.config
 

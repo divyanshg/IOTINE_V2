@@ -181,6 +181,7 @@ var getTabs = (user, app) => {
 }
 
 var saveTab = (user, app, name) => {
+    if(name = "" || name == null) {return}
     var tab = [
         [null, user, app, name, makeid()]
     ]

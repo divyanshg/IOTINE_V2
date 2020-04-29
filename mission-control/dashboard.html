@@ -207,7 +207,9 @@
 
     <div class="settingsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Dashboard Settings<span onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}" class="clsBtn">&times;</span></h1>
+            <h1>Dashboard Settings<span
+                    onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}"
+                    class="clsBtn">&times;</span></h1>
             <h4>From here you can easily customize your dashboard experience.</h4>
         </div>
 
@@ -837,48 +839,52 @@
 
         function updateChart(id, ctx, msg, feed) {
             var allElms = document.getElementsByClassName(id);
-            console.log(allElms.length)
-            var widget = getWidget(feed)
-            //console.log(/\d/.test(msg.value))
-            var config = widget.config
 
-            widget.datasets[0].data.push(msg.value)
+            for (i = 0; i < allElms.length; i++) {
+                ctx = allElms[i].getContext('2d');
+                
+                var widget = getWidget(feed)
+                //console.log(/\d/.test(msg.value))
+                var config = widget.config
 
-            config.labels.push(msg.time)
+                widget.datasets[0].data.push(msg.value)
 
-            var chart = new Chart(ctx, {
-                type: config.type,
-                data: {
-                    labels: config.labels,
-                    datasets: widget.datasets
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
+                config.labels.push(msg.time)
+
+                var chart = new Chart(ctx, {
+                    type: config.type,
+                    data: {
+                        labels: config.labels,
+                        datasets: widget.datasets
                     },
-                    animation: true,
-                    autoSkip: false,
-                    legend: {
-                        display: true
-                    },
-                    tooltips: {
-                        enabled: true
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        animation: true,
+                        autoSkip: false,
+                        legend: {
+                            display: true
+                        },
+                        tooltips: {
+                            enabled: true
+                        }
                     }
-                }
-            });
+                });
 
-            if (widget.datasets[0].data.length >= 5) {
-                widget.datasets[0].data.shift()
-                config.labels.shift()
-                //$(".ndt").remove()
-                chart.update()
-            } else {
-                //$(".ndt").remove()
-                chart.update()
+                if (widget.datasets[0].data.length >= 5) {
+                    widget.datasets[0].data.shift()
+                    config.labels.shift()
+                    //$(".ndt").remove()
+                    chart.update()
+                } else {
+                    //$(".ndt").remove()
+                    chart.update()
+                }
             }
 
         }

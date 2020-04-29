@@ -348,7 +348,7 @@
             }
             }
             $(".propane").toggle();
-            createWidget([schema])
+            makeWidget([schema])
         }
 
         function lineChart(id, datas,config, widgetBdy, prev) {
@@ -404,7 +404,7 @@
 
         }
 
-        async function createWidget(widgets) {
+        async function makeWidget(widgets) {
                 widgets.forEach(widget => {
                 var widgetBdy = document.createElement('div')
                 var head = document.createElement('h4');

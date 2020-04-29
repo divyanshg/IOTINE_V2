@@ -24,7 +24,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url(http://192.168.31.249/IOTINE_V2/mission_Control/332.gif) center no-repeat #fff;
+            background: url(http://192.168.31.249/IOTINE_V2/mission_control/332.gif) center no-repeat #fff;
         }
     </style>
     <link rel="stylesheet" href="http://192.168.31.249/IOTINE_V2/mission-control/style.css">
@@ -35,7 +35,7 @@
     <script>
         $(window).load(function () {
             // Animate loader off screen
-            $(".se-pre-con").fadeOut("slow");;
+            $(".se-pre-con").fadeOut("slow");
         });
     </script>
 </head>
@@ -875,7 +875,6 @@
                 var widgets = getWidget(feed)
                 for (j = 0; j < widgets.length; j++) {
                     widget = widgets[j]
-                    if (feed == "Web_Sensor") console.log(widget)
                     //console.log(/\d/.test(msg.value))
                     var config = widgets[j].config
 

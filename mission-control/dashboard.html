@@ -16,7 +16,8 @@
     <div class="sidebar">
         <div class="inner">
             <div class="main-panel">
-                <button onclick="window.location.replace('./')"><img title="IOTINE" src="http://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""></button>
+                <button onclick="window.location.replace('./')"><img title="IOTINE"
+                        src="http://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""></button>
                 <button v-on:click="toggleDevices"> <i class="material-icons">{{ icon }}</i> </button>
                 <button onclick="toggleNav()"> <i class="material-icons">add</i> </button>
             </div>
@@ -117,9 +118,11 @@
                     </div>
                     <div class="controls">
                         <div class="commands">
-                            <button onclick="window.location.replace('/builder'+window.location.pathname)"><i class="material-icons">edit</i></button>
+                            <button onclick="window.location.replace('/builder'+window.location.pathname)"><i
+                                    class="material-icons">edit</i></button>
                             <button><i class="material-icons">notifications_none</i></button>
-                            <button onclick="toggleDis('#dash_settings')"><i class="material-icons">settings</i></button>
+                            <button onclick="toggleDis('#dash_settings')"><i
+                                    class="material-icons">settings</i></button>
                         </div>
                         <div id="dash_settings" class="settings" style="display: none;">
                             <button>Settings</button>
@@ -129,14 +132,14 @@
                     </div>
                 </div>
             </header>
-            
+
             <!-- TAB LINKS -->
             <div class="maindash">
-            <div class="tab">
-                      
-            </div>
-            <!-- CONTENT -->
-            
+                <div class="tab">
+
+                </div>
+                <!-- CONTENT -->
+
             </div>
         </div>
     </div>
@@ -183,9 +186,10 @@
                     <input type="text" id="Devicename" name="Devicename" value="">
 
                     <label for="dTemplate">Device Template</label>
-                <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
+                    <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
                         <option id="null_temp" value="">Select Template</option>
-                        <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>
+                        <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new
+                                template</a></option>
                     </select>
 
                     <label for="Deviceurl">Device Connection String</label>
@@ -207,15 +211,16 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://192.168.31.249/IOTINE_V2/mission-control/components.js" type="text/javascript"></script>
     <script>
-        function toggleDis(elm){
+        function toggleDis(elm) {
             var elm = document.querySelector(elm);
-            if(elm.style.display == "none"){
+            if (elm.style.display == "none") {
                 elm.style.display = "block"
-            }else if(elm.style.display == "block"){
+            } else if (elm.style.display == "block") {
                 elm.style.display = "none"
                 console.log("here")
             }
         }
+
         function linkactive(elm) {
             var prev = document.querySelector('.active')
             prev.classList.remove("active")
@@ -254,10 +259,10 @@
                 deviceInfo() {
 
                 },
-                
+
             }
         })
-        
+
         function makeid(length) {
             var result = '';
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -329,35 +334,38 @@
                         name: document.getElementById('Devicename').value,
                         type: document.querySelector("#dTemplate").value
                     })
-                    saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate").value, document.querySelector("#Deviceurl").value)
+                    saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
+                        .value, document.querySelector("#Deviceurl").value)
                     $('.mainBackDrop').toggle()
                     $(".newDeviceModal").toggle()
                     openedPanels = ''
                     sideBar.toggleDevices()
                 },
-                async getTemplates(){
+                async getTemplates() {
                     var tempList = $("#null_temp")
                     var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
+                    xhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-                        templates = JSON.parse(xhttp.responseText);
-                        if(templates.length != 0){
-                        templates.forEach(template => {
-                            var opt = document.createElement('option');
-                            opt.value = template.name;
-                            opt.innerHTML = template.name;
+                            // Typical action to be performed when the document is ready:
+                            templates = JSON.parse(xhttp.responseText);
+                            if (templates.length != 0) {
+                                templates.forEach(template => {
+                                    var opt = document.createElement('option');
+                                    opt.value = template.name;
+                                    opt.innerHTML = template.name;
 
-                            tempList.after(opt)
-                        })
-                    }else{return}
+                                    tempList.after(opt)
+                                })
+                            } else {
+                                return
+                            }
                         }
                     };
-                    xhttp.open("GET", "http://192.168.31.249:3002/templates/"+user, true);
-                    await xhttp.send();         
+                    xhttp.open("GET", "http://192.168.31.249:3002/templates/" + user, true);
+                    await xhttp.send();
                 },
-                async addTemplate(){
-                    if(document.querySelector("#dTemplate").value != "CNT") return
+                async addTemplate() {
+                    if (document.querySelector("#dTemplate").value != "CNT") return
                     confirm("Do you want to make a new Template?")
                     var name = prompt("Template name :")
 
@@ -369,28 +377,29 @@
                     document.querySelector("#dTemplate").value = name;
 
                     var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
+                    xhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
-                        // Typical action to be performed when the document is ready:
+                            // Typical action to be performed when the document is ready:
                             console.log("%c TEMPLATE HAS BEEN SAVED.", "color:palegreen;")
                         }
                     };
-                    xhttp.open("POST", "http://192.168.31.249:3002/newTempl/"+user+"/"+name, true);
+                    xhttp.open("POST", "http://192.168.31.249:3002/newTempl/" + user + "/" + name, true);
                     await xhttp.send();
                 }
-                
+
             }
         })
 
-        async function saveDevice(name, templ, did){
+        async function saveDevice(name, templ, did) {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                // Typical action to be performed when the document is ready:
+                    // Typical action to be performed when the document is ready:
                     console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
                 }
             };
-            xhttp.open("POST", "http://192.168.31.249:3002/newDevice/"+user+"/"+name+"/"+did+"/"+templ, true);
+            xhttp.open("POST", "http://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
+                templ, true);
             await xhttp.send();
         }
 
@@ -463,761 +472,764 @@
                 });
             }
         }
-        
-        
     </script>
     <script>
         getUser();
         var user;
         var app = window.location.pathname.split("/")[2];
-var socket = io();
-async function getUser(){
-    var username = window.location.pathname.split("/")[1];
-    var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            user = xhttp.responseText;
-            getDevices()
-            createTabs()
-            }
-        };
-        xhttp.open("GET", "http://192.168.31.249:3002/user/"+username, true);
-        await xhttp.send();
-}
+        var socket = io();
+        async function getUser() {
+            var username = window.location.pathname.split("/")[1];
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    user = xhttp.responseText;
+                    getDevices()
+                    createTabs()
+                }
+            };
+            xhttp.open("GET", "http://192.168.31.249:3002/user/" + username, true);
+            await xhttp.send();
+        }
 
-document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
+        document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
 
-async function getDevices(){
-    var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-                var resdevice = JSON.parse(xhttp.responseText)
-                resdevice.forEach(device => {
-                    devices.devices.push({
-                        name: device.dName,
-                        type: device.template
+        async function getDevices() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    var resdevice = JSON.parse(xhttp.responseText)
+                    resdevice.forEach(device => {
+                        devices.devices.push({
+                            name: device.dName,
+                            type: device.template
+                        })
                     })
+                }
+            };
+            xhttp.open("GET", "http://192.168.31.249:3002/devices/" + user, true);
+            await xhttp.send();
+        }
+
+
+        function getTabs() {
+            return new Promise((resolve, reject) => {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Typical action to be performed when the document is ready:
+                        resolve(JSON.parse(xhttp.responseText))
+                    }
+                };
+                xhttp.open("GET", "http://192.168.31.249:3002/tabs/" + user + "/" + app, true);
+                xhttp.send();
+            })
+        }
+        /*
+        var widgets = [{
+            name: "Distance",
+            feed: ["retg54"],
+            type: "chart",
+            datasets:[{
+                label: "retg54",
+                data: [],
+                backgroundColor: "transparent",
+                borderColor: "red",
+                borderWidth: 1
+            }],
+            config: {
+                labels: [],
+                type:"line",
+                prevTime: 're',
+                device:"qwerty12",
+                tab:"ghjk213"
+            }
+
+        },{
+            name: "Temperature",
+            feed: ["Web_Sensor"],
+            type: "chart",
+            datasets:[{
+                label: "Web_Sensor",
+                data: [],
+                backgroundColor: "#f8c66c",
+                borderColor: "#f8c66c",
+                borderWidth: 1
+            },],
+            config: {
+                labels: [],
+                type:"bar",
+                prevTime: '',
+                device:"qwerty12",
+                tab:"ghjk213"
+            }
+        },{
+            name: "Light Intensity",
+            feed: ["else"],
+            type: "chart",
+            datasets:[{
+                label: "else",
+                data: [],
+                backgroundColor: "palegreen",
+                borderColor: "palegreen",
+                borderWidth: 1
+            },],
+            config: {
+                labels: [],
+                type:"bar",
+                prevTime: '',
+                device:"qwerty12",
+                tab:"ghjk213"
+            }
+        }
+        ,{
+            name: "Ligh Intensity",
+            feed: ["distance"],
+            type: "chart",
+            datasets:[{
+                label: "distance",
+                data: [],
+                backgroundColor: "cyan",
+                borderColor: "cyan",
+                borderWidth: 1
+            },],
+            config: {
+                labels: [],
+                type:"line",
+                prevTime: '',
+                device:"qwerty12",
+                tab:"ghjk213"
+            }
+        },{
+            name:"test",
+            feed:"else",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"Flash",
+            feed:"etg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"RGB L",
+            feed:"retg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"est",
+            feed:"etg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"test",
+            feed:"retg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"est",
+            feed:"etg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"ONOFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"test",
+            feed:"retg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"OFF",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{
+            name:"World View",
+            feed:"randomLoc",
+            type:"map",
+            config:{
+                device:"qwerty12",
+                tab:"ghjk213"
+            }
+        },{
+            name:"World View",
+            feed:"raspiLoc",
+            type:"map",
+            config:{
+                device:"qwerty12" ,
+                tab:"ghjk213"  
+            }
+        },
+        {
+            name:"Zoom Control",
+            feed:"else",
+            type:"range",
+            config:{
+                minval: 1,
+                maxval: 100,
+                value: 1,
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },
+        {
+            name:"Extra Control",
+            feed:"Web_Sensor",
+            type:"range",
+            config:{
+                minval: 10,
+                maxval: 100,
+                value: 50,
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        },{  name:"Fridge Switch",
+            feed:"retg54",
+            type:"button",
+            config: {
+                bgcolor: "transparent",
+                borderColor: "cyan",
+                textColor: "red",
+                text: "ON",
+                changeText: "Off",
+                type:"OFF",
+                device:"qwerty12",
+                tab:"rertre"
+            }    
+        },{
+            name:"Fake Live",
+            feed:"someVideo",
+            type:"image",
+            config:{
+               src:"http://192.168.31.212:8080/video",
+               tab:"dpkgk213"  
+            }    
+        },{
+            name:"Youtube Stream",
+            feed:"",
+            type:"iframe",
+            config:{
+                src: "https://www.youtube.com/embed/C6CNvG89FcQ",
+                tab: "dpkgk213"
+            }
+        },{
+            name:"retg54 log",
+            feed:"retg54",
+            type:"log",
+            config:{
+                color: "#00b10f",
+                device:"qwerty12",
+                tab:"dpkgk213"
+            }    
+        }]
+        */
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+
+        var dataa = []
+        var labla = []
+        var colors = []
+        var feeds = []
+
+        function lineChart(id, config, widgetBdy, prev) {
+            var chartContainer;
+            if (prev == "") {
+                chartContainer = document.createElement("canvas");
+                chartContainer.className += "chart chartjs-render-monitor"
+            } else {
+                chartContainer = document.querySelector(".chart-" + prev)
+            }
+
+            chartContainer.className += " chart-" + id
+
+            chartContainer.width = "325"
+            chartContainer.height = "180"
+            chartContainer.style.display = "block";
+            /*if(config.labels == ""){
+                widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
+            }*/
+
+
+            widgetBdy.appendChild(chartContainer)
+
+            feeds.push(id)
+        }
+
+        function createGauge(id, config, widgetBdy) {
+            var gaugeContainer = document.createElement("canvas");
+            gaugeContainer.className += "chart"
+
+            gaugeContainer.id = "gauge-" + id
+
+            gaugeContainer.width = "325"
+            gaugeContainer.height = "180"
+
+
+            widgetBdy.appendChild(gaugeContainer)
+
+            updateGauge(gaugeContainer.id, gaugeContainer.getContext('2d'), "hi", "retg54")
+
+            feeds.push(id)
+        }
+
+        function createButton(id, config, bdy) {
+            var buttonCont = document.createElement("button")
+            var btnId = "btn-" + id
+            buttonCont.className += " wid-btn " + "btn-" + id
+
+            bdy.className += " btn-wid"
+
+            buttonCont.innerHTML = config.text
+            buttonCont.style.backgroundColor = config.bgcolor
+            buttonCont.style.borderColor = config.borderColor
+            buttonCont.style.color = config.textColor
+
+            buttonCont.addEventListener('click', () => {
+                pubii(buttonCont, id, config)
+            })
+
+            bdy.appendChild(buttonCont)
+        }
+
+        function createMap(id, config, bdy) {
+            var mapCont = document.createElement('img')
+            mapCont.className += 'map-wid map-' + id
+            mapCont.src =
+                "https://media.nationalgeographic.org/assets/photos/333/793/fb1e4408-26be-4821-b667-8010401f20d6.jpg"
+
+            bdy.className += " wid-map"
+
+            bdy.appendChild(mapCont);
+        }
+
+        function createRange(feed, config, bdy) {
+            var slider = document.createElement('input')
+            slider.className += "slider range-" + feed
+            slider.type = "range"
+            slider.min = config.minval
+            slider.max = config.maxval
+            slider.value = config.value
+
+            slider.addEventListener('input', function () {
+                publishRange(".range-" + feed, feed, config)
+            })
+
+            bdy.className += " wid-range"
+
+            bdy.appendChild(slider)
+        }
+
+        function createLog(feed, config, bdy) {
+            var logCont = document.createElement("code")
+            logCont.className += " log-" + feed
+            logCont.style.color = config.color + " !important"
+
+            logCont.innerHTML += "CONNECTED TO " + config.device + "/" + feed + "<br>Waiting For Data...<br>"
+
+            bdy.className += " wid-txt"
+
+            bdy.appendChild(logCont)
+        }
+
+        function createImg(feed, config, bdy) {
+            var imgCont = document.createElement("img")
+            imgCont.src = config.src
+            imgCont.height = "180"
+            imgCont.width = "380"
+
+            bdy.appendChild(imgCont)
+        }
+
+        function createVideo(feed, config, bdy) {
+            var videoCont = document.createElement("video")
+            videoCont.src = config.src
+            videoCont.height = "180"
+            videoCont.width = "380"
+
+            bdy.appendChild(videoCont)
+        }
+
+        function createIFrame(feed, config, bdy) {
+            var iframeCont = document.createElement("iframe")
+            iframeCont.src = config.src
+            iframeCont.height = "180"
+            iframeCont.width = "380"
+            iframeCont.gesture = "media"
+            iframeCont.allow = "encrypted-media"
+
+            bdy.appendChild(iframeCont)
+        }
+        var widgets;
+        async function createWidget() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    widgets = JSON.parse(xhttp.responseText)
+                    widgets.forEach(widget => {
+                        var widgetBdy = document.createElement('div')
+                        var head = document.createElement('h4');
+                        var latestData = document.createElement('p');
+
+                        latestData.className += " latData";
+                        head.className += " wid-head"
+                        widgetBdy.appendChild(head)
+                        widgetBdy.appendChild(latestData)
+                        head.innerHTML = widget.name;
+
+                        widgetBdy.className += 'widget';
+
+                        document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
+
+                        if (widget.type == "chart") {
+                            var prev = ''
+                            lineChart(widget.feed, widget.config, widgetBdy, prev)
+                        } else if (widget.type == "button") {
+                            createButton(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "map") {
+                            createMap(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "range") {
+                            createRange(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "log") {
+                            createLog(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "video") {
+                            createVideo(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "image") {
+                            createImg(widget.feed, widget.config, widgetBdy)
+                        } else if (widget.type == "iframe") {
+                            createIFrame(widget.feed, widget.config, widgetBdy)
+                        }
+
+                    })
+                }
+            };
+            xhttp.open("GET", "http://192.168.31.249:3002/widgets/" + user + "/" + app, true);
+            await xhttp.send();
+        }
+
+        function getWidget(feed) {
+            for (i = 0; i < widgets.length; i++) {
+                if (widgets[i].feed == feed) {
+                    var obj = widgets[i]
+                    return obj
+                }
+            }
+        }
+
+        function updateChart(id, ctx, msg, feed) {
+            var widget = getWidget(feed)
+            //console.log(/\d/.test(msg.value))
+            var config = widget.config
+
+            widget.datasets[0].data.push(msg.value)
+
+            config.labels.push(msg.time)
+
+            var chart = new Chart(ctx, {
+                type: config.type,
+                data: {
+                    labels: config.labels,
+                    datasets: widget.datasets
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: true,
+                    autoSkip: false,
+                    legend: {
+                        display: true
+                    },
+                    tooltips: {
+                        enabled: true
+                    }
+                }
+            });
+
+            if (widget.datasets[0].data.length >= 5) {
+                widget.datasets[0].data.shift()
+                config.labels.shift()
+                //$(".ndt").remove()
+                chart.update()
+            } else {
+                //$(".ndt").remove()
+                chart.update()
+            }
+
+        }
+
+        function updateButton(classname, msg, feed) {
+            var btn = document.querySelector("." + classname)
+            for (i = 0; i < widgets.length; i++) {
+                var widget = widgets[i]
+                var config = widget.config
+                if (widget.type == "button") {
+                    if (msg.value == "ON") {
+                        config.text = "ON"
+                        config.changeText = "OFF"
+                        btn.innerHTML = msg.value
+                    } else if (msg.value == "OFF") {
+                        config.text = "OFF"
+                        config.changeText = "ON"
+                        btn.innerHTML = msg.value
+                    }
+                }
+            }
+        }
+
+        function updateGauge(id, ctx, msg, feed) {
+            var myPieChart = new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: ["yo", ""],
+                    datasets: [{
+                        label: "jii",
+                        data: [30, 70],
+                        backgroundColor: ["red", "black"],
+                        borderColor: ["red", "black"],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    animation: false,
+                    autoSkip: false
+                }
+            });
+        }
+
+        function updateRange(id, msg, feed) {
+            var range = document.querySelector(id) || false;
+
+            if (!range) return
+
+            range.value = msg;
+        }
+
+        function updateLog(id, msg, feed) {
+            var logCont = document.querySelector(id) || false;
+            if (!logCont) return
+            var cont = logCont.parentNode
+            logCont.innerHTML += "<kbd>" + msg.time + "</kbd> : Message Recieved " + msg.value + "<br>"
+            cont.scrollTop = cont.scrollHeight - cont.clientHeight
+        }
+
+        socket.on('subscribe', (feed, msg) => {
+
+            feeds.forEach(mfeed => {
+                if (mfeed == feed) {
+                    updateButton("btn-" + feed, msg, feed)
+                    updateLog(".log-" + feed, msg, feed)
+                    var chart = document.querySelector(".chart-" + feed)
+                    var latestData = chart.previousSibling
+                    latestData.innerHTML = msg.value
+                    var ctx = chart.getContext("2d")
+                    updateChart("chart-" + feed, ctx, msg, feed)
+                    var range = document.querySelector(".range-" + feed) || false
+                    if (!range) return
+                    var latestData = range.previousSibling
+                    latestData.innerHTML = msg.value
+                    updateRange(".range-" + feed, msg.value, feed)
+                } else {
+                    return
+                }
+            })
+        });
+
+        function publishRange(id, feed, config) {
+            var slider = document.querySelector(id)
+            socket.emit('publish', {
+                deviceId: config.device,
+                feed: feed,
+                value: slider.value,
+                time: new Date().toLocaleTimeString()
+            })
+            var latestData = slider.previousSibling
+            latestData.innerHTML = slider.value
+            updateRange(".range-" + feed, slider.value, feed)
+        }
+
+        function pubii(id, feed, config) {
+            if (config.text == "ON") {
+                socket.emit('publish', {
+                    deviceId: config.device,
+                    feed: feed,
+                    value: "OFF",
+                    time: new Date().toLocaleTimeString()
+                })
+
+                config.text = "OFF"
+                config.changeText = "ON"
+
+                id.innerHTML = "OFF";
+
+                return
+
+            } else if (config.text == "OFF") {
+                socket.emit('publish', {
+                    deviceId: config.device,
+                    feed: feed,
+                    value: "ON",
+                    time: new Date().toLocaleTimeString()
+                })
+
+                config.text = "ON"
+                config.changeText = "OFF"
+
+                id.innerHTML = "ON"
+            }
+        }
+
+        function openTab(evt, id) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.querySelector("#" + id).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function addClicks() {
+            var tabLink = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tabLink.length; i++) {
+                tabLink[i].addEventListener('click', function () {
+                    openTab(event, this.classList[1])
                 })
             }
-        };
-        xhttp.open("GET", "http://192.168.31.249:3002/devices/"+user, true);
-        await xhttp.send();
-}
+        }
+
+        function createTabs() {
+            getTabs().then(tabs => {
+                for (var i = 0; i < tabs.length; i++) {
+                    var tabbar = document.querySelector(".tab")
+                    var tabLink = document.createElement("button")
+                    var tabCont = document.createElement("div")
+
+                    tabLink.className += "tablinks"
+                    tabCont.className += "tabcontent"
 
 
-function getTabs(){
-    return new Promise((resolve, reject) => { 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            resolve(JSON.parse(xhttp.responseText))
-            }
-        };
-        xhttp.open("GET", "http://192.168.31.249:3002/tabs/"+user+"/"+app, true);
-        xhttp.send();
-    })
-}
-/*
-var widgets = [{
-    name: "Distance",
-    feed: ["retg54"],
-    type: "chart",
-    datasets:[{
-        label: "retg54",
-        data: [],
-        backgroundColor: "transparent",
-        borderColor: "red",
-        borderWidth: 1
-    }],
-    config: {
-        labels: [],
-        type:"line",
-        prevTime: 're',
-        device:"qwerty12",
-        tab:"ghjk213"
-    }
-
-},{
-    name: "Temperature",
-    feed: ["Web_Sensor"],
-    type: "chart",
-    datasets:[{
-        label: "Web_Sensor",
-        data: [],
-        backgroundColor: "#f8c66c",
-        borderColor: "#f8c66c",
-        borderWidth: 1
-    },],
-    config: {
-        labels: [],
-        type:"bar",
-        prevTime: '',
-        device:"qwerty12",
-        tab:"ghjk213"
-    }
-},{
-    name: "Light Intensity",
-    feed: ["else"],
-    type: "chart",
-    datasets:[{
-        label: "else",
-        data: [],
-        backgroundColor: "palegreen",
-        borderColor: "palegreen",
-        borderWidth: 1
-    },],
-    config: {
-        labels: [],
-        type:"bar",
-        prevTime: '',
-        device:"qwerty12",
-        tab:"ghjk213"
-    }
-}
-,{
-    name: "Ligh Intensity",
-    feed: ["distance"],
-    type: "chart",
-    datasets:[{
-        label: "distance",
-        data: [],
-        backgroundColor: "cyan",
-        borderColor: "cyan",
-        borderWidth: 1
-    },],
-    config: {
-        labels: [],
-        type:"line",
-        prevTime: '',
-        device:"qwerty12",
-        tab:"ghjk213"
-    }
-},{
-    name:"test",
-    feed:"else",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"Flash",
-    feed:"etg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"RGB L",
-    feed:"retg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"est",
-    feed:"etg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"test",
-    feed:"retg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"est",
-    feed:"etg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"ONOFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"test",
-    feed:"retg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"OFF",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{
-    name:"World View",
-    feed:"randomLoc",
-    type:"map",
-    config:{
-        device:"qwerty12",
-        tab:"ghjk213"
-    }
-},{
-    name:"World View",
-    feed:"raspiLoc",
-    type:"map",
-    config:{
-        device:"qwerty12" ,
-        tab:"ghjk213"  
-    }
-},
-{
-    name:"Zoom Control",
-    feed:"else",
-    type:"range",
-    config:{
-        minval: 1,
-        maxval: 100,
-        value: 1,
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},
-{
-    name:"Extra Control",
-    feed:"Web_Sensor",
-    type:"range",
-    config:{
-        minval: 10,
-        maxval: 100,
-        value: 50,
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-},{  name:"Fridge Switch",
-    feed:"retg54",
-    type:"button",
-    config: {
-        bgcolor: "transparent",
-        borderColor: "cyan",
-        textColor: "red",
-        text: "ON",
-        changeText: "Off",
-        type:"OFF",
-        device:"qwerty12",
-        tab:"rertre"
-    }    
-},{
-    name:"Fake Live",
-    feed:"someVideo",
-    type:"image",
-    config:{
-       src:"http://192.168.31.212:8080/video",
-       tab:"dpkgk213"  
-    }    
-},{
-    name:"Youtube Stream",
-    feed:"",
-    type:"iframe",
-    config:{
-        src: "https://www.youtube.com/embed/C6CNvG89FcQ",
-        tab: "dpkgk213"
-    }
-},{
-    name:"retg54 log",
-    feed:"retg54",
-    type:"log",
-    config:{
-        color: "#00b10f",
-        device:"qwerty12",
-        tab:"dpkgk213"
-    }    
-}]
-*/
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+                    var tab = tabs[i]
+                    tabLink.innerHTML = tab.name
 
 
+                    tabLink.className += " " + tab.tabId
 
-var dataa = []
-var labla = []
-var colors = []
-var feeds = []
+                    tabCont.id = tab.tabId
 
-function lineChart(id, config, widgetBdy, prev) {
-    var chartContainer;
-    if(prev == ""){
-        chartContainer = document.createElement("canvas");
-        chartContainer.className += "chart chartjs-render-monitor"
-    }else{
-        chartContainer = document.querySelector(".chart-"+prev)
-    }
+                    tabbar.appendChild(tabLink)
 
-    chartContainer.className += " chart-" + id
-
-    chartContainer.width = "325"
-    chartContainer.height = "180"
-    chartContainer.style.display = "block";
-    /*if(config.labels == ""){
-        widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
-    }*/
+                    var dash = document.querySelector(".maindash")
+                    dash.appendChild(tabCont)
 
 
-    widgetBdy.appendChild(chartContainer)
-
-    feeds.push(id)
-}
-
-function createGauge(id, config, widgetBdy) {
-    var gaugeContainer = document.createElement("canvas");
-    gaugeContainer.className += "chart"
-
-    gaugeContainer.id = "gauge-" + id
-
-    gaugeContainer.width = "325"
-    gaugeContainer.height = "180"
-
-
-    widgetBdy.appendChild(gaugeContainer)
-
-    updateGauge(gaugeContainer.id, gaugeContainer.getContext('2d'), "hi", "retg54")
-    
-    feeds.push(id)
-}
-
-function createButton(id, config, bdy){
-    var buttonCont = document.createElement("button")
-    var btnId= "btn-"+id
-    buttonCont.className += " wid-btn " + "btn-"+id
-    
-    bdy.className += " btn-wid"
-    
-    buttonCont.innerHTML = config.text
-    buttonCont.style.backgroundColor = config.bgcolor
-    buttonCont.style.borderColor = config.borderColor
-    buttonCont.style.color = config.textColor
-    
-    buttonCont.addEventListener('click', () => {pubii(buttonCont, id, config)})
-    
-    bdy.appendChild(buttonCont)
-}
-
-function createMap(id, config, bdy){
-    var mapCont = document.createElement('img')
-    mapCont.className += 'map-wid map-'+id
-    mapCont.src = "https://media.nationalgeographic.org/assets/photos/333/793/fb1e4408-26be-4821-b667-8010401f20d6.jpg"
-    
-    bdy.className += " wid-map"
-    
-    bdy.appendChild(mapCont);  
-}
-
-function createRange(feed, config, bdy){    
-    var slider = document.createElement('input')
-    slider.className += "slider range-"+feed
-    slider.type = "range"
-    slider.min = config.minval
-    slider.max = config.maxval
-    slider.value = config.value
-    
-    slider.addEventListener('input', function(){
-       publishRange(".range-"+feed, feed, config)
-    })
-    
-    bdy.className += " wid-range"
-    
-    bdy.appendChild(slider)
-}
-
-function createLog(feed, config, bdy){
-    var logCont = document.createElement("code")
-    logCont.className += " log-"+feed
-    logCont.style.color = config.color + " !important"
-    
-    logCont.innerHTML += "CONNECTED TO "+config.device+"/"+feed+"<br>Waiting For Data...<br>"
-    
-    bdy.className += " wid-txt"
-    
-    bdy.appendChild(logCont)
-}
-
-function createImg(feed, config, bdy){    
-    var imgCont = document.createElement("img")
-    imgCont.src = config.src
-    imgCont.height = "180"
-    imgCont.width = "380"
-    
-    bdy.appendChild(imgCont)
-}
-
-function createVideo(feed, config, bdy){    
-    var videoCont = document.createElement("video")
-    videoCont.src = config.src
-    videoCont.height = "180"
-    videoCont.width = "380"
-    
-    bdy.appendChild(videoCont)
-}
-
-function createIFrame(feed, config, bdy){    
-    var iframeCont = document.createElement("iframe")
-    iframeCont.src = config.src
-    iframeCont.height = "180"
-    iframeCont.width = "380"
-    iframeCont.gesture="media"
-    iframeCont.allow="encrypted-media"
-    
-    bdy.appendChild(iframeCont)
-}
-var widgets;
-async function createWidget() {
-    var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-                widgets = JSON.parse(xhttp.responseText)
-                widgets.forEach(widget => {
-                var widgetBdy = document.createElement('div')
-                var head = document.createElement('h4');
-                var latestData = document.createElement('p');
-        
-                latestData.className += " latData";
-                head.className += " wid-head"
-                widgetBdy.appendChild(head)
-                widgetBdy.appendChild(latestData)
-                head.innerHTML = widget.name;
-                
-                widgetBdy.className += 'widget';
-        
-                document.querySelector("#"+widget.config.tab).appendChild(widgetBdy)
-        
-                if (widget.type == "chart") {
-                    var prev = ''
-                    lineChart(widget.feed, widget.config, widgetBdy, prev)
-                }else if(widget.type=="button"){
-                    createButton(widget.feed, widget.config, widgetBdy)
-                }else if(widget.type == "map"){
-                    createMap(widget.feed, widget.config, widgetBdy)    
-                }else if(widget.type == "range"){
-                    createRange(widget.feed, widget.config, widgetBdy)
-                }else if(widget.type == "log"){
-                    createLog(widget.feed, widget.config, widgetBdy)
-                }else if(widget.type == "video"){
-                    createVideo(widget.feed, widget.config, widgetBdy)
-                }else if(widget.type == "image"){
-                    createImg(widget.feed, widget.config, widgetBdy)
-                }else if(widget.type == "iframe"){
-                    createIFrame(widget.feed, widget.config, widgetBdy)
+                    if (i == 0) {
+                        tabCont.style.display = "block"
+                        tabLink.className += " active"
+                    }
                 }
-        
+
+                addClicks()
+                createWidget()
             })
-            }
-        };
-        xhttp.open("GET", "http://192.168.31.249:3002/widgets/"+user+"/"+app, true);
-        await xhttp.send();
-}
-
-function getWidget(feed){
-    for(i =0; i < widgets.length; i++){
-           if(widgets[i].feed == feed){
-               var obj = widgets[i]
-               return obj
-            }
-    }
-}
-
-function updateChart(id, ctx, msg, feed) {
-    var widget = getWidget(feed)
-    //console.log(/\d/.test(msg.value))
-    var config = widget.config
-    
-    widget.datasets[0].data.push(msg.value)
-    
-    config.labels.push(msg.time)
-    
-    var chart = new Chart(ctx, {
-        type: config.type,
-        data: {
-            labels: config.labels,
-            datasets: widget.datasets
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            animation: true,
-            autoSkip:false,
-            legend: {
-                display: true
-            },
-            tooltips: {
-                enabled: true
-            }
         }
-    });
-    
-    if(widget.datasets[0].data.length >= 5){
-        widget.datasets[0].data.shift()
-        config.labels.shift()
-        //$(".ndt").remove()
-        chart.update()
-    }else{
-        //$(".ndt").remove()
-        chart.update()
-    }
-   
-}
 
-function updateButton(classname, msg, feed){
-   var btn = document.querySelector("."+classname)
-   for(i = 0; i < widgets.length; i++){
-       var widget = widgets[i]
-       var config = widget.config 
-       if(widget.type == "button"){
-   if(msg.value == "ON"){
-       config.text = "ON"
-       config.changeText = "OFF"
-       btn.innerHTML = msg.value
-   }else if(msg.value == "OFF"){
-       config.text = "OFF"
-       config.changeText = "ON"
-       btn.innerHTML = msg.value
-   }    
-   }
-}
-}
-
-function updateGauge(id, ctx, msg, feed){
-    var myPieChart = new Chart(ctx, {type: "pie",
-        data: {
-            labels: ["yo", ""],
-            datasets: [{
-                label: "jii",
-                data: [30, 70],
-                backgroundColor: ["red", "black"],
-                borderColor: ["red", "black"],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            },
-            animation: false,
-            autoSkip:false
-        }
-    });
-}
-
-function updateRange(id, msg, feed){
-    var range = document.querySelector(id) || false;
-    
-    if(!range) return 
-    
-    range.value = msg;
-}
-
-function updateLog(id, msg, feed){
-    var logCont = document.querySelector(id) || false;
-    if(!logCont) return
-    var cont = logCont.parentNode
-    logCont.innerHTML += "<kbd>"+msg.time+"</kbd> : Message Recieved "+msg.value+"<br>"
-    cont.scrollTop = cont.scrollHeight - cont.clientHeight
-}
-
-socket.on('subscribe', (feed, msg) => {
-    
-    feeds.forEach(mfeed => {
-        if (mfeed== feed) {
-            updateButton("btn-"+feed, msg, feed)
-            updateLog(".log-"+feed,msg, feed)
-            var chart = document.querySelector(".chart-" + feed)
-            var latestData = chart.previousSibling
-            latestData.innerHTML = msg.value
-            var ctx = chart.getContext("2d")
-            updateChart("chart-" + feed, ctx, msg, feed)
-            var range = document.querySelector(".range-" + feed) || false
-            if(!range) return
-            var latestData = range.previousSibling
-            latestData.innerHTML = msg.value
-            updateRange(".range-"+feed, msg.value, feed)
-       } else {
-           return
-       }
-    })
-});
-
-function publishRange(id, feed, config){
-    var slider = document.querySelector(id)
-     socket.emit('publish', {
-            deviceId: config.device,
-            feed: feed,
-            value: slider.value,
-            time: new Date().toLocaleTimeString()
-        })
-    var latestData = slider.previousSibling
-    latestData.innerHTML = slider.value    
-    updateRange(".range-"+feed, slider.value, feed)
-}
-
-function pubii(id, feed, config){
- if(config.text == "ON"){
-  socket.emit('publish', {
-            deviceId: config.device,
-            feed: feed,
-            value: "OFF",
-            time: new Date().toLocaleTimeString()
-  })
-    
-  config.text = "OFF"
-  config.changeText = "ON"
-  
-  id.innerHTML = "OFF";  
-  
-  return
-  
- }else if(config.text == "OFF"){
-  socket.emit('publish', {
-            deviceId: config.device,
-            feed: feed,
-            value: "ON",
-            time: new Date().toLocaleTimeString()
-  })
-    
-  config.text = "ON"
-  config.changeText = "OFF"
-  
-  id.innerHTML = "ON"
-    }
-}
-
-function openTab(evt, id){
-  var i, tabcontent, tablinks;
-
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  document.querySelector("#"+id).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-function addClicks(){
-    var tabLink = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tabLink.length; i++) {
-        tabLink[i].addEventListener('click', function(){
-            openTab(event, this.classList[1])  
-        })    
-    }
-}
-
-function createTabs(){ 
-    getTabs().then(tabs => { 
-    for(var i =0; i < tabs.length; i++) {
-        var tabbar = document.querySelector(".tab")
-        var tabLink = document.createElement("button")
-        var tabCont = document.createElement("div")
-    
-        tabLink.className += "tablinks"
-        tabCont.className += "tabcontent"
-        
-        
-        var tab = tabs[i]
-        tabLink.innerHTML = tab.name
-        
-        
-        tabLink.className += " "+tab.tabId
-        
-        tabCont.id = tab.tabId
-        
-        tabbar.appendChild(tabLink)
-        
-        var dash = document.querySelector(".maindash")
-        dash.appendChild(tabCont)
-        
-        
-        if(i == 0){
-             tabCont.style.display = "block"
-             tabLink.className += " active"
-        }
-    }
-    
-    addClicks()
-createWidget()
-})
-}
-
-function toggleNav(){
+        function toggleNav() {
             var nav = document.querySelector(".diMILA")
-            if(nav.style.display == "block" || !nav.style.display){
+            if (nav.style.display == "block" || !nav.style.display) {
                 nav.style.display = "none";
                 expandMainApp("100% !important")
-             }else{
-                nav.style.display = "block"; 
-                expandMainApp("calc(100%-230px) !important")   
-            }   
+            } else {
+                nav.style.display = "block";
+                expandMainApp("calc(100%-230px) !important")
+            }
         }
-        function expandMainApp(val){
+
+        function expandMainApp(val) {
             document.querySelector(".mainappin").style.width = val
         }
     </script>

@@ -961,10 +961,10 @@
                     var ctx = chart.getContext("2d")
 
                     var allElms = $("chart-" + feed).show()
-                    allElms.forEach(elm => {
-                        ctx = elm.getContext('2d')
+                    for(i =0; i < allElms.length; i++){
+                        ctx = allElms[i].getContext('2d')
                         updateChart("chart-" + feed, ctx, msg, feed)
-                    })
+                    }
                     var range = document.querySelector(".range-" + feed) || false
                     if (!range) return
                     var latestData = range.previousSibling

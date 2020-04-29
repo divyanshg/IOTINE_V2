@@ -351,7 +351,7 @@
             makeWidget([schema])
         }
 
-        function lineChart(id, datas,config, widgetBdy, prev) {
+        function lChart(id, datas,config, widgetBdy, prev) {
             var chartContainer;
             if(prev == ""){
                 chartContainer = document.createElement("canvas");
@@ -423,7 +423,7 @@
         
                 if (type == "chart") {
                     var prev = ''
-                    lineChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
+                    lChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
                 }/*else if(widget.type=="button"){
                     createButton(widget.feed, widget.config, widgetBdy)
                 }else if(widget.type == "map"){

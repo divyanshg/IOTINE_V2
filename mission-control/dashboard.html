@@ -960,7 +960,7 @@
                     latestData.innerHTML = msg.value
                     var ctx = chart.getContext("2d")
 
-                    var allElms = $("chart." + id).show()
+                    var allElms = $("chart-" + feed).show()
                     allElms.forEach(elm => {
                         ctx = elm.getContext('2d')
                         updateChart("chart-" + feed, ctx, msg, feed)

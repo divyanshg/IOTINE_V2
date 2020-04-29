@@ -698,11 +698,11 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
-            var myImg = new Image();
+            var myImg = GIF();
             myImg.onload = function () {
-                chartContainer.getContext('2d').drawImage(myImg, 0, 0);
+                chartContainer.getContext('2d').drawImage(myImg.image, 0, 0);
             };
-            myImg.src = 'http://192.168.31.249/IOTINE_V2/mission-control/332.gif';
+            myImg.load('http://192.168.31.249/IOTINE_V2/mission-control/332.gif');
             /*if(config.labels == ""){
                 widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
             }*/

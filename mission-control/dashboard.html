@@ -844,7 +844,7 @@
             for (i = 0; i < allElms.length; i++) {
                 ctx = allElms[i].getContext('2d')
                 var widget = getWidget(feed)[i]
-                console.log(widget)
+                console.log("here")
                 //console.log(/\d/.test(msg.value))
                 var config = widget.config
 
@@ -962,10 +962,7 @@
                     var latestData = chart.previousSibling
                     latestData.innerHTML = msg.value
                     var ctx = chart.getContext("2d")
-
-
                     updateChart("chart-" + feed, ctx, msg, feed)
-
                     var range = document.querySelector(".range-" + feed) || false
                     if (!range) return
                     var latestData = range.previousSibling

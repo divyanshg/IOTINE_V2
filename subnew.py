@@ -39,4 +39,5 @@ while True:
     #IOTINE.publish("Web_Sensor", random.randint(-3, 3), '')
     #IOTINE.subscribe("retg54", on_message)
     IOTINE.publish("tempo", str(random.randint(0, 100)), '')
+    IOTINE.publish("humido", str(random.randint(0, 100)), '')
     time.sleep(3)

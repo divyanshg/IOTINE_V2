@@ -840,9 +840,9 @@
         function updateChart(id, ctx, msg, feed) {
             var allElms = document.getElementsByClassName(id);
 
-            for (i = 0; i < allElms.length; i++) {
-                ctx = allElms[i].getContext('2d');
-                
+            //for (i = 0; i < allElms.length; i++) {
+                //ctx = allElms[i].getContext('2d');
+
                 var widget = getWidget(feed)
                 //console.log(/\d/.test(msg.value))
                 var config = widget.config
@@ -885,7 +885,7 @@
                     //$(".ndt").remove()
                     chart.update()
                 }
-            }
+            //}
 
         }
 

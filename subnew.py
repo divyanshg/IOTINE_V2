@@ -4,9 +4,9 @@ import random
 import time
 import requests as req
 
-IOTINE.CONNSTRING = "SkNCX1RSVUNLXzAxYWFk"
-IOTINE.DEVICENAME = "SkNCX1RSVUNLXzAxYWFk"
-IOTINE.USER = "iub54i6bibu64" 
+IOTINE.CONNSTRING = "1DtMWsD16ro07wlECZdrMirXm0qEoHBi"
+IOTINE.DEVICENAME = "1DtMWsD16ro07wlECZdrMirXm0qEoHBi"
+IOTINE.USER = "GZBIC1oqQN" 
 
 print(IOTINE.CONNECT())
 
@@ -35,8 +35,8 @@ def on_message(client, userdata, message):
     print(message.topic, "/",msg)
 
 while True:
-    IOTINE.publish("retg54", random.randint(-30, 30), '')
-    IOTINE.publish("Web_Sensor", random.randint(-3, 3), '')
-    IOTINE.subscribe("retg54", on_message)
-    IOTINE.publish("else", str(random.randint(0, 100)), '')
+    #IOTINE.publish("retg54", random.randint(-30, 30), '')
+    #IOTINE.publish("Web_Sensor", random.randint(-3, 3), '')
+    #IOTINE.subscribe("retg54", on_message)
+    IOTINE.publish("tempo", str(random.randint(0, 100)), '')
     time.sleep(3)

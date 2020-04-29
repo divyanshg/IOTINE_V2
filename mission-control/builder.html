@@ -677,9 +677,10 @@ function openTab(evt, id){
   var i, tabcontent, tablinks;
 
   tabcontent = document.getElementsByClassName("tabcontent");
-  console.log(tabcontent.id) 
+  
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
+    crrntTab = tabcontent[i].id
   }
 
   tablinks = document.getElementsByClassName("tablinks");

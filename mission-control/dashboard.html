@@ -698,11 +698,16 @@
             chartContainer.height = "180"
             chartContainer.style.display = "block";
 
-            var myImg = new Image();
-            myImg.onload = function () {
-                chartContainer.getContext('2d').drawImage(myImg, 0, 0);
-            };
-            myImg.src = 'http://192.168.31.249/IOTINE_V2/mission-control/332.gif';
+            var ctx = chartContainer.getContext('2d')
+
+            ctx.fillStyle = "#003300";
+            ctx.font = '20px san-serif';
+
+            var textString = "Hello look at me!!!",
+                textWidth = ctx.measureText(textString).width;
+
+
+            ctx.fillText(textString, (canvas.width / 2) - (textWidth / 2), 100);
             /*if(config.labels == ""){
                 widgetBdy.innerHTML += "<p class='ndt'>not recieving any data</p>"
             }*/

@@ -387,7 +387,7 @@
             if (!val || val == '') {
                 getDevices();
             } else {
-                getDevices("bla")
+                getDevices(val)
             }
             //createWidget([{name:"TEST", config:{}, type}])
         }
@@ -436,7 +436,11 @@
                     resdevice.forEach(device => {
                         var opt = document.createElement('option')
                         opt.innerHTML = device.template + " / " + device.dName
-                        opt.value = device.deviceID;
+                        if (val != '') {
+                            opt.value = device.deviceID;
+                        } else {
+                            opt.value = val
+                        }
 
                         devList.appendChild(opt)
                     })

@@ -20,10 +20,10 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-    con.query("SELECT CONNstr FROM device_management_service WHERE CONNstr = ?", [username], function (err, result, fields) {
+    con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
         if (err) throw err;
-        var authorized = (username === result.CONNstr || username == "MASTER@SERVER@WEB_DASH_HOST");
-        console.log(result[0].CONNstr)
+        var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
+        console.log(result[0].deviceID)
         //if (authorized) client.users = username
         callback(null, authorized);
     });

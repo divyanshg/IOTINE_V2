@@ -35,6 +35,8 @@ def on_message(client, userdata, message):
     print(message.topic, "/",msg)
 
 while True:
+
+    IOTINE.publish("04_TYRE_PRESSURE", random.randint(-30, 30), '')
     IOTINE.publish("CONT_TEMP", random.randint(-30, 30), '')
     IOTINE.publish("CONT_HUMID", random.randint(-3, 3), '')
     IOTINE.subscribe("CONT_TEMP", on_message)

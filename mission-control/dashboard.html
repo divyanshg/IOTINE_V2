@@ -385,7 +385,8 @@
 
         function loadPROPS(dev){
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
-            var props = $(".devPROPERTIES").html(devID)
+            $(".devPROPERTIES").toggle().html(devID)
+
         }
 
         function makeid(length) {

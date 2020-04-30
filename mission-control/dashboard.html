@@ -98,15 +98,15 @@
                     </tr>
                     <tr>
                         <td>ID</td>
-                        <td>biub546ub45ui6bu4ib56</td>
+                        <td id="tdid">biub546ub45ui6bu4ib56</td>
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td>JCB_TRUCK_01</td>
+                        <td id="tdname">JCB_TRUCK_01</td>
                     </tr>
                     <tr>
                         <td>Template</td>
-                        <td>TRUCKS</td>
+                        <td id="ttempl">TRUCKS</td>
                     </tr>
                 </table>
             </div>
@@ -408,6 +408,10 @@
         var fds = []
         async function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
+            var dn = $("#tdname"),
+                did = $("#tdid"),
+                dtmpl = $("#ttmpl")
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -418,7 +422,9 @@
                         props: props,
                         feeds: fds
                     }
-                    console.log(schema)
+                    dn.innerHTML = props.dName;
+                    did.innerHTML = props.deviceID;
+                    dtmpl.innerHTML = props.template
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/devProps/" + user + "/" + devID, true);
@@ -434,8 +440,8 @@
                     var feeds = JSON.parse(xhttp.responseText)
                     feeds.forEach(feed => {
                         var schm = {
-                            name:feed.name,
-                            unit:feed.unit
+                            name: feed.name,
+                            unit: feed.unit
                         }
                         fds.push(schm)
                     })

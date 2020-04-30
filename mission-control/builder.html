@@ -291,7 +291,7 @@
                     </ul>
                 </div>
                 <div class="btmPanel">
-                    <button style="background-color: #aadcff;" onclick="saveWid()">Save</button>
+                    <button style="background-color: #aadcff;" class="saveBTN" onclick="saveWid()">Save</button>
                     <button style="background-color: #ffaaaa;" onclick="cancelWid()">Cancel</button>
                 </div>
             </div>
@@ -927,6 +927,7 @@
                         widgetBdy.appendChild(latestData)
                         head.innerHTML = widget.name;
 
+                        widgetBdy.id = widget.id
                         widgetBdy.className += 'widget';
 
                         widgetBdy.addEventListener('click', function () {
@@ -1128,15 +1129,119 @@
             })
         });
 
-        function loadSchemaIntoPropane(schema){
+        function loadSchemaIntoPropane(schema) {
             var name = $("#name").val(schema.name);
             var device = $("#devProp").val(schema.config.device);
-            var feed = $("#devFeeds").val(schema.config.name);
+            var feed = $("#devFeeds").val(schema.feed);
             var bgc = $("#bgc").val(schema.datasets[0].backgroundColor);
             var brdc = $("#brdc").val(schema.datasets[0].borderColor);
             var brdw = $("#brdw").val(schema.datasets[0].borderWidth);
 
+            var saveBtn = document.querySelector(".saveBTN");
+            saveBtn.addEventListener('click', function () {
+                updateConfigs(schema.id)
+            });
+            saveBtn.style.backgroundColor = "#fff4aa";
+
             propertySelector(schema.type)
+        }
+
+        function updateConfigs(id) {
+            var name = $("#name").val();
+            var device = $("#devProp").val();
+            var feed = $("#devFeeds").val().split("/")[1];
+            var bgc = $("#bgc").val();
+            var brdc = $("#brdc").val();
+            var brdw = $("#brdw").val();
+            var minval = $("#minval").val();
+            var maxval = $("#maxval").val();
+            var defval = $("#defval").val();
+            var schema;
+
+            if (type == "chart") {
+                schema = {
+                    id:id,
+                    name: name,
+                    feed: feed,
+                    type: type,
+                    datasets: [{
+                        label: feed,
+                        data: [],
+                        backgroundColor: bgc,
+                        borderColor: brdc,
+                        borderWidth: brdw
+                    }],
+                    config: {
+                        labels: [],
+                        type: "line",
+                        prevTime: '',
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
+            } else if (type == "btn") {
+                schema = {
+                    name: name,
+                    feed: feed,
+                    type: type,
+                    config: {
+                        bgcolor: "transparent",
+                        borderColor: "cyan",
+                        textColor: "red",
+                        text: "ON",
+                        changeText: "Off",
+                        type: "ONOFF",
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
+            } else if (type == "map") {
+                schema = {
+                    name: name,
+                    feed: feed,
+                    type: "map",
+                    config: {
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
+            } else if (type == "range") {
+                schema = {
+                    name: name,
+                    feed: feed,
+                    type: "range",
+                    config: {
+                        minval: minval,
+                        maxval: maxval,
+                        value: defval,
+                        device: device,
+                        tab: crrntTab
+                    }
+                }
+
+            } else if (type == "log") {
+
+            } else if (type == "vid") {
+
+            } else if (type == "img") {
+
+            } else if (type == "iframe") {
+
+            }
+
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST", "http://192.168.31.249:3002/updateWidget/" + user + "/" + app, true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    $(".propane").toggle();
+                }
+            };
+            var data = JSON.stringify(schema);
+            await xhttp.send(data);
         }
     </script>
 </body>

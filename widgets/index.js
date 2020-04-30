@@ -32,6 +32,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
 
     var schema = {
+        "id":"",
         "name": "",
         "feed": '',
         "type": "",
@@ -56,6 +57,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
     getWidgets(req.params.userId, req.params.appId).then(widgets => {
         widgets.forEach(widget => {
             //BASICS
+            schema.id = widget.id;
             schema.name = widget.name;
             schema.feed = widget.feed;
             schema.type = widget.type;
@@ -74,6 +76,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
             widgetSchema.push(schema)
             schema = {
+                "id":"",
                 "name": "",
                 "feed": '',
                 "type": "",
@@ -96,6 +99,12 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
         res.json(widgetSchema)
     }).catch((err) => setImmediate(() => {
+        throw err;
+    }))
+})
+
+app.get('/updateWidget/:user/:app', (req, res) => {
+    updateWidget(req.params.userId, req.params.appId, req.body).then(widget => res.status(200)).catch((err) => setImmediate(() => {
         throw err;
     }))
 })
@@ -170,6 +179,16 @@ var getWidgets = (user, app) => {
     })
 }
 
+
+var updateWidget = (user, app, widget) => {
+    return new Promise((resolve, reject) => {
+        con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ? WHERE id = ? AND user=? AND app=?', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.id,user, app], (err, res) => {
+            if(err) return reject(err);
+            resolve(res)
+        })
+    })
+}
+
 var getTemplate = (user) => {
     return new Promise((resolve, reject) => {
         con.query('select name from template where user = ?', [user], (err, templates) => {
@@ -236,6 +255,7 @@ var saveTemplate = (user, name) => {
         return 1;
     })
 }
+
 
 var getFeeds = (user, dev, templ) => {
     return new Promise((resolve, reject) => {

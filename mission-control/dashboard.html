@@ -406,6 +406,7 @@
             }
         })
         var fds = []
+        var prp;
         async function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
             var dn = document.querySelector("#tdname")
@@ -422,6 +423,8 @@
                         props: props,
                         feeds: fds
                     }
+                    prp = props
+                    console.log(props)
                     dn.innerHTML = props.dName;
                     did.innerHTML = props.deviceID;
                     dtmpl.innerHTML = props.template

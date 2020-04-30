@@ -38,6 +38,13 @@ var authorizeSubscribe = function (client, topic, callback) {
     callback(null, client.user == topic.split('/')[0]);
 }
 
+server.on('clientConnected', function (client) {
+    con.query('update devices set status = "ONLINE" where deviceID = ?', [client.id], (err, res) => {
+        if (err) throw err;
+        sockClient.emit('devStat', client.id, "ONLINE")
+    })
+});
+
 server.on('ready', function () {
     console.log("ready");
     con.connect()
@@ -63,13 +70,6 @@ server.on('published', (packet) => {
         //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
     } else {
         return
-    }
-
-    if (topic[0] == "$SYS" && topic[1] == "STATUS") {
-        con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[2]], (err, res) => {
-            if (err) throw err;
-            sockClient.emit('devStat', topic[2], "ONLINE")
-        })
     }
 });
 

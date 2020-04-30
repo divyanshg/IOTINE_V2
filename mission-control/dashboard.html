@@ -418,7 +418,7 @@
             var dn = document.querySelector("#tdname")
             var did = document.querySelector("#tdid")
             var dtmpl = document.querySelector("#ttempl")
-            var tfds = document.querySelector(".tFeeds")
+            
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -431,13 +431,6 @@
                     did.innerHTML = props[0].deviceID;
                     dtmpl.innerHTML = props[0].template
 
-                    fds.forEach(fd => {
-                        var row = tfds.insertRow(tfds.length);
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-                        cell1.innerHTML = fd.name;
-                        cell2.innerHTML = fd.unit;
-                    })
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/devProps/" + user + "/" + devID, true);
@@ -446,6 +439,7 @@
 
         }
         async function loadFeeds(dev) {
+            var tfds = document.querySelector(".tFeeds")
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -457,6 +451,11 @@
                             unit: feed.unit
                         }
                         fds.push(schm)
+                        var row = tfds.insertRow(tfds.length);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        cell1.innerHTML = feed.name;
+                        cell2.innerHTML = feed.unit;
                     })
                     return fds
                 }

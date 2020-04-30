@@ -929,6 +929,10 @@
 
                         widgetBdy.className += 'widget';
 
+                        widgetBdy.addEventListener('mouseover', function(){
+                            console.log(this)
+                        })
+
                         document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
 
                         if (widget.type == "chart") {

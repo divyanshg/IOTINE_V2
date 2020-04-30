@@ -75,7 +75,7 @@
                         <div class="sc-kAzzGY eMCnFW"><img class="avatar"
                                 src="https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1"></div>
                         <div class="sc-kpOJdX iQYOlv">
-                            <input type="hidden" v-bind:value="device.deviceID" class="devID">
+                            <input type="hidden" v-bind:id="device.deviceID" v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
                         </div>
@@ -958,7 +958,7 @@
                         widgetBdy.className += 'widget';
 
                         document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
-                        widgetBdy.title = widget.config.device
+                        widgetBdy.title = $("#"+widget.config.device).val()
 
                         if (widget.type == "chart") {
                             var prev = ''

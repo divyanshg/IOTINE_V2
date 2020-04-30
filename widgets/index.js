@@ -143,6 +143,10 @@ app.post('/newTempl/:userId/:name', (req, res) => {
     res.send("Template Saved!")
 });
 
+app.get('/devProps/:user/:dev', (req, res) => {
+    getProps(req.params.user, req.params.dev).then(props => res.json(props)).catch((err) => setImmediate(() => { throw err; }))
+})
+
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
@@ -225,6 +229,15 @@ var getFeeds = (user,dev,templ) => {
                 if(err) return reject(err);
                 resolve(feeds)
             })
+    })
+}
+
+var getProps = (user, device) => {
+    return new Promise((resolve, reject) => {
+        con.query('slect * from devices where uName =? and deviceID = ?', [user, device], (err, props) => {
+            if(err) return reject(err);
+            resolve(props)
+        })
     })
 }
 

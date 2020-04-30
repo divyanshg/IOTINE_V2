@@ -1851,15 +1851,27 @@ select {
     font-size: initial;
     margin-right: 25px;
 }
+
 button#nTAB {
     background-color: var(--sidebar);
 }
-.devPROPERTIES{
+
+.devPROPERTIES {
     height: 100%;
     width: 100%;
     background-color: white;
     border-top-right-radius: 18px;
     position: absolute;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
+}
+
+.props {
+    border-collapse: collapse;
+}
+
+.props,
+.props td,
+.props th {
+    border: 1px solid black;
 }

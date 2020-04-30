@@ -41,4 +41,4 @@ while True:
     IOTINE.publish("TYRE_PRESSURE_AVG", random.randint(-30, 30), '')
     IOTINE.publish("ENGINE_TEMPERATURE", str(random.randint(0, 200)), '')
     IOTINE.publish("ENGINE_OIL", str(random.randint(0, 100)), '')
-    time.sleep(1)
+    time.sleep(3)

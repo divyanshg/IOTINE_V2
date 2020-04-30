@@ -964,12 +964,14 @@
         }
 
         function getWidget(feed) {
+            var obj = [];
             for (i = 0; i < widgets.length; i++) {
                 if (widgets[i].feed == feed) {
-                    var obj = widgets[i]
-                    return obj
+                    obj.push(widgets[i])
+
                 }
             }
+            return obj
         }
 
         function openTab(evt, id) {

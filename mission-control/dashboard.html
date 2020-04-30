@@ -1244,15 +1244,11 @@
             var nav = document.querySelector(".diMILA")
             if (nav.style.display == "block" || !nav.style.display) {
                 nav.style.display = "none";
-                document.querySelector(".mainappin").style.width = "100% !important"
+                $(".mainappin").css({"width":"100%"});
             } else {
                 nav.style.display = "block";
-                document.querySelector(".mainappin").style.width = "calc(100%-230px) !important"
+                $(".mainappin").css({"width":"calc(100%-230px) !important"});
             }
-        }
-
-        function expandMainApp(val) {
-            document.querySelector(".mainappin").style.width = val
         }
     </script>
 </body>

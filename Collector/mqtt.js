@@ -61,6 +61,8 @@ server.on('published', (packet) => {
             time: new Date().toLocaleTimeString()
         })
         //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
+    }else if(topic[0] == "$SYS" && topic[1] == "status"){
+        console.log(topic[0]+" : IS NOW ONLINE")
     } else {
         return
     }

@@ -91,7 +91,7 @@
                         class="material-icons">arrow_back</i> </span>
             </div>
             <div class="devicesList">
-                <h3 class="mname"></h3>
+                <h3 class="mname"></h3><br>
                 <table class="props">
                     <tr>
                         <th>PROPERTY</th>
@@ -433,11 +433,13 @@
                     // Typical action to be performed when the document is ready:
                     var props = JSON.parse(xhttp.responseText)
                     loadFeeds(devID)
-                    
+
                     mnam.innerHTML = props[0].dName;
                     dn.innerHTML = props[0].dName;
                     did.innerHTML = props[0].deviceID;
                     dtmpl.innerHTML = props[0].template
+
+                    fds = []
 
                 }
             };
@@ -459,11 +461,17 @@
                             unit: feed.unit
                         }
                         fds.push(schm)
-                        var row = tfds.insertRow(tfds.length);
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-                        cell1.innerHTML = feed.name;
-                        cell2.innerHTML = feed.unit;
+                        if (feeds.length != 0) {
+                            var row = tfds.insertRow(tfds.length);
+                            var cell1 = row.insertCell(0);
+                            var cell2 = row.insertCell(1);
+                            cell1.innerHTML = feed.name;
+                            cell2.innerHTML = feed.unit;
+                        }else{
+                            var row = tfds.insertRow(tfds.length);
+                            var cell1 = row.insertCell(0);
+                            cell1.innerHTML = "NO FEEDS FOUND";
+                        }
                     })
                     return fds
                 }

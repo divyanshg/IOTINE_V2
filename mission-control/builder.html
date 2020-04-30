@@ -1138,6 +1138,8 @@
             var brdc = $("#brdc").val(schema.datasets[0].borderColor);
             var brdw = $("#brdw").val(schema.datasets[0].borderWidth);
 
+            document.querySelector(".saveBTN").style.display = "none;"
+
             var updateBtn = document.querySelector(".updateBTN")
             updateBtn.style.display = "block";
             updateBtn.addEventListener('click', function () {

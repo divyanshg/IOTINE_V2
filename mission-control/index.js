@@ -64,6 +64,13 @@ io.on('connection', function (socket) {
         })
     });
 
+    socket.on('devStat', (device, status) => {
+        con.query('select * from devices where deviceID = ?', [device], (err, res) => {
+            if(err) throw err;
+            io.to(res[0].uName).emit('devStat', device, status)
+        })
+    })
+
     socket.on('tester', msg => console.info(msg))
 
 });

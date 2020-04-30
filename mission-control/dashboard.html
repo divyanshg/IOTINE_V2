@@ -1250,6 +1250,10 @@
                 $(".mainappin").css({"width": "calc(100% - 230px)"});
             }
         }
+
+        socket.on('devStat', (device, status) => {
+            console.log(device+" : "+status)
+        })
     </script>
 </body>
 

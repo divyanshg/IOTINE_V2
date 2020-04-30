@@ -18,4 +18,6 @@ def on_message(client, userdata, message):
 while True:
     IOTINE.publish("tempo", str(random.randint(0, 200)), '')
     IOTINE.publish("humido", str(random.randint(0, 100)), '')
+
+    IOTINE.publish("avg", str(random.randint(-100, 100)), '')
     time.sleep(1)

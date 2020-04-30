@@ -408,9 +408,9 @@
         var fds = []
         async function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
-            var dn = $("#tdname"),
-                did = $("#tdid"),
-                dtmpl = $("#ttmpl")
+            var dn = document.querySelector("#tdname"),
+                did = document.querySelector("#tdid"),
+                dtmpl = document.querySelector("#ttmpl")
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {

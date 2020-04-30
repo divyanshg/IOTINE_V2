@@ -65,7 +65,10 @@ server.on('published', (packet) => {
         return
     }
 
-    if(topic[0] == "$SYS" && topic[1] == "STATUS"){
-        console.log(topic[2]+" : IS NOW ONLINE")
+    if (topic[0] == "$SYS" && topic[1] == "STATUS") {
+        con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[2]], (err, res) => {
+            if (err) throw err;
+            console.log(topic[2] + " : IS NOW ONLINE")
+        })
     }
 });

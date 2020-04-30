@@ -1870,9 +1870,10 @@ button#nTAB {
 .props,
 .props td,
 .props th {
-    border: 1px solid black;
+    border: 0.1px solid black;
     /* width: 100%; */
     padding: 10px;
+    text-align: center;
 }
 
 .props {

@@ -958,7 +958,7 @@
 
                         widgetBdy.className += 'widget';
 
-                        document.querySelector(widget.config.tab).appendChild(widgetBdy)
+                        document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
                         widgetBdy.title = document.querySelector("#" + widget.config.device).alt
 
                         if (widget.type == "chart") {
@@ -1191,7 +1191,7 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
 
-            document.querySelector(id).style.display = "block";
+            document.querySelector("#" + id).style.display = "block";
             evt.currentTarget.className += " active";
         }
 

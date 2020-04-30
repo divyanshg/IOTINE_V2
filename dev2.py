@@ -1,5 +1,4 @@
 import iotine as IOTINE
-from iotine import GPIO
 import random
 import time
 import requests as req
@@ -11,9 +10,6 @@ IOTINE.USER = "GZBIC1oqQN"
 print(IOTINE.CONNECT())
 
 val = 30
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT)
 
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))

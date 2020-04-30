@@ -426,13 +426,13 @@
                     // Typical action to be performed when the document is ready:
                     var props = JSON.parse(xhttp.responseText)
                     loadFeeds(devID)
-                    
+
                     dn.innerHTML = props[0].dName;
                     did.innerHTML = props[0].deviceID;
                     dtmpl.innerHTML = props[0].template
 
                     fds.forEach(fd => {
-                        var row = tfds.insertRow(table.length);
+                        var row = tfds.insertRow(tfds.length);
                         var cell1 = row.insertCell(0);
                         var cell2 = row.insertCell(1);
                         cell1.innerHTML = fd.name;

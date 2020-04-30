@@ -104,7 +104,9 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 })
 
 app.get('/updateWidget/:user/:app', (req, res) => {
-    updateWidget(req.params.userId, req.params.appId, req.body).then(widget => res.status(200)).catch((err) => setImmediate(() => {
+    var widget = req.body
+    console.log(widget)
+    updateWidget(req.params.userId, req.params.appId, widget).then(widget => res.status(200)).catch((err) => setImmediate(() => {
         throw err;
     }))
 })
@@ -186,7 +188,6 @@ var updateWidget = (user, app, widget) => {
             if(err) return reject(err);
             resolve(res)
         })*/
-        console.log(widget)
     })
 }
 

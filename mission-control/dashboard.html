@@ -108,20 +108,13 @@
                         <td>TEMPLATE</td>
                         <td id="ttempl">TRUCKS</td>
                     </tr>
-                    <br>
-                    <tr>
-                        <th>FEEDS</th>
-                    </tr>
+                </table>
+                <table class="tFeeds">
                     <tr>
                         <th>NAME</th>
                         <th>UNIT</th>
                     </tr>
-                    <div class="feeds">
-                        <tr>
-                            <td>retg54</td>
-                            <td>cm</td>
-                        </tr>
-                    </div>
+
                 </table>
             </div>
         </div>
@@ -425,6 +418,7 @@
             var dn = document.querySelector("#tdname")
             var did = document.querySelector("#tdid")
             var dtmpl = document.querySelector("#ttempl")
+            var tfds = document.querySelector(".tFeeds")
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -439,6 +433,14 @@
                     dn.innerHTML = props[0].dName;
                     did.innerHTML = props[0].deviceID;
                     dtmpl.innerHTML = props[0].template
+
+                    fds.forEach(feed => {
+                        var row = tfds.insertRow(table.length);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        cell1.innerHTML = feed.name;
+                        cell2.innerHTML = feed.unit;
+                    })
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/devProps/" + user + "/" + devID, true);

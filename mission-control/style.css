@@ -1884,3 +1884,21 @@ button#nTAB {
     border-collapse: collapse;
     width: 100%;
 }
+
+.tFeeds,
+.tFeeds td,
+.tFeeds th {
+    border: 0.1px solid black;
+    /* width: 100%; */
+    padding: 10px;
+    text-align: center;
+}
+
+.tFeeds td{
+    word-break: break-all;
+}
+
+.tFeeds {
+    border-collapse: collapse;
+    width: 100%;
+}

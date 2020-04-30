@@ -238,13 +238,7 @@ var getProps = (user, device) => {
             if(err) return reject(err);
             //con.query('select name, unit from feed_vals where user_id = ? and deviceID = ?', [user, device], (err, feeds) => {
                 //if(err) return reject(err)
-                var schema = {
-                    ID: props.deviceID,
-                    NAME: props.dName,
-                    TEMPLATE: props.template,
-                    //FEEDS: feeds
-                }
-                resolve(schema)
+                resolve(props)
             //})
         })
     })

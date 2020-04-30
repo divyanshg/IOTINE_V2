@@ -85,8 +85,10 @@
         <div class="actions">
             <button v-on:click="newDev" class="addDevice">ADD DEVICE</button>
         </div>
-        <div class="devPROPERTIES" style="display: none;">
-
+        <div class="devPROPERTIES" style="display: block;">
+            <div class="searchForm">
+                <span>X</span>
+            </div>
         </div>
     </div>
 
@@ -283,7 +285,7 @@
             root.style.setProperty("--widBorder", "#d2d2d2")
             root.style.setProperty("--tabsclr", "black")
             root.style.setProperty("--thm-wid", "white")
-         }
+        }
 
         function toggleDis(elm) {
             var elm = document.querySelector(elm);
@@ -383,9 +385,9 @@
             }
         })
 
-        function loadPROPS(dev){
+        function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
-            $(".devPROPERTIES").toggle().html(devID)
+            //$(".devPROPERTIES").toggle().html(devID)
 
         }
 
@@ -722,7 +724,7 @@
             ctx.fillStyle = "#3880ff";
             ctx.font = '15px Arial';
 
-            var textString = "NOT RECIEVING ANY DATA IN "+id,
+            var textString = "NOT RECIEVING ANY DATA IN " + id,
                 textWidth = ctx.measureText(textString).width;
 
 

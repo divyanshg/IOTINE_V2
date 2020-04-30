@@ -452,7 +452,8 @@
                 addDevice() {
                     devices.devices.push({
                         name: document.getElementById('Devicename').value,
-                        type: document.querySelector("#dTemplate").value
+                        type: document.querySelector("#dTemplate").value,
+                        deviceID: document.querySelector("#Deviceurl").value
                     })
                     saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
                         .value, document.querySelector("#Deviceurl").value)

@@ -1874,6 +1874,9 @@ button#nTAB {
     /* width: 100%; */
     padding: 10px;
     text-align: center;
+}
+
+.props td{
     word-break: break-all;
 }
 

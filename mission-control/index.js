@@ -53,9 +53,13 @@ io.on('connection', function (socket) {
     })
     socket.on('publish', function (msg) {
         con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
-            if(err) return err;
-            io.to(msg.user).emit('subscribe', msg.feed, msg)
-            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+            if (err) return err;
+            con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId,msg.feed], (err, feeds) => {
+                if (err) return err
+                io.to(msg.user).emit('subscribe', msg.feed, msg, feeds.unit)
+                client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+            })
+
             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
         })
     });

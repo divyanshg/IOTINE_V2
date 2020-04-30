@@ -79,3 +79,7 @@ server.on("clientDisconnected", function (client) {
         sockClient.emit('devStat', client.id, "OFFLINE")
     })
 });
+
+server.on('close', (client) => {
+    console.log(client.id)
+})

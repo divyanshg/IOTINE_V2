@@ -1866,12 +1866,15 @@ button#nTAB {
     left: 0px;
 }
 
-.props {
-    border-collapse: collapse;
-}
-
 .props,
 .props td,
 .props th {
     border: 1px solid black;
+    /* width: 100%; */
+    padding: 10px;
+}
+
+.props {
+    border-collapse: collapse;
+    width: 100%;
 }

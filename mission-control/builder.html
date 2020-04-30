@@ -798,8 +798,8 @@
             ctx.fillStyle = "#3880ff";
             ctx.font = '15px Arial';
 
-            var textString = "DATA NOT AVAILABLE IN EDIT MODE",
-                textWidth = ctx.measureText(textString).width;
+            var textString = "NOT RECIEVING ANY DATA IN " + id
+            textWidth = ctx.measureText(textString).width;
 
 
             ctx.fillText(textString, (chartContainer.width / 2) - (textWidth / 2), 100);
@@ -1164,7 +1164,7 @@
 
             if (type == "chart") {
                 schema = {
-                    id:id,
+                    id: id,
                     name: name,
                     feed: feed,
                     type: type,

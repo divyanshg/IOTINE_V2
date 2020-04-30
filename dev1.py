@@ -35,10 +35,10 @@ def on_message(client, userdata, message):
     print(message.topic, "/",msg)
 
 while True:
-    IOTINE.publish("retg54", random.randint(-30, 30), '')
-    IOTINE.publish("Web_Sensor", random.randint(-3, 3), '')
-    IOTINE.subscribe("retg54", on_message)
-    IOTINE.publish("else", random.randint(-30, 30), '')
+    IOTINE.publish("CONT_TEMP", random.randint(-30, 30), '')
+    IOTINE.publish("CONT_HUMID", random.randint(-3, 3), '')
+    IOTINE.subscribe("CONT_TEMP", on_message)
+    IOTINE.publish("TYRE_PRESSURE_AVG", random.randint(-30, 30), '')
     IOTINE.publish("ENGINE_TEMPERATURE", str(random.randint(0, 200)), '')
     IOTINE.publish("ENGINE_OIL", str(random.randint(0, 100)), '')
     time.sleep(1)

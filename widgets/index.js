@@ -8,7 +8,9 @@ const app = express();
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cors())
 
 const port = process.env.PORT || 3002;
@@ -18,22 +20,22 @@ var con = mysql.createConnection({
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"
-  });
-  
-con.connect(function(err) {
-   if (err) throw err;
-   console.log("Connected!");
+});
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
 });
 
 
 app.get('/widgets/:userId/:appId', (req, res) => {
 
 
-    var schema =   {
+    var schema = {
         "name": "",
-        "feed":'',
+        "feed": '',
         "type": "",
-        "datasets":[{
+        "datasets": [{
             "label": "",
             "data": [],
             "backgroundColor": "",
@@ -41,11 +43,11 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             "borderWidth": ''
         }],
         "config": {
-        "labels": [],
-        "type": "",
-        "prevTime": "",
-        "device": "",
-        "tab": ""
+            "labels": [],
+            "type": "",
+            "prevTime": "",
+            "device": "",
+            "tab": ""
         }
     };
 
@@ -59,7 +61,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.type = widget.type;
             //DATASETS
             schema.datasets[0].label = widget.label;
-            schema.datasets[0].data  = [];
+            schema.datasets[0].data = [];
             schema.datasets[0].backgroundColor = widget.backgroundColor;
             schema.datasets[0].borderColor = widget.borderColor;
             schema.datasets[0].borderWidth = widget.borderWidth;
@@ -73,9 +75,9 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             widgetSchema.push(schema)
             schema = {
                 "name": "",
-                "feed":'',
+                "feed": '',
                 "type": "",
-                "datasets":[{
+                "datasets": [{
                     "label": "",
                     "data": [],
                     "backgroundColor": "",
@@ -83,26 +85,30 @@ app.get('/widgets/:userId/:appId', (req, res) => {
                     "borderWidth": ''
                 }],
                 "config": {
-                "labels": [],
-                "type": "",
-                "prevTime": "",
-                "device": "",
-                "tab": ""
+                    "labels": [],
+                    "type": "",
+                    "prevTime": "",
+                    "device": "",
+                    "tab": ""
                 }
             }
         })
 
         res.json(widgetSchema)
-    }).catch((err) => setImmediate(() => { throw err; }))
+    }).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 })
 
 app.get('/tabs/:userId/:appId', (req, res) => {
-    getTabs(req.params.userId, req.params.appId).then(tabs => res.json(tabs)).catch((err) => setImmediate(() => { throw err; }))
+    getTabs(req.params.userId, req.params.appId).then(tabs => res.json(tabs)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 })
 
 app.get('/user/:name', (req, res) => {
     con.query('select user_id from users where username = ? limit 1', [req.params.name], (err, resp) => {
-        if(err) throw err;
+        if (err) throw err;
         res.send(resp[0].user_id)
     })
 });
@@ -113,14 +119,16 @@ app.post('/newWidget/:userId/:appId', (req, res) => {
     res.send("Widget Saved!")
 });
 
-app.post('/newTab/:userId/:appId/:tabName', (req,res) => {
+app.post('/newTab/:userId/:appId/:tabName', (req, res) => {
     var tab = req.params.tabName;
     saveTab(req.params.userId, req.params.appId, tab)
     res.send("Tab Saved!")
 });
 
 app.get('/devices/:userId', (req, res) => {
-    getDevices(req.params.userId).then(devices => res.json(devices)).catch((err) => setImmediate(() => { throw err; }))
+    getDevices(req.params.userId).then(devices => res.json(devices)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 });
 
 app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
@@ -129,12 +137,16 @@ app.post('/newDevice/:userId/:name/:did/:templ', (req, res) => {
     res.send("Device Saved!")
 });
 
-app.get('/feeds/:userId/:dev', (req,res) => {
-    getFeeds(req.params.userId, req.params.dev).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => { throw err; }))
+app.get('/feeds/:userId/:dev', (req, res) => {
+    getFeeds(req.params.userId, req.params.dev).then(feeds => res.json(feeds)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 })
 
 app.get('/templates/:user', (req, res) => {
-    getTemplate(req.params.user).then(templates => res.json(templates)).catch((err) => setImmediate(() => { throw err; }))
+    getTemplate(req.params.user).then(templates => res.json(templates)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 })
 
 app.post('/newTempl/:userId/:name', (req, res) => {
@@ -144,7 +156,9 @@ app.post('/newTempl/:userId/:name', (req, res) => {
 });
 
 app.get('/devProps/:user/:dev', (req, res) => {
-    getProps(req.params.user, req.params.dev).then(props => res.json(props)).catch((err) => setImmediate(() => { throw err; }))
+    getProps(req.params.user, req.params.dev).then(props => res.json(props)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
 })
 
 var getWidgets = (user, app) => {
@@ -159,7 +173,7 @@ var getWidgets = (user, app) => {
 var getTemplate = (user) => {
     return new Promise((resolve, reject) => {
         con.query('select name from template where user = ?', [user], (err, templates) => {
-            if(err) return reject(err);
+            if (err) return reject(err);
             resolve(templates)
         })
     })
@@ -167,10 +181,10 @@ var getTemplate = (user) => {
 
 var saveWidget = (user, app, widget) => {
     var widgets = [
-        [null, user, app, widget.name, widget.feed, widget.type,widget.datasets[0].label, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
+        [null, user, app, widget.name, widget.feed, widget.type, widget.datasets[0].label, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
     ]
     con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`,  `backgroundColor`, `borderColor`, `borderWidth`,`chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
-        if(err) throw err;
+        if (err) throw err;
         return 1
     })
 }
@@ -178,7 +192,7 @@ var saveWidget = (user, app, widget) => {
 var getTabs = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query('select name, tabId from tabs where user =? and app = ?', [user, app], (err, tabs) => {
-            if(err) return reject(err);
+            if (err) return reject(err);
             resolve(tabs)
         })
     })
@@ -189,15 +203,15 @@ var saveTab = (user, app, name) => {
         [null, user, app, name, makeid()]
     ]
     con.query('insert into tabs(id, user, app, name, tabId) VALUES ?', [tab], (err, res) => {
-        if(err) throw err;
+        if (err) throw err;
         return 1
     })
 }
 
 var getDevices = (user, dev) => {
     return new Promise((resolve, reject) => {
-        con.query('select dName,template,deviceID from devices where uName = ?', [user], (err, devices) =>{
-            if(err) return reject(err);
+        con.query('select dName,template,deviceID from devices where uName = ?', [user], (err, devices) => {
+            if (err) return reject(err);
             resolve(devices)
         })
     })
@@ -208,50 +222,58 @@ var saveDevice = (user, name, did, templ) => {
         [null, did, name, templ, user]
     ]
     con.query('insert into devices(_id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
-        if(err) throw err;
+        if (err) throw err;
         return 1;
     })
 }
 
-var saveTemplate =  (user, name) => {
+var saveTemplate = (user, name) => {
     var template = [
         [null, name, user]
     ]
     con.query('insert into template(id, name, user) values ?', [template], (err, res) => {
-        if(err) throw err;
+        if (err) throw err;
         return 1;
     })
 }
 
-var getFeeds = (user,dev,templ) => {
+var getFeeds = (user, dev, templ) => {
     return new Promise((resolve, reject) => {
-            con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, dev], (err, feeds) => {
-                if(err) return reject(err);
-                resolve(feeds)
-            })
+        con.query('select name from feed_vals where user_id = ? and deviceID = ?', [user, dev], (err, feeds) => {
+            if (err) return reject(err);
+            resolve(feeds)
+        })
     })
 }
 
 var getProps = (user, device) => {
     return new Promise((resolve, reject) => {
         con.query('select * from devices where uName =? and deviceID = ?', [user, device], (err, props) => {
-            if(err) return reject(err);
-            //con.query('select name, unit from feed_vals where user_id = ? and deviceID = ?', [user, device], (err, feeds) => {
-                //if(err) return reject(err)
-                resolve(props)
-            //})
+            if (err) return reject(err);
+            con.query('select name, unit from feed_vals where user_id = ? and deviceID = ?', [user, device], (err, feeds) => {
+                if (err) return reject(err)
+                var schema = [
+                    {
+                        ID:props.deviceID,
+                        NAME: props.dName,
+                        TEMPLATE: props.template,
+                        FEEDS: feeds
+                    }
+                ]
+                resolve(schema)
+            })
         })
     })
 }
 
 function makeid() {
     var length = 10;
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
-app.listen(port, () => console.log("Server running on : "+port))
+}
+app.listen(port, () => console.log("Server running on : " + port))

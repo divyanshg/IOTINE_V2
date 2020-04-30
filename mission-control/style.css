@@ -7,6 +7,7 @@
     --widBorder: #d2d2d2;
     --cmds: black;
     --tabsclr: black;
+    --thm-wid: white;
 }
 
 body {
@@ -1539,6 +1540,7 @@ div.form {
     display: inline-block;
     margin-bottom: 20px;
 
+    background-color: var(--thm-wid);
     /*background: url(http://192.168.31.249/IOTINE_V2/mission-control/332.gif) center no-repeat #fff !important;*/
 }
 

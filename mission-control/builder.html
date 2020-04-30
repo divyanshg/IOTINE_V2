@@ -379,12 +379,16 @@
 
         var openedPropsOF;
 
-        function propertySelector(typ) {
+        function propertySelector(typ, val) {
             type = typ;
             $("." + typ + "cnt").toggle()
             openedPropsOF = "." + typ + "cnt";
             $('.propane').toggle();
-            getDevices();
+            if (!val || val == '') {
+                getDevices();
+            } else {
+                getDevices("bla")
+            }
             //createWidget([{name:"TEST", config:{}, type}])
         }
 
@@ -419,9 +423,11 @@
             await xhttp.send();
         }
 
-        async function getDevices() {
+        async function getDevices(val) {
             var devList = document.querySelector('#devProp')
-            $("#devProp").empty().append('<option value="0">Select your device</option>');
+            if (val != '') {
+                $("#devProp").empty().append('<option value="0">Select your device</option>');
+            }
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {

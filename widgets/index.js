@@ -105,7 +105,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
 app.post('/updateWidget/:user/:app', (req, res) => {
     var widget = req.body
-    updateWidget(req.params.userId, req.params.appId, widget).then(widget => res.status(200)).catch((err) => setImmediate(() => {
+    updateWidget(req.params.userId, req.params.appId, widget).then(widget => res.send("OK")).catch((err) => setImmediate(() => {
         throw err;
     }))
 })
@@ -185,7 +185,9 @@ var updateWidget = (user, app, widget) => {
     return new Promise((resolve, reject) => {
         con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ? WHERE id = ? AND user=? AND app=?', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.id,user, app], (err, res) => {
             if(err) return reject(err);
-            console.log("here")
+            con.query('select * from widgets where id =?', id, (err, res) => {
+                console.log(res)
+            })
             resolve(res)
         })
     })

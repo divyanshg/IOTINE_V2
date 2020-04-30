@@ -73,7 +73,7 @@ server.on('published', (packet) => {
     }
 });
 
-server.on("clientDisconnected", function(client) {
+server.on("clientDisconnected", function (client) {
     con.query('update devices set status = "OFFLINE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
         sockClient.emit('devStat', topic[2], "OFFLINE")

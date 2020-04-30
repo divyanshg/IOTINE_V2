@@ -1234,7 +1234,6 @@
             }
 
             var xhttp = new XMLHttpRequest();
-            console.log(schema)
             xhttp.open("POST", "http://192.168.31.249:3002/updateWidget/" + user + "/" + app, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
 
@@ -1242,6 +1241,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:
                     $(".propane").toggle();
+                    window.location.reload()
                 }
             };
             var data = JSON.stringify(schema);

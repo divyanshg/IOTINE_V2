@@ -75,6 +75,7 @@
                         <div class="sc-kAzzGY eMCnFW"><img class="avatar"
                                 src="https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1"></div>
                         <div class="sc-kpOJdX iQYOlv">
+                            <input type="hidden" v-bind:id="device.deviceID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
                         </div>
@@ -85,7 +86,7 @@
             <button v-on:click="newDev" class="addDevice">ADD DEVICE</button>
         </div>
         <div class="devPROPERTIES">
-            
+
         </div>
     </div>
 

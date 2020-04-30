@@ -72,3 +72,7 @@ server.on('published', (packet) => {
         })
     }
 });
+
+server.on("clientDisconnected", function(client) {
+    console.log("clientDisconnected : ", client.id);
+  });

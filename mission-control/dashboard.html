@@ -173,7 +173,7 @@
             </div>
         </div>
         <div class="appInner" id="appInner" style="display:none;"></div>
-        <div class="appInner mainappin" >
+        <div class="appInner mainappin">
             <header class="sc-hEsumM felvod">
                 <div class="sc-cIShpX dQDczm">
                     <div class="title">
@@ -1244,15 +1244,25 @@
             var nav = document.querySelector(".diMILA")
             if (nav.style.display == "block" || !nav.style.display) {
                 nav.style.display = "none";
-                $(".mainappin").css({"width":"100%"});
+                $(".mainappin").css({
+                    "width": "100%"
+                });
             } else {
                 nav.style.display = "block";
-                $(".mainappin").css({"width": "calc(100% - 230px)"});
+                $(".mainappin").css({
+                    "width": "calc(100% - 230px)"
+                });
             }
         }
 
         socket.on('devStat', (device, status) => {
-            console.log(device+" : "+status)
+            if (status == "ONLINE") {
+                $("#" + device).parent().prev().children().attr("src",
+                    "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")
+            } else {
+                $("#" + device).parent().prev().children().attr("src",
+                    "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1")
+            }
         })
     </script>
 </body>

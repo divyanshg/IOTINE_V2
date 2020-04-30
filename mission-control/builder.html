@@ -1231,7 +1231,7 @@
 
             var xhttp = new XMLHttpRequest();
 
-            xhttp.open("POST", "http://192.168.31.249:3002/updateWidget/" + user + "/" + app, true);
+            xhttp.open("GET", "http://192.168.31.249:3002/updateWidget/" + user + "/" + app, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
 
             xhttp.onreadystatechange = function () {

@@ -1058,13 +1058,13 @@
                     updateLog(".log-" + feed, msg, feed)
                     var chart = document.querySelector(".chart-" + feed)
                     var latestData = chart.previousSibling
-                    latestData.innerHTML = msg.value+unit
+                    latestData.innerHTML = msg.value+unit.unit
                     var ctx = chart.getContext("2d")
                     updateChart("chart-" + feed, ctx, msg, feed)
                     var range = document.querySelector(".range-" + feed) || false
                     if (!range) return
                     var latestData = range.previousSibling
-                    latestData.innerHTML = msg.value+unit
+                    latestData.innerHTML = msg.value+unit.unit
                     updateRange(".range-" + feed, msg.value, feed)
                 } else {
                     return

@@ -182,10 +182,11 @@ var getWidgets = (user, app) => {
 
 var updateWidget = (user, app, widget) => {
     return new Promise((resolve, reject) => {
-        con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ? WHERE id = ? AND user=? AND app=?', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.id,user, app], (err, res) => {
+        /*con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ? WHERE id = ? AND user=? AND app=?', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.id,user, app], (err, res) => {
             if(err) return reject(err);
             resolve(res)
-        })
+        })*/
+        console.log(widget)
     })
 }
 

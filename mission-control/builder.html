@@ -692,6 +692,11 @@
 
                 document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
 
+                widgetBdy.addEventListener('click', function () {
+                    selectedWidget = this;
+                    loadSchemaIntoPropane(widget)
+                })
+
                 if (type == "chart") {
                     var prev = ''
                     lChart(widget.feed, widget.datasets, widget.config, widgetBdy, prev)
@@ -726,6 +731,7 @@
         getUser();
         var user;
         var app = window.location.pathname.split("/")[3];
+        var selectedWidget;
         async function getUser() {
             var username = window.location.pathname.split("/")[2];
             var xhttp = new XMLHttpRequest();
@@ -836,10 +842,6 @@
             buttonCont.style.borderColor = config.borderColor
             buttonCont.style.color = config.textColor
 
-            buttonCont.addEventListener('click', () => {
-                pubii(buttonCont, id, config)
-            })
-
             bdy.appendChild(buttonCont)
         }
 
@@ -861,10 +863,6 @@
             slider.min = config.minval
             slider.max = config.maxval
             slider.value = config.value
-
-            slider.addEventListener('input', function () {
-                publishRange(".range-" + feed, feed, config)
-            })
 
             bdy.className += " wid-range"
 
@@ -931,8 +929,9 @@
 
                         widgetBdy.className += 'widget';
 
-                        widgetBdy.addEventListener('mouseover', function () {
-                            widget.datasets[0].borderColor = "#5a1010"
+                        widgetBdy.addEventListener('click', function () {
+                            selectedWidget = this;
+                            loadSchemaIntoPropane(widget)
                         })
 
                         document.querySelector("#" + widget.config.tab).appendChild(widgetBdy)
@@ -1128,6 +1127,17 @@
                 }
             })
         });
+
+        function loadSchemaIntoPropane(schema){
+            var name = $("#name").val(schema.name);
+            var device = $("#devProp").val(schema.config.device);
+            var feed = $("#devFeeds").val(schema.config.name).split("/")[1];
+            var bgc = $("#bgc").val(schema.datasets[0].backgroundColor);
+            var brdc = $("#brdc").val(schema.datasets[0].borderColor);
+            var brdw = $("#brdw").val(schema.datasets[0].borderWidth);
+
+            propertySelector(schema.type)
+        }
     </script>
 </body>
 

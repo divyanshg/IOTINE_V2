@@ -406,7 +406,6 @@
             }
         })
         var fds = []
-        var prp;
         async function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
             var dn = document.querySelector("#tdname")
@@ -423,11 +422,9 @@
                         props: props,
                         feeds: fds
                     }
-                    prp = props
-                    console.log(props)
-                    dn.innerHTML = props.dName;
-                    did.innerHTML = props.deviceID;
-                    dtmpl.innerHTML = props.template
+                    dn.innerHTML = props[0].dName;
+                    did.innerHTML = props[0].deviceID;
+                    dtmpl.innerHTML = props[0].template
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/devProps/" + user + "/" + devID, true);

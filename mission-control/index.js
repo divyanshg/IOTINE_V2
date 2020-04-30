@@ -65,7 +65,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('devStat', (device, status) => {
-        console.log(device)
         con.query('select * from devices where deviceID = ?', [device], (err, res) => {
             if(err) throw err;
             console.log(device)

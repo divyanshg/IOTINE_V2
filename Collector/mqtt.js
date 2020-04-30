@@ -69,7 +69,6 @@ server.on('published', (packet) => {
         con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[2]], (err, res) => {
             if (err) throw err;
             sockClient.emit('devStat', topic[2], "ONLINE")
-            console.log(topic[2] + " : IS NOW ONLINE")
         })
     }
 });

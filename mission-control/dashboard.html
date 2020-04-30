@@ -91,6 +91,7 @@
                         class="material-icons">arrow_back</i> </span>
             </div>
             <div class="devicesList">
+                <h3 class="mname"></h3>
                 <table class="props">
                     <tr>
                         <th>PROPERTY</th>
@@ -420,6 +421,7 @@
         var fds = []
         async function loadPROPS(dev) {
             var devID = $(dev).children('.iQYOlv').children('.devID').val()
+            var mnam = document.querySelector(".mname")
             var dn = document.querySelector("#tdname")
             var did = document.querySelector("#tdid")
             var dtmpl = document.querySelector("#ttempl")
@@ -431,7 +433,8 @@
                     // Typical action to be performed when the document is ready:
                     var props = JSON.parse(xhttp.responseText)
                     loadFeeds(devID)
-
+                    
+                    mnam.innerHTML = props[0].dName;
                     dn.innerHTML = props[0].dName;
                     did.innerHTML = props[0].deviceID;
                     dtmpl.innerHTML = props[0].template

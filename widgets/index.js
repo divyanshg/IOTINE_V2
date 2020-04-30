@@ -236,7 +236,16 @@ var getProps = (user, device) => {
     return new Promise((resolve, reject) => {
         con.query('slect * from devices where uName =? and deviceID = ?', [user, device], (err, props) => {
             if(err) return reject(err);
-            resolve(props)
+            con.query('select name, unit from feed_vals where user_id = ? and deviceID = ?', [user, device], (err, feeds) => {
+                if(err) return reject(err)
+                var schema = {
+                    ID: props.deviceID,
+                    NAME: props.dName,
+                    TEMPLATE: props.template,
+                    FEEDS: feeds
+                }
+                resolve(schema)
+            })
         })
     })
 }

@@ -1214,6 +1214,13 @@
                             $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         }
                     })
+
+                    var rstbtns = document.getElementsByClassName("rst-btn");
+                    for(i=0; i < rstbtns.length; i++){
+                        rstbtns[i].addEventListener("click", function(){
+                            console.log($(this).siblings(".devID").val())
+                        })
+                    }
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/deviceState/" + user, true);

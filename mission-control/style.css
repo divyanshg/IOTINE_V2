@@ -1919,6 +1919,11 @@ button#nTAB {
     height: 150px;
 }
 
+.commands-content .cmdTop{
+    position: relative;
+    top:0px;
+    margin-bottom:10px;
+}
 .commands-content {
     position: absolute;
     bottom: 0px;

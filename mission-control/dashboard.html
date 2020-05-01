@@ -496,12 +496,12 @@
         }
 
         function rstDev(elm){
-            var device = document.querySelector(elm).getAttribute("data-dev")
+            var device = elm.getAttribute("data-dev")
             console.log(device)
-            /*socket.emit('publish', {
+            socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS",
-                value: prompt("COMMAND"),
+                value: "RST",
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(
@@ -509,7 +509,7 @@
                 "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
             $("#" + device).parent().prev().children().attr(
                 "title",
-                "REBOOTING")*/
+                "REBOOTING")
         }
 
         function makeid(length) {

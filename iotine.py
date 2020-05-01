@@ -28,7 +28,10 @@ def on_message(client, userdata, message):
             os.execl(sys.executable, sys.executable, *sys.argv)
         elif msg == "PUB_STOP":
             global pubstop
-            pubstop = True   
+            pubstop = True
+        elif msg == "PUB_START":
+            global pubstop
+            pubstop = False       
 
 def on_connect(client, userdata, flags, rc):
     if rc==0:

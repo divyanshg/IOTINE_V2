@@ -81,7 +81,7 @@
                                 v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
-                            <button class="rst-btn">RESET</button>
+                            <button class="cmd-btn">COMMANDS</button>
                         </div>
                     </div>
                 </a></li>
@@ -288,6 +288,19 @@
                     class="clsBtn">&times;</span></h1>
             <h4>From here you can easily customize your dashboard experience.</h4>
             <div id="terminal"></div>
+        </div>
+
+    </div>
+
+    <div class="commandsModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>Device Commands<span
+                    onclick="$('.mainBackDrop').toggle();$('.commandsModal').toggle();if (document.querySelector('.commandsModal').style.display = 'block') {openedPanels = '.commandsModal'} else {openedPanels = ''}"
+                    class="clsBtn">&times;</span></h1>
+            <h4>From here you can easily control your devices.</h4>
+            <button class="rst-btn">RESET</button>
+            <button class="stp-btn">STOP PUBLISH</button>
+            <button class="str-btn">START PUBLISH</button>
         </div>
 
     </div>
@@ -1213,26 +1226,71 @@
                             $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         }
                     })
-
-                    var rstbtns = document.getElementsByClassName("rst-btn");
-                    for (i = 0; i < rstbtns.length; i++) {
-                        rstbtns[i].addEventListener("click", function () {
-                            $(".devPROPERTIES").toggle()
-                            socket.emit('publish', {
-                                deviceId: $(this).siblings(".devID").val(),
-                                feed: "$SYS/COMMANDS",
-                                value: "PUB_STOP",
-                                time: new Date().toLocaleTimeString()
-                            })
-                            $("#" +  $(this).siblings(".devID").val()).parent().prev().children().attr("src",
-                                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                            $("#" +  $(this).siblings(".devID").val()).parent().prev().children().attr("title", "REBOOTING")
-                        })
+                    var cmdbtns = document.getElementsByClassName("cmd-btn");
+                    for (i = 0; i < cmdbtns.length; i++) {
+                        $(cmdbtns[i]).toggle()
+                        registerCommands($(this).siblings(".devID").val())
                     }
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/deviceState/" + user, true);
             await xhttp.send()
+        }
+
+        function registerCommands(id) {
+            var rstbtns = document.getElementsByClassName("rst-btn");
+
+            for (i = 0; i < rstbtns.length; i++) {
+                rstbtns[i].addEventListener("click", function () {
+                    $(".devPROPERTIES").toggle()
+                    socket.emit('publish', {
+                        deviceId: id,
+                        feed: "$SYS/COMMANDS",
+                        value: "RST",
+                        time: new Date().toLocaleTimeString()
+                    })
+                    $("#" + id).parent().prev().children().attr("src",
+                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                    $("#" + id).parent().prev().children().attr("title",
+                        "REBOOTING")
+                })
+            }
+
+            var stpbtns = document.getElementsByClassName("stp-btn");
+
+            for (i = 0; i < stpbtns.length; i++) {
+                stpbtns[i].addEventListener("click", function () {
+                    $(".devPROPERTIES").toggle()
+                    socket.emit('publish', {
+                        deviceId: id,
+                        feed: "$SYS/COMMANDS",
+                        value: "PUB_STOP",
+                        time: new Date().toLocaleTimeString()
+                    })
+                    $("#" + id).parent().prev().children().attr("src",
+                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                    $("#" + id).parent().prev().children().attr("title",
+                        "PUBLISHING STOPPED")
+                })
+            }
+
+            var strbtns = document.getElementsByClassName("str-btn");
+
+            for (i = 0; i < strbtns.length; i++) {
+                strbtns[i].addEventListener("click", function () {
+                    $(".devPROPERTIES").toggle()
+                    socket.emit('publish', {
+                        deviceId: $(this).siblings(".devID").val(),
+                        feed: "$SYS/COMMANDS",
+                        value: "PUB_START",
+                        time: new Date().toLocaleTimeString()
+                    })
+                    $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("src",
+                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                    $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("title",
+                        "ONLINE")
+                })
+            }
         }
 
         function openTab(evt, id) {

@@ -598,7 +598,7 @@
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/UPDATE",
-                value: prompt("FILE"),
+                value: '',
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(

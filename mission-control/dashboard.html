@@ -104,9 +104,9 @@
                         <button onclick="strDev(this)" class="str-btn" data-dev="">START</button><br>
                     </div>
                     <div class="cmdBdy">    
-                        <button onclick="rstDev(this)" data-dev="" class="rst-btn">UPDATE</button>
-                        <button onclick="ioState(this)" class="stp-btn" data-dev="">I/O STATE</button>
-                        <button onclick="ioRead(this)" class="str-btn" data-dev="">I/O READ</button>
+                        <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
+                        <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
+                        <button onclick="ioRead(this)" class="ior-btn" data-dev="">I/O READ</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
@@ -452,6 +452,10 @@
             document.querySelector(".rst-btn").setAttribute("data-dev", devID)
             document.querySelector(".stp-btn").setAttribute("data-dev", devID)
             document.querySelector(".str-btn").setAttribute("data-dev", devID)
+            
+            document.querySelector(".updt-btn").setAttribute("data-dev", devID)
+            document.querySelector(".ios-btn").setAttribute("data-dev", devID)
+            document.querySelector(".ior-btn").setAttribute("data-dev", devID)
 
 
             var xhttp = new XMLHttpRequest();

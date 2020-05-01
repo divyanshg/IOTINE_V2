@@ -7,10 +7,6 @@ import math
 import json
 import string
 
-if IOTINE_HOST != "192.168.31.249":
-    print("CUSTOM HOST IS NOT SUPPORTED!/nSWITCHING BACK TO IOTINE_HOST")
-    IOTINE_HOST = "192.168.31.249"
-
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     print(msg)
@@ -92,3 +88,7 @@ IOTINE_HOST="192.168.31.249"
 CONNSTRING = ''
 DEVICENAME = ''
 USER = ''              
+
+if IOTINE_HOST != "192.168.31.249":
+    print("CUSTOM HOST IS NOT SUPPORTED!/nSWITCHING BACK TO IOTINE_HOST")
+    IOTINE_HOST = "192.168.31.249"

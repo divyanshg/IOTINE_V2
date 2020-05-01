@@ -24,6 +24,7 @@ while True:
 
     IOTINE.publish("avg", str(random.randint(-100, 100)), '')
     if timess == 15:
+        IOTINE.makerest()
         raise SyntaxError('MUHAHA THIS IS A ERROR')
     timess +=1    
     time.sleep(1)

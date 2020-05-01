@@ -76,3 +76,5 @@ def DISCONNECT(callback):
     else:
         client.disconnect()
               
+def makerest():
+    client.publish('$SYS/COMMANDS', "RESET")              

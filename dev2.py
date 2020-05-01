@@ -26,7 +26,7 @@ while True:
     if timess == 15:
         try:
             f=open(sys.argv[0])
-            print eval(f.readline())
+            print(eval(f.readline()))
         except Exception, e:
             traceback.print_exc(0)
     timess +=1    

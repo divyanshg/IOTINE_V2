@@ -85,7 +85,12 @@
                             <div class="commands">
                                 <span><i class="material-icons">more_vert</i></span>
                                 <div class="commands-content">
-                                   <button class="rst-btn">RESET</button>
+                                    <button @click="rstDev(this)" v-bind:data-dev="device.deviceID"
+                                        class="rst-btn">RESET</button>
+                                    <button @click="stpDev(this)" class="stp-btn"
+                                        v-bind:data-dev="device.deviceID">STOP</button>
+                                    <button @click="strDev(this)" class="str-btn"
+                                        v-bind:data-dev="device.deviceID">START</button>
                                 </div>
                             </div>
 
@@ -363,6 +368,28 @@
             elm.className += ' active'
         }
         var openedPanels = '';
+
+        var commandsDrop = new River({
+            el: '.commands',
+            methods: {
+                rstDev: (elm) => {
+                    var device = $(elm).data("dev")
+                    console.log(device)
+                    /*socket.emit('publish', {
+                        deviceId: device,
+                        feed: "$SYS/COMMANDS",
+                        value: prompt("COMMAND"),
+                        time: new Date().toLocaleTimeString()
+                    })
+                    $("#" + device).parent().prev().children().attr(
+                        "src",
+                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                    $("#" + device).parent().prev().children().attr(
+                        "title",
+                        "REBOOTING")*/
+                }
+            }
+        })
 
         var dashSettings = new River({
             el: '#dash_settings',
@@ -1235,26 +1262,6 @@
                             $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         }
                     })
-                    var rstbtns = document.getElementsByClassName("rst-btn");
-
-                    for (i = 0; i < rstbtns.length; i++) {
-                        rstbtns[i].addEventListener("click", function () {
-                            $(".devPROPERTIES").toggle()
-                            socket.emit('publish', {
-                                deviceId: $(this).siblings(".devID").val(),
-                                feed: "$SYS/COMMANDS",
-                                value: prompt("COMMAND"),
-                                time: new Date().toLocaleTimeString()
-                            })
-                            $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr(
-                                "src",
-                                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                            $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr(
-                                "title",
-                                "REBOOTING")
-                        })
-
-                    }
                 }
             };
             xhttp.open("GET", "http://192.168.31.249:3002/deviceState/" + user, true);

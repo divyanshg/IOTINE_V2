@@ -1913,6 +1913,8 @@ button#nTAB {
 .commands {
     position: relative;
     display: inline-block;
+    float: right;
+    margin-top: -30px;
   }
   
   .commands-content {

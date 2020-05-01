@@ -1864,7 +1864,7 @@ button#nTAB {
     position: absolute;
     top: 0px;
     left: 0px;
-    padding:10px;
+    padding: 10px;
 }
 
 .props,
@@ -1876,7 +1876,7 @@ button#nTAB {
     text-align: center;
 }
 
-.props td{
+.props td {
     word-break: break-all;
 }
 
@@ -1894,7 +1894,7 @@ button#nTAB {
     text-align: center;
 }
 
-.tFeeds td{
+.tFeeds td {
     word-break: break-all;
 }
 
@@ -1903,27 +1903,34 @@ button#nTAB {
     width: 100%;
 }
 
-.commands-content button{
-    border:none;
+.commands-content button {
+    border: none;
     margin-top: -30px;
-    margin-right:10px;
+    margin-right: 10px;
     padding: 5px;
     z-index: 10;
-    width:calc(100% / 3);
+    width: calc(100% / 3);
+    margin-top: -2px;
+    height: 50px;
 }
- 
-  .commands-content {
+
+.commands-content:hover {
+    height: 150px;
+}
+
+.commands-content {
     position: absolute;
-    bottom:0px;
-    left:0px;
+    bottom: 0px;
+    left: 0px;
     background-color: #f9f9f9;
-    width:100%;
+    width: 100%;
     padding: 12px 16px;
     z-index: 1;
     display: flex;
-    height:65px;
-  }
-  #devices li:hover {
+    height: 65px;
+}
+
+#devices li:hover {
     height: 60px;
     transition: 0.5s ease height;
 }

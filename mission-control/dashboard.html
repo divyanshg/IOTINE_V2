@@ -1451,6 +1451,10 @@
                 $("#" + device).parent().prev().children().attr("title", status)
             }
         })
+
+        socket.on('DEV_VERSION', (ver, dev) => {
+            console.log(dev+" / "+ver)
+        })
     </script>
 </body>
 

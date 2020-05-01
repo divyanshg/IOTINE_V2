@@ -26,12 +26,26 @@ def on_connect(client, userdata, flags, rc):
         print("Connection Authorized")
     else:
         print("Connection Rejected")
+
+
+def setUser(user):
+    USER = user
+    return USER
+
+def setConnString(strg):
+    CONNSTRING = strg
+    return CONNSTRING
+
+def setDevice(name):
+    DEVICENAME = name 
+    return DEVICENAME     
+
 ########################################
 client = mqtt.Client(DEVICENAME) #create new instance
 print(DEVICENAME)
-def CONNECT(devNAME):
-    client = mqtt.Client(devNAME)
-    DEVICENAME = devNAME
+
+def CONNECT():
+    client = mqtt.Client(DEVICENAME)
     client.on_message = on_message
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING)

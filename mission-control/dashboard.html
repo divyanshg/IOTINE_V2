@@ -593,6 +593,22 @@
                 "REBOOTING")
         }
 
+        function updtDev(elm){
+            var device = elm.getAttribute("data-dev");
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS/UPDATE",
+                value: prompt("FILE"),
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
         function makeid(length) {
             var result = '';
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

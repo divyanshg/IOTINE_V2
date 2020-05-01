@@ -10,7 +10,7 @@ import string
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"
 CONNSTRING = ''
-DEVICENAME = 'GZBIC1oqQN'
+DEVICENAME = ''
 USER = ''
 
 if IOTINE_HOST != "192.168.31.249":
@@ -29,7 +29,8 @@ def on_connect(client, userdata, flags, rc):
 ########################################
 client = mqtt.Client(DEVICENAME) #create new instance
 print(DEVICENAME)
-def CONNECT():
+def CONNECT(DEVICENAME):
+    client = mqtt.Client(DEVICENAME)
     client.on_message = on_message
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING)

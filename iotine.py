@@ -40,7 +40,7 @@ def setConnString(strg):
 
 def setDevice(name):
     global DEVICENAME
-    DEVICENAME = = name 
+    DEVICENAME = name 
     return DEVICENAME     
 
 ########################################

@@ -39,9 +39,9 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    con.query('update devices set status = "ONLINE" where deviceID = ?', [client.id], (err, res) => {
+    con.query('update devices set status = "IDLE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
-        sockClient.emit('devStat', client.id, "ONLINE")
+        sockClient.emit('devStat', client.id, "IDLE")
     })
 });
 
@@ -60,6 +60,12 @@ server.on('published', (packet) => {
     //console.log(message)
     var topic = packet.topic.split("/")
     if (topic[2] != "NON") {
+
+        con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
+            if (err) throw err;
+            sockClient.emit('devStat', topic[0], "ONLINE")
+        })
+
         sockClient.emit('publish', {
             user: topic[2],
             deviceId: topic[0],
@@ -73,7 +79,7 @@ server.on('published', (packet) => {
     }
 });
 
-server.on('clientDisconnecting', function(client){
+server.on('clientDisconnecting', function (client) {
     console.log(client.id)
 })
 server.on("clientDisconnected", function (client) {

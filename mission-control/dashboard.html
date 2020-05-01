@@ -1259,6 +1259,9 @@
             if (status == "ONLINE") {
                 $("#" + device).parent().prev().children().attr("src",
                     "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")
+            } else if (status == "IDLE") {
+                $("#" + device).parent().prev().children().attr("src",
+                    "https://pro-icons-avatars.s3.amazonaws.com/icons/4.png?v=1")
             } else {
                 $("#" + device).parent().prev().children().attr("src",
                     "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1")

@@ -435,9 +435,9 @@
             var dn = document.querySelector("#tdname")
             var did = document.querySelector("#tdid")
             var dtmpl = document.querySelector("#ttempl")
-            $(".rst-btn").data("dev", devID)
-            $(".stp-btn").data("dev", devID)
-            $(".str-btn").data("dev", devID)
+            document.querySelector(".rst-btn").setAttribute("data-dev", devID)
+            document.querySelector(".stp-btn").setAttribute("data-dev", devID)
+            document.querySelector(".str-btn").setAttribute("data-dev", devID)
 
 
             var xhttp = new XMLHttpRequest();
@@ -496,7 +496,7 @@
         }
 
         function rstDev(elm){
-            var device = $(elm).data("dev")
+            var device = document.querySelector(elm).getAttribute("data-dev")
             console.log(device)
             /*socket.emit('publish', {
                 deviceId: device,

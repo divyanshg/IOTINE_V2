@@ -29,8 +29,9 @@ def on_connect(client, userdata, flags, rc):
 ########################################
 client = mqtt.Client(DEVICENAME) #create new instance
 print(DEVICENAME)
-def CONNECT(DEVICENAME):
-    client = mqtt.Client(DEVICENAME)
+def CONNECT(devNAME):
+    client = mqtt.Client(devNAME)
+    DEVICENAME = devNAME
     client.on_message = on_message
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING)

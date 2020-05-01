@@ -727,7 +727,7 @@
                     resdevice.forEach(device => {
                         var dname;
                         if (device.deviceID.split("_")[0] == "virtual") {
-                            dname = device.dName + " <span style='color:palegreen'>(V)</span>"
+                            dname = device.dName + "(virtual)"
                             devices.devices.push({
                                 name: dname,
                                 type: device.template,

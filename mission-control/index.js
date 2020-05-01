@@ -65,11 +65,14 @@ io.on('connection', function (socket) {
     });
 
     socket.on('devStat', (device, status) => {
-        if(device.split("_")[0] == "mqttjs") return
-        con.query('select * from devices where deviceID = ?', [device], (err, res) => {
-            if(err) throw err;
-            io.to(res[0].uName).emit('devStat', device, status)
-        })
+        if (device.split("_")[0] == "mqttjs") {
+            return
+        } else {
+            con.query('select * from devices where deviceID = ?', [device], (err, res) => {
+                if (err) throw err;
+                io.to(res[0].uName).emit('devStat', device, status)
+            })
+        }
     })
 
     socket.on('tester', msg => console.info(msg))

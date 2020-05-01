@@ -1199,15 +1199,15 @@
                         if (dev.status == "ONLINE") {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
                                 "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("alt", dev.status)
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         } else if (dev.status == "IDLE") {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
                                 "https://pro-icons-avatars.s3.amazonaws.com/icons/4.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("alt", dev.status)
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         } else {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
                                 "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("alt", dev.status)
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         }
                     })
                 }
@@ -1297,15 +1297,15 @@
             if (status == "ONLINE") {
                 $("#" + device).parent().prev().children().attr("src",
                     "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")
-                $("#" + device).parent().prev().children().attr("alt", status)
+                $("#" + device).parent().prev().children().attr("title", status)
             } else if (status == "IDLE") {
                 $("#" + device).parent().prev().children().attr("src",
                     "https://pro-icons-avatars.s3.amazonaws.com/icons/4.png?v=1")
-                $("#" + device).parent().prev().children().attr("alt", status)
+                $("#" + device).parent().prev().children().attr("title", status)
             } else {
                 $("#" + device).parent().prev().children().attr("src",
                     "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1")
-                $("#" + device).parent().prev().children().attr("alt", status)
+                $("#" + device).parent().prev().children().attr("title", status)
             }
         })
     </script>

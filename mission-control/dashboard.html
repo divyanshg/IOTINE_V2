@@ -1221,7 +1221,7 @@
                             socket.emit('publish', {
                                 deviceId: $(this).siblings(".devID").val(),
                                 feed: "$SYS/COMMANDS",
-                                value: "RST",
+                                value: "PUB_STOP",
                                 time: new Date().toLocaleTimeString()
                             })
                             $("#" +  $(this).siblings(".devID").val()).parent().prev().children().attr("src",

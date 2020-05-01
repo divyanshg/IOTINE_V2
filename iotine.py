@@ -13,6 +13,7 @@ IOTINE_HOST="192.168.31.249"
 CONNSTRING = 'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
 DEVICENAME = 'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
 USER = 'iub54i6bibu64'
+pubstop = False
 
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
@@ -23,8 +24,11 @@ def on_message(client, userdata, message):
     topic = message.topic.split("/")
     print(msg)
     if topic[1] == "$SYS" and topic[2] == "COMMANDS" and topic[0] == CONNSTRING:
-        print("SYSTEM COMMAND: "+msg)
-        os.execl(sys.executable, sys.executable, *sys.argv)
+        if msg == "RST":
+            os.execl(sys.executable, sys.executable, *sys.argv)
+        elif msg == "PUB_STOP":
+            global pubstop
+            pubstop = True   
 
 def on_connect(client, userdata, flags, rc):
     if rc==0:
@@ -47,10 +51,11 @@ def will(topic, payload=None, qos=0, retain=False):
     client.will_set(topic, payload=payload, qos=qos, retain=retain)
 
 def publish(feed, val, callback=None):
-    if callback == '':
-        client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val))
-    else:    
-        client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val), callback=callback)
+    if pubstop == False:
+        if callback == '':
+            client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val))
+        else:    
+            client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val), callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

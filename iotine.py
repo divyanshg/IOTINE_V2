@@ -22,16 +22,14 @@ if IOTINE_HOST != "192.168.31.249":
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     topic = message.topic.split("/")
+    global pubstop
     print(msg)
     if topic[1] == "$SYS" and topic[2] == "COMMANDS" and topic[0] == CONNSTRING:
         if msg == "RST":
             os.execl(sys.executable, sys.executable, *sys.argv)
         elif msg == "PUB_STOP":
-            global pubstop
             pubstop = True   
-
         if msg == "PUB_START":
-            global pubstop
             pubstop = False      
 
 def on_connect(client, userdata, flags, rc):

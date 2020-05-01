@@ -63,10 +63,6 @@ io.on('connection', function (socket) {
 
                 //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
             })
-        }else if(msg.feed.split("/")[0] != "$__VERSION"){
-            console.log(msg)
-            io.to(msg.user).emit("DEV_VERSION", msg.value, msg.deviceId)
-            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }else{
             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }
@@ -88,6 +84,11 @@ io.on('connection', function (socket) {
     })
 
     socket.on('tester', msg => console.info(msg))
+
+    socket.on('DEV_VERSION', (ver, dev) => {
+        console.log(msg)
+        io.to(msg.user).emit("DEV_VERSION", ver, dev)
+    })
 
 });
 

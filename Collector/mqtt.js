@@ -73,6 +73,8 @@ server.on('published', (packet) => {
             time: new Date().toLocaleTimeString()
         })
         //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
+    }else if(topic[1] == '$__VERSION'){
+        sockClient.emit("DEV_VERSION", message, topic[0])
     } else {
         return
     }

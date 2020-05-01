@@ -34,8 +34,7 @@ def setDevice(name):
     return DEVICENAME     
 
 ########################################
-client = mqtt.Client(DEVICENAME) #create new instance
-print(DEVICENAME)
+
 
 def CONNECT():
     client = mqtt.Client(DEVICENAME)
@@ -92,3 +91,6 @@ USER = ''
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSWITCHING BACK TO IOTINE_HOST")
     IOTINE_HOST = "192.168.31.249"
+    
+client = mqtt.Client(DEVICENAME) #create new instance
+print(DEVICENAME)

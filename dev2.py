@@ -24,6 +24,10 @@ while True:
 
     IOTINE.publish("avg", str(random.randint(-100, 100)), '')
     if timess == 15:
-        traceback.print_exc(0)
+        try:
+            f=open(sys.argv[0])
+            print eval(f.readline())
+        except Exception, e:
+            traceback.print_exc(0)
     timess +=1    
     time.sleep(1)

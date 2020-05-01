@@ -81,16 +81,6 @@
                                 v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
-
-                                <div class="commands-content">
-                                    <button @click="rstDev(this)" v-bind:data-dev="device.deviceID"
-                                        class="rst-btn">RESET</button>
-                                    <button @click="stpDev(this)" class="stp-btn"
-                                        v-bind:data-dev="device.deviceID">STOP</button>
-                                    <button @click="strDev(this)" class="str-btn"
-                                        v-bind:data-dev="device.deviceID">START</button>
-                                </div>
-
                         </div>
                     </div>
                 </a></li>
@@ -104,6 +94,11 @@
                         class="material-icons">arrow_back</i> </span>
             </div>
             <div class="devicesList">
+                <div class="commands-content">
+                    <button @click="rstDev(this)" data-dev="" class="rst-btn">RESET</button>
+                    <button @click="stpDev(this)" class="stp-btn" data-dev="">STOP</button>
+                    <button @click="strDev(this)" class="str-btn" data-dev="">START</button>
+                </div>
                 <h3 class="mname"></h3><br>
 
                 <br>
@@ -302,19 +297,6 @@
         </div>
 
     </div>
-
-    <div class="commandsModal modal" style="display: none;">
-        <div class="newAppInner">
-            <h1>Device Commands<span
-                    onclick="$('.mainBackDrop').toggle();$('.commandsModal').toggle();if (document.querySelector('.commandsModal').style.display = 'block') {openedPanels = '.commandsModal'} else {openedPanels = ''}"
-                    class="clsBtn">&times;</span></h1>
-            <h4>From here you can easily control your devices.</h4>
-            <button class="rst-btn">RESET</button>
-            <button class="stp-btn">STOP PUBLISH</button>
-            <button class="str-btn">START PUBLISH</button>
-        </div>
-
-    </div>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <script src="http://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
@@ -453,6 +435,9 @@
             var dn = document.querySelector("#tdname")
             var did = document.querySelector("#tdid")
             var dtmpl = document.querySelector("#ttempl")
+            $(".rst-btn").data("dev", devID)
+            $(".stp-btn").data("dev", devID)
+            $(".str-btn").data("dev", devID)
 
 
             var xhttp = new XMLHttpRequest();
@@ -510,6 +495,23 @@
             await xhttp.send();
         }
 
+        function rstDev(elm){
+            var device = $(elm).data("dev")
+            console.log(device)
+            /*socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS",
+                value: prompt("COMMAND"),
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")*/
+        }
+
         function makeid(length) {
             var result = '';
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -523,29 +525,6 @@
             el: '.devicesList',
             data: {
                 devices: []
-            },
-            methods: {
-                toggleDrop: (elm) => {
-                    $(".devicePROPERTIES").toggle()
-                    console.log("here")
-                    $(elm).children('.commands-content').toggle();
-                },
-                rstDev: (elm) => {
-                    var device = $(elm).data("dev")
-                    console.log(device)
-                    /*socket.emit('publish', {
-                        deviceId: device,
-                        feed: "$SYS/COMMANDS",
-                        value: prompt("COMMAND"),
-                        time: new Date().toLocaleTimeString()
-                    })
-                    $("#" + device).parent().prev().children().attr(
-                        "src",
-                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                    $("#" + device).parent().prev().children().attr(
-                        "title",
-                        "REBOOTING")*/
-                }
             }
         })
 

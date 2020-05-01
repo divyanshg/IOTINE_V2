@@ -3,9 +3,9 @@ import random
 import time
 import requests as req
 
-IOTINE.setConnString("B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle")
-IOTINE.setDevice("B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle")
-IOTINE.setUser("GZBIC1oqQN") 
+IOTINE.CONNSTRING = "B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle"
+IOTINE.DEVICENAME = "B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle"
+IOTINE.USER = "GZBIC1oqQN" 
 
 print(IOTINE.CONNECT())
 
@@ -16,6 +16,7 @@ def on_message(client, userdata, message):
     print(message.topic, "/",msg)
 
 while True:
+    time.sleep(4)
     IOTINE.publish("tempo", str(random.randint(0, 200)), '')
     IOTINE.publish("humido", str(random.randint(0, 100)), '')
 

@@ -7,6 +7,16 @@ import math
 import json
 import string
 
+GPIO = GPIO
+IOTINE_HOST="192.168.31.249"
+CONNSTRING = 'B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
+DEVICENAME = 'B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
+USER = 'GZBIC1oqQN'
+
+if IOTINE_HOST != "192.168.31.249":
+    print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
+    IOTINE_HOST = "192.168.31.249"
+
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     print(msg)
@@ -16,28 +26,10 @@ def on_connect(client, userdata, flags, rc):
         print("Connection Authorized")
     else:
         print("Connection Rejected")
-
-
-def setUser(user):
-    global USER
-    USER  = user
-    return USER
-
-def setConnString(strg):
-    global CONNSTRING
-    CONNSTRING  = strg
-    return CONNSTRING
-
-def setDevice(name):
-    global DEVICENAME
-    DEVICENAME = name 
-    return DEVICENAME     
-
 ########################################
-
-
+client = mqtt.Client(DEVICENAME) #create new instance
+print(DEVICENAME)
 def CONNECT():
-    client = mqtt.Client(DEVICENAME)
     client.on_message = on_message
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING)
@@ -81,16 +73,3 @@ def DISCONNECT(callback):
     else:
         client.disconnect()
               
-
-GPIO = GPIO
-IOTINE_HOST="192.168.31.249"
-CONNSTRING = ''
-DEVICENAME = ''
-USER = ''              
-
-if IOTINE_HOST != "192.168.31.249":
-    print("CUSTOM HOST IS NOT SUPPORTED!/nSWITCHING BACK TO IOTINE_HOST")
-    IOTINE_HOST = "192.168.31.249"
-    
-client = mqtt.Client(DEVICENAME) #create new instance
-print(DEVICENAME)

@@ -65,7 +65,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('devStat', (device, status) => {
-        console.log(device)
         if(device.split("_")[0] == "mqttjs") return
         con.query('select * from devices where deviceID = ?', [device], (err, res) => {
             if(err) throw err;

@@ -1937,6 +1937,13 @@ button#nTAB {
     z-index: 1;
     /* display: flex; */
     height: 40px;
+    transition: 0.5s ease all;
+    overflow-y: auto;
+}
+
+.commands-content button:hover{
+    border: 5px solid white;
+    cursor: none;
 }
 .cmdBdy{
     display:flex;

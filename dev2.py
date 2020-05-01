@@ -16,7 +16,7 @@ def on_message(client, userdata, message):
     print(message.topic, "/",msg)
 
 while True:
-    time.sleep(14)
+    time.sleep(4)
     IOTINE.publish("tempo", str(random.randint(0, 200)), '')
     IOTINE.publish("humido", str(random.randint(0, 100)), '')
 

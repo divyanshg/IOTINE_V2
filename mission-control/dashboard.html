@@ -95,10 +95,14 @@
             </div>
             <div class="devicesList">
                 <div class="commands-content">
-                    <div class="cmdTop"><center><i class="material-icons">more_horiz</i></center></div><br>
-                    <button onclick="rstDev(this)" data-dev="" class="rst-btn">RESET</button>
-                    <button onclick="stpDev(this)" class="stp-btn" data-dev="">STOP</button>
-                    <button onclick="strDev(this)" class="str-btn" data-dev="">START</button>
+                    <div class="cmdTop">
+                        <center><i class="material-icons">more_horiz</i></center>
+                    </div><br>
+                    <div class="cmdBdy">
+                        <button onclick="rstDev(this)" data-dev="" class="rst-btn">RESET</button>
+                        <button onclick="stpDev(this)" class="stp-btn" data-dev="">STOP</button>
+                        <button onclick="strDev(this)" class="str-btn" data-dev="">START</button>
+                    </div>
                 </div>
                 <h3 class="mname"></h3><br>
 
@@ -496,7 +500,7 @@
             await xhttp.send();
         }
 
-        function rstDev(elm){
+        function rstDev(elm) {
             var device = elm.getAttribute("data-dev")
             socket.emit('publish', {
                 deviceId: device,
@@ -512,7 +516,7 @@
                 "REBOOTING")
         }
 
-        function stpDev(elm){
+        function stpDev(elm) {
             var device = elm.getAttribute("data-dev")
             socket.emit('publish', {
                 deviceId: device,
@@ -528,7 +532,7 @@
                 "REBOOTING")
         }
 
-        function strDev(elm){
+        function strDev(elm) {
             var device = elm.getAttribute("data-dev")
             socket.emit('publish', {
                 deviceId: device,

@@ -40,6 +40,9 @@ def CONNECT():
     client.username_pw_set(CONNSTRING)
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
+
+    subscribe("$SYS/COMMANDS", '')
+
     #return json.dumps({"status": "Connected"})
 
 def will(topic, payload=None, qos=0, retain=False):

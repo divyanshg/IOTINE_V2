@@ -73,6 +73,9 @@ server.on('published', (packet) => {
     }
 });
 
+server.on('clientDisconnecting', function(client){
+    console.log(client.id)
+})
 server.on("clientDisconnected", function (client) {
     con.query('update devices set status = "OFFLINE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;

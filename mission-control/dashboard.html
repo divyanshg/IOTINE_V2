@@ -726,11 +726,20 @@
                     var resdevice = JSON.parse(xhttp.responseText)
                     resdevice.forEach(device => {
                         var dname;
-                        devices.devices.push({
-                            name: device.dName,
-                            type: device.template,
-                            deviceID: device.deviceID
-                        })
+                        if (device.deviceID.split("_")[0] == "virtual") {
+                            dname = device.dName + "(virtual)"
+                            devices.devices.push({
+                                name: dname,
+                                type: device.template,
+                                deviceID: device.deviceID
+                            })
+                        } else {
+                            devices.devices.push({
+                                name: device.dName,
+                                type: device.template,
+                                deviceID: device.deviceID
+                            })
+                        }
                     })
                     updateDeviceStatus()
                 }

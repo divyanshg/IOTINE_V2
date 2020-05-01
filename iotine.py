@@ -41,8 +41,6 @@ def CONNECT():
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 
-    subscribe("$SYS/COMMANDS", '')
-
     #return json.dumps({"status": "Connected"})
 
 def will(topic, payload=None, qos=0, retain=False):
@@ -79,5 +77,5 @@ def DISCONNECT(callback):
     else:
         client.disconnect()
               
-def makerest():
-    client.publish('$SYS/COMMANDS', "RESET")              
+def doDefaults():
+    subscribe("$SYS/COMMANDS", '')              

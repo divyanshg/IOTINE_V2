@@ -1912,7 +1912,9 @@ button#nTAB {
     width: calc(100% / 3);
     margin-top: -2px;
     height: 50px;
-    color:black;
+    color: black;
+    background-color: #ffdf6d;
+    border-radius: 8px;
 }
 
 .commands-content:hover {
@@ -1943,7 +1945,7 @@ button#nTAB {
 }
 
 .commands-content button:hover{
-    border: 5px solid white;
+    background: white;
 }
 .cmdBdy{
     display:flex;

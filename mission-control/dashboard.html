@@ -1232,17 +1232,18 @@
                         rstbtns[i].addEventListener("click", function () {
                             $(".devPROPERTIES").toggle()
                             socket.emit('publish', {
-                                deviceId: id,
+                                deviceId: $(this).siblings(".devID").val(),
                                 feed: "$SYS/COMMANDS",
                                 value: prompt("COMMAND"),
                                 time: new Date().toLocaleTimeString()
                             })
                             $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("src",
                                 "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                            $("#" + id).parent().prev().children().attr("title",
+                            $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("title",
                                 "REBOOTING")
+                                $(".devPROPERTIES").toggle()    
                         })
-                        $(".devPROPERTIES").toggle()
+                        
                     }
                 }
             };

@@ -41,3 +41,4 @@ GET http://192.168.31.249:3002/devices/iub54i6bibu64
 
 ###
 GET http://192.168.31.249:3002/deviceState/GZBIC1oqQN
+

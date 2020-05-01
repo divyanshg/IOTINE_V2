@@ -105,8 +105,8 @@
                     </div>
                     <div class="cmdBdy">    
                         <button onclick="rstDev(this)" data-dev="" class="rst-btn">UPDATE</button>
-                        <button onclick="stpDev(this)" class="stp-btn" data-dev="">I/O STATE</button>
-                        <button onclick="strDev(this)" class="str-btn" data-dev="">I/O READ</button>
+                        <button onclick="ioState(this)" class="stp-btn" data-dev="">I/O STATE</button>
+                        <button onclick="ioRead(this)" class="str-btn" data-dev="">I/O READ</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
@@ -547,6 +547,38 @@
                 deviceId: device,
                 feed: "$SYS/COMMANDS",
                 value: "PUB_START",
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
+        function ioState(elm){
+            var device = elm.getAttribute("data-dev");
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS",
+                value: "IO_STATE/"+prompt("IO NUMBER"),
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
+        function ioRead(elm){
+            var device = elm.getAttribute("data-dev");
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS",
+                value: "IO_READ/"+prompt("IO NUMBER"),
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(

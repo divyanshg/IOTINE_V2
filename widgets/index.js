@@ -32,7 +32,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
 
     var schema = {
-        "id":"",
+        "id": "",
         "name": "",
         "feed": '',
         "type": "",
@@ -76,7 +76,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
 
             widgetSchema.push(schema)
             schema = {
-                "id":"",
+                "id": "",
                 "name": "",
                 "feed": '',
                 "type": "",
@@ -171,6 +171,12 @@ app.get('/devProps/:user/:dev', (req, res) => {
     }))
 })
 
+app.get('/deviceState/:user', (req, res) => {
+    getDeviceState(req.params.user).then(stat => res.json(stat)).catch((err) => setImmediate(() => {
+        throw err;
+    }))
+})
+
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
@@ -184,7 +190,7 @@ var getWidgets = (user, app) => {
 var updateWidget = (user, app, widget) => {
     return new Promise((resolve, reject) => {
         con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ?, label = ? WHERE id = ? ', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.feed, widget.id], (err, res) => {
-            if(err) return reject(err);
+            if (err) return reject(err);
             resolve(res)
         })
     })
@@ -272,6 +278,15 @@ var getProps = (user, device) => {
         con.query('select dName,deviceID,template from devices where uName =? and deviceID = ?', [user, device], (err, props) => {
             if (err) return reject(err);
             resolve(props)
+        })
+    })
+}
+
+var getDeviceState = (user) => {
+    return new Promise((resolve, reject) => {
+        con.query('select deviceID,status from devices where uName = ?', [user], (err, stats) => {
+            if (err) reject(err);
+            resolve(stats)
         })
     })
 }

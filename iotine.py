@@ -29,15 +29,18 @@ def on_connect(client, userdata, flags, rc):
 
 
 def setUser(user):
-    USER = user
+    global USER
+    USER  = user
     return USER
 
 def setConnString(strg):
-    CONNSTRING = strg
+    global CONNSTRING
+    CONNSTRING  = strg
     return CONNSTRING
 
 def setDevice(name):
-    DEVICENAME = name 
+    global DEVICENAME
+    DEVICENAME = = name 
     return DEVICENAME     
 
 ########################################

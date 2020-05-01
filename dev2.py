@@ -4,7 +4,7 @@ import time
 import requests as req
 
 IOTINE.setConnString("B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle")
-print(IOTINE.setDevice("B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle"))
+IOTINE.setDevice("B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle")
 IOTINE.setUser("GZBIC1oqQN") 
 
 print(IOTINE.CONNECT())

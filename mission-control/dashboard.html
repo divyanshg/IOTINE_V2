@@ -497,11 +497,42 @@
 
         function rstDev(elm){
             var device = elm.getAttribute("data-dev")
-            console.log(device)
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS",
                 value: "RST",
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
+        function stpDev(elm){
+            var device = elm.getAttribute("data-dev")
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS",
+                value: "PUB_STOP",
+                time: new Date().toLocaleTimeString()
+            })
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
+        function strDev(elm){
+            var device = elm.getAttribute("data-dev")
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS",
+                value: "PUB_START",
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(

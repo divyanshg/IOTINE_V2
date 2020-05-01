@@ -1912,6 +1912,7 @@ button#nTAB {
     width: calc(100% / 3);
     margin-top: -2px;
     height: 50px;
+    color:black;
 }
 
 .commands-content:hover {

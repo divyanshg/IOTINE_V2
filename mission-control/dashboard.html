@@ -610,13 +610,11 @@
         }
 
         function updtDev(elm) {
-            var val = prompt("File?");
-
             var device = elm.getAttribute("data-dev");
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/UPDATE",
-                value: val,
+                value: '',
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(
@@ -1360,61 +1358,6 @@
             await xhttp.send()
         }
 
-        function registerCommands(id) {
-            var rstbtns = document.getElementsByClassName("rst-btn");
-
-            for (i = 0; i < rstbtns.length; i++) {
-                rstbtns[i].addEventListener("click", function () {
-                    $(".devPROPERTIES").toggle()
-                    socket.emit('publish', {
-                        deviceId: id,
-                        feed: "$SYS/COMMANDS",
-                        value: "RST",
-                        time: new Date().toLocaleTimeString()
-                    })
-                    $("#" + id).parent().prev().children().attr("src",
-                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                    $("#" + id).parent().prev().children().attr("title",
-                        "REBOOTING")
-                })
-            }
-
-            var stpbtns = document.getElementsByClassName("stp-btn");
-
-            for (i = 0; i < stpbtns.length; i++) {
-                stpbtns[i].addEventListener("click", function () {
-                    $(".devPROPERTIES").toggle()
-                    socket.emit('publish', {
-                        deviceId: id,
-                        feed: "$SYS/COMMANDS",
-                        value: "PUB_STOP",
-                        time: new Date().toLocaleTimeString()
-                    })
-                    $("#" + id).parent().prev().children().attr("src",
-                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                    $("#" + id).parent().prev().children().attr("title",
-                        "PUBLISHING STOPPED")
-                })
-            }
-
-            var strbtns = document.getElementsByClassName("str-btn");
-
-            for (i = 0; i < strbtns.length; i++) {
-                strbtns[i].addEventListener("click", function () {
-                    $(".devPROPERTIES").toggle()
-                    socket.emit('publish', {
-                        deviceId: $(this).siblings(".devID").val(),
-                        feed: "$SYS/COMMANDS",
-                        value: "PUB_START",
-                        time: new Date().toLocaleTimeString()
-                    })
-                    $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("src",
-                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                    $("#" + $(this).siblings(".devID").val()).parent().prev().children().attr("title",
-                        "ONLINE")
-                })
-            }
-        }
 
         function openTab(evt, id) {
             var i, tabcontent, tablinks;

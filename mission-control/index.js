@@ -70,7 +70,6 @@ io.on('connection', function (socket) {
         } else {
             con.query('select * from devices where deviceID = ?', [device], (err, res) => {
                 if (err) throw err;
-                console.log(res.length)
                 if (res.length == 0) {
                     return
                 } else {

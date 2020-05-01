@@ -23,7 +23,6 @@ var authenticate = function (client, username, passwd, callback) {
     con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
         if (err) throw err;
         var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
-        console.log(result[0].deviceID)
         //if (authorized) client.users = username
         callback(null, authorized);
     });
@@ -39,7 +38,6 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    console.log(client.id)
     con.query('update devices set status = "IDLE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
         sockClient.emit('devStat', client.id, "IDLE")

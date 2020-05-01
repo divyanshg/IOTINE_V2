@@ -27,6 +27,7 @@ def on_connect(client, userdata, flags, rc):
     else:
         print("Connection Rejected")
 ########################################
+client = ''
 
 def CONNECT():
     client = mqtt.Client(DEVICENAME) #create new instance

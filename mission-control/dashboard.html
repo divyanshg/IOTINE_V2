@@ -369,31 +369,6 @@
         }
         var openedPanels = '';
 
-        var commandsDrop = new River({
-            el: '.commands',
-            methods: {
-                toggleDrop: (elm) => {
-                    $(elm).children('.commands-content').toggle();
-                },
-                rstDev: (elm) => {
-                    var device = $(elm).data("dev")
-                    console.log(device)
-                    /*socket.emit('publish', {
-                        deviceId: device,
-                        feed: "$SYS/COMMANDS",
-                        value: prompt("COMMAND"),
-                        time: new Date().toLocaleTimeString()
-                    })
-                    $("#" + device).parent().prev().children().attr(
-                        "src",
-                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
-                    $("#" + device).parent().prev().children().attr(
-                        "title",
-                        "REBOOTING")*/
-                }
-            }
-        })
-
         var dashSettings = new River({
             el: '#dash_settings',
             data: {
@@ -551,6 +526,27 @@
             el: '.devicesList',
             data: {
                 devices: []
+            },
+            methods: {
+                toggleDrop: (elm) => {
+                    $(elm).children('.commands-content').toggle();
+                },
+                rstDev: (elm) => {
+                    var device = $(elm).data("dev")
+                    console.log(device)
+                    /*socket.emit('publish', {
+                        deviceId: device,
+                        feed: "$SYS/COMMANDS",
+                        value: prompt("COMMAND"),
+                        time: new Date().toLocaleTimeString()
+                    })
+                    $("#" + device).parent().prev().children().attr(
+                        "src",
+                        "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                    $("#" + device).parent().prev().children().attr(
+                        "title",
+                        "REBOOTING")*/
+                }
             }
         })
 

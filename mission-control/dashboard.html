@@ -725,11 +725,21 @@
                     // Typical action to be performed when the document is ready:
                     var resdevice = JSON.parse(xhttp.responseText)
                     resdevice.forEach(device => {
-                        devices.devices.push({
-                            name: device.dName,
-                            type: device.template,
-                            deviceID: device.deviceID
-                        })
+                        var dname;
+                        if (device.deviceID.split("_")[0] == "virtual") {
+                            dname = device.dName + " <span style='color:palegreen'>(V)</span>"
+                            devices.devices.push({
+                                name: dname,
+                                type: device.template,
+                                deviceID: device.deviceID
+                            })
+                        } else {
+                            devices.devices.push({
+                                name: device.dName,
+                                type: device.template,
+                                deviceID: device.deviceID
+                            })
+                        }
                     })
                     updateDeviceStatus()
                 }

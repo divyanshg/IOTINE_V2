@@ -52,16 +52,20 @@ io.on('connection', function (socket) {
         socket.join(data)
     })
     socket.on('publish', function (msg) {
-        con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
-            if (err) return err;
-            con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
-                if (err) return err
-                io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
-                client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-            })
+        if (msg.feed.split("/")[0] != "$SYS") {
+            con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
+                if (err) return err;
+                con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
+                    if (err) return err
+                    io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
+                    client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                })
 
-            //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
-        })
+                //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
+            })
+        }else{
+            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+        }
     });
 
     socket.on('devStat', (device, status) => {

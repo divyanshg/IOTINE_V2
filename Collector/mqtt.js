@@ -39,6 +39,7 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
+    console.log(client.id)
     con.query('update devices set status = "IDLE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
         sockClient.emit('devStat', client.id, "IDLE")

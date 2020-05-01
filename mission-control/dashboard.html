@@ -298,7 +298,6 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://192.168.31.249/IOTINE_V2/mission-control/components.js" type="text/javascript"></script>
     <script>
-
         let root = document.documentElement;
         var lastTheme = window.localStorage.getItem("theme") || "light";
 
@@ -1216,10 +1215,11 @@
                     })
 
                     var rstbtns = document.getElementsByClassName("rst-btn");
-                    for(i=0; i < rstbtns.length; i++){
-                        rstbtns[i].addEventListener("click", function(){
+                    for (i = 0; i < rstbtns.length; i++) {
+                        rstbtns[i].addEventListener("click", function () {
+
+                            $(".devPROPERTIES").toggle()
                             console.log($(this).siblings(".devID").val())
-                            return
                         })
                     }
                 }

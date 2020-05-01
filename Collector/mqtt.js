@@ -41,17 +41,6 @@ server.on('clientConnected', function (client) {
     con.query('update devices set status = "IDLE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
         sockClient.emit('devStat', client.id, "IDLE")
-
-        var message = {
-            topic: '$SYS/COMMANDS/B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle',
-            payload: 'RESET NOW', // or a Buffer
-            qos: 0, // 0, 1, or 2
-            retain: false // or true
-        };
-
-        server.publish(message, function () {
-            console.log('done!');
-        });
     })
 });
 
@@ -66,6 +55,16 @@ server.on('ready', function () {
 });
 
 server.on('published', (packet) => {
+    var payl = {
+        topic: '$SYS/COMMANDS/B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle',
+        payload: 'RESET NOW', // or a Buffer
+        qos: 0, // 0, 1, or 2
+        retain: false // or true
+    };
+
+    server.publish(payl, function () {
+        console.log('done!');
+    });
     var message = packet.payload.toString()
     //console.log(message)
     var topic = packet.topic.split("/")

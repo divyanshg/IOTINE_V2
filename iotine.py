@@ -9,9 +9,9 @@ import string
 
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"
-CONNSTRING = 'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
-DEVICENAME = 'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
-USER = 'GZBIC1oqQN'
+CONNSTRING = 'SkNCX1RSVUNLXzAxYWFk' #'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
+DEVICENAME = 'SkNCX1RSVUNLXzAxYWFk'#'virtual_B8Xp9BxmS8LcIGnF66RDNOCFYt6DiGle'
+USER = 'iub54i6bibu64'
 
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
@@ -21,7 +21,7 @@ def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     topic = message.topic.split("/")
     print(msg)
-    if topic[0] == "$SYS" and topic[1] == "COMMANDS" and topic[2] == CONNSTRING:
+    if topic[1] == "$SYS" and topic[2] == "COMMANDS" and topic[0] == CONNSTRING:
         print("SYSTEM COMMAND: "+msg)
 
 def on_connect(client, userdata, flags, rc):
@@ -38,8 +38,6 @@ def CONNECT():
     client.username_pw_set(CONNSTRING)
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
-    
-    client.subscribe("$SYS/COMMANDS/"+CONNSTRING) 
     #return json.dumps({"status": "Connected"})
 
 def will(topic, payload=None, qos=0, retain=False):

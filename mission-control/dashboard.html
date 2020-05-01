@@ -1186,6 +1186,7 @@
                     // Typical action to be performed when the document is ready:
                     var devs = JSON.parse(xhttp.responseText)
                     devs.forEach(dev => {
+                        console.log(dev)
                         if (dev.status == "ONLINE") {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
                                 "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")

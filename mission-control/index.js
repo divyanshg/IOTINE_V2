@@ -70,8 +70,11 @@ io.on('connection', function (socket) {
         } else {
             con.query('select * from devices where deviceID = ?', [device], (err, res) => {
                 if (err) throw err;
-                console.log(res)
-                io.to(res[0].uName).emit('devStat', device, status)
+                if (res.leength == 0) {
+                    return
+                } else {
+                    io.to(res[0].uName).emit('devStat', device, status)
+                }
             })
         }
     })

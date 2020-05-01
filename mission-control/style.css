@@ -1920,3 +1920,7 @@ button#nTAB {
     z-index: 1;
     display: flex;
   }
+  #devices li {
+    height: 60px;
+    transition: 0.5s ease height;
+}

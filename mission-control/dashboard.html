@@ -1228,7 +1228,7 @@
                     })
                     var cmdbtns = document.getElementsByClassName("cmd-btn");
                     for (i = 0; i < cmdbtns.length; i++) {
-                        $(cmdbtns[i]).toggle()
+                        $(".commandsModal").toggle()
                         registerCommands($(this).siblings(".devID").val())
                     }
                 }

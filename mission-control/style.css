@@ -1903,20 +1903,14 @@ button#nTAB {
     width: 100%;
 }
 
-.rst-btn{
+.commands-content button{
     border:none;
     margin-top: -30px;
     padding: 5px;
     z-index: 10;
+    width:calc(100% / 3);
 }
-
-.commands {
-    position: relative;
-    display: inline-block;
-    float: right;
-    margin-top: -30px;
-  }
-  
+ 
   .commands-content {
     position: absolute;
     background-color: #f9f9f9;
@@ -1924,4 +1918,5 @@ button#nTAB {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+    display: flex;
   }

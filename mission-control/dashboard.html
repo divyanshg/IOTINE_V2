@@ -82,9 +82,7 @@
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
 
-                            <button @click="toggleDrop(this)" class="commands">
-                                <span><i class="material-icons">more_vert</i></span>
-                                <div style="display: none;" class="commands-content">
+                                <div class="commands-content">
                                     <button @click="rstDev(this)" v-bind:data-dev="device.deviceID"
                                         class="rst-btn">RESET</button>
                                     <button @click="stpDev(this)" class="stp-btn"
@@ -92,7 +90,6 @@
                                     <button @click="strDev(this)" class="str-btn"
                                         v-bind:data-dev="device.deviceID">START</button>
                                 </div>
-                            </button>
 
                         </div>
                     </div>

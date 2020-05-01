@@ -1943,7 +1943,6 @@ button#nTAB {
 
 .commands-content button:hover{
     border: 5px solid white;
-    cursor: none;
 }
 .cmdBdy{
     display:flex;

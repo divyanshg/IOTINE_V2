@@ -85,12 +85,12 @@
                             <div @click="toggleDrop(this)" class="commands">
                                 <span><i class="material-icons">more_vert</i></span>
                                 <div class="commands-content">
-                                    <button @click="rstDev(this)" v-bind:data-dev="device.ID"
+                                    <button @click="rstDev(this)" v-bind:data-dev="device.deviceID"
                                         class="rst-btn">RESET</button>
                                     <button @click="stpDev(this)" class="stp-btn"
-                                        v-bind:data-dev="device.ID">STOP</button>
+                                        v-bind:data-dev="device.deviceID">STOP</button>
                                     <button @click="strDev(this)" class="str-btn"
-                                        v-bind:data-dev="device.ID">START</button>
+                                        v-bind:data-dev="device.deviceID">START</button>
                                 </div>
                             </div>
 

@@ -81,7 +81,7 @@
                                 v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV">{{ device.type }}</div>
-                            <button class="cmd-btn">COMMANDS</button>
+                            <button class="rst-btn">COMMANDS</button>
                         </div>
                     </div>
                 </a></li>
@@ -1226,10 +1226,23 @@
                             $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
                         }
                     })
-                    var cmdbtns = document.getElementsByClassName("cmd-btn");
-                    for (i = 0; i < cmdbtns.length; i++) {
-                        $(".commandsModal").toggle()
-                        //registerCommands($(this).siblings(".devID").val())
+                    var rstbtns = document.getElementsByClassName("rst-btn");
+
+                    for (i = 0; i < rstbtns.length; i++) {
+                        rstbtns[i].addEventListener("click", function () {
+                            $(".devPROPERTIES").toggle()
+                            socket.emit('publish', {
+                                deviceId: id,
+                                feed: "$SYS/COMMANDS",
+                                value: prompt("COMMAND"),
+                                time: new Date().toLocaleTimeString()
+                            })
+                            $("#" + id).parent().prev().children().attr("src",
+                                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                            $("#" + id).parent().prev().children().attr("title",
+                                "REBOOTING")
+                        })
+                        $(".devPROPERTIES").toggle()
                     }
                 }
             };

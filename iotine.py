@@ -21,7 +21,6 @@ def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     topic = message.topic.split("/")
     print(msg)
-    print(topic)
     if topic[0] == "$SYS" and topic[1] == "COMMANDS" and topic[2] == CONNSTRING:
         print("SYSTEM COMMAND: "+msg)
 

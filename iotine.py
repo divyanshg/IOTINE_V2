@@ -7,12 +7,6 @@ import math
 import json
 import string
 
-GPIO = GPIO
-IOTINE_HOST="192.168.31.249"
-CONNSTRING = ''
-DEVICENAME = ''
-USER = ''
-
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSWITCHING BACK TO IOTINE_HOST")
     IOTINE_HOST = "192.168.31.249"
@@ -92,3 +86,9 @@ def DISCONNECT(callback):
     else:
         client.disconnect()
               
+
+GPIO = GPIO
+IOTINE_HOST="192.168.31.249"
+CONNSTRING = ''
+DEVICENAME = ''
+USER = ''              

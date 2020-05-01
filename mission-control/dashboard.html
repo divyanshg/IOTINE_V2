@@ -1219,6 +1219,7 @@
                     for(i=0; i < rstbtns.length; i++){
                         rstbtns[i].addEventListener("click", function(){
                             console.log($(this).siblings(".devID").val())
+                            return
                         })
                     }
                 }

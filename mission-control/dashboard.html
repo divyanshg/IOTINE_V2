@@ -1224,7 +1224,9 @@
                                 value: "RST",
                                 time: new Date().toLocaleTimeString()
                             })
-                            console.log($(this).siblings(".devID").val())
+                            $("#" +  $(this).siblings(".devID").val()).parent().prev().children().attr("src",
+                                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+                            $("#" +  $(this).siblings(".devID").val()).parent().prev().children().attr("title", "REBOOTING")
                         })
                     }
                 }

@@ -565,8 +565,8 @@
             var device = elm.getAttribute("data-dev");
             socket.emit('publish', {
                 deviceId: device,
-                feed: "$SYS/COMMANDS",
-                value: "IO_STATE/"+prompt("IO NUMBER"),
+                feed: "$SYS/COMMANDS/IO_STATE",
+                value: prompt("IO NUMBER"),
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(

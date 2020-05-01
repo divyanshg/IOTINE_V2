@@ -597,7 +597,7 @@
             var device = elm.getAttribute("data-dev");
             socket.emit('publish', {
                 deviceId: device,
-                feed: "$SYS/COMMANDS/UPDATE",
+                feed: "$SYS/COMMANDS/NEWFILE",
                 value: prompt("File ? "),
                 time: new Date().toLocaleTimeString()
             })

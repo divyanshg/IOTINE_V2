@@ -1902,3 +1902,8 @@ button#nTAB {
     border-collapse: collapse;
     width: 100%;
 }
+
+.rst-btn{
+    float:right;
+    border:none;
+}

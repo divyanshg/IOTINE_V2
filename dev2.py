@@ -19,12 +19,8 @@ def on_message(client, userdata, message):
 time.sleep(5)
 timess = 0
 while True:
-    #IOTINE.publish("tempo", str(random.randint(0, 200)), '')
-    #IOTINE.publish("humido", str(random.randint(0, 100)), '')
+    IOTINE.publish("tempo", str(random.randint(0, 200)), '')
+    IOTINE.publish("humido", str(random.randint(0, 100)), '')
 
-    #IOTINE.publish("avg", str(random.randint(-100, 100)), '')
-    if timess == 15:
-        IOTINE.publish("$SYS/COMMANDS", "RESET", '')
-        raise SyntaxError('MUHAHA THIS IS A ERROR')
-    timess +=1    
+    IOTINE.publish("avg", str(random.randint(-100, 100)), '')  
     time.sleep(1)

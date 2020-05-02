@@ -104,8 +104,8 @@
                         <button onclick="strDev(this)" class="str-btn" data-dev="">START</button><br>
                     </div>
                     <div class="cmdBdy">
-                        <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>                        
-                        <button onclick="newFileDev(this)" class="ior-btn" data-dev="">ADD FILE</button>
+                        <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
+                        <button onclick="$('.addFileModal').toggle()" class="" >ADD FILE</button>
                         <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
                     </div>
                     <div class="cmdBdy">
@@ -308,6 +308,30 @@
                     class="clsBtn">&times;</span></h1>
             <h4>From here you can easily customize your dashboard experience.</h4>
             <div id="terminal"></div>
+        </div>
+
+    </div>
+
+    <div class="addFileModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>Add New File<span
+                    onclick="$('.mainBackDrop').toggle();$('.addFileModal').toggle();if (document.querySelector('.addFileModal').style.display = 'block') {openedPanels = '.addFileModal'} else {openedPanels = ''}"
+                    class="clsBtn">&times;</span></h1>
+            <h4>Add new files to tour devices or edit the existing ones.</h4>
+            <div class="form" id="file_container">
+                <form action="/action_page.php">
+                    <label for="furl">File URL</label>
+                    <input onchange="$('.fprevframe').src(this.value)" type="text" id="furl" name="furl" value="">
+
+                    <label for="dTemplate">Preview</label>
+                    <div class="fprev">
+                        <iframe class="fprevframe"  frameborder="0"></iframe>
+                    </div>
+                    <input type="button" click="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">  
+                    <input type="button" class="cancel" value="Cancel"
+                        onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
+                </form>
+            </div>
         </div>
 
     </div>
@@ -1455,7 +1479,7 @@
         })
 
         socket.on('DEV_VERSION', (msg) => {
-            console.log(msg.device+" / "+msg.version)
+            console.log(msg.device + " / " + msg.version)
         })
     </script>
 </body>

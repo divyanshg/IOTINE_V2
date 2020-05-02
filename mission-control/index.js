@@ -83,7 +83,7 @@ io.on('connection', function (socket) {
         }
     })
     socket.on('DEV_VERSION', (msg) => {
-        io.to(user).emit("DEV_VERSION", {version:msg.version, device:msg.device})
+        io.to(msg.user).emit("DEV_VERSION", {version:msg.version, device:msg.device})
     })
 
 });

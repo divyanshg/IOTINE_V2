@@ -319,7 +319,6 @@
                     class="clsBtn">&times;</span></h1>
             <h4>Add new files to tour devices or edit the existing ones.</h4>
             <div class="form" id="file_container">
-                <form action="/action_page.php">
                     <label for="furl">File URL</label>
                     <input onchange="$('.fprevframe').attr('src', this.value)" type="text" id="furl" name="furl" value="">
 
@@ -327,10 +326,9 @@
                     <div class="fprev">
                         <iframe class="fprevframe"  frameborder="0"></iframe>
                     </div>
-                    <input type="button" click="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">  
+                    <input type="button" click="newFileDev(this)" class="save ior-btn" value="Save to Device" data-dev="">  
                     <input type="button" class="cancel" value="Cancel"
                         onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
-                </form>
             </div>
         </div>
 

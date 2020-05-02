@@ -595,12 +595,14 @@
 
         function newFileDev(elm) {
             var device = elm.getAttribute("data-dev");
+            var url = prompt("File URL? ")
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",
-                value: prompt("File URL? "),
+                value: url,
                 time: new Date().toLocaleTimeString()
             })
+            console.log(url)
             $("#" + device).parent().prev().children().attr(
                 "src",
                 "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")

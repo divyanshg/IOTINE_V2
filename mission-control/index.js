@@ -85,8 +85,8 @@ io.on('connection', function (socket) {
 
     socket.on('tester', msg => console.info(msg))
 
-    socket.on('DEV_VERSION', (ver, dev, user) => {
-        io.to(user).emit("DEV_VERSION", ver, dev, user)
+    socket.on('DEV_VERSION', (ver, dev) => {
+        io.to(user).emit("DEV_VERSION", ver, dev)
     })
 
 });

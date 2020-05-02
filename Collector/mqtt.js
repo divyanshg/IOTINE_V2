@@ -74,7 +74,7 @@ server.on('published', (packet) => {
         })
         //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
     }else if(topic[1] == '$__VERSION'){
-        sockClient.emit("DEV_VERSION", message, topic[0],topic[2])
+        sockClient.emit("DEV_VERSION", {version:message, device:topic[0], user:topic[2]})
     } else {
         return
     }

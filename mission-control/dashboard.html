@@ -598,7 +598,7 @@
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",
-                value: prompt("File ? "),
+                value: prompt("File URL? ")+"/"+propmpt("name"),
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(
@@ -1452,8 +1452,8 @@
             }
         })
 
-        socket.on('DEV_VERSION', (ver, dev) => {
-            console.log(dev+" / "+ver)
+        socket.on('DEV_VERSION', (msg) => {
+            console.log(msg.device+" / "+msg.version)
         })
     </script>
 </body>

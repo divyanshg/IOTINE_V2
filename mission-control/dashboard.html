@@ -105,11 +105,12 @@
                     </div>
                     <div class="cmdBdy">
                         <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
-                        <button onclick="$('.addFileModal').toggle()" class="" >ADD FILE</button>
+                        <button onclick="$('.addFileModal').toggle()" class="">ADD FILE</button>
                         <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
+                        <button style="width:100%;" onclick="getFileSystem(this)" data-dev="" class="fs-btn">GET FILE SYSTEM</button>
                     </div>
                 </div>
             </div>
@@ -319,16 +320,16 @@
                     class="clsBtn">&times;</span></h1>
             <h4>Add new files to tour devices or edit the existing ones.</h4>
             <div class="form" id="file_container">
-                    <label for="furl">File URL</label>
-                    <input onchange="$('.fprevframe').attr('src', this.value)" type="text" id="furl" name="furl" value="">
+                <label for="furl">File URL</label>
+                <input onchange="$('.fprevframe').attr('src', this.value)" type="text" id="furl" name="furl" value="">
 
-                    <label for="dTemplate">Preview</label>
-                    <div class="fprev">
-                        <iframe class="fprevframe"  frameborder="0"></iframe>
-                    </div>
-                    <input type="button" onclick="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">  
-                    <input type="button" class="cancel" value="Cancel"
-                        onclick="$('.addFileModal').toggle();">
+                <label for="dTemplate">Preview</label>
+                <div class="fprev">
+                    <iframe class="fprevframe" frameborder="0"></iframe>
+                    <div class="devFiles">HEREE</div>
+                </div>
+                <input type="button" onclick="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">
+                <input type="button" class="cancel" value="Cancel" onclick="$('.addFileModal').toggle();">
             </div>
         </div>
 
@@ -478,6 +479,7 @@
             document.querySelector(".updt-btn").setAttribute("data-dev", devID)
             document.querySelector(".ios-btn").setAttribute("data-dev", devID)
             document.querySelector(".ior-btn").setAttribute("data-dev", devID)
+            document.querySelector(".fs-btn").setAttribute("data-dev", devID)
 
 
             var xhttp = new XMLHttpRequest();
@@ -624,6 +626,23 @@
                 time: new Date().toLocaleTimeString()
             })
             console.log("here")
+            $("#" + device).parent().prev().children().attr(
+                "src",
+                "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
+            $("#" + device).parent().prev().children().attr(
+                "title",
+                "REBOOTING")
+        }
+
+        function getFileSystem(elm) {
+            var device = elm.getAttribute("data-dev");
+            socket.emit('publish', {
+                deviceId: device,
+                feed: "$SYS/COMMANDS/LISTDIR",
+                value: '',
+                time: new Date().toLocaleTimeString()
+            })
+            console.log("asking...")
             $("#" + device).parent().prev().children().attr(
                 "src",
                 "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")
@@ -1289,25 +1308,28 @@
             cont.scrollTop = cont.scrollHeight - cont.clientHeight
         }
         socket.on('subscribe', (feed, msg, unit) => {
-
-            feeds.forEach(mfeed => {
-                if (mfeed == feed) {
-                    updateButton("btn-" + feed, msg, feed)
-                    updateLog(".log-" + feed, msg, feed)
-                    var chart = document.querySelector(".chart-" + feed)
-                    var latestData = chart.previousSibling
-                    latestData.innerHTML = msg.value + " " + unit[0].unit
-                    var ctx = chart.getContext("2d")
-                    updateChart("chart-" + feed, ctx, msg, feed)
-                    var range = document.querySelector(".range-" + feed) || false
-                    if (!range) return
-                    var latestData = range.previousSibling
-                    latestData.innerHTML = msg.value + " " + unit[0].unit
-                    updateRange(".range-" + feed, msg.value, feed)
-                } else {
-                    return
-                }
-            })
+            if (unit != "DIRS") {
+                feeds.forEach(mfeed => {
+                    if (mfeed == feed) {
+                        updateButton("btn-" + feed, msg, feed)
+                        updateLog(".log-" + feed, msg, feed)
+                        var chart = document.querySelector(".chart-" + feed)
+                        var latestData = chart.previousSibling
+                        latestData.innerHTML = msg.value + " " + unit[0].unit
+                        var ctx = chart.getContext("2d")
+                        updateChart("chart-" + feed, ctx, msg, feed)
+                        var range = document.querySelector(".range-" + feed) || false
+                        if (!range) return
+                        var latestData = range.previousSibling
+                        latestData.innerHTML = msg.value + " " + unit[0].unit
+                        updateRange(".range-" + feed, msg.value, feed)
+                    } else {
+                        return
+                    }
+                })
+            } else {
+                $(".devFiles").html(msg)
+            }
         });
 
         function publishRange(id, feed, config) {

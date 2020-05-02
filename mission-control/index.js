@@ -63,6 +63,9 @@ io.on('connection', function (socket) {
 
                 //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
             })
+        }else if(msg.feed.split("/")[0] != "$SYS_DIRS"){
+            console.log(msg.value)
+            io.to(msg.user).emit("subscribe", msg.device, msg.value, "DIRS")
         }else{
             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }

@@ -598,7 +598,7 @@
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",
-                value: prompt("File URL? ")+"/"+propmpt("name"),
+                value: prompt("File URL? ")+"/"+prompt("name"),
                 time: new Date().toLocaleTimeString()
             })
             $("#" + device).parent().prev().children().attr(

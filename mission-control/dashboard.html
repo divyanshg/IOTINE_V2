@@ -599,7 +599,7 @@
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",
-                value: url,
+                value: url+"_@_$_&_"+prompt("name : "),
                 time: new Date().toLocaleTimeString()
             })
             console.log(url)

@@ -321,7 +321,7 @@
             <div class="form" id="file_container">
                 <form action="/action_page.php">
                     <label for="furl">File URL</label>
-                    <input onchange="$('.fprevframe').src(this.value)" type="text" id="furl" name="furl" value="">
+                    <input onchange="$('.fprevframe').attr('src', this.value)" type="text" id="furl" name="furl" value="">
 
                     <label for="dTemplate">Preview</label>
                     <div class="fprev">

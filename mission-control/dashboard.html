@@ -619,7 +619,7 @@
 
         function newFileDev(elm) {
             var device = elm.getAttribute("data-dev");
-            var url = prompt("File URL? ")
+            var url = $("#furl").val()
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",

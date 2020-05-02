@@ -617,14 +617,13 @@
 
         function newFileDev(elm) {
             var device = elm.getAttribute("data-dev");
-            var url = $("#furl").val()
             socket.emit('publish', {
                 deviceId: device,
                 feed: "$SYS/COMMANDS/NEWFILE",
-                value: url,
+                value: document.querySelector("#furl").value,
                 time: new Date().toLocaleTimeString()
             })
-            console.log(url)
+            console.log("here")
             $("#" + device).parent().prev().children().attr(
                 "src",
                 "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")

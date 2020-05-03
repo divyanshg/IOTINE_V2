@@ -1501,7 +1501,11 @@
 
         socket.on('DEV_VERSION', (msg) => {
             devices.devices.forEach(device => {
-                console.log(device.deviceID)
+                if(device.deviceID == msg.device){
+                    device.version = msg.version
+                }else{
+                    return
+                }
             })
             console.log(msg.device + " / " + msg.version)
         })

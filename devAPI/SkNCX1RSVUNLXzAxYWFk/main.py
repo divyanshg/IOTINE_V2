@@ -11,6 +11,7 @@ import json
 def connectWIFI():
   with open("wifiConfig.json", "r") as f:
     data = f.read()
+    data = json.load(data)
     ssid = data['ssid']
     password = data['password']
 

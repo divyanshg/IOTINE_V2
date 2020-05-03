@@ -56,20 +56,19 @@ def getUpdate():
 
   with open("main.py", 'r+') as f:
     data = f.read()
-    #f.seek(0)
-    #f.write(r.text)
-    #f.close()
-    print(data)
+    f.seek(0)
+    f.write(r.text)
+    f.close()
 
-  #url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/boot.py'
-  #r = requests.get(url)   
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/boot.py'
+  r = requests.get(url)   
 
-  #with open("boot.py", 'w') as f:
-    #data = f.read()
-    #f.seek(0)
-    #f.write(r.text)  
-    #f.close()
-  #machine.reset()
+  with open("boot.py", 'r++') as f:
+    data = f.read()
+    f.seek(0)
+    f.write(r.text)  
+    f.close()
+  machine.reset()
 
 def connect_and_subscribe():
   global client_id, mqtt_server, topic_sub

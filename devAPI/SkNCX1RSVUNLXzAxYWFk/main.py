@@ -56,19 +56,20 @@ def getUpdate():
 
   with open("main.py", 'w') as f:
     data = f.read()
-    f.seek(0)
-    f.write(r.text)
-    f.close()
+    #f.seek(0)
+    #f.write(r.text)
+    #f.close()
+    print(data)
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/boot.py'
-  r = requests.get(url)   
+  #url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/boot.py'
+  #r = requests.get(url)   
 
-  with open("boot.py", 'w') as f:
-    data = f.read()
-    f.seek(0)
-    f.write(r.text)  
-    f.close()
-  machine.reset()
+  #with open("boot.py", 'w') as f:
+    #data = f.read()
+    #f.seek(0)
+    #f.write(r.text)  
+    #f.close()
+  #machine.reset()
 
 def connect_and_subscribe():
   global client_id, mqtt_server, topic_sub
@@ -82,7 +83,6 @@ def connect_and_subscribe():
   client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/IO_STATE/NON')
   client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/UPDATE/NON')
   client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NEWFILE/NON')
-  client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/LISTDIR/NON')
 
   print('Connected to %s MQTT broker, subscribed to %s topic' % (mqtt_server, topic_sub))
   return client

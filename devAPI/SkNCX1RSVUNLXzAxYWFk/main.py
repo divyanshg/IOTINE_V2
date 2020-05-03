@@ -56,10 +56,6 @@ def sub_cb(topic, msg):
   elif topic == b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NEWFILE/NON':
       getFile(msg.decode())  
       
-def getDeviceFiles():
-  for path, subdirs, files in os.walk('/'):
-    for name in files:
-        print(os.path.join(path, name))
 
 def getFile(file):
   url = file

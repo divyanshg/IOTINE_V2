@@ -6,8 +6,28 @@ import ubinascii
 import random
 import urequests as requests
 import os
+import json
 
-__VERSION = '2.3.5'
+def connectWIFI():
+  with open("wifiConfig.json", "r") as f
+    data = f.read()
+    ssid = data['ssid']
+    password = data['password']
+
+
+    station = network.WLAN(network.STA_IF)
+
+    station.active(True)
+    station.connect(ssid, password)
+
+    while station.isconnected() == False:
+      pass
+
+    print('Connection successful')
+    print(station.ifconfig())
+
+connectWIFI()    
+__VERSION = '2.3.7'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'

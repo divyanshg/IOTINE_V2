@@ -25,5 +25,6 @@ with open("wifiConfig.json") as f:
 
     print('Connection successful')
     print(station.ifconfig())
+    f.close()
 
 

@@ -53,7 +53,9 @@ io.on('connection', function (socket) {
     })
     socket.on('publish', function (msg) {
         if (msg.feed.split("/")[0] != "$SYS") {
-                console.log("test")
+            if (msg.feed == "FSYS") {
+                console.log(msg)
+            } else {
                 con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
                     if (err) return err;
                     con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
@@ -64,6 +66,7 @@ io.on('connection', function (socket) {
 
                     //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
                 })
+            }
         } else {
             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }

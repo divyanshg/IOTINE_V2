@@ -43,7 +43,7 @@ def sub_cb(topic, msg):
       getFile(msg.decode())   
       
 def getDeviceFiles():
-  for path, subdirs, files in os.walk(root):
+  for path, subdirs, files in os.walk('/'):
     for name in files:
         print(os.path.join(path, name))
 

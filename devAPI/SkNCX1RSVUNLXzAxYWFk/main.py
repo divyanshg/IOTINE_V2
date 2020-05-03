@@ -9,7 +9,7 @@ import os
 import json
 
 def connectWIFI():
-  with open("wifiConfig.json", "r") as f:
+  with open("wifiConfig.json") as f:
     data = f.read()
     data = json.load(data)
     ssid = data['ssid']

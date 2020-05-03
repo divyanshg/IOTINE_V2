@@ -7,27 +7,7 @@ import random
 import urequests as requests
 import os
 
-import network
-import esp
-
-def connectWIFI():
-  with open("wifiConfig.json") as f:
-    data = json.load(f)
-    ssid, password = data['ssid'], data['password']
-    station = network.WLAN(network.STA_IF)
-
-    station.active(True)
-    station.connect(ssid, password)
-
-    while station.isconnected() == False:
-        pass
-
-    print('Connection successful')
-    print(station.ifconfig())
-    f.close()
-connectWIFI()
-
-__VERSION = '2.3.5'
+__VERSION = '2.3.3'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'
@@ -40,6 +20,20 @@ last_message = 0
 message_interval = 2
 counter = 0
 led = Pin(2, Pin.OUT)
+
+def changeWIFI(msg):
+  ssid = msg.decode().split("/")[0]
+  passw = msg.decode().split("/")[1]
+
+  filename = 'wifiConfig.json'
+  with open(filename, 'r') as f:
+    data = json.load(f)
+    data['ssid'] = ssid
+    data['password'] = passw
+
+  os.remove(filename)
+  with open(filename, 'w') as f:
+    json.dump(data, f, indent=4)
 
 def sub_cb(topic, msg):
   if topic == b'SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/NON':
@@ -68,18 +62,13 @@ def getDeviceFiles():
         print(os.path.join(path, name))
 
 def getFile(file):
-  print("Downloading "+file)
   url = file
   r = requests.get(url)   
   s = file.split("/")
   open(s[len(s)-1], 'wb').write(r.text)
-  print("Download Succesfull. Reseting device in 3s.")
-  time.sleep(3)
-  machine.reset()
-
+  print(s[len(s)-1])
 
 def getUpdate():
-  print("Downloading Update")
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'
   r = requests.get(url)   
 
@@ -97,9 +86,7 @@ def getUpdate():
     f.seek(0)
     f.write(r.text)  
     f.close()
-  print("Device updated succesfully. Applying update in 3s.")
-  time.sleep(3)
-  machine.reset()  
+  machine.reset()
 
 def connect_and_subscribe():
   global client_id, mqtt_server, topic_sub

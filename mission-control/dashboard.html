@@ -113,7 +113,8 @@
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
-                        <button style="width:100%;" onclick="devFiles(this)" data-dev="" class="fs-btn">VIEW FILES</button>
+                        <button style="width:100%;" onclick="devFiles(this)" data-dev="" class="fs-btn">VIEW
+                            FILES</button>
                     </div>
                 </div>
             </div>
@@ -337,9 +338,7 @@
     </div>
     <div class="fsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span
-                    onclick="$('.fsModal').toggle();"
-                    class="clsBtn">&times;</span></h1>
+            <h1>Browse Device<span onclick="$('.fsModal').toggle();" class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
             <div class="devFiles"></div>
@@ -629,10 +628,10 @@
                 "REBOOTING")
         }
 
-        function devFiles(elm){
+        function devFiles(elm) {
             var device = elm.getAttribute("data-dev");
             $(".fsModal").toggle();
-            $(".devFiles").html($("#fsys_"+device).val())
+            $(".devFiles").html($("#fsys_" + device).val())
         }
 
         function newFileDev(elm) {
@@ -1535,6 +1534,13 @@
                 }
             })
         })
+        var test = () => {
+            $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+                function (json) {
+                    ipAddress = json.ip;
+                }
+            );
+        }
     </script>
 </body>
 

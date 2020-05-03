@@ -81,7 +81,7 @@
                                 v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
                             <div class="sub-text sc-kgoBCf cTHQrV" style="display: flex;">{{ device.type }} |&nbsp; <div class="devVer"></div></div>
-                            <input type="text" v-bind:id="'fsys'+device.deviceID">
+                            <input type="hidden" v-bind:id="'fsys_'+device.deviceID">
                         </div>
                     </div>
                 </a></li>
@@ -1503,11 +1503,7 @@
         })
 
         socket.on('FSYS', (fsys, device) => {
-            devices.devices.forEach(device => {
-                if(device.deviceID == device){
-                    device.fs = fsys;
-                }
-            })
+            $("#fsys_"+device).val(fsys)
         })
 
         socket.on('DEV_VERSION', (msg) => {

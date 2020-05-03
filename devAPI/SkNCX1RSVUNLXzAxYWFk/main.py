@@ -108,7 +108,6 @@ while True:
 
     client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
     client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
-    getDeviceFiles()
     if pubstop == False:
         client.check_msg()
         if (time.time() - last_message) > message_interval:

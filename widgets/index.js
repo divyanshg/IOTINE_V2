@@ -236,7 +236,7 @@ var saveTab = (user, app, name) => {
 
 var getDevices = (user, dev) => {
     return new Promise((resolve, reject) => {
-        con.query('select dName,template,deviceID from devices where uName = ?', [user], (err, devices) => {
+        con.query('select dName,template,deviceID,fver from devices where uName = ?', [user], (err, devices) => {
             if (err) return reject(err);
             resolve(devices)
         })

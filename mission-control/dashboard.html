@@ -918,6 +918,7 @@
                                 deviceID: device.deviceID,
                                 version: "v"+device.fver
                             })
+                            $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
                         } else {
                             devices.devices.push({
                                 name: device.dName,
@@ -925,6 +926,7 @@
                                 deviceID: device.deviceID,
                                 version: "v"+device.fver
                             })
+                            $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
                         }
                     })
                     updateDeviceStatus()
@@ -1510,7 +1512,6 @@
                     return
                 }
             })
-            console.log(msg.device + " / " + msg.version)
         })
     </script>
 </body>

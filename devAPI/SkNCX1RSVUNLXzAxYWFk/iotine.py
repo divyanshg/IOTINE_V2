@@ -146,13 +146,13 @@ def getUpdate():
     f.write(r.text)  
     f.close()
 
-  with open("deviceConfig.json", 'r++') as f:
+  with open("deviceConfig.json") as f:
     data = json.load(f)
     f.seek(0)
     json.dump(r.text, f, indent=4) 
     f.close()  
 
-  with open("wifiConfig.json", 'r++') as f:
+  with open("wifiConfig.json") as f:
     data = json.load(f)
     f.seek(0)
     json.dump(r.text, f, indent=4) 

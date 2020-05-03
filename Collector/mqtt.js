@@ -60,23 +60,30 @@ server.on('published', (packet) => {
     var topic = packet.topic.split("/")
     if (topic[2] != "NON") {
 
-        con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
-            if (err) throw err;
-            sockClient.emit('devStat', topic[0], "ONLINE")
-        })
+        if (topic[1] == '$__VERSION') {
+            sockClient.emit("DEV_VERSION", {
+                version: message,
+                device: topic[0],
+                user: topic[2]
+            })
+        } else if (topic[1] == "FSYS") {
+            console.log("FSYS : " + message)
+        } else {
+            con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
+                if (err) throw err;
+                sockClient.emit('devStat', topic[0], "ONLINE")
+            })
 
-        sockClient.emit('publish', {
-            user: topic[2],
-            deviceId: topic[0],
-            feed: topic[1],
-            value: message,
-            time: new Date().toLocaleTimeString()
-        })
+            sockClient.emit('publish', {
+                user: topic[2],
+                deviceId: topic[0],
+                feed: topic[1],
+                value: message,
+                time: new Date().toLocaleTimeString()
+            })
+        }
+
         //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
-    }else if(topic[1] == '$__VERSION'){
-        sockClient.emit("DEV_VERSION", {version:message, device:topic[0], user:topic[2]})
-    }else if(topic[1] == "FSYS"){
-        console.log("FSYS : "+message)
     } else {
         return
     }

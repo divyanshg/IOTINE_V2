@@ -14,8 +14,7 @@ import esp
 
 def connectWIFI():
   with open("wifiConfig.json") as f:
-    data = f.read()
-    data = json.load(data)
+    data = json.load(f)
     ssid = data['ssid']
     password = data['password']
 

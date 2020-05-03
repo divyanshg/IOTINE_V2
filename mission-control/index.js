@@ -53,19 +53,21 @@ io.on('connection', function (socket) {
     })
     socket.on('publish', function (msg) {
         if (msg.feed.split("/")[0] != "$SYS") {
-            con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
-                if (err) return err;
-                con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
-                    if (err) return err
-                    io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
-                    client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                })
+            if (msg.feed == "FSYS") {
+                console.log(msg)
+            } else {
+                con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
+                    if (err) return err;
+                    con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
+                        if (err) return err
+                        io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
+                        client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                    })
 
-                //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
-            })
-        }else if(msg.feed == "FSYS"){
-            console.log(msg)
-        }else{
+                    //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
+                })
+            }
+        } else {
             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }
     });
@@ -85,7 +87,10 @@ io.on('connection', function (socket) {
         }
     })
     socket.on('DEV_VERSION', (msg) => {
-        io.to(msg.user).emit("DEV_VERSION", {version:msg.version, device:msg.device})
+        io.to(msg.user).emit("DEV_VERSION", {
+            version: msg.version,
+            device: msg.device
+        })
     })
 
 });

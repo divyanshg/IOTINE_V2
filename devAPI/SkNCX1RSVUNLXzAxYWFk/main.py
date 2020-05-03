@@ -27,7 +27,7 @@ def connectWIFI():
     f.close()
 connectWIFI()
 
-__VERSION = '2.3.3'
+__VERSION = '2.3.5'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'

@@ -8,6 +8,27 @@ import urequests as requests
 import os
 import json
 
+
+import network
+
+def connectWIFI():
+  with open("wifiConfig.json") as f:
+    data = json.load(f)
+    ssid = data['ssid']
+    password = data['password']
+
+
+    station = network.WLAN(network.STA_IF)
+
+    station.active(True)
+    station.connect(ssid, password)
+
+    while station.isconnected() == False:
+      pass
+
+    print('Connection successful')
+    print(station.ifconfig())
+
 __VERSION = '2.3.8'
 
 print(__VERSION)

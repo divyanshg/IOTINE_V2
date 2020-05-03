@@ -67,7 +67,7 @@ server.on('published', (packet) => {
                 user: topic[2]
             })
         } else if (topic[1] == "FSYS") {
-            console.log("FSYS : " + JSON.parse(message))
+            console.log("FSYS : " + message)
             sockClient.emit('publish', {
                 user: topic[2],
                 deviceId: topic[0],

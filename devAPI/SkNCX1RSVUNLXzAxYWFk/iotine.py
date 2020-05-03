@@ -139,6 +139,25 @@ def getUpdate():
     f.seek(0)
     f.write(r.text)  
     f.close()
+
+  with open("iotine.py", 'r++') as f:
+    data = f.read()
+    f.seek(0)
+    f.write(r.text)  
+    f.close()
+
+  with open("deviceConfig.json", 'r++') as f:
+    data = f.read()
+    f.seek(0)
+    f.write(r.text)  
+    f.close()  
+
+  with open("wifiConfig.json", 'r++') as f:
+    data = f.read()
+    f.seek(0)
+    f.write(r.text)  
+    f.close()
+
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
   time.sleep(3)  
   machine.reset()

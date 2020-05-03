@@ -8,6 +8,10 @@ import urequests as requests
 import os
 import json
 
+
+import network
+import esp
+
 def connectWIFI():
   with open("wifiConfig.json") as f:
     data = f.read()
@@ -28,7 +32,8 @@ def connectWIFI():
     print(station.ifconfig())
 
 connectWIFI()    
-__VERSION = '2.3.7'
+
+__VERSION = '2.3.8'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'

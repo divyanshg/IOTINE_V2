@@ -7,7 +7,7 @@ import random
 import urequests as requests
 import os
 
-__VERSION = '2.2.7'
+__VERSION = '2.2.8'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'
@@ -76,7 +76,6 @@ def connect_and_subscribe():
   client.set_callback(sub_cb)
   client.connect()
 
-  client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
   client.subscribe(topic_sub)
 
   client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NON')
@@ -107,6 +106,7 @@ while True:
         if (time.time() - last_message) > message_interval:
           msg = b'%d' % counter
           if timepub >= 5:
+              client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
               client.publish(topic_pub, msg)
               client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
               client.publish("SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/iub54i6bibu64", str(random.randint(-100, 100)))

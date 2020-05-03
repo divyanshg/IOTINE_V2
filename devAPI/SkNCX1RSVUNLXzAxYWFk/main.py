@@ -7,6 +7,26 @@ import random
 import urequests as requests
 import os
 
+import network
+import esp
+
+def connectWIFI():
+  with open("wifiConfig.json") as f:
+    data = json.load(f)
+    ssid, password = data['ssid'], data['password']
+    station = network.WLAN(network.STA_IF)
+
+    station.active(True)
+    station.connect(ssid, password)
+
+    while station.isconnected() == False:
+        pass
+
+    print('Connection successful')
+    print(station.ifconfig())
+    f.close()
+connectWIFI()
+
 __VERSION = '2.3.3'
 
 print(__VERSION)

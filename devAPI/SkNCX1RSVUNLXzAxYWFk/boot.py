@@ -12,19 +12,6 @@ gc.collect()
 print("WELCOME TO THE WORLD OF Internet Of Things :)")
 #EXAMPLE IP ADDRESS
 #mqtt_server = '192.168.1.144'
-with open("wifiConfig.json") as f:
-    data = json.load(f)
-    ssid, password = data['ssid'], data['password']
-    station = network.WLAN(network.STA_IF)
 
-    station.active(True)
-    station.connect(ssid, password)
-
-    while station.isconnected() == False:
-        pass
-
-    print('Connection successful')
-    print(station.ifconfig())
-    f.close()
 
 

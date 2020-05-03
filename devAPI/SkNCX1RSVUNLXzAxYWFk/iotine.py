@@ -147,16 +147,16 @@ def getUpdate():
     f.close()
 
   with open("deviceConfig.json", 'r++') as f:
-    data = f.read()
+    data = json.load(f)
     f.seek(0)
-    f.write(r.text)  
+    json.dump(r.text, f, indent=4) 
     f.close()  
 
   with open("wifiConfig.json", 'r++') as f:
-    data = f.read()
+    data = json.load(f)
     f.seek(0)
-    f.write(r.text)  
-    f.close()
+    json.dump(r.text, f, indent=4) 
+    f.close() 
 
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
   time.sleep(3)  

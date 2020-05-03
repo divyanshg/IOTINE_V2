@@ -160,6 +160,7 @@ def publish(topic, msg, callback=None):
         try:
             if callback == None:
                 client.publish(str(client_id+"/"+topic+"/"+user_id), str(msg))
+                print("PUBLISH_STATUS OF "+topic+" : YES")
                 led.value(1)
                 time.sleep(0.25)
                 led.value(0)
@@ -169,6 +170,7 @@ def publish(topic, msg, callback=None):
                 led.value(0) 
             else:
                 callback(client.publish(client_id+"/"+topic+"/"+user_id, str(msg)))
+                print("PUBLISH_STATUS OF "+topic+" : YES")
                 led.value(1)
                 time.sleep(0.25)
                 led.value(0)

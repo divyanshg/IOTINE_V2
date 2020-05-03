@@ -7,7 +7,7 @@ import random
 import urequests as requests
 import os
 
-__VERSION = '2.2.9'
+__VERSION = '2.3.0'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'

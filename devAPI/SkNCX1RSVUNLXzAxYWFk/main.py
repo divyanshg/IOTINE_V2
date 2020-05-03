@@ -76,8 +76,6 @@ def connect_and_subscribe():
   client.set_callback(sub_cb)
   client.connect()
 
-  client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
-  client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
   client.subscribe(topic_sub)
 
   client.subscribe(b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NON')
@@ -103,6 +101,9 @@ except OSError as e:
 timepub = 0
 while True:
   try:
+
+    client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
+    client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
     if pubstop == False:
         client.check_msg()
         if (time.time() - last_message) > message_interval:

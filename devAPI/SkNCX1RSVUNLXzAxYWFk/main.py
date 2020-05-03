@@ -10,9 +10,6 @@ import json
 
 
 import network
-import esp
-
-esp.osdebug(None)
 
 def connectWIFI():
   with open("wifiConfig.json") as f:

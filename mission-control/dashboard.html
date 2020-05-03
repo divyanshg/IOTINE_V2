@@ -1495,6 +1495,10 @@
             }
         })
 
+        socket.on('FSYS', (fsys, device) => {
+            console.log(fsys+"/"+device)
+        })
+
         socket.on('DEV_VERSION', (msg) => {
             console.log(msg.device + " / " + msg.version)
         })

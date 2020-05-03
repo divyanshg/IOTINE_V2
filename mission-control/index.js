@@ -54,7 +54,7 @@ io.on('connection', function (socket) {
     socket.on('publish', function (msg) {
         if (msg.feed.split("/")[0] != "$SYS") {
             if (msg.feed == "FSYS") {
-                console.log(msg)
+                io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             } else {
                 con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
                     if (err) return err;

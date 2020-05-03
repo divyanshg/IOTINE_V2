@@ -77,6 +77,8 @@ def listenToSystemCommands(topic, msg):
     statepin.value(not statepin.value())
     print(statepin.value())
   elif topic.decode() == client_id+'/$SYS/COMMANDS/UPDATE/NON':
+      print("\n")
+      print("*_#_" * 20) 
       print("DOWNLOADING FIRMWARE UPDATE...")  
       getUpdate()
   elif topic.decode() == client_id+'/$SYS/COMMANDS/NEWFILE/NON':
@@ -116,12 +118,15 @@ def restart_and_reconnect():
 def getFile(file): 
   s = file.split("/")
   print("\n")
-  print("*_#_" * 50)  
+  print("*_#_" * 20)  
   print("DOWNLOADING "+s[len(s)-1]+" FROM "+file)  
   url = file
   r = requests.get(url)  
   open(s[len(s)-1], 'wb').write(r.text)
   print(s[len(s)-1]+" IS SUCCESSFULLY DOWNLOADED FROM "+file)
+
+  print("\n")
+  print("*_#_"* 20 )
 
 def getUpdate():
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'
@@ -151,7 +156,7 @@ def getUpdate():
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
   time.sleep(3)
   print("\n")
-  print("*_#_"* 50 )  
+  print("*_#_"* 20 )  
   machine.reset()
 
 

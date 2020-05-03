@@ -75,7 +75,8 @@ def connect_and_subscribe():
   client = MQTTClient(client_id, mqtt_server, 1883, "SkNCX1RSVUNLXzAxYWFk", '')
   client.set_callback(sub_cb)
   client.connect()
-  
+
+  client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
   client.publish("SkNCX1RSVUNLXzAxYWFk/FSYS/iub54i6bibu64", str(os.listdir()))
   client.subscribe(topic_sub)
 
@@ -108,7 +109,6 @@ while True:
           msg = b'%d' % counter
           if timepub >= 5:
               client.publish(topic_pub, msg)
-              client.publish('SkNCX1RSVUNLXzAxYWFk/$__VERSION/iub54i6bibu64', str(__VERSION))
               client.publish("SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/iub54i6bibu64", str(random.randint(-100, 100)))
               client.publish("SkNCX1RSVUNLXzAxYWFk/TYRE_PRESSURE_AVG/iub54i6bibu64", str(random.randint(-100, 100)))
               client.publish("SkNCX1RSVUNLXzAxYWFk/ENGINE_OIL/iub54i6bibu64", str(random.randint(10, 50)))

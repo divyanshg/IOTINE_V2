@@ -41,20 +41,6 @@ message_interval = 2
 counter = 0
 led = Pin(2, Pin.OUT)
 
-def changeWIFI(msg):
-  ssid = msg.decode().split("/")[0]
-  passw = msg.decode().split("/")[1]
-
-  filename = 'wifiConfig.json'
-  with open(filename, 'r') as f:
-    data = json.load(f)
-    data['ssid'] = ssid
-    data['password'] = passw
-
-  os.remove(filename)
-  with open(filename, 'w') as f:
-    json.dump(data, f, indent=4)
-
 def sub_cb(topic, msg):
   if topic == b'SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/NON':
     print(str(msg)) 
@@ -82,13 +68,18 @@ def getDeviceFiles():
         print(os.path.join(path, name))
 
 def getFile(file):
+  print("Downloading "+file)
   url = file
   r = requests.get(url)   
   s = file.split("/")
   open(s[len(s)-1], 'wb').write(r.text)
-  print(s[len(s)-1])
+  print("Download Succesfull. Reseting device in 3s.")
+  time.sleep(3)
+  machine.reset()
+
 
 def getUpdate():
+  print("Downloading Update")
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'
   r = requests.get(url)   
 
@@ -106,7 +97,9 @@ def getUpdate():
     f.seek(0)
     f.write(r.text)  
     f.close()
-  machine.reset()
+  print("Device updated succesfully. Applying update in 3s.")
+  time.sleep(3)
+  machine.reset()  
 
 def connect_and_subscribe():
   global client_id, mqtt_server, topic_sub

@@ -916,7 +916,8 @@
                                 name: dname,
                                 type: device.template,
                                 deviceID: device.deviceID,
-                                version: "v"+device.fver
+                                version: "v"+device.fver,
+                                fs: ''
                             })
                             $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
                         } else {
@@ -924,7 +925,8 @@
                                 name: device.dName,
                                 type: device.template,
                                 deviceID: device.deviceID,
-                                version: "v"+device.fver
+                                version: "v"+device.fver,
+                                fs: ''
                             })
                             $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
                         }
@@ -1500,7 +1502,11 @@
         })
 
         socket.on('FSYS', (fsys, device) => {
-            console.log(fsys+"/"+device)
+            devices.devices.forEach(device => {
+                if(device.deviceID == device){
+                    device.fs = fsys;
+                }
+            })
         })
 
         socket.on('DEV_VERSION', (msg) => {

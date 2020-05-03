@@ -15,7 +15,7 @@ print("WELCOME TO THE WORLD OF Internet Of Things :)")
 def connectWifi():
   with open("wifiConfig.json") as f:
       data = json.load(f)
-      ssid, password = data['ssid'], data['pass']
+      ssid, password = data['ssid'], data['password']
       station = network.WLAN(network.STA_IF)
 
       station.active(True)

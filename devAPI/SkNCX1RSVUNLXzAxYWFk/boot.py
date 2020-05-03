@@ -1,7 +1,6 @@
 import time
 import machine
 import micropython
-esp.osdebug(None)
 import gc
 gc.collect()
 

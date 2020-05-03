@@ -115,6 +115,8 @@ def restart_and_reconnect():
 
 def getFile(file): 
   s = file.split("/")
+  print("\n")
+  print("*_#_") * 50  
   print("DOWNLOADING "+s[len(s)-1]+" FROM "+file)  
   url = file
   r = requests.get(url)  
@@ -146,20 +148,10 @@ def getUpdate():
     f.write(r.text)  
     f.close()
 
-  with open("deviceConfig.json") as f:
-    data = json.load(f)
-    f.seek(0)
-    json.dump(json.load(r.text), f, indent=4) 
-    f.close()  
-
-  with open("wifiConfig.json") as f:
-    data = json.load(f)
-    f.seek(0)
-    json.dump(json.load(r.text), f, indent=4) 
-    f.close() 
-
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
-  time.sleep(3)  
+  time.sleep(3)
+  print("\n")
+  print("*_#_") * 50  
   machine.reset()
 
 

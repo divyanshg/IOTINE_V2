@@ -115,11 +115,11 @@ def restart_and_reconnect():
 
 def getFile(file): 
   s = file.split("/")
-  print("DOWNLOADING "+s+" FROM "+file)  
+  print("DOWNLOADING "+s[len(s)-1]+" FROM "+file)  
   url = file
   r = requests.get(url)  
   open(s[len(s)-1], 'wb').write(r.text)
-  print(s+" IS SUCCESSFULLY DOWNLOADED FROM "+file)
+  print(s[len(s)-1]+" IS SUCCESSFULLY DOWNLOADED FROM "+file)
 
 def getUpdate():
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'

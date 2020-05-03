@@ -21,6 +21,20 @@ message_interval = 2
 counter = 0
 led = Pin(2, Pin.OUT)
 
+def changeWIFI(msg):
+  ssid = msg.decode().split("/")[0]
+  passw = msg.decode().split("/")[1]
+
+  filename = 'wifiConfig.json'
+  with open(filename, 'r') as f:
+    data = json.load(f)
+    data['ssid'] = ssid
+    data['password'] = passw
+
+  os.remove(filename)
+  with open(filename, 'w') as f:
+    json.dump(data, f, indent=4)
+
 def sub_cb(topic, msg):
   if topic == b'SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/NON':
     print(str(msg)) 

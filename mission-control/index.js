@@ -63,6 +63,8 @@ io.on('connection', function (socket) {
 
                 //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
             })
+        }else if(msg.feed == "FSYS"){
+            console.log(msg)
         }else{
             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
         }

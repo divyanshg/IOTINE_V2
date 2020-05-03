@@ -67,7 +67,14 @@ server.on('published', (packet) => {
                 user: topic[2]
             })
         } else if (topic[1] == "FSYS") {
-            console.log("FSYS : " + message)
+            console.log("FSYS : " + JSON.parse(message))
+            sockClient.emit('publish', {
+                user: topic[2],
+                deviceId: topic[0],
+                feed: topic[1],
+                value: message,
+                time: new Date().toLocaleTimeString()
+            })
         } else {
             con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
                 if (err) throw err;

@@ -7,7 +7,7 @@ esp.osdebug(None)
 import gc
 gc.collect()
 
-print("WELCOME TO THE WORLD OF Internet Of Things :)")
+print("WELCOME TO THE WORLD OF IOT :)")
 ssid = 'home_wifi'
 password = 'dig22569'
 #EXAMPLE IP ADDRESS

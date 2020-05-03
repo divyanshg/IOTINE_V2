@@ -7,7 +7,7 @@ import random
 import urequests as requests
 import os
 
-__VERSION = '2.3.3'
+__VERSION = '2.3.0'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'
@@ -20,20 +20,6 @@ last_message = 0
 message_interval = 2
 counter = 0
 led = Pin(2, Pin.OUT)
-
-def changeWIFI(msg):
-  ssid = msg.decode().split("/")[0]
-  passw = msg.decode().split("/")[1]
-
-  filename = 'wifiConfig.json'
-  with open(filename, 'r') as f:
-    data = json.load(f)
-    data['ssid'] = ssid
-    data['password'] = passw
-
-  os.remove(filename)
-  with open(filename, 'w') as f:
-    json.dump(data, f, indent=4)
 
 def sub_cb(topic, msg):
   if topic == b'SkNCX1RSVUNLXzAxYWFk/CONT_TEMP/NON':
@@ -54,7 +40,7 @@ def sub_cb(topic, msg):
   elif topic == b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/UPDATE/NON':  
       getUpdate()
   elif topic == b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NEWFILE/NON':
-      getFile(msg.decode())  
+      getFile(msg.decode())   
       
 
 def getFile(file):

@@ -631,7 +631,8 @@
 
         function devFiles(elm){
             var device = elm.getAttribute("data-dev");
-            $(".fsModal").toggle().children(".newAppInner").children(".devFiles").html($("#fsys_"+device).html())
+            $(".fsModal").toggle();
+            $(".fsModal").children(".newAppInner").children(".devFiles").html($("#fsys_"+device).html())
         }
 
         function newFileDev(elm) {

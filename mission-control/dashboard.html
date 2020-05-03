@@ -80,7 +80,9 @@
                             <input type="hidden" v-bind:id="device.deviceID" v-bind:alt="device.name"
                                 v-bind:value="device.deviceID" class="devID">
                             <div class="title-text sc-chPdSV jgeneq">{{ device.name }}</div>
-                            <div class="sub-text sc-kgoBCf cTHQrV" style="display: flex;">{{ device.type }} |&nbsp; <div class="devVer"></div></div>
+                            <div class="sub-text sc-kgoBCf cTHQrV" style="display: flex;">{{ device.type }} |&nbsp; <div
+                                    class="devVer"></div>
+                            </div>
                             <input type="hidden" v-bind:id="'fsys_'+device.deviceID">
                         </div>
                     </div>
@@ -106,12 +108,12 @@
                     </div>
                     <div class="cmdBdy">
                         <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
-                        <button onclick="$('.addFileModal').toggle()" class="">ADD FILE</button>
+                        <button onclick="$('.addFileModal').toggle();" class="">ADD FILE</button>
                         <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
-                        <button style="width:100%;" onclick="getFileSystem(this)" data-dev="" class="fs-btn">GET FILE SYSTEM</button>
+                        <button style="width:100%;" onclick="devFiles(this)" data-dev="" class="fs-btn">VIEW FILES</button>
                     </div>
                 </div>
             </div>
@@ -125,15 +127,15 @@
                 </tr>
                 <tr>
                     <td>ID</td>
-                    <td id="tdid">biub546ub45ui6bu4ib56</td>
+                    <td id="tdid"></td>
                 </tr>
                 <tr>
                     <td>NAME</td>
-                    <td id="tdname">JCB_TRUCK_01</td>
+                    <td id="tdname"></td>
                 </tr>
                 <tr>
                     <td>TEMPLATE</td>
-                    <td id="ttempl">TRUCKS</td>
+                    <td id="ttempl"></td>
                 </tr>
             </table>
             <br><br>
@@ -327,13 +329,22 @@
                 <label for="dTemplate">Preview</label>
                 <div class="fprev">
                     <iframe class="fprevframe" frameborder="0"></iframe>
-                    <div class="devFiles">HEREE</div>
                 </div>
                 <input type="button" onclick="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">
                 <input type="button" class="cancel" value="Cancel" onclick="$('.addFileModal').toggle();">
             </div>
         </div>
+        <div class="fsModal modal" style="display: none;">
+            <div class="newAppInner">
+                <h1>Browse Device<span
+                        onclick=";$('.fsModal').toggle();if (document.querySelector('.fsModal').style.display = 'block') {openedPanels = '.addFileModal'} else {openedPanels = ''}"
+                        class="clsBtn">&times;</span></h1>
+                <h4>From here you can see all the files present on your device.</h4>
 
+                <div class="devFiles"></div>
+                <input type="button" class="cancel" value="Done" onclick="$('.fsModal').toggle();">
+            </div>
+        </div>
     </div>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
@@ -616,6 +627,11 @@
             $("#" + device).parent().prev().children().attr(
                 "title",
                 "REBOOTING")
+        }
+
+        function devFiles(elm){
+            var device = elm.getAttribute("data-dev");
+            $(".fsModal").toggle().children(".newAppInner").children(".devFiles").html($("#fsys_"+device).html())
         }
 
         function newFileDev(elm) {
@@ -917,19 +933,21 @@
                                 name: dname,
                                 type: device.template,
                                 deviceID: device.deviceID,
-                                version: "v"+device.fver,
+                                version: "v" + device.fver,
                                 fs: ''
                             })
-                            $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
+                            $("#" + device.deviceID).siblings(".cTHQrV").children(".devVer").html("v" +
+                                device.version)
                         } else {
                             devices.devices.push({
                                 name: device.dName,
                                 type: device.template,
                                 deviceID: device.deviceID,
-                                version: "v"+device.fver,
+                                version: "v" + device.fver,
                                 fs: ''
                             })
-                            $("#"+device.deviceID).siblings(".cTHQrV").children(".devVer").html("v"+ device.version)
+                            $("#" + device.deviceID).siblings(".cTHQrV").children(".devVer").html("v" +
+                                device.version)
                         }
                     })
                     updateDeviceStatus()
@@ -1503,15 +1521,15 @@
         })
 
         socket.on('FSYS', (fsys, device) => {
-            $("#fsys_"+device).val(fsys)
+            $("#fsys_" + device).val(fsys)
         })
 
         socket.on('DEV_VERSION', (msg) => {
             devices.devices.forEach(device => {
-                if(device.deviceID == msg.device){
+                if (device.deviceID == msg.device) {
                     device.version = msg.version
-                    $("#"+msg.device).siblings(".cTHQrV").children(".devVer").html("v"+ msg.version)
-                }else{
+                    $("#" + msg.device).siblings(".cTHQrV").children(".devVer").html("v" + msg.version)
+                } else {
                     return
                 }
             })

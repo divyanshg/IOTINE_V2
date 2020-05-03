@@ -7,7 +7,7 @@ import random
 import urequests as requests
 import os
 
-__VERSION = '2.3.2'
+__VERSION = '2.3.3'
 
 print(__VERSION)
 mqtt_server = '192.168.31.249'
@@ -43,8 +43,9 @@ def sub_cb(topic, msg):
       getFile(msg.decode())   
       
 def getDeviceFiles():
-  fls = os.listdir()
-  print(type(fls))
+  for path, subdirs, files in os.walk(root):
+    for name in files:
+        print(os.path.join(path, name))
 
 def getFile(file):
   url = file

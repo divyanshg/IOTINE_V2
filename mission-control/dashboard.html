@@ -1503,6 +1503,7 @@
             devices.devices.forEach(device => {
                 if(device.deviceID == msg.device){
                     device.version = msg.version
+                    $("#"+msg.device).siblings(".cTHQrV").html($("#"+msg.device).siblings(".cTHQrV").html() + msg.version)
                 }else{
                     return
                 }

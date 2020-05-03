@@ -54,7 +54,7 @@ def sub_cb(topic, msg):
   elif topic == b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/UPDATE/NON':  
       getUpdate()
   elif topic == b'SkNCX1RSVUNLXzAxYWFk/$SYS/COMMANDS/NEWFILE/NON':
-      getFile(msg.decode())   
+      getFile(msg.decode())  
       
 def getDeviceFiles():
   for path, subdirs, files in os.walk('/'):

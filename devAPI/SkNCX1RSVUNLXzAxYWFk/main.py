@@ -54,7 +54,7 @@ def getUpdate():
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'
   r = requests.get(url)   
 
-  with open("main.py", 'w') as f:
+  with open("main.py", 'r+') as f:
     data = f.read()
     #f.seek(0)
     #f.write(r.text)

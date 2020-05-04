@@ -15,11 +15,10 @@ def on_pub(s):
   print("message Sent")
 
 
-iotine.subscribe("CONT_TEMP", on_sub)
+iotine.subscribe("CORE_TEMP", on_sub)
 
-while True:
-    iotine.checkMsg()
-    if button.value() == 0:
+def on_loop():
+  if button.value() == 0:
         #iotine.publish("CONT_HUMID", iotine.rand(),on_pub)
         iotine.publish([
             {
@@ -32,4 +31,7 @@ while True:
             }
           ]
           , on_pub)
-    time.sleep(2)
+  time.sleep(2)
+
+iotine.loop(on_loop)
+    

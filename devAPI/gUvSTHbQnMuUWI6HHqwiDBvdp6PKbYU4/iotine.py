@@ -203,3 +203,13 @@ def publish(payload, callback=None):
             restart_and_reconnect()   
     else:
         return    
+
+def loop(callback):
+  while True:
+    try:
+      client.check_msg()
+      callback()
+    except OSError as e:
+      print("An error has occurred!!\nRebooting in 5s.")
+      time.sleep(5)
+      restart_and_reconnect()          

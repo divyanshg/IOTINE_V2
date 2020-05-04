@@ -60,14 +60,13 @@ io.on('connection', function (socket) {
                     if (err) return err;
                     if (respp.length == 0) {
                         console.log("here aa")
-                        var feed = [
-                            [null, msg.feed, msg.deviceId, msg.user_id, msg.value]
+                        var feedvalue = [
+                            [null, msg.feed, msg.deviceId, msg.user, msg.value]
                         ]
 
-                        con.query('insert into feed_vals (id, name, deviceID, user_id, value) values ?', [feed], (err, res) => {
+                        con.query('insert into feed_vals (id, name, deviceID, user_id, value) values ?', [feedvalue], (err, res) => {
                             if (err) return err;
-                            console.log("DONE")
-                            return
+                            console.log(result.affectedRows)
                         })
                     } else {
                         console.log("here dd")

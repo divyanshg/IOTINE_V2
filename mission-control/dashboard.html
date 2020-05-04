@@ -1219,6 +1219,7 @@
         }
 
         function updateChart(id, ctx, msg, feed) {
+            console.log(msg.deviceId)
             var allElms = $(".chart-" + feed+"-"+msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
                 var widgets = getWidget(feed)

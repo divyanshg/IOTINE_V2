@@ -22,7 +22,7 @@ def main_loop():
         #iotine.publish("CONT_HUMID", iotine.rand(),on_pub)
         iotine.publish([
             {
-              "name": "CORE_TEMP",
+              "name": "CORE_TEMP_ESP",
               "value": esp32.raw_temperature()
             },
             {

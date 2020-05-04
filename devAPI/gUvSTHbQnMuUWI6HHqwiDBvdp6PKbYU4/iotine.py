@@ -76,8 +76,8 @@ def listenToSystemCommands(topic, msg):
         print("PUBLISHING IS STARTED AGAIN BY IOTINE")
         pubstop = False
   elif topic.decode() == device_id+"/$SYS/COMMANDS/IO_STATE/NON":
-    print("CHANGING STATE OF I/O PIN: "+msg)  
-    statepin = Pin(int(msg), Pin.OUT)
+    print("CHANGING STATE OF I/O PIN: "+msg.decode())  
+    statepin = Pin(int(msg.decode()), Pin.OUT)
     statepin.value(not statepin.value())
     print(statepin.value())
   elif topic.decode() == device_id+'/$SYS/COMMANDS/UPDATE/NON':
@@ -143,17 +143,29 @@ def getUpdate():
   url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/boot.py'
   r = requests.get(url)   
 
+  
   with open("boot.py", 'r++') as f:
     data = f.read()
     f.seek(0)
     f.write(r.text)  
     f.close()
 
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/iotine.py'
+  r = requests.get(url) 
+
   with open("iotine.py", 'r++') as f:
     data = f.read()
     f.seek(0)
     f.write(r.text)  
     f.close()
+
+  
+
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/deviceConfig.json'
+  r = requests.get(url)
+  data = json.loads(r.text)
+  with open("deviceConfig.json", "w") as f:
+    json.dump(data, f)  
 
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
   time.sleep(3)

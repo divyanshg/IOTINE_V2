@@ -20,18 +20,6 @@ while True:
         #iotine.publish("CONT_HUMID", iotine.rand(),on_pub)
         iotine.publish([
             {
-              "name": "CONT_TEMP", 
-              "value": iotine.rand()
-            },
-            {
-              "name":"CONT_HUMID", 
-              "value":iotine.rand()
-            },
-            {
-              "name": "ENGINE_OIL",
-              "value": esp32.hall_sensor()
-            },
-            {
               "name": "CORE_TEMP",
               "value": esp32.raw_temperature()
             }

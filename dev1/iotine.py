@@ -85,4 +85,5 @@ def DISCONNECT(callback):
         client.disconnect()
               
 def doDefaults():
-    subscribe("$SYS/COMMANDS", '')              
+    subscribe("$SYS/COMMANDS", '')   
+    publish("$__VERSION", "1.0.1", '')           

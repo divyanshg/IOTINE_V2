@@ -31,7 +31,6 @@ def on_loop():
             }
           ]
           , on_pub)
-  time.sleep(2)
 
 iotine.loop(on_loop)
     

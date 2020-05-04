@@ -38,13 +38,11 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    console.log(client.id)
     con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, restu) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if(err) throw err;
-            console.log(res)
-            //sockClient.emit('devStat', res[0].deviceID, "IDLE")
+            sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })
 });

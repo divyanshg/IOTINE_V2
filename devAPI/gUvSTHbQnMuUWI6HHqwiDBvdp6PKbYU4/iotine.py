@@ -65,6 +65,7 @@ pubstop = False
 def listenToSystemCommands(topic, msg):          
   if topic.decode() == device_id+'/$SYS/COMMANDS/NON':
     if  msg == b"RST":
+        led.value(1)
         print("RESET COMMAND RECIEVED")
         machine.reset()
     elif msg == b"PUB_STOP":

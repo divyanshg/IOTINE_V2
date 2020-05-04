@@ -56,7 +56,7 @@ io.on('connection', function (socket) {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             } else {
-                con.query('select * from feed_vals where deviceID = ? and name = ?', [msg.deviceId, msg.feed], (err, respp) => {
+                con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.deviceId, msg.feed], (err, respp) => {
                     if (err) return err;
                     if (respp.length == 0) {
                         createFeed(msg)

@@ -1337,18 +1337,18 @@
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
                     if (mfeed == feed) {
-                        updateButton("btn-" + feed, msg, feed)
-                        updateLog(".log-" + feed, msg, feed)
-                        var chart = document.querySelector(".chart-" + feed)
+                        updateButton("btn-" + feed+"-"+msg.deviceId, msg, feed)
+                        updateLog(".log-" + feed+"-"+msg.deviceId, msg, feed)
+                        var chart = document.querySelector(".chart-" + feed+"-"+msg.deviceId)
                         var latestData = chart.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
                         var ctx = chart.getContext("2d")
-                        updateChart("chart-" + feed, ctx, msg, feed)
-                        var range = document.querySelector(".range-" + feed) || false
+                        updateChart("chart-" + feed+"-"+msg.deviceId, ctx, msg, feed)
+                        var range = document.querySelector(".range-" + feed+"-"+msg.deviceId) || false
                         if (!range) return
                         var latestData = range.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
-                        updateRange(".range-" + feed, msg.value, feed)
+                        updateRange(".range-" + feed+"-"+msg.deviceId, msg.value, feed)
                     } else {
                         return
                     }

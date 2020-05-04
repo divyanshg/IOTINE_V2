@@ -8,6 +8,7 @@ import random
 import urequests as requests
 import os
 import random
+import socket
 
 machine = machine
 import network
@@ -53,13 +54,15 @@ def deviceConfig():
 mqtt_server = '192.168.31.249'
 connected = False
 
-client_id = deviceConfig()['deviceId']
+client_id = "ESP32_"+ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
+
+device_id = deviceConfig()['deviceId']
 user_id = deviceConfig()['userId']
 __VERSION = deviceConfig()['__version']
 pubstop = False
 
 def listenToSystemCommands(topic, msg):          
-  if topic.decode() == client_id+'/$SYS/COMMANDS/NON':
+  if topic.decode() == device_id+'/$SYS/COMMANDS/NON':
     if  msg == b"RST":
         print("RESET COMMAND RECIEVED")
         machine.reset()
@@ -71,23 +74,23 @@ def listenToSystemCommands(topic, msg):
         global pubstop
         print("PUBLISHING IS STARTED AGAIN BY IOTINE")
         pubstop = False
-  elif topic.decode() == client_id+"/$SYS/COMMANDS/IO_STATE/NON":
+  elif topic.decode() == device_id+"/$SYS/COMMANDS/IO_STATE/NON":
     print("CHANGING STATE OF I/O PIN: "+msg)  
     statepin = Pin(int(msg), Pin.OUT)
     statepin.value(not statepin.value())
     print(statepin.value())
-  elif topic.decode() == client_id+'/$SYS/COMMANDS/UPDATE/NON':
+  elif topic.decode() == device_id+'/$SYS/COMMANDS/UPDATE/NON':
       print("\n")
       print("*_#_" * 20) 
       print("DOWNLOADING FIRMWARE UPDATE...")  
       getUpdate()
-  elif topic.decode() == client_id+'/$SYS/COMMANDS/NEWFILE/NON':
+  elif topic.decode() == device_id+'/$SYS/COMMANDS/NEWFILE/NON':
       getFile(msg.decode())   
 
 
 def connect():
-  global client_id, mqtt_server, connected, client
-  client = MQTTClient(client_id, mqtt_server, 1883, client_id, '')
+  global device_id, mqtt_server, connected, client
+  client = MQTTClient(client_id, mqtt_server, 1883, device_id, '')
   client.set_callback(listenToSystemCommands)
   try:
       client.connect()
@@ -97,14 +100,14 @@ def connect():
       restart_and_reconnect()    
 
 
-  client.subscribe(client_id+'/$SYS/COMMANDS/NON')
-  client.subscribe(client_id+'/$SYS/COMMANDS/IO_STATE/NON')
-  client.subscribe(client_id+'/$SYS/COMMANDS/UPDATE/NON')
-  client.subscribe(client_id+'/$SYS/COMMANDS/NEWFILE/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/IO_STATE/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/UPDATE/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/NEWFILE/NON')
 
 
-  client.publish(client_id+'/$__VERSION/'+user_id, str(__VERSION))
-  client.publish(client_id+'/FSYS/'+user_id, str(os.listdir()))
+  client.publish(device_id+'/$__VERSION/'+user_id, str(__VERSION))
+  client.publish(device_id+'/FSYS/'+user_id, str(os.listdir()))
 
   print('Connected to IOTINE')
   return client
@@ -127,7 +130,7 @@ def getFile(file):
   print("*_#_"* 20 )
 
 def getUpdate():
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/main.py'
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/main.py'
   r = requests.get(url)   
 
   with open("main.py", 'r+') as f:
@@ -136,7 +139,7 @@ def getUpdate():
     f.write(r.text)
     f.close()
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+client_id+'/boot.py'
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/boot.py'
   r = requests.get(url)   
 
   with open("boot.py", 'r++') as f:
@@ -162,7 +165,7 @@ def rand(min=0, max=100):
     return random.randint(min, max)
 
 def subscribe(topic, callback=None):
-    client.subscribe(client_id+"/"+topic+"/NON")
+    client.subscribe(device_id+"/"+topic+"/NON")
     if callback == None:
         return
     else:    
@@ -174,10 +177,10 @@ def publish(payload, callback=None):
         try:
           for i in range(len(payload)):
             if callback == None:
-                client.publish(str(client_id+"/"+payload[i]['name']+"/"+user_id), str(payload[i]['value']))
+                client.publish(str(device_id+"/"+payload[i]['name']+"/"+user_id), str(payload[i]['value']))
                 print("\nPUBLISH_STATUS OF "+payload[i]['name']+" : YES\n")
             else:
-                callback(client.publish(client_id+"/"+payload[i]['name']+"/"+user_id, str(payload[i]['value'])))
+                callback(client.publish(device_id+"/"+payload[i]['name']+"/"+user_id, str(payload[i]['value'])))
                 print("\nPUBLISH_STATUS OF "+payload[i]['name']+" : YES\n")
                 
           led.value(1)

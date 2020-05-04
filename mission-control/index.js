@@ -64,7 +64,7 @@ io.on('connection', function (socket) {
                             [null, msg.feed, msg.deviceId, msg.user_id, msg.value]
                         ]
 
-                        con.query('insert into feed_vals(id, name, deviceID, user_id, value) VALUES ?', [feed], (err, res) => {
+                        con.query('insert into feed_vals (id, name, deviceID, user_id, value) values ?', [feed], (err, res) => {
                             if (err) return err;
                             console.log("DONE")
                             return

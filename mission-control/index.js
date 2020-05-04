@@ -56,7 +56,7 @@ io.on('connection', function (socket) {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             } else {
-                con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.deviceId, msg.feed], (err, respp) => {
+                con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.feed, msg.deviceId], (err, respp) => {
                     if (err) {
                         return err;
                     } else if (respp.length == 0) {

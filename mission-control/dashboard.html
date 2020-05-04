@@ -1156,6 +1156,18 @@
             bdy.appendChild(iframeCont)
         }
         var widgets;
+        var wids = [{
+            name: "Extra Control",
+            feed: "Web_Sensor",
+            type: "range",
+            config: {
+                minval: 10,
+                maxval: 100,
+                value: 50,
+                device: "qwerty12",
+                tab: "dpkgk213"
+            }
+        }, ]
         async function createWidget() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -1165,7 +1177,8 @@
                     if (widgets.length > 0) {
                         document.querySelector("#nowid").style.display = "none"
                     }
-                    widgets.forEach(widget => {
+                    wids.push(wids)
+                    wids.forEach(widget => {
                         var widgetBdy = document.createElement('div')
                         var head = document.createElement('h4');
                         var latestData = document.createElement('p');
@@ -1183,21 +1196,29 @@
 
                         if (widget.type == "chart") {
                             var prev = ''
-                            lineChart(widget.feed+"-"+widget.config.device, widget.config, widgetBdy, prev)
+                            lineChart(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy, prev)
                         } else if (widget.type == "btn") {
-                            createButton(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createButton(widget.feed + "-" + widget.config.device, widget
+                                .config, widgetBdy)
                         } else if (widget.type == "map") {
-                            createMap(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createMap(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy)
                         } else if (widget.type == "range") {
-                            createRange(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createRange(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy)
                         } else if (widget.type == "log") {
-                            createLog(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createLog(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy)
                         } else if (widget.type == "video") {
-                            createVideo(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createVideo(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy)
                         } else if (widget.type == "image") {
-                            createImg(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createImg(widget.feed + "-" + widget.config.device, widget.config,
+                                widgetBdy)
                         } else if (widget.type == "iframe") {
-                            createIFrame(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
+                            createIFrame(widget.feed + "-" + widget.config.device, widget
+                                .config, widgetBdy)
                         }
 
                     })
@@ -1219,7 +1240,7 @@
         }
 
         function updateChart(id, ctx, msg, feed) {
-            var allElms = $(".chart-" + feed+"-"+msg.deviceId).show()
+            var allElms = $(".chart-" + feed + "-" + msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
                 var widgets = getWidget(feed)
                 for (j = 0; j < widgets.length; j++) {
@@ -1335,19 +1356,20 @@
         socket.on('subscribe', (feed, msg, unit) => {
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
-                    if (mfeed == feed+"-"+msg.deviceId) {
-                        updateButton("btn-" + feed+"-"+msg.deviceId, msg, feed)
-                        updateLog(".log-" + feed+"-"+msg.deviceId, msg, feed)
-                        var chart = document.querySelector(".chart-" + feed+"-"+msg.deviceId)
+                    if (mfeed == feed + "-" + msg.deviceId) {
+                        updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
+                        updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
+                        var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
                         var latestData = chart.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
                         var ctx = chart.getContext("2d")
-                        updateChart("chart-" + feed+"-"+msg.deviceId, ctx, msg, feed)
-                        var range = document.querySelector(".range-" + feed+"-"+msg.deviceId) || false
+                        updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
+                        var range = document.querySelector(".range-" + feed + "-" + msg.deviceId) ||
+                            false
                         if (!range) return
                         var latestData = range.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
-                        updateRange(".range-" + feed+"-"+msg.deviceId, msg.value, feed)
+                        updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
                     } else {
                         return
                     }
@@ -1408,16 +1430,22 @@
                     devs.forEach(dev => {
                         if (dev.status == "ONLINE") {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
-                                "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
+                                "https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1"
+                            )
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev
+                                .status)
                         } else if (dev.status == "IDLE") {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
-                                "https://pro-icons-avatars.s3.amazonaws.com/icons/4.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
+                                "https://pro-icons-avatars.s3.amazonaws.com/icons/4.png?v=1"
+                            )
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev
+                                .status)
                         } else {
                             $("#" + dev.deviceID).parent().prev().children().attr("src",
-                                "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1")
-                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev.status)
+                                "https://pro-icons-avatars.s3.amazonaws.com/icons/10.png?v=1"
+                            )
+                            $("#" + dev.deviceID).parent().prev().children().attr("title", dev
+                                .status)
                         }
                     })
                 }
@@ -1528,7 +1556,8 @@
             devices.devices.forEach(device => {
                 if (device.deviceID == msg.device) {
                     device.version = msg.version
-                    $("#" + msg.device).siblings(".cTHQrV").children(".devVer").html("v" + msg.version)
+                    $("#" + msg.device).siblings(".cTHQrV").children(".devVer").html("v" + msg
+                        .version)
                 } else {
                     return
                 }

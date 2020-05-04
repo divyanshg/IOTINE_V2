@@ -60,7 +60,15 @@ io.on('connection', function (socket) {
                     if (err) return err;
                     if (respp.length == 0) {
                         console.log("here aa")
-                        createFeed(msg)
+                        var feed = [
+                            [null, msg.feed, msg.deviceId, msg.user_id, msg.value]
+                        ]
+
+                        con.query('insert into feed_vals(id, name, deviceID, user_id, value) VALUES ?', [feed], (err, res) => {
+                            if (err) return err;
+                            console.log("DONE")
+                            return
+                        })
                     } else {
                         console.log("here dd")
                         con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
@@ -105,16 +113,8 @@ io.on('connection', function (socket) {
 
 });
 
-function createFeed(msg){
-    var feed = [
-        [null, msg.feed, msg.deviceId, msg.user_id, msg.value]
-    ]
+function createFeed(msg) {
 
-    con.query('insert into feed_vals(id, name, deviceID, user_id, value) VALUES ?', [feed], (err, res) => {
-        if(err) return err;
-        console.log("DONE")
-        return
-    })
 }
 
 http.listen(3000, function () {

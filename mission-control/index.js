@@ -63,11 +63,11 @@ io.on('connection', function (socket) {
                         var feedvalue = [
                             [null, msg.feed, msg.deviceId, msg.user, msg.value]
                         ]
-
-                        con.query('insert into feed_vals (id, name, deviceID, user_id, value) values ?', [feedvalue], (err, res) => {
-                            if (err) return err;
-                            console.log(result.affectedRows)
-                        })
+                        var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value) VALUES ?";
+                        con.query(sql, [feedvalue], function (err, result) {
+                            if (err) throw err;
+                            console.log("Number of records inserted: " + result.affectedRows);
+                          });
                     } else {
                         console.log("here dd")
                         con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {

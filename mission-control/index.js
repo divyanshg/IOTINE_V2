@@ -61,17 +61,14 @@ io.on('connection', function (socket) {
                         return err;
                     } else if (respp.length == 0) {
                         if (msg.deviceId == "$SYS") return
-                        console.log("here aa")
                         var feedvalue = [
                             [null, msg.feed, msg.deviceId, msg.user, msg.value]
                         ]
                         var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value) VALUES ?";
                         con.query(sql, [feedvalue], function (err, result) {
                             if (err) throw err;
-                            console.log("Number of records inserted: " + result.affectedRows);
                         });
                     } else {
-                        console.log("here dd")
                         con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {

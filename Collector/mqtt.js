@@ -41,6 +41,7 @@ server.on('clientConnected', function (client) {
     con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, res) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
+            if(err) throw err;
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })

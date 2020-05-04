@@ -62,9 +62,9 @@ io.on('connection', function (socket) {
                     } else if (respp.length == 0) {
                         if (msg.deviceId == "$SYS") return
                         var feedvalue = [
-                            [null, msg.feed, msg.deviceId, msg.user, msg.value]
+                            [null, msg.feed, msg.deviceId, msg.user, msg.value, '']
                         ]
-                        var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value) VALUES ?";
+                        var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value, unit) VALUES ?";
                         con.query(sql, [feedvalue], function (err, result) {
                             if (err) throw err;
                         });

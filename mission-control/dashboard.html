@@ -1336,7 +1336,9 @@
         socket.on('subscribe', (feed, msg, unit) => {
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
+                    console.log("ping")
                     if (mfeed == feed) {
+                        console.log("pong")
                         updateButton("btn-" + feed+"-"+msg.deviceId, msg, feed)
                         updateLog(".log-" + feed+"-"+msg.deviceId, msg, feed)
                         var chart = document.querySelector(".chart-" + feed+"-"+msg.deviceId)

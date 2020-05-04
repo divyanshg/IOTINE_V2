@@ -165,7 +165,13 @@ def getUpdate():
   r = requests.get(url)
   data = json.loads(r.text)
   with open("deviceConfig.json", "w") as f:
-    json.dump(data, f)  
+    json.dump(data, f) 
+
+  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/wifiConfig.json'
+  r = requests.get(url)
+  data = json.loads(r.text)
+  with open("wifiConfig.json", "w") as f:
+    json.dump(data, f)    
 
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
   time.sleep(3)

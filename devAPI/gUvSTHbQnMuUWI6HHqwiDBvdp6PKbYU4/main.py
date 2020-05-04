@@ -28,6 +28,10 @@ def main_loop():
             {
               "name": "CORE_HALL",
               "value": esp32.hall_sensor()
+            },
+            {
+              "name": "ESP_RANDOM",
+              "value": iotine.rand()
             }
           ]
           , on_pub)

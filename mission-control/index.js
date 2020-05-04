@@ -59,8 +59,10 @@ io.on('connection', function (socket) {
                 con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.deviceId, msg.feed], (err, respp) => {
                     if (err) return err;
                     if (respp.length == 0) {
+                        console.log("here aa")
                         createFeed(msg)
                     } else {
+                        console.log("here dd")
                         con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {

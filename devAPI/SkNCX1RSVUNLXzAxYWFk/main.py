@@ -30,6 +30,10 @@ while True:
             {
               "name": "ENGINE_OIL",
               "value": esp32.hall_sensor()
+            },
+            {
+              "name": "CORE_TEMP",
+              "value": esp32.raw_temperature()
             }
           ]
           , on_pub)

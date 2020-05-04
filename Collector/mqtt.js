@@ -42,6 +42,7 @@ server.on('clientConnected', function (client) {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if(err) throw err;
+            if(res.length == 0) return
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })

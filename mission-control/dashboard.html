@@ -1337,7 +1337,7 @@
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
                     console.log("ping")
-                    if (mfeed == feed) {
+                    if (mfeed == feed+"-"+msg.deviceId) {
                         console.log("pong")
                         updateButton("btn-" + feed+"-"+msg.deviceId, msg, feed)
                         updateLog(".log-" + feed+"-"+msg.deviceId, msg, feed)

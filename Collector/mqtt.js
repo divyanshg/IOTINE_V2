@@ -38,11 +38,12 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, res) => {
+    con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, restu) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if(err) throw err;
-            sockClient.emit('devStat', res[0].deviceID, "IDLE")
+            console.log(res)
+            //sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })
 });
@@ -70,7 +71,6 @@ server.on('published', (packet) => {
                 user: topic[2]
             })
         } else if (topic[1] == "FSYS") {
-            console.log("FSYS : " + message)
             sockClient.emit('publish', {
                 user: topic[2],
                 deviceId: topic[0],

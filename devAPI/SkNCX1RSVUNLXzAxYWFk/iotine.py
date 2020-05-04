@@ -9,7 +9,7 @@ import urequests as requests
 import os
 import random
 
-
+machine = machine
 import network
 
 
@@ -83,8 +83,6 @@ def listenToSystemCommands(topic, msg):
       getUpdate()
   elif topic.decode() == client_id+'/$SYS/COMMANDS/NEWFILE/NON':
       getFile(msg.decode())   
-  else:
-      print(topic, " : ", msg)
 
 
 def connect():
@@ -171,29 +169,24 @@ def subscribe(topic, callback=None):
         client.set_callback(callback) 
 
 
-def publish(topic, msg, callback=None):
+def publish(payload, callback=None):
     if pubstop == False:
         try:
+          for i in range(len(payload)):
             if callback == None:
-                client.publish(str(client_id+"/"+topic+"/"+user_id), str(msg))
-                print("PUBLISH_STATUS OF "+topic+" : YES")
-                led.value(1)
-                time.sleep(0.25)
-                led.value(0)
-                time.sleep(0.25)
-                led.value(1)
-                time.sleep(0.25)
-                led.value(0) 
+                client.publish(str(client_id+"/"+payload[i]['name']+"/"+user_id), str(payload[i]['value']))
+                print("PUBLISH_STATUS OF "+payload[i]['name']+" : YES")
             else:
-                callback(client.publish(client_id+"/"+topic+"/"+user_id, str(msg)))
-                print("PUBLISH_STATUS OF "+topic+" : YES")
-                led.value(1)
-                time.sleep(0.25)
-                led.value(0)
-                time.sleep(0.25)
-                led.value(1)
-                time.sleep(0.25)
-                led.value(0)        
+                callback(client.publish(client_id+"/"+payload[i]['name']+"/"+user_id, str(payload[i]['value'])))
+                print("PUBLISH_STATUS OF "+payload[i]['name']+" : YES")
+                
+          led.value(1)
+          time.sleep(0.25)
+          led.value(0)
+          time.sleep(0.25)
+          led.value(1)
+          time.sleep(0.25)
+          led.value(0)           
         except OSError as e:
             print("Connection lost to IOTINE... Rebooting in 15s. ", e)
             time.sleep(15)

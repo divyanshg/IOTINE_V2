@@ -11,6 +11,8 @@ import iotine
 gc.collect()
 
 
+print(iotine.__VERSION)
+
 iotine.connectWIFI()    
 
 iotine.connect()

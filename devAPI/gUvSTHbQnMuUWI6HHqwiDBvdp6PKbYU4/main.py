@@ -17,7 +17,7 @@ def on_pub(s):
 
 iotine.subscribe("CORE_TEMP", on_sub)
 
-def on_loop():
+def main_loop():
   if button.value() == 0:
         #iotine.publish("CONT_HUMID", iotine.rand(),on_pub)
         iotine.publish([
@@ -32,5 +32,5 @@ def on_loop():
           ]
           , on_pub)
 
-iotine.loop(on_loop)
+iotine.loop(main_loop)
     

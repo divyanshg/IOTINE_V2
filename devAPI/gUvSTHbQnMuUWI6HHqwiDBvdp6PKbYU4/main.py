@@ -4,7 +4,7 @@ import esp32
 
 
 led = iotine.led
-button = machine.Pin(5, machine.Pin.IN, machine.Pin.PULL_UP)
+button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
 button.value(0)
 
 def on_sub(topic, msg):

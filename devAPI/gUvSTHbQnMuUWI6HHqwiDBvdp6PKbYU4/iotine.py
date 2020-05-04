@@ -16,6 +16,7 @@ import network
 
 led = Pin(2, Pin.OUT)
 
+
 def connectWIFI():
   with open("wifiConfig.json") as f:
     data = json.load(f)
@@ -171,6 +172,12 @@ def subscribe(topic, callback=None):
     else:    
         client.set_callback(callback) 
 
+
+def waitMsg():
+  client.wait_msg()
+
+def checkMsg():
+    client.check_msg()
 
 def publish(payload, callback=None):
     if pubstop == False:

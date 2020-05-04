@@ -56,15 +56,23 @@ io.on('connection', function (socket) {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             } else {
-                con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
+                con.query('select * from feed_vals where deviceID = ? and name = ?', [msg.deviceId, msg.feed], (err, respp) => {
                     if (err) return err;
-                    con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
-                        if (err) return err
-                        io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
-                        client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                    })
+                    if (respp.length == 0) {
+                        createFeed(msg)
+                    } else {
+                        con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
+                            if (err) return err;
+                            con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
+                                if (err) return err
+                                io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
+                                client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                            })
 
-                    //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
+                            //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
+                        })
+                    }
+
                 })
             }
         } else {
@@ -94,6 +102,18 @@ io.on('connection', function (socket) {
     })
 
 });
+
+function createFeed(msg){
+    var feed = [
+        [null, msg.feed, msg.deviceId, msg.user_id, msg.value]
+    ]
+
+    con.query('insert into feed_vals(id, name, deviceID, user_id, value) VALUES ?', [feed], (err, res) => {
+        if(err) return err;
+        console.log("DONE")
+        return
+    })
+}
 
 http.listen(3000, function () {
     console.log('listening on *:3000');

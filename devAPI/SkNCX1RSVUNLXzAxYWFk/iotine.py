@@ -175,10 +175,10 @@ def publish(payload, callback=None):
           for i in range(len(payload)):
             if callback == None:
                 client.publish(str(client_id+"/"+payload[i]['name']+"/"+user_id), str(payload[i]['value']))
-                print("PUBLISH_STATUS OF "+payload[i]['name']+" : YES")
+                print("\nPUBLISH_STATUS OF "+payload[i]['name']+" : YES\n")
             else:
                 callback(client.publish(client_id+"/"+payload[i]['name']+"/"+user_id, str(payload[i]['value'])))
-                print("PUBLISH_STATUS OF "+payload[i]['name']+" : YES")
+                print("\nPUBLISH_STATUS OF "+payload[i]['name']+" : YES\n")
                 
           led.value(1)
           time.sleep(0.25)

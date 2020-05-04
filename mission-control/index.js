@@ -57,9 +57,10 @@ io.on('connection', function (socket) {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             } else {
                 con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.deviceId, msg.feed], (err, respp) => {
-                    if (err) return err;
-                    if (respp.length == 0) {
-                        if(msg.deviceId == "$SYS") return
+                    if (err) {
+                        return err;
+                    } else if (respp.length == 0) {
+                        if (msg.deviceId == "$SYS") return
                         console.log("here aa")
                         var feedvalue = [
                             [null, msg.feed, msg.deviceId, msg.user, msg.value]

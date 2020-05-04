@@ -1183,21 +1183,21 @@
 
                         if (widget.type == "chart") {
                             var prev = ''
-                            lineChart(widget.feed, widget.config, widgetBdy, prev)
+                            lineChart(widget.feed+"-"+widget.config.device, widget.config, widgetBdy, prev)
                         } else if (widget.type == "btn") {
-                            createButton(widget.feed, widget.config, widgetBdy)
+                            createButton(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "map") {
-                            createMap(widget.feed, widget.config, widgetBdy)
+                            createMap(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "range") {
-                            createRange(widget.feed, widget.config, widgetBdy)
+                            createRange(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "log") {
-                            createLog(widget.feed, widget.config, widgetBdy)
+                            createLog(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "video") {
-                            createVideo(widget.feed, widget.config, widgetBdy)
+                            createVideo(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "image") {
-                            createImg(widget.feed, widget.config, widgetBdy)
+                            createImg(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         } else if (widget.type == "iframe") {
-                            createIFrame(widget.feed, widget.config, widgetBdy)
+                            createIFrame(widget.feed+"-"+widget.config.device, widget.config, widgetBdy)
                         }
 
                     })
@@ -1219,7 +1219,7 @@
         }
 
         function updateChart(id, ctx, msg, feed) {
-            var allElms = $(".chart-" + feed).show()
+            var allElms = $(".chart-" + feed+"-"+msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
                 var widgets = getWidget(feed)
                 for (j = 0; j < widgets.length; j++) {

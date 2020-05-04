@@ -22,6 +22,10 @@ while True:
             {
               "name": "CORE_TEMP",
               "value": esp32.raw_temperature()
+            },
+            {
+              "name": "CORE_HALL",
+              "value": esp32.hall_sensor()
             }
           ]
           , on_pub)

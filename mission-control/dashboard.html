@@ -1219,7 +1219,6 @@
         }
 
         function updateChart(id, ctx, msg, feed) {
-            console.log(msg.deviceId)
             var allElms = $(".chart-" + feed+"-"+msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
                 var widgets = getWidget(feed)
@@ -1336,9 +1335,7 @@
         socket.on('subscribe', (feed, msg, unit) => {
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
-                    console.log("ping")
                     if (mfeed == feed+"-"+msg.deviceId) {
-                        console.log("pong")
                         updateButton("btn-" + feed+"-"+msg.deviceId, msg, feed)
                         updateLog(".log-" + feed+"-"+msg.deviceId, msg, feed)
                         var chart = document.querySelector(".chart-" + feed+"-"+msg.deviceId)

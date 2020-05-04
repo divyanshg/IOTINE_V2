@@ -59,6 +59,7 @@ io.on('connection', function (socket) {
                 con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.deviceId, msg.feed], (err, respp) => {
                     if (err) return err;
                     if (respp.length == 0) {
+                        if(msg.deviceId == "$SYS") return
                         console.log("here aa")
                         var feedvalue = [
                             [null, msg.feed, msg.deviceId, msg.user, msg.value]
@@ -67,7 +68,7 @@ io.on('connection', function (socket) {
                         con.query(sql, [feedvalue], function (err, result) {
                             if (err) throw err;
                             console.log("Number of records inserted: " + result.affectedRows);
-                          });
+                        });
                     } else {
                         console.log("here dd")
                         con.query('select unit from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {

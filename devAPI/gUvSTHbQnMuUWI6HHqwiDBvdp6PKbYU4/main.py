@@ -68,5 +68,5 @@ def main_loop():
     ]
   , on_pub)            
 
-iotine.loop(sub_loop)
+iotine.loop(main_loop)
     

@@ -56,7 +56,7 @@ def main_loop():
     [
       {
         "name": "ESP_X",
-        "value": moveServo(joystick(adcx))
+        "value": joystick(adcx)
       },
       {
         "name":"ESP_Y",
@@ -64,6 +64,7 @@ def main_loop():
       }
     ]
   , on_pub)            
+  moveServo(joystick(adcx))
 
 iotine.loop(main_loop)
     

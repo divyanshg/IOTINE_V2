@@ -200,9 +200,9 @@ def checkMsg():
     client.check_msg()
 
 def publish(payload, callback=None):
+    checkMsg()
     if pubstop == False:
         try:
-
           client.publish(device_id+'/$__VERSION/'+user_id, str(__VERSION))
           client.publish(device_id+'/FSYS/'+user_id, str(os.listdir()))
           for i in range(len(payload)):

@@ -1921,7 +1921,7 @@ button#nTAB {
     height: 150px;
 }
 
-.commands-content .cmdTop{
+.commands-content .cmdTop {
     position: relative;
     top: 0px;
     margin-bottom: 10px;
@@ -1929,6 +1929,7 @@ button#nTAB {
     height: 10px;
     left: 0px;
 }
+
 .commands-content {
     position: absolute;
     bottom: 0px;
@@ -1941,47 +1942,49 @@ button#nTAB {
     height: 40px;
     transition: 0.5s ease all;
     overflow-y: auto;
-    color:white;
+    color: white;
 }
 
-.commands-content button:hover{
+.commands-content button:hover {
     background: white;
 }
-.cmdBdy{
-    display:flex;
-    width:100%;
-    height:auto;
-    margin-bottom:10px;
+
+.cmdBdy {
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
+
 #devices li:hover {
     height: 60px;
     transition: 0.5s ease height;
 }
 
-.mstbtm{
+.mstbtm {
     position: fixed;
-    bottom:0px;
-    height:15px;
-    width:100%;
-    display:flex;
+    bottom: 0px;
+    height: 15px;
+    width: 100%;
+    display: flex;
     background-color: var(--appInner);
 }
 
-.mstbtm ul{
-    float:right;
+.mstbtm ul {
+    float: right;
 }
 
-.mstbtm .active{
-    border-top:1px solid rgb(0, 153, 255);
+.mstbtm .active {
+    border-top: 1px solid rgb(0, 153, 255);
 }
 
 .ripple {
     position: relative;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
-  }
-  
-  .ripple:after {
+}
+
+.ripple:after {
     content: "";
     display: block;
     position: absolute;
@@ -1990,17 +1993,16 @@ button#nTAB {
     top: 0;
     left: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-image: radial-gradient(circle, var(--sidebar) 10%, transparent 10.01%);
     background-repeat: no-repeat;
     background-position: 50%;
     transform: scale(10, 10);
     opacity: 0;
     transition: transform .5s, opacity 1s;
-  }
-  
-  .ripple:active:after {
+}
+
+.ripple:active:after {
     transform: scale(0, 0);
     opacity: .3;
     transition: 0s;
-  }
-  
+}

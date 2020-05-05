@@ -35,7 +35,7 @@ def button_pressed():
 led = iotine.led
 
 def joystick(adc):
-    return max(6, min(120, int(adc.read()/32)))
+    return max(0, min(180, int(adc.read()/32)))
 
 
 def on_sub(topic, msg):

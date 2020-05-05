@@ -5,7 +5,7 @@ from machine import Pin, ADC
 
 PINX = 32   # needs to be a pin that supports ADC
 PINY = 33   # needs to be a pin that supports ADC
-PINSW = 5
+PINSW = 15
 
 adcx = ADC(Pin(PINX))
 adcx.atten(ADC.ATTN_11DB)
@@ -15,17 +15,18 @@ sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
 
 def button_pressed(p):
-    iotine.publish([
-            {
-              "name": "CORE_TEMP_ESP",
-              "value": esp32.raw_temperature()
-            },
-            {
-              "name": "CORE_HALL",
-              "value": esp32.hall_sensor()
-            }            
-          ]
-          , on_pub)  
+  print("CLICKK")
+  iotine.publish([
+      {
+          "name": "CORE_TEMP_ESP",
+          "value": esp32.raw_temperature()
+      },
+      {
+          "name": "CORE_HALL",
+          "value": esp32.hall_sensor()
+      }            
+    ]
+  , on_pub)  
 
 led = iotine.led
 button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
@@ -51,13 +52,13 @@ def main_loop():
   iotine.publish(
     [
       {
-              "name": "ESP_X",
-              "value": joystick(adcx)
-            },
-            {
-              "name":"ESP_Y",
-              "value": joystick(adcy)
-            }
+        "name": "ESP_X",
+        "value": joystick(adcx)
+      },
+      {
+        "name":"ESP_Y",
+        "value": joystick(adcy)
+      }
     ]
   , on_pub)            
 

@@ -1383,6 +1383,7 @@
         });
 
         function publishRange(id, feed, config) {
+            console.log(id)
             var slider = document.querySelector(id)
             socket.emit('publish', {
                 deviceId: config.device,

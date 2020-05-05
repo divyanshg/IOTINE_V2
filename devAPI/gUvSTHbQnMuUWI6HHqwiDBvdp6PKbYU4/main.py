@@ -14,8 +14,7 @@ adcy.atten(ADC.ATTN_11DB)
 sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
 
-def button_pressed(p):
-  print("CLICKK")
+def button_pressed():
   iotine.publish([
       {
           "name": "CORE_TEMP_ESP",
@@ -29,7 +28,6 @@ def button_pressed(p):
   , on_pub)  
 
 led = iotine.led
-button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
 
 def joystick(adc):
     return max(6, min(120, int(adc.read()/32)))
@@ -46,7 +44,8 @@ def on_pub(s):
 iotine.subscribe("CORE_TEMP", on_sub)
 
 def main_loop():
-  sw.irq(trigger=Pin.IRQ_FALLING, handler=button_pressed)
+  if sw.value() == 0:
+    button_pressed()
   iotine.publish(
     [
       {

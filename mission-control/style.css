@@ -1980,7 +1980,7 @@ button#nTAB {
     transition: background 0.8s;
   }
   .ripple:hover {
-    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+    background: var(--sidebar) radial-gradient(circle, transparent 1%,  var(--sidebar) 1%) center/15000%;
   }
   .ripple:active {
     background-color: var(--sidebar);

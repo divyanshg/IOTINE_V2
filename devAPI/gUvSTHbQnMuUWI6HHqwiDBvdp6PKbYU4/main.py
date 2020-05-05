@@ -40,7 +40,7 @@ def joystick(adc):
 
 def on_sub(topic, msg):
   iotine.listenToSystemCommands(topic, msg)
-  if topic.decode() == iotine.devide_id+"/ESP_X/NON":
+  if topic.decode() == iotine.device_id+"/ESP_X/NON":
       moveServo(int(msg.decode()))  
 
 def on_pub(s):

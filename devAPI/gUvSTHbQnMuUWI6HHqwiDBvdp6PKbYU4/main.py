@@ -50,6 +50,8 @@ def on_pub(s):
 def doDaily():
   x = joystick(adcx)
   moveServo(x) 
+
+  time.sleep(3)
   iotine.publish(
       [
         {

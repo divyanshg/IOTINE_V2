@@ -1959,5 +1959,10 @@ button#nTAB {
 }
 
 .mstbtm{
-    
+    position: fixed;
+    bottom:0px;
+    height:5%;
+    width:100%;
+    display:flex;
+    background-color: var(--appInner);
 }

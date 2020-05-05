@@ -79,11 +79,8 @@ def main_loop():
   #    ]
   #, on_pub)     
   iotine.checkMsg()   
-
-  moveServo(joystick(adcx)) 
-
-  time.sleep(3)
-  doDaily()  
+  if iotine.pubstop == False:
+    moveServo(joystick(adcx))
 
 iotine.loop(main_loop)
     

@@ -40,13 +40,14 @@ def joystick(adc):
 
 def on_sub(topic, msg):
   iotine.listenToSystemCommands(topic, msg)
-  print(topic+" / "+msg)
+  if topic.decode() == iotine.devide_id+"/ESP_X/NON":
+      moveServo(int(msg.decode()))  
 
 def on_pub(s):
   print("message Sent")
 
 
-iotine.subscribe("CORE_TEMP", on_sub)
+iotine.subscribe("ESP_X", on_sub)
 
 def main_loop():
   if sw.value() == 0:
@@ -64,7 +65,6 @@ def main_loop():
       }
     ]
   , on_pub)            
-  moveServo(joystick(adcx))
 
 iotine.loop(main_loop)
     

@@ -1,10 +1,28 @@
 import iotine
 import machine
 import esp32
+from machine import Pin, ADC
 
+PINX = 12   # needs to be a pin that supports ADC
+PINY = 13   # needs to be a pin that supports ADC
+PINSW = 17
+
+adcx = ADC(Pin(PINX))
+adcx.atten(ADC.ATTN_11DB)
+adcy = ADC(Pin(PINY))
+adcy.atten(ADC.ATTN_11DB)
+sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
 led = iotine.led
 button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
+
+def joystick(adc):
+    return max(6, min(120, int(adc.read()/32)))
+
+sw.irq(trigger=Pin.IRQ_FALLING, handler=button_pressed)
+
+def button_pressed(p):
+    print('Click')
 
 
 def on_sub(topic, msg):
@@ -35,6 +53,9 @@ def main_loop():
             }
           ]
           , on_pub)
+  x = joystick(adcx)
+  y = joystick(adcy)
+  print('%.2f\t%.2f' % (x,y))        
 
 iotine.loop(main_loop)
     

@@ -1245,7 +1245,11 @@
                 var widgets = getWidget(feed, msg.deviceId)
                 for (j = 0; j < widgets.length; j++) {
                     widget = widgets[j]
-                    ctx = allElms[j].getContext('2d')
+                    try{ 
+                        ctx = allElms[j].getContext('2d')
+                    }catch(e){
+                        return
+                    }
                     //console.log(/\d/.test(msg.value))
                     var config = widgets[j].config
 

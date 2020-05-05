@@ -48,7 +48,6 @@ def on_pub(s):
   return 1
 
 def doDaily():
-  x = joystick(adcx)
   iotine.publish(
       [
         {
@@ -81,7 +80,7 @@ def main_loop():
   #, on_pub)     
   iotine.checkMsg()   
 
-  moveServo(x) 
+  moveServo(joystick(adcx)) 
 
   time.sleep(3)
   doDaily()  

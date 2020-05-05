@@ -1409,6 +1409,7 @@
         function pubii(id, feed, config) {
             if (config.text == "ON") {
                 socket.emit('publish', {
+                    user: user,
                     deviceId: config.device,
                     feed: feed,
                     value: "OFF",

@@ -84,6 +84,7 @@ def listenToSystemCommands(topic, msg):
   elif topic.decode() == device_id+'/$SYS/COMMANDS/UPDATE/NON':
       print("\n")
       print("*_#_" * 20) 
+      led.value(1)
       print("DOWNLOADING FIRMWARE UPDATE...")  
       getUpdate()
   elif topic.decode() == device_id+'/$SYS/COMMANDS/NEWFILE/NON':
@@ -175,9 +176,9 @@ def getUpdate():
     json.dump(data, f)    
 
   print("UPDATE DOWNLOADED SUCCESSFULLY. \n REBOOTING IN 3s.")
-  time.sleep(3)
   print("\n")
   print("*_#_"* 20 )  
+  time.sleep(3)
   machine.reset()
 
 

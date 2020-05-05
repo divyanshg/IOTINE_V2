@@ -47,8 +47,8 @@ def on_sub(topic, msg):
 def on_pub(s):
   print("message Sent")
 
-
-iotine.subscribe("ESP_X", on_sub)
+def sub_loop():
+    iotine.subscribe("ESP_X", on_sub)
 
 def main_loop():
   if sw.value() == 0:
@@ -67,5 +67,5 @@ def main_loop():
     ]
   , on_pub)            
 
-#iotine.loop(main_loop)
+iotine.loop(sub_loop)
     

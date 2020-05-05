@@ -34,9 +34,6 @@ button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
 def joystick(adc):
     return max(6, min(120, int(adc.read()/32)))
 
-sw.irq(trigger=Pin.IRQ_FALLING, handler=button_pressed)
-
-
 
 def on_sub(topic, msg):
   iotine.listenToSystemCommands(topic, msg)
@@ -49,6 +46,7 @@ def on_pub(s):
 iotine.subscribe("CORE_TEMP", on_sub)
 
 def main_loop():
+  sw.irq(trigger=Pin.IRQ_FALLING, handler=button_pressed)
   iotine.publish(
     [
       {

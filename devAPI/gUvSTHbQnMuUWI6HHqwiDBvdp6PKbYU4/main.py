@@ -50,12 +50,13 @@ def on_pub(s):
 
 
 
-iotine.subscribe("ESP_X", on_sub)
 
 def main_loop():
+
+  iotine.subscribe("ESP_X", on_sub)
   if sw.value() == 0:
       button_pressed()
-  iotine.publish(
+      iotine.publish(
       [
         {
           "name": "ESP_X",
@@ -66,7 +67,7 @@ def main_loop():
           "value": joystick(adcy)
         }
       ]
-  , on_pub)     
+      , on_pub)     
   moveServo(joystick(adcx))         
 
 iotine.loop(main_loop)

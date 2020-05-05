@@ -67,7 +67,8 @@ def main_loop():
   #      }
   #    ]
   #, on_pub)     
-  moveServo(joystick(adcx))         
+  moveServo(joystick(adcx))   
+  iotine.checkMsg()      
 
 iotine.loop(main_loop)
     

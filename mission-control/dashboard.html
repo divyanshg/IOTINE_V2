@@ -1425,6 +1425,7 @@
 
             } else if (config.text == "OFF") {
                 socket.emit('publish', {
+                    user:user,
                     deviceId: config.device,
                     feed: feed,
                     value: "ON",

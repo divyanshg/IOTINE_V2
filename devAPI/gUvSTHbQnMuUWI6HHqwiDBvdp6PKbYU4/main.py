@@ -40,28 +40,21 @@ def joystick(adc):
 
 def on_sub(topic, msg):
   iotine.listenToSystemCommands(topic, msg)
-  if topic == b'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4/ESP_X/NON':
+  if topic.decode() == iotine.device_id+'/ESP_X/NON':
       moveServo(int(msg.decode()))
+  elif topic.decode() == iotine.device_id+"/ESP_INT_LED/NON":
+      if msg.decode() == 'ON':
+        iotine.led.value(1)
+      else:
+        iotine.led.value(0)  
 
 def on_pub(s):
   #print("message Sent")
   return 1
 
-def doDaily():
-  iotine.publish(
-      [
-        {
-          "name": "ESP_X",
-          "value": joystick(adcx)
-        },
-        {
-          "name":"ESP_Y",
-          "value": joystick(adcy)
-        }
-      ]
-  , on_pub) 
 
 iotine.subscribe("ESP_X", on_sub)
+iotine.subscribe("ESP_INT_LED", on_sub)
 
 def main_loop():
   if sw.value() == 0:

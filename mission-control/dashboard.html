@@ -1386,6 +1386,7 @@
             console.log(id)
             var slider = document.querySelector(id)
             socket.emit('publish', {
+                user: user,
                 deviceId: config.device,
                 feed: feed,
                 value: slider.value,

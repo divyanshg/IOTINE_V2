@@ -46,6 +46,14 @@ app.get('/widgets/:userId/:appId', (req, res) => {
         "config": {
             "labels": [],
             "type": "",
+            "minval": "",
+            "maxval": "",
+            "value": "",
+            "textColor": "",
+            "text": "",
+            "changeText": "",
+            "src": "",
+            "color": "",
             "prevTime": "",
             "device": "",
             "tab": ""
@@ -69,6 +77,15 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.datasets[0].borderWidth = widget.borderWidth;
             //CONFIGS
             schema.config.labels = [];
+            schema.config.minval = widget.minval;
+            schema.config.maxval = widget.maxval;
+            schema.config.value = widget.value;
+            schema.config.textColor = widget.color;
+            schema.config.text = widget.text;
+            schema.config.changeText = widget.changeText;
+            schema.config.src = widget.src;
+            schema.config.color = widget.color;
+
             schema.config.type = widget.chartType;
             schema.config.prevTime = widget.prevTime;
             schema.config.device = widget.device;
@@ -90,6 +107,14 @@ app.get('/widgets/:userId/:appId', (req, res) => {
                 "config": {
                     "labels": [],
                     "type": "",
+                    "minval": "",
+                    "maxval": "",
+                    "value": "",
+                    "textColor": "",
+                    "text": "",
+                    "changeText": "",
+                    "src": "",
+                    "color": "",
                     "prevTime": "",
                     "device": "",
                     "tab": ""

@@ -56,7 +56,7 @@ def main_loop():
     [
       {
         "name": "ESP_X",
-        "value": dty(joystick(adcx))
+        "value": moveServo(joystick(adcx))
       },
       {
         "name":"ESP_Y",

@@ -1242,7 +1242,7 @@
         function updateChart(id, ctx, msg, feed) {
             var allElms = $(".chart-" + feed + "-" + msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
-                var widgets = getWidget(feed, msh.deviceId)
+                var widgets = getWidget(feed, msg.deviceId)
                 for (j = 0; j < widgets.length; j++) {
                     widget = widgets[j]
                     ctx = allElms[j].getContext('2d')

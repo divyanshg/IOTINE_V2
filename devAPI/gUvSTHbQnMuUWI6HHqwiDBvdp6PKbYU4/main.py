@@ -7,12 +7,17 @@ PINX = 32   # needs to be a pin that supports ADC
 PINY = 33   # needs to be a pin that supports ADC
 PINSW = 15
 
+p4 = machine.Pin(4)
+servo = machine.PWM(p4,freq=50)
 adcx = ADC(Pin(PINX))
 adcx.atten(ADC.ATTN_11DB)
 adcy = ADC(Pin(PINY))
 adcy.atten(ADC.ATTN_11DB)
 sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
+def moveServo(dty):
+  servo.duty(dty)
+  return dty
 
 def button_pressed():
   iotine.publish([
@@ -51,7 +56,7 @@ def main_loop():
     [
       {
         "name": "ESP_X",
-        "value": joystick(adcx)
+        "value": dty(joystick(adcx))
       },
       {
         "name":"ESP_Y",

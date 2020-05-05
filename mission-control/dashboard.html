@@ -1228,10 +1228,10 @@
             await xhttp.send();
         }
 
-        function getWidget(feed) {
+        function getWidget(feed, dev) {
             var obj = [];
             for (i = 0; i < widgets.length; i++) {
-                if (widgets[i].feed == feed) {
+                if (widgets[i].feed == feed && widgets[i].config.device == dev) {
                     obj.push(widgets[i])
 
                 }
@@ -1242,7 +1242,7 @@
         function updateChart(id, ctx, msg, feed) {
             var allElms = $(".chart-" + feed + "-" + msg.deviceId).show()
             for (i = 0; i < allElms.length; i++) {
-                var widgets = getWidget(feed)
+                var widgets = getWidget(feed, msh.deviceId)
                 for (j = 0; j < widgets.length; j++) {
                     widget = widgets[j]
                     ctx = allElms[j].getContext('2d')

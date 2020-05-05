@@ -47,7 +47,21 @@ def on_pub(s):
   #print("message Sent")
   return 1
 
-
+def doDaily():
+  x = joystick(adcx)
+  moveServo(x) 
+  iotine.publish(
+      [
+        {
+          "name": "ESP_X",
+          "value": joystick(adcx)
+        },
+        {
+          "name":"ESP_Y",
+          "value": joystick(adcy)
+        }
+      ]
+  , on_pub) 
 
 iotine.subscribe("ESP_X", on_sub)
 
@@ -67,7 +81,7 @@ def main_loop():
   #    ]
   #, on_pub)     
   iotine.checkMsg()   
-  moveServo(joystick(adcx))   
+  doDaily()  
 
 iotine.loop(main_loop)
     

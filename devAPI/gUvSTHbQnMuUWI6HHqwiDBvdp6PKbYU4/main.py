@@ -54,18 +54,18 @@ iotine.subscribe("ESP_X", on_sub)
 def main_loop():
   if sw.value() == 0:
       button_pressed()
-  iotine.publish(
-      [
-        {
-          "name": "CORE_TEMP",
-          "value": esp32.raw_temperature()
-        },
-        {
-          "name":"CORE_HALL",
-          "value": esp32.hall_sensor()
-        }
-      ]
-  , on_pub)     
+  #iotine.publish(
+  #    [
+  #      {
+  #        "name": "CORE_TEMP",
+  #        "value": esp32.raw_temperature()
+  #      },
+  #      {
+  #        "name":"CORE_HALL",
+  #        "value": esp32.hall_sensor()
+  #      }
+  #    ]
+  #, on_pub)     
   iotine.checkMsg()      
 
 iotine.loop(main_loop)

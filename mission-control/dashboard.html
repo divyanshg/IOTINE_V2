@@ -1098,16 +1098,16 @@
             bdy.appendChild(mapCont);
         }
 
-        function createRange(feed, config, bdy) {
+        function createRange(feedd, feed,config, bdy) {
             var slider = document.createElement('input')
-            slider.className += "slider range-" + feed
+            slider.className += "slider range-" + feedd
             slider.type = "range"
             slider.min = config.minval
             slider.max = config.maxval
             slider.value = config.value
 
             slider.addEventListener('input', function () {
-                publishRange(".range-" + feed, feed, config)
+                publishRange(".range-" + feedd, feed, config)
             })
 
             bdy.className += " wid-range"
@@ -1205,7 +1205,7 @@
                             createMap(widget.feed + "-" + widget.config.device, widget.config,
                                 widgetBdy)
                         } else if (widget.type == "range") {
-                            createRange(widget.feed + "-" + widget.config.device, widget.config,
+                            createRange(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "log") {
                             createLog(widget.feed + "-" + widget.config.device, widget.config,

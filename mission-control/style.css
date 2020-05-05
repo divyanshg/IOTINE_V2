@@ -1647,7 +1647,7 @@ div.form {
 
 .wid-btn {
     background-color: transparent;
-    color: white;
+    color: var(--title);
     border: none;
     height: 80%;
     width: 100%;

@@ -1098,7 +1098,7 @@
             bdy.appendChild(mapCont);
         }
 
-        function createRange(feedd, feed, config, bdy) {
+        function createRange(feedd, feed,config, bdy) {
             var slider = document.createElement('input')
             slider.className += "slider range-" + feedd
             slider.type = "range"
@@ -1205,8 +1205,7 @@
                             createMap(widget.feed + "-" + widget.config.device, widget.config,
                                 widgetBdy)
                         } else if (widget.type == "range") {
-                            createRange(widget.feed + "-" + widget.config.device, widget.feed, widget
-                                .config,
+                            createRange(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "log") {
                             createLog(widget.feed + "-" + widget.config.device, widget.config,
@@ -1246,9 +1245,9 @@
                 var widgets = getWidget(feed, msg.deviceId)
                 for (j = 0; j < widgets.length; j++) {
                     widget = widgets[j]
-                    try {
+                    try{ 
                         ctx = allElms[j].getContext('2d')
-                    } catch (e) {
+                    }catch(e){
                         return
                     }
                     //console.log(/\d/.test(msg.value))
@@ -1268,7 +1267,7 @@
                             scales: {
                                 yAxes: [{
                                     ticks: {
-                                        stepSize: 5
+                                        beginAtZero: true
                                     }
                                 }]
                             },
@@ -1363,7 +1362,7 @@
             if (unit != "DIRS") {
                 feeds.forEach(mfeed => {
                     if (mfeed == feed + "-" + msg.deviceId) {
-
+                        
                         updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
                         updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
                         var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
@@ -1378,7 +1377,7 @@
                         var latestData = range.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
                         updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
-
+                        
                     } else {
                         return
                     }

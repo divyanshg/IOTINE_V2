@@ -58,7 +58,7 @@ def main_loop():
       [
         {
           "name": "ESP_X",
-          "value": joystick(adcx)-32
+          "value": joystick(adcx)
         },
         {
           "name":"ESP_Y",

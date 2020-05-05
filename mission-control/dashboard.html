@@ -1074,7 +1074,7 @@
             feeds.push(id)
         }
 
-        function createButton(id, config, bdy) {
+        function createButton(id, feed,config, bdy) {
             var buttonCont = document.createElement("button")
             var btnId = "btn-" + id
             buttonCont.className += " wid-btn " + "btn-" + id
@@ -1087,7 +1087,7 @@
             buttonCont.style.color = config.textColor
 
             buttonCont.addEventListener('click', () => {
-                pubii(buttonCont, id, config)
+                pubii(buttonCont, feed, config)
             })
 
             bdy.appendChild(buttonCont)
@@ -1205,25 +1205,25 @@
                             lineChart(widget.feed + "-" + widget.config.device, widget.config,
                                 widgetBdy, prev)
                         } else if (widget.type == "btn") {
-                            createButton(widget.feed + "-" + widget.config.device, widget
+                            createButton(widget.feed + "-" + widget.config.device, widget.feed,widget
                                 .config, widgetBdy)
                         } else if (widget.type == "map") {
-                            createMap(widget.feed + "-" + widget.config.device, widget.config,
+                            createMap(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "range") {
                             createRange(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "log") {
-                            createLog(widget.feed + "-" + widget.config.device, widget.config,
+                            createLog(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "video") {
-                            createVideo(widget.feed + "-" + widget.config.device, widget.config,
+                            createVideo(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "image") {
-                            createImg(widget.feed + "-" + widget.config.device, widget.config,
+                            createImg(widget.feed + "-" + widget.config.device, widget.feed,widget.config,
                                 widgetBdy)
                         } else if (widget.type == "iframe") {
-                            createIFrame(widget.feed + "-" + widget.config.device, widget
+                            createIFrame(widget.feed + "-" + widget.config.device, widget.feed,widget
                                 .config, widgetBdy)
                         }
 

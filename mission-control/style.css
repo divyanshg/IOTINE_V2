@@ -1646,7 +1646,7 @@ div.form {
 }
 
 .wid-btn {
-    background-color: rgb(10, 10, 10);
+    background-color: transparent;
     color: white;
     border: none;
     height: 80%;

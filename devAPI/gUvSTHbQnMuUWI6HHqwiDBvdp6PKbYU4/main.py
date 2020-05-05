@@ -46,6 +46,7 @@ def on_sub(topic, msg):
 
 def on_pub(s):
   #print("message Sent")
+  return 1
 
 
 

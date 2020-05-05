@@ -1966,3 +1966,7 @@ button#nTAB {
     display:flex;
     background-color: var(--appInner);
 }
+
+.mstbtm ul{
+    float:right;
+}

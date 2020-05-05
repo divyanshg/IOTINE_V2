@@ -1961,7 +1961,7 @@ button#nTAB {
 .mstbtm{
     position: fixed;
     bottom:0px;
-    height:5%;
+    height:15px;
     width:100%;
     display:flex;
     background-color: var(--appInner);
@@ -1969,4 +1969,8 @@ button#nTAB {
 
 .mstbtm ul{
     float:right;
+}
+
+.mstbtm .active{
+    border-top:1px solid rgb(0, 153, 255);
 }

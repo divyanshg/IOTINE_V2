@@ -48,8 +48,14 @@ def main_loop():
             {
               "name": "CORE_HALL",
               "value": esp32.hall_sensor()
-            },
-            {
+            }            
+          ]
+          , on_pub)   
+
+          
+  iotine.publish(
+    [
+      {
               "name": "ESP_X",
               "value": joystick(adcx)
             },
@@ -57,8 +63,8 @@ def main_loop():
               "name":"ESP_Y",
               "value": joystick(adcy)
             }
-          ]
-          , on_pub)       
+    ]
+  , on_pub)            
 
 iotine.loop(main_loop)
     

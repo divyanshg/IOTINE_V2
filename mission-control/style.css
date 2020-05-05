@@ -2003,6 +2003,6 @@ button#nTAB {
 
 .ripple:active:after {
     transform: scale(0, 0);
-    opacity: .3;
+    opacity: .6;
     transition: 0s;
 }

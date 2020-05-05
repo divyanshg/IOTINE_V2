@@ -5,7 +5,7 @@ from machine import Pin, ADC
 
 PINX = 32   # needs to be a pin that supports ADC
 PINY = 33   # needs to be a pin that supports ADC
-PINSW = 15
+PINSW = 0
 
 p4 = machine.Pin(4)
 servo = machine.PWM(p4,freq=50)

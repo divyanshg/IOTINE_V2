@@ -50,7 +50,7 @@
                 <button onclick="window.location.replace('./')"><img title="IOTINE"
                         src="http://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""></button>
                 <button v-on:click="toggleDevices"> <i class="material-icons">{{ icon }}</i> </button>
-                <button onclick="toggleNav()"> <i class="material-icons">dehaze</i> </button>
+                <button onclick="toggleNav()"> <i id="dehaze" class="material-icons">dehaze</i> </button>
             </div>
             <div class="bottom-panel">
                 <button><i class="material-icons">settings</i></button>
@@ -1521,11 +1521,13 @@
             var nav = document.querySelector(".diMILA")
             if (nav.style.display == "block" || !nav.style.display) {
                 nav.style.display = "none";
+                $("#dehaze").html("dehaze")
                 $(".mainappin").css({
                     "width": "100%"
                 });
             } else {
                 nav.style.display = "block";
+                $("#dehaze").html("clear_all")
                 $(".mainappin").css({
                     "width": "calc(100% - 230px)"
                 });

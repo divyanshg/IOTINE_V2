@@ -45,7 +45,8 @@ iotine.subscribe("CORE_TEMP", on_sub)
 
 def main_loop():
   if sw.value() == 0:
-    button_pressed()
+      button_pressed()
+      
   iotine.publish(
     [
       {

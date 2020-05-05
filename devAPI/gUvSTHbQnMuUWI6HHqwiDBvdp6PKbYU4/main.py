@@ -40,10 +40,8 @@ def joystick(adc):
 
 def on_sub(topic, msg):
   iotine.listenToSystemCommands(topic, msg)
-  print(topic)
   if topic == b'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4/ESP_X/NON':
       moveServo(int(msg.decode()))  
-      print(msg)
 
 def on_pub(s):
   #print("message Sent")
@@ -68,7 +66,6 @@ def main_loop():
         }
       ]
   , on_pub)     
-  moveServo(joystick(adcx))   
   iotine.checkMsg()      
 
 iotine.loop(main_loop)

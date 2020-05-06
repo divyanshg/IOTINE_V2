@@ -11,9 +11,9 @@ var con = mysql.createConnection({
 
 
 var settings = {
-    port: 1883,
+    port: 8443,
     secure: {
-        port: 8443,
+        port: 1883,
         keyPath:'key.pem',
         certPath: 'cert.pem',
     }

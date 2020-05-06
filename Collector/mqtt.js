@@ -12,7 +12,11 @@ var con = mysql.createConnection({
 
 var settings = {
     port: 1883,
-    
+    secure: {
+        port: 8443,
+        keyPath:'key.pem',
+        certPath: 'cert.pem',
+    }
 }
 
 const io = require("socket.io-client");

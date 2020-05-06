@@ -905,7 +905,7 @@
         getUser();
         var user;
         var app = window.location.pathname.split("/")[2];
-        var socket = io(':3000',{secure: true,reconnect: true, rejectUnauthorized : false});
+        var socket = io( '//'+window.location.hostname+':3000');
         async function getUser() {
             var username = window.location.pathname.split("/")[1];
             var xhttp = new XMLHttpRequest();
@@ -1126,7 +1126,7 @@
             logCont.className += " log-" + feed
             logCont.style.color = config.color + " !important"
 
-            logCont.innerHTML += "CONNECTED TO " + config.device + "/" + feedd + "<br>Waiting For Data...<br>"
+            logCont.innerHTML += "CONNECTED TO " + config.device + "/" + fedd + "<br>Waiting For Data...<br>"
 
             bdy.className += " wid-txt"
 

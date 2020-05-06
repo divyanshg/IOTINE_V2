@@ -8,6 +8,12 @@ const options = {
 };
 
 var http = require('https')
+
+
+http.createServer(options, app).listen(3000, function () {
+    console.log('listening on *:3000');
+});
+
 var io = require('socket.io')(http);
 var mqtt = require('mqtt')
 const mysql = require('mysql');
@@ -123,7 +129,3 @@ io.on('connection', function (socket) {
 function createFeed(msg) {
 
 }
-
-http.createServer(options, app).listen(3000, function () {
-    console.log('listening on *:3000');
-});

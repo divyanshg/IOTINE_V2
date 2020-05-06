@@ -20,18 +20,10 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-    if(username == "MASTER@SERVER@WEB_DASH_HOST"){
-        var authorized = username;
-        console.log("Server authorized")
-        callback(null, authorized)
-        return
-    }
-    con.query("SELECT * FROM devices WHERE deviecID = ?", [username.split["/"][1]], function (err, result, fields) {
+    con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
         if (err) throw err;
         var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
-
-        console.log("Device authorized")
         callback(null, authorized);
     });
 }
@@ -46,9 +38,9 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    con.query('update devices set status = "IDLE" where cINST = ?', [client.id.split["/"][0]], (err, restu) => {
+    con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, restu) => {
         if (err) throw err;
-        con.query('select * from devices where cINST = ?', [client.id.split["/"][0]], (err, res) => {
+        con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if(err) throw err;
             if(res.length == 0) return
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
@@ -60,7 +52,7 @@ server.on('ready', function () {
     console.log("ready");
     con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
-    server.authenticate = authenticate;
+    //server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
     //server.on('')

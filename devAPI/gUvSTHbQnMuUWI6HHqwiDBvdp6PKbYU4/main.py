@@ -17,6 +17,10 @@ sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
 def moveServo(dty):
   servo.duty(dty)
+  iotine.publish({
+    "name": "ESP_X",
+    "value": dty
+  })
   return dty
 
 def button_pressed():
@@ -59,23 +63,7 @@ iotine.subscribe("ESP_INT_LED", on_sub)
 def main_loop():
   if sw.value() == 0:
       button_pressed()
-  
-  if iotine.pubstop == False:    
-      iotine.publish(
-      [
-        {
-          "name": "ESP_X",
-          "value": joystick(adcx)
-        },
-        {
-          "name":"ESP_Y",
-          "value": joystick(adcy)
-        }
-      ]
-      , on_pub)     
-      iotine.checkMsg()   
-  else:
-    moveServo(joystick(adcx))
+  moveServo(joystick(adcx))
 
 iotine.loop(main_loop)
     

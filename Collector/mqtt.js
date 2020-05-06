@@ -14,8 +14,8 @@ var settings = {
     port: 1883,
     secure: {
         port: 8443,
-        keyPath: fs.readFileSync('key.pem'),
-        certPath: fs.readFileSync('cert.pem'),
+        keyPath:'key.pem',
+        certPath: 'cert.pem',
     }
 }
 

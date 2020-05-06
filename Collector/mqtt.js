@@ -1,7 +1,7 @@
 const dataCamp = require('../Data-Camp/dataCamp').dataCamp
 var mosca = require('mosca');
 var mysql = require('mysql');
-
+var fs = require('fs')
 var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
@@ -9,8 +9,14 @@ var con = mysql.createConnection({
     database: "fila_iot"
 });
 
+
 var settings = {
-    port: 1883
+    port: 1883,
+    secure: {
+        port: 8443,
+        keyPath: fs.readFileSync('key.pem'),
+        certPath: fs.readFileSync('cert.pem'),
+    }
 }
 
 const io = require("socket.io-client");
@@ -41,8 +47,8 @@ server.on('clientConnected', function (client) {
     con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, restu) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
-            if(err) throw err;
-            if(res.length == 0) return
+            if (err) throw err;
+            if (res.length == 0) return
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })

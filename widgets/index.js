@@ -6,6 +6,13 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+  };
+  
+var http = require('https')
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -326,4 +333,5 @@ function makeid() {
     }
     return result;
 }
-app.listen(port, () => console.log("Server running on : " + port))
+
+http.createServer(options, app).listen(port, () => console.log("Server running on : " + port));

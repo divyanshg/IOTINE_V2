@@ -7,7 +7,7 @@ const options = {
   cert: fs.readFileSync('cert.pem')
 };
 
-var http = require('https').createServer(options, app);
+var http = require('https')
 var io = require('socket.io')(http);
 var mqtt = require('mqtt')
 const mysql = require('mysql');
@@ -124,6 +124,6 @@ function createFeed(msg) {
 
 }
 
-http.listen(3000, function () {
+http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
 });

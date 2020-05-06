@@ -905,7 +905,7 @@
         getUser();
         var user;
         var app = window.location.pathname.split("/")[2];
-        var socket = io(':3000',{secure: true});
+        var socket = io(':3000',{secure: true,reconnect: true, rejectUnauthorized : false});
         async function getUser() {
             var username = window.location.pathname.split("/")[1];
             var xhttp = new XMLHttpRequest();

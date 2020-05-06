@@ -6,7 +6,11 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
-    database: "fila_iot"
+    database: "fila_iot",
+    ssl: {
+        key: fs.readFileSync('key.pem'),
+        cert: fs.readFileSync('cert.pem')
+    }
 });
 
 

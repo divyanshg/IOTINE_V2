@@ -11,7 +11,7 @@ var con = mysql.createConnection({
 
 
 var settings = {
-    port: 8443,
+    port: 1883,
 }
 
 const io = require("socket.io-client");

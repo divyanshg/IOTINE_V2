@@ -14,7 +14,7 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("http://192.168.31.249:3000");
+const sockClient = io.connect("https://192.168.31.249:3000");
 
 var server = new mosca.Server(settings);
 var users = []

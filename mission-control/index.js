@@ -1,9 +1,18 @@
 var cors = require('cors')
 var app = require('express')();
-var http = require('http').createServer(app);
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+var http = require('https').createServer(options, app);
 var io = require('socket.io')(http);
 var mqtt = require('mqtt')
 const mysql = require('mysql');
+
+
 
 var con = mysql.createConnection({
     host: "localhost",

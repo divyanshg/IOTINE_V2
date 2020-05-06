@@ -21,11 +21,10 @@ const mysql = require('mysql');
 
 
 var con = mysql.createConnection({
-    host: "https://192.168.31.249",
+    host: "https://localhost",
     user: "divyanshg21",
     password: "potty_khale",
-    database: "fila_iot",
-    ssl: options
+    database: "fila_iot"
 });
 
 con.connect(function (err) {

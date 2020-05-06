@@ -17,10 +17,6 @@ sw = Pin(PINSW, Pin.IN, Pin.PULL_UP)
 
 def moveServo(dty):
   servo.duty(dty)
-  iotine.publish([{
-    "name": "ESP_X",
-    "value": dty
-  }], on_pub)
   return dty
 
 def button_pressed():

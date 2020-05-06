@@ -59,20 +59,20 @@ iotine.subscribe("ESP_INT_LED", on_sub)
 def main_loop():
   if sw.value() == 0:
       button_pressed()
-  #iotine.publish(
-  #    [
-  #      {
-  #        "name": "ESP_X",
-  #        "value": joystick(adcx)
-  #      },
-  #      {
-  #        "name":"ESP_Y",
-  #        "value": joystick(adcy)
-  #      }
-  #    ]
-  #, on_pub)     
+  iotine.publish(
+      [
+        {
+          "name": "ESP_X",
+          "value": joystick(adcx)
+        },
+        {
+          "name":"ESP_Y",
+          "value": joystick(adcy)
+        }
+      ]
+  , on_pub)     
   iotine.checkMsg()   
-  if iotine.pubstop == False:
+  if iotine.pubstop == True:
     moveServo(joystick(adcx))
 
 iotine.loop(main_loop)

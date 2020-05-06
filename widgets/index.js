@@ -3,7 +3,7 @@ var cors = require('cors')
 const express = require('express');
 var mysql = require('mysql');
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
 const app = express();
 
 const options = {

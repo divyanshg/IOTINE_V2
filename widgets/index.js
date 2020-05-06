@@ -26,8 +26,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
-    database: "fila_iot",
-    ssl: options
+    database: "fila_iot"
 });
 
 con.connect(function (err) {

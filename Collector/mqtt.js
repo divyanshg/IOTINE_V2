@@ -22,7 +22,7 @@ var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
     if(username == "MASTER@SERVER@WEB_DASH_HOST"){
         var authorized = username;
-        print("Server authorized")
+        console.log("Server authorized")
         callback(null, authorized)
         return
     }
@@ -31,7 +31,7 @@ var authenticate = function (client, username, passwd, callback) {
         var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
 
-        print("Device authorized")
+        console.log("Device authorized")
         callback(null, authorized);
     });
 }

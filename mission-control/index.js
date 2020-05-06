@@ -14,7 +14,7 @@ http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
 });
 
-var io = require('socket.io')(http);
+var io = require('socket.io').listen(http);
 var mqtt = require('mqtt')
 const mysql = require('mysql');
 

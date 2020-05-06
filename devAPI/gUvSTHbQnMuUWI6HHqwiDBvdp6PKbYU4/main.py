@@ -20,7 +20,7 @@ def moveServo(dty):
   iotine.publish({
     "name": "ESP_X",
     "value": dty
-  })
+  }, on_pub)
   return dty
 
 def button_pressed():

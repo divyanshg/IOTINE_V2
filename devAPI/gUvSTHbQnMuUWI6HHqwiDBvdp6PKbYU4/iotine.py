@@ -133,7 +133,7 @@ def getFile(file):
   print("*_#_"* 20 )
 
 def getUpdate():
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/main.py'
+  url = 'https://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/main.py'
   r = requests.get(url)   
 
   with open("main.py", 'r+') as f:
@@ -142,7 +142,7 @@ def getUpdate():
     f.write(r.text)
     f.close()
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/boot.py'
+  url = 'https://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/boot.py'
   r = requests.get(url)   
 
   
@@ -152,7 +152,7 @@ def getUpdate():
     f.write(r.text)  
     f.close()
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/iotine.py'
+  url = 'https://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/iotine.py'
   r = requests.get(url) 
 
   with open("iotine.py", 'r++') as f:
@@ -163,13 +163,13 @@ def getUpdate():
 
   
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/deviceConfig.json'
+  url = 'https://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/deviceConfig.json'
   r = requests.get(url)
   data = json.loads(r.text)
   with open("deviceConfig.json", "w") as f:
     json.dump(data, f) 
 
-  url = 'http://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/wifiConfig.json'
+  url = 'https://192.168.31.249/IOTINE_V2/devAPI/'+device_id+'/wifiConfig.json'
   r = requests.get(url)
   data = json.loads(r.text)
   with open("wifiConfig.json", "w") as f:

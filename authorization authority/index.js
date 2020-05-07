@@ -9,7 +9,7 @@ app.get('/api', (req, res) => {
     })
 })
 
-app.post('/api/posts', (req, res) => {
+app.post('/api/posts', verifyToken, (req, res) => {
     res.json({
         message: "Post created!!"
     })
@@ -23,10 +23,21 @@ app.post('/api/login', (req,res) => {
     }
 
     jwt.sign({user}, 'ThisIsAKey', (err, token) => {
+        if(err) throw err;
         res.json({
             token
         })
     })
 })
+
+//REDO THIS ONE
+
+function verifyToken(req, res, next){
+    //GET auth header Value
+    const bearereader = req.headers['authorization']
+
+    if(typeof bearereader == 'undefined') return res.sendStatus(403)
+    
+}
 
 app.listen(6543, () => console.log("Server running : 6543"))

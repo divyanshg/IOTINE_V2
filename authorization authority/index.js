@@ -10,8 +10,15 @@ app.get('/api', (req, res) => {
 })
 
 app.post('/api/posts', verifyToken, (req, res) => {
-    res.json({
-        message: "Post created!!"
+
+    jwt.verify(req.token, 'ThisIsAKey', (err, athData) => {
+        
+        if(err) res.sendStatus(403)
+
+        res.json({
+            message: "Post created!!",
+            authData
+        })
     })
 })
 
@@ -34,7 +41,7 @@ app.post('/api/login', (req,res) => {
 
 function verifyToken(req, res, next){
     //GET auth header Value
-    
+
     const bearerHeader = req.headers['authorization']
 
     if(typeof bearerHeader == 'undefined') return res.sendStatus(403)

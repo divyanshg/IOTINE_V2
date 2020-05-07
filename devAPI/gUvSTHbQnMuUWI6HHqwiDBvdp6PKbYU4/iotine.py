@@ -93,7 +93,7 @@ def listenToSystemCommands(topic, msg):
 
 def connect():
   global device_id, mqtt_server, connected, client
-  client = MQTTClient(client_id, mqtt_server, 1883, user=bytes(device_id, 'utf-8'), password=b'test')
+  client = MQTTClient(client_id, mqtt_server, 1883, device_id, 'test')
   client.set_callback(listenToSystemCommands)
   try:
       client.connect()

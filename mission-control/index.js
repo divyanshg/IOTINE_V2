@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
-const key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg";
+const key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8";
 const iv = "2hg34o09j09d23JJ";
 
 const options = {

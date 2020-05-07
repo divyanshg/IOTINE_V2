@@ -34,10 +34,17 @@ app.post('/api/login', (req,res) => {
 
 function verifyToken(req, res, next){
     //GET auth header Value
-    const bearereader = req.headers['authorization']
-
-    if(typeof bearereader == 'undefined') return res.sendStatus(403)
     
+    const bearerHeader = req.headers['authorization']
+
+    if(typeof bearerHeader == 'undefined') return res.sendStatus(403)
+
+    const bearer = bearerHeader.split(" ");
+    const bearerToken = bearer[1]
+
+    req.token = bearerToken
+
+    next()
 }
 
 app.listen(6543, () => console.log("Server running : 6543"))

@@ -35,7 +35,6 @@ var authenticate = function (client, username, passwd, callback) {
         axios.post('http://192.168.31.249:6543/authority/verify/'+passwd).then(response => {
             var authorized = true
             callback(null, authorized);
-            console.log(response)
 
         }).catch(err => {
             return err

@@ -10,7 +10,7 @@ const options = {
 var http = require('https')
 
 const cipher = crypto.createCipher('aes192', 'a password');
-
+const decipher = crypto.createDecipher('aes192', 'a password');  
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
@@ -88,7 +88,7 @@ io.on('connection', function (socket) {
                                 if (err) return err
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                
+
                                 var encrypted = cipher.update(msg.value, 'utf8', 'hex');
                                 encrypted += cipher.final('hex');
                                 console.log(encrypted);

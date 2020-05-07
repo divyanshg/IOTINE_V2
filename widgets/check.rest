@@ -42,3 +42,5 @@ GET http://192.168.31.249:3002/devices/iub54i6bibu64
 ###
 GET http://192.168.31.249:3002/deviceState/GZBIC1oqQN
 
+###
+POST http://192.168.31.249:6543/authority/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImRpdiJ9LCJpYXQiOjE1ODg4NzYyMzF9.Jg0PelxAMUYklR27_l4j9CXzrSaQ6M-upor0Uy4ccIU

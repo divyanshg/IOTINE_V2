@@ -12,9 +12,9 @@ app.get('/authority', (req, res) => {
     })
 })
 
-app.post('/authority/verify', verifyToken, (req, res) => {
+app.post('/authority/verify/:token', (req, res) => {
 
-    jwt.verify(req.token, 'ThisIsAKey', (err, authData) => {
+    jwt.verify(req.params.token, 'ThisIsAKey', (err, authData) => {
         
         if(err) res.sendStatus(403)
 

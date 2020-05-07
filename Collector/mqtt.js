@@ -27,6 +27,8 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
+
+    /*
     if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return
 
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
@@ -49,7 +51,11 @@ var authenticate = function (client, username, passwd, callback) {
         //var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
         callback(null, authorized);
-    });
+
+
+    });*/
+
+    console.log(username)
 }
 
 var authorizePublish = function (client, topic, payload, callback) {
@@ -76,7 +82,7 @@ server.on('ready', function () {
     console.log("ready");
     con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
-    //server.authenticate = authenticate;
+    server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
     //server.on('')

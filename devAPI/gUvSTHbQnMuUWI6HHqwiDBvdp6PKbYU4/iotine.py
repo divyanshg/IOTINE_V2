@@ -91,6 +91,30 @@ def listenToSystemCommands(topic, msg):
       getFile(msg.decode())   
 
 
+def refreshToken():
+  global device_id, mqtt_server, connected, client
+  client = MQTTClient(client_id, mqtt_server, 1883, device_id+"/refresh", b'yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImRpdiJ9LCJpYXQiOjE1ODg4NzYyMzF9.Jg0PelxAMUYklR27_l4j9CXzrSaQ6M-upor0Uy4ccIU')
+  client.set_callback(listenToSystemCommands)
+  try:
+      client.connect()
+  except OSError as e:
+      print("cannot connect to IOTINE.\nRebooting in 5s.")
+      time.sleep(5)
+      restart_and_reconnect()    
+
+
+  client.subscribe(device_id+'/$SYS/COMMANDS/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/IO_STATE/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/UPDATE/NON')
+  client.subscribe(device_id+'/$SYS/COMMANDS/NEWFILE/NON')
+
+
+  client.publish(device_id+'/$__VERSION/'+user_id, str(__VERSION))
+  client.publish(device_id+'/FSYS/'+user_id, str(os.listdir()))
+
+  print('Connected to IOTINE')
+  return client
+
 def connect():
   global device_id, mqtt_server, connected, client
   client = MQTTClient(client_id, mqtt_server, 1883, device_id, b'yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImRpdiJ9LCJpYXQiOjE1ODg4NzYyMzF9.Jg0PelxAMUYklR27_l4j9CXzrSaQ6M-upor0Uy4ccIU')

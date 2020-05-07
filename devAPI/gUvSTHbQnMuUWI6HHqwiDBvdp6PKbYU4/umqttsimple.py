@@ -100,7 +100,7 @@ class MQTTClient:
         resp = self.sock.read(4)
         assert resp[0] == 0x20 and resp[1] == 0x02
         if resp[3] != 0:
-            raise Exception("Token expired or incorrect")
+            iotine.refreshToken()
         return resp[2] & 1
 
     def disconnect(self):

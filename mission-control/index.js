@@ -138,7 +138,13 @@ io.on('connection', function (socket) {
                     return
                 } else {
                     io.to(res[0].uName).emit('devStat', device, status)                    
-                    saveToLake(msg)
+                    saveToLake({
+                        "user": res[0].uName,
+                        "msg": {
+                            "device": device,
+                            "status": status
+                        }
+                    })
                 }
             })
         }

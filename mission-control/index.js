@@ -108,7 +108,12 @@ io.on('connection', function (socket) {
                                 const hash = crypto.createHmac('sha256', secrateKey)
                                     .update(msg.value)
                                     .digest('hex');
-                                console.log(hash);
+                                //console.log(hash);
+
+                                const dehash = crypto.createHmac('sha256', secrateKey)
+                                    .update(hash)
+                                    .digest('base64');
+                                console.log(dehash);
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

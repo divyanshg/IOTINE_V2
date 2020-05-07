@@ -41,7 +41,6 @@ var authenticate = function (client, username, passwd, callback) {
             console.log(response)
 
         }).catch(err => {
-            console.log(err)
             return err
         })
 

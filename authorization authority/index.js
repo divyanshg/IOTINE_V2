@@ -32,10 +32,10 @@ app.post('/authority/login', (req,res) => {
         id:1,
         username: "div"
     }
-
+    // { expiresIn: '30s' }
     jwt.sign({user}, 'ThisIsAKey', (err, token) => {
         
-        if(err) throw err;
+        if(err) res.sendStatus(403);
 
         res.json({
             token

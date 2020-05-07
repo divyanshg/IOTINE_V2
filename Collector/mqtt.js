@@ -36,6 +36,8 @@ var authenticate = function (client, username, passwd, callback) {
             authorization: passwd
         }).then(response => {
             console.log(response)
+        }).catch(err => {
+            return err
         })
 
         var authorized = ''

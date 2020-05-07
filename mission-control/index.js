@@ -115,7 +115,7 @@ io.on('connection', function (socket) {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
-                                var hw = encrypt("Some serious stuff")
+                                var hw = encrypt(msg.value)
                                 console.log(hw)
                                 console.log(decrypt(hw))
                             })

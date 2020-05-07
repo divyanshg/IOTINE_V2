@@ -16,12 +16,9 @@ app.post('/authority/verify/:token', (req, res) => {
 
     jwt.verify(req.params.token, 'ThisIsAKey', (err, authData) => {
         
-        if(err) res.sendStatus(403)
+        if(err) res.json({ status: 403 })
 
-        res.json({
-            message: "Post created!!",
-            authData
-        })
+        res.json({ status: 200 })
     })
 })
 

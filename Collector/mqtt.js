@@ -82,7 +82,7 @@ server.on('ready', function () {
     console.log("ready");
     con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
-    //server.authenticate = authenticate;
+    server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
     //server.on('')

@@ -27,7 +27,7 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-    if(typeof username == 'undefined') return
+    if(typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return
 
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;

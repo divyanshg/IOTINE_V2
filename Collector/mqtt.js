@@ -12,10 +12,17 @@ var con = mysql.createConnection({
 
 var settings = {
     port: 1883,
+    secure: {
+        keyPath: "key.pem",
+        certPath: "cert.pem"
+    },
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("https://192.168.31.249:3000", {secure: true, rejectUnauthorized: false});
+const sockClient = io.connect("https://192.168.31.249:3000", {
+    secure: true,
+    rejectUnauthorized: false
+});
 
 var server = new mosca.Server(settings);
 var users = []

@@ -6,7 +6,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 const key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg";
-const iv = "MIIEogIBAAKCAQEAgyEPq876zmY+A6kAMqhE1BOzKRV813";
+const iv = "2hg34o09j09d23JJ";
 
 const options = {
     key: fs.readFileSync('key.pem'),

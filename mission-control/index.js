@@ -6,6 +6,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 const key = crypto.randomBytes(32);
+console.log(key)
 const iv = "2hg34o09j09d23JJ";
 
 const options = {
@@ -113,8 +114,6 @@ io.on('connection', function (socket) {
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                 var hw = encrypt(msg.value)
-                                console.log(hw)
-                                console.log(decrypt(hw))
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

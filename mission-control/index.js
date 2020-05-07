@@ -106,7 +106,7 @@ io.on('connection', function (socket) {
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                 const hash = crypto.createHmac('sha256', secrateKey)
-                                    .update('Welcome to JavaTpoint')
+                                    .update(msg.value)
                                     .digest('hex');
                                 console.log(hash);
                             })

@@ -10,7 +10,7 @@ const options = {
 var http = require('https')
 
 const cipher = crypto.createCipher('aes192', 'a password');
-const decipher = crypto.createDecipher('aes192', 'a password');  
+const decipher = crypto.createDecipher('aes192', 'a password');
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
@@ -36,7 +36,7 @@ con.connect(function (err) {
 
 app.use(cors())
 
-var secrateKey ="23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
+var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 function encrypt(text) {
     encryptalgo = crypto.createCipher('aes192', secrateKey);
@@ -105,8 +105,10 @@ io.on('connection', function (socket) {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
-                                console.log(encrypt(msg.value))
-                                console.log(decrypt(msg.value))
+                                const hash = crypto.createHmac('sha256', secrateKey)
+                                    .update('Welcome to JavaTpoint')
+                                    .digest('hex');
+                                console.log(hash);
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

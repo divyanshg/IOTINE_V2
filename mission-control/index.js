@@ -161,7 +161,7 @@ io.on('connection', function (socket) {
 
 var saveToLake = (msg) => {
     var vals = [
-        [null, msg.user, msg]
+        [null, msg.user, msg.toString()]
     ]
     con.query("insert into lake(id, user, msg) values ?", [vals], (err, res) => {
         console.log("Saved to lake!!")

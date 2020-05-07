@@ -51,7 +51,6 @@ function encrypt(text) {
 }
 
 function decrypt(text) {
-    let iv = Buffer.from(iv, 'hex');
     let encryptedText = Buffer.from(text, 'hex');
     let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
     let decrypted = decipher.update(encryptedText);

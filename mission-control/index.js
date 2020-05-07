@@ -1,7 +1,12 @@
 var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
+
 const crypto = require('crypto');
+const algorithm = 'aes-256-cbc';
+const key = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
+
 const options = {
     key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('cert.pem')
@@ -39,16 +44,22 @@ app.use(cors())
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 function encrypt(text) {
-    var mystr = cipher.update(text, 'utf8', 'hex')
-    mystr += cipher.final('hex');
-    return mystr;
+    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
+    let encrypted = cipher.update(text);
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
+    return {
+        iv: iv.toString('hex'),
+        encryptedData: encrypted.toString('hex')
+    };
 }
 
 function decrypt(text) {
-    var mystr = decipher.update(text, 'hex', 'utf8')
-    mystr += decipher.final('utf8');
-
-    return mystr;
+    let iv = Buffer.from(text.iv, 'hex');
+    let encryptedText = Buffer.from(text.encryptedData, 'hex');
+    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+    let decrypted = decipher.update(encryptedText);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return decrypted.toString();
 }
 
 var client = mqtt.connect('mqtt://192.168.31.249:1883', {
@@ -104,8 +115,9 @@ io.on('connection', function (socket) {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
-                                console.log(encrypt(msg.value)+"\n")
-                                console.log(decrypt(msg.value));
+                                var hw = encrypt("Some serious stuff")
+                                console.log(hw)
+                                console.log(decrypt(hw))
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

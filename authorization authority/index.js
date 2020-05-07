@@ -1,11 +1,11 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
-const app = expres();
+const app = express();
 
 app.get('/api', (req, res) => {
     res.json({
-        message:"WELCOME to the API"
+        message:"Welcome to the API"
     })
 })
 

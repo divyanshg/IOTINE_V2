@@ -6,13 +6,13 @@ const axios = require('axios')
 
 const app = express();
 
-app.get('/api', (req, res) => {
+app.get('/authority', (req, res) => {
     res.json({
-        message:"Welcome to the API"
+        message:"Welcome to the authority"
     })
 })
 
-app.post('/api/posts', verifyToken, (req, res) => {
+app.post('/authority/verify', verifyToken, (req, res) => {
 
     jwt.verify(req.token, 'ThisIsAKey', (err, authData) => {
         
@@ -25,7 +25,7 @@ app.post('/api/posts', verifyToken, (req, res) => {
     })
 })
 
-app.post('/api/login', (req,res) => {
+app.post('/authority/login', (req,res) => {
     // Mock user
 
     const user = {

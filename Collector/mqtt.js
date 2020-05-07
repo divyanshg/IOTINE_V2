@@ -2,6 +2,9 @@ const dataCamp = require('../Data-Camp/dataCamp').dataCamp
 var mosca = require('mosca');
 var mysql = require('mysql');
 var fs = require('fs')
+
+const axios = require('axios')
+
 var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
@@ -30,6 +33,9 @@ var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
     con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
         if (err) throw err;
+
+        axios.p
+
         var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
         callback(null, authorized);
@@ -60,7 +66,7 @@ server.on('ready', function () {
     console.log("ready");
     con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
-    //server.authenticate = authenticate;
+    server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
     //server.on('')

@@ -33,7 +33,7 @@ app.post('/authority/login', (req,res) => {
         username: "div"
     }
 
-    jwt.sign({user}, 'ThisIsAKey', { expiresIn: '30s' }, (err, token) => {
+    jwt.sign({user}, 'ThisIsAKey', (err, token) => {
         
         if(err) throw err;
 

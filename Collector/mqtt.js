@@ -14,11 +14,7 @@ var con = mysql.createConnection({
 
 
 var settings = {
-    port: 1883,
-    secure: {
-        keyPath: "key.pem",
-        certPath: "cert.pem"
-    },
+    port: 1883
 }
 
 const io = require("socket.io-client");
@@ -34,7 +30,11 @@ var authenticate = function (client, username, passwd, callback) {
     con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
-        axios.p
+        axios.post('http://192.168.31.249:6543/authority/verify', {
+            authorization: passwd
+        }).then(response => {
+            console.log(response)
+        })
 
         var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username

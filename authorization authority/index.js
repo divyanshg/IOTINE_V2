@@ -33,7 +33,7 @@ app.post('/authority/login', (req,res) => {
         username: "div"
     }
 
-    jwt.sign({user}, 'ThisIsAKey', { expiresIn: '30s' }, (err, token) => {
+    jwt.sign({user}, 'ThisIsAKey', (err, token) => {
         
         if(err) throw err;
 
@@ -48,12 +48,9 @@ app.post('/authority/login', (req,res) => {
 function verifyToken(req, res, next){
     //GET auth header Value
 
-    const bearerHeader = req.headers['authorization']
+    const bearerToken = req.body['authorization']
 
-    if(typeof bearerHeader == 'undefined') return res.sendStatus(403)
-
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1]
+    if(typeof bearerToken == 'undefined') return res.sendStatus(403)
 
     req.token = bearerToken
 

@@ -1,7 +1,7 @@
 var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
-
+const crypto = require('crypto');  
 const options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
@@ -9,6 +9,10 @@ const options = {
 
 var http = require('https')
 
+const cipher = crypto.createCipher('aes192', 'a password');  
+var encrypted = cipher.update('Hello JavaTpoint', 'utf8', 'hex');  
+encrypted += cipher.final('hex');  
+console.log(encrypted);   
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');

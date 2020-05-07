@@ -91,6 +91,7 @@ io.on('connection', function (socket) {
         if (msg.feed.split("/")[0] != "$SYS") {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
+                saveToLake(msg)
             } else {
                 con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.feed, msg.deviceId], (err, respp) => {
                     if (err) {
@@ -113,6 +114,7 @@ io.on('connection', function (socket) {
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                 var hw = encrypt(msg.value)
+                                saveToLake(msg)
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
@@ -135,7 +137,8 @@ io.on('connection', function (socket) {
                 if (res.length == 0) {
                     return
                 } else {
-                    io.to(res[0].uName).emit('devStat', device, status)
+                    io.to(res[0].uName).emit('devStat', device, status)                    
+                    saveToLake(msg)
                 }
             })
         }
@@ -145,10 +148,16 @@ io.on('connection', function (socket) {
             version: msg.version,
             device: msg.device
         })
+        saveToLake(msg)
     })
 
 });
 
-function createFeed(msg) {
-
+var saveToLake = (msg) => {
+    var vals = [
+        [null, msg.user, msg]
+    ]
+    con.query("insert into lake(id, user, msg) values ?", [vals], (err, res) => {
+        console.log("Saved to lake!!")
+    })
 }

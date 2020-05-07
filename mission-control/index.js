@@ -9,8 +9,8 @@ const options = {
 
 var http = require('https')
 
-const cipher = crypto.createCipher('aes-128-cbc', secrateKey);
-const decipher = crypto.createDecipher('aes-128-cbc', secrateKey);
+const cipher = crypto.createCipher('aes-128-cbc', 'mypassword');
+const decipher = crypto.createDecipher('aes-128-cbc', 'mypassword');
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
@@ -45,7 +45,7 @@ function encrypt(text) {
 }
 
 function decrypt(encrypted) {
-    var mystr = decipher.update('34feb914c099df25794bf9ccb85bea72', 'hex', 'utf8')
+    var mystr = decipher.update(text, 'hex', 'utf8')
     mystr += decipher.final('utf8');
 
     return mystr;

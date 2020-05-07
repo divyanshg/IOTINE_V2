@@ -28,7 +28,7 @@ var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
     if(typeof username == 'undefined') return
-    
+
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
@@ -38,7 +38,8 @@ var authenticate = function (client, username, passwd, callback) {
             console.log(response)
         })
 
-        var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
+        var authorized = ''
+        //var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
         callback(null, authorized);
     });

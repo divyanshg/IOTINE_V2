@@ -27,7 +27,7 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-    con.query("SELECT * FROM devices WHERE deviecID = ?", [username], function (err, result, fields) {
+    con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
         axios.post('http://192.168.31.249:6543/authority/verify', {

@@ -48,12 +48,15 @@ app.post('/authority/login', (req,res) => {
 function verifyToken(req, res, next){
     //GET auth header Value
 
-    const bearerToken = req.body['authorization']
+    const bearerToken = req
+    console.log(req)
+
+    /*
 
     if(typeof bearerToken == 'undefined') return res.sendStatus(403)
 
     req.token = bearerToken
-
+*/
     next()
 }
 

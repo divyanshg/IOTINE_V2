@@ -27,23 +27,19 @@ var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-    if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return
+    if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return callback(null, true)
 
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
         axios.post('http://192.168.31.249:6543/authority/verify/'+passwd).then(response => {
-
+            var authorized = true
+            callback(null, authorized);
             console.log(response)
 
         }).catch(err => {
             return err
         })
-
-        //var authorized = ''
-        //var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
-        //if (authorized) client.users = username
-        //callback(null, authorized);
 
     });
 }

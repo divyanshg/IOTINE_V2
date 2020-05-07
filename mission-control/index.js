@@ -44,7 +44,7 @@ function encrypt(text) {
     return mystr;
 }
 
-function decrypt(encrypted) {
+function decrypt(text) {
     var mystr = decipher.update(text, 'hex', 'utf8')
     mystr += decipher.final('utf8');
 

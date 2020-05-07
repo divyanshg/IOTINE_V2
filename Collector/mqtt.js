@@ -52,7 +52,7 @@ var authenticate = function (client, username, passwd, callback) {
 
 
 
-        console.log(username)
+        console.log(username+" / "+passwd)
 
 
     });

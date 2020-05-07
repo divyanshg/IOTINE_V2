@@ -38,10 +38,6 @@ con.connect(function (err) {
 
 app.use(cors())
 
-const crypto = require('crypto');
-const secret = 'Let this be a Key something more random to make this key super long';
-const hash = crypto.createDecipher('aes192', secret)
-
 var client = mqtt.connect('mqtt://192.168.31.249:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })

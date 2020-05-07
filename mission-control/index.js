@@ -36,6 +36,20 @@ con.connect(function (err) {
 
 app.use(cors())
 
+function encrypt(text) {
+    encryptalgo = crypto.createCipher('aes192', secrateKey);
+    let encrypted = encryptalgo.update(text, 'utf8', 'hex');
+    encrypted += encryptalgo.final('hex');
+    return encrypted;
+}
+
+function decrypt(encrypted) {
+    decryptalgo = crypto.createDecipher('aes192', secrateKey);
+    let decrypted = decryptalgo.update(encrypted, 'hex', 'utf8');
+    decrypted += decryptalgo.final('utf8');
+    return decrypted;
+}
+
 var client = mqtt.connect('mqtt://192.168.31.249:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
@@ -89,13 +103,8 @@ io.on('connection', function (socket) {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
-                                var encrypted = cipher.update(msg.value, 'utf8', 'hex');
-                                encrypted += cipher.final('hex');
-                                console.log(encrypted);
-
-                                var decrypted = decipher.update(encrypted, 'hex', 'utf8');
-                                decrypted += decipher.final('utf8');
-                                console.log(decrypted);
+                                console.log(encrypt(msg.value))
+                                console.log(decrypt(msg.value))
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

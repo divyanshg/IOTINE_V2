@@ -36,6 +36,8 @@ con.connect(function (err) {
 
 app.use(cors())
 
+var secrateKey ="23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
+
 function encrypt(text) {
     encryptalgo = crypto.createCipher('aes192', secrateKey);
     let encrypted = encryptalgo.update(text, 'utf8', 'hex');

@@ -2,9 +2,9 @@
   "name": "collector",
   "version": "1.0.0",
   "description": "Main interaction point of devices to the database",
-  "main": "index.js",
+  "main": "mqtt.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon mqtt.js"
   },
   "author": "Divyansh Gupta",
   "license": "ISC",

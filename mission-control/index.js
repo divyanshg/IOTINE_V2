@@ -1,18 +1,16 @@
 var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
-const crypto = require('crypto');  
+const crypto = require('crypto');
 const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
 };
 
 var http = require('https')
 
-const cipher = crypto.createCipher('aes192', 'a password');  
-var encrypted = cipher.update('Hello JavaTpoint', 'utf8', 'hex');  
-encrypted += cipher.final('hex');  
-console.log(encrypted);   
+const cipher = crypto.createCipher('aes192', 'a password');
+
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
@@ -90,6 +88,14 @@ io.on('connection', function (socket) {
                                 if (err) return err
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                
+                                var encrypted = cipher.update(msg.value, 'utf8', 'hex');
+                                encrypted += cipher.final('hex');
+                                console.log(encrypted);
+
+                                var decrypted = decipher.update(encrypted, 'hex', 'utf8');
+                                decrypted += decipher.final('utf8');
+                                console.log(decrypted);
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

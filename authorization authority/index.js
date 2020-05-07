@@ -1,5 +1,8 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+var https = require('https');
+
+const axios = require('axios')
 
 const app = express();
 
@@ -32,7 +35,7 @@ app.post('/api/login', (req,res) => {
 
     jwt.sign({user}, 'ThisIsAKey', { expiresIn: '30s' }, (err, token) => {
         
-        if(err) res.sendStatus(403);
+        if(err) throw err;
 
         res.json({
             token

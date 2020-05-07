@@ -164,6 +164,6 @@ var saveToLake = (msg) => {
         [null, msg.user, msg.toString()]
     ]
     con.query("insert into lake(id, user, msg) values ?", [vals], (err, res) => {
-        console.log("Saved to lake!!")
+        return "OK"
     })
 }

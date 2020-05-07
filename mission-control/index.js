@@ -1,11 +1,12 @@
+require('dotenv').config();
 var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
 
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const key = process.env.KEY;
+const iv = process.env.IV;
 
 const options = {
     key: fs.readFileSync('key.pem'),

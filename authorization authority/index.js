@@ -24,13 +24,16 @@ app.post('/api/posts', verifyToken, (req, res) => {
 
 app.post('/api/login', (req,res) => {
     // Mock user
+
     const user = {
         id:1,
         username: "div"
     }
 
-    jwt.sign({user}, 'ThisIsAKey', (err, token) => {
-        if(err) throw err;
+    jwt.sign({user}, 'ThisIsAKey', { expiresIn: '30s' }, (err, token) => {
+        
+        if(err) res.sendStatus(403);
+
         res.json({
             token
         })

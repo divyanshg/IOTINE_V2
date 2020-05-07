@@ -32,7 +32,7 @@ var authenticate = function (client, username, passwd, callback) {
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
-        /*axios.post('http://192.168.31.249:6543/authority/verify', {
+        axios.post('http://192.168.31.249:6543/authority/verify', {
             headers: {
                 Authorization: "Bearer " + passwd
             }
@@ -45,15 +45,10 @@ var authenticate = function (client, username, passwd, callback) {
             return err
         })
 
-        var authorized = ''
+        //var authorized = ''
         //var authorized = (username === result[0].deviceID || username == "MASTER@SERVER@WEB_DASH_HOST");
         //if (authorized) client.users = username
-        callback(null, authorized);*/
-
-
-
-        console.log(username+" / "+passwd)
-
+        //callback(null, authorized);
 
     });
 }

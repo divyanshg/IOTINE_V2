@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32);
+const key = "BFC33653957127E52776B1E39CD78";
 console.log(Buffer.from(key, 'hex').toString())
 const iv = "2hg34o09j09d23JJ";
 

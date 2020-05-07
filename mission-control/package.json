@@ -10,7 +10,9 @@
     "react-scripts": "^3.4.1",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
   "scripts": {
     "test": "nodemon index.js"
   },

@@ -14,5 +14,8 @@
     "mosca": "^2.8.3",
     "mysql": "^2.18.1",
     "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

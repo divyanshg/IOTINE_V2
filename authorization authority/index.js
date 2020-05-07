@@ -15,4 +15,18 @@ app.post('/api/posts', (req, res) => {
     })
 })
 
+app.post('/api/login', (req,res) => {
+    // Mock user
+    const user = {
+        id:1,
+        username: "div"
+    }
+
+    jwt.sign({user}, 'ThisIsAKey', (err, token) => {
+        res.json({
+            token
+        })
+    })
+})
+
 app.listen(6543, () => console.log("Server running : 6543"))

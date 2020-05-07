@@ -9,8 +9,8 @@ const options = {
 
 var http = require('https')
 
-const cipher = crypto.createCipher('aes192', 'a password');
-const decipher = crypto.createDecipher('aes192', 'a password');
+const cipher = crypto.createCipher('aes-128-cbc', secrateKey);
+const decipher = crypto.createDecipher('aes-128-cbc', secrateKey);
 
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
@@ -39,17 +39,16 @@ app.use(cors())
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 function encrypt(text) {
-    encryptalgo = crypto.createCipher('aes192', secrateKey);
-    let encrypted = encryptalgo.update(text, 'utf8', 'hex');
-    encrypted += encryptalgo.final('hex');
-    return encrypted;
+    var mystr = cipher.update(text, 'utf8', 'hex')
+    mystr += cipher.final('hex');
+    return mystr;
 }
 
 function decrypt(encrypted) {
-    decryptalgo = crypto.createDecipher('aes192', secrateKey);
-    let decrypted = decryptalgo.update(encrypted, 'hex', 'utf8');
-    decrypted += decryptalgo.final('utf8');
-    return decrypted;
+    var mystr = decipher.update('34feb914c099df25794bf9ccb85bea72', 'hex', 'utf8')
+    mystr += decipher.final('utf8');
+
+    return mystr;
 }
 
 var client = mqtt.connect('mqtt://192.168.31.249:1883', {
@@ -105,15 +104,8 @@ io.on('connection', function (socket) {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
-                                const hash = crypto.createHmac('sha256', secrateKey)
-                                    .update(msg.value)
-                                    .digest('hex');
-                                //console.log(hash);
-
-                                const dehash = crypto.createHmac('sha256', secrateKey)
-                                    .update(hash)
-                                    .digest('base64');
-                                console.log(dehash);
+                                console.log(encrypt(msg.value)+"\n")
+                                console.log(decrypt(msg.value));
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

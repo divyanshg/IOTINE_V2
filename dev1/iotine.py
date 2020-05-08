@@ -17,6 +17,8 @@ DEVICENAME = 'virtual_SkNCX1RSVUNLXzAxYWFk'
 USER = 'iub54i6bibu64'
 pubstop = False
 
+JWTalgorithm = 'HS512'
+
 if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
     IOTINE_HOST = "192.168.31.249"
@@ -48,7 +50,7 @@ def publicKey():
         key = key.read()
         return key
 
-password = jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256')   
+password = jwt.encode({'some': 'payload'}, publicKey(), algorithm=JWTalgorithm)   
 
 def CONNECT():
     client.on_message = on_message
@@ -65,9 +67,9 @@ def will(topic, payload=None, qos=0, retain=False):
 def publish(feed, val, callback=None):
     if pubstop == False:
         if callback == '':
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256')), '')
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm=JWTalgorithm)), '')
         else:    
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256')), '', callback=callback)
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

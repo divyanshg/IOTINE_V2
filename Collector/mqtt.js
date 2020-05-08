@@ -81,12 +81,15 @@ server.on('ready', function () {
 });
 
 server.on('published', (packet) => {
-    console.log(packet.topic)
-    /*var content = jwtDecode(packet.topic);
-    console.log(content)
-    console.log(content.topic)
-    console.log(content.value)
-    
+    if (packet.topic.split('/')[0] != '$SYS') {
+        console.log(packet.topic)
+
+        var content = jwtDecode(packet.topic);
+        console.log(content)
+        console.log(content.topic)
+        console.log(content.value)
+    }
+    /*
     var message = packet.payload.toString()
     //console.log(message)
     var topic = packet.topic.split("/")

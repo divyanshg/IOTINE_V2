@@ -92,7 +92,46 @@ server.on('published', (packet) => {
         axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status == 200) {
-                console.log(content.value)
+
+                var message = content.value.toString()
+                //console.log(message)
+                var topic = content.topic.split("/")
+                if (topic[2] != "NON") {
+
+                    if (topic[1] == '$__VERSION') {
+                        sockClient.emit("DEV_VERSION", {
+                            version: message,
+                            device: topic[0],
+                            user: topic[2]
+                        })
+                    } else if (topic[1] == "FSYS") {
+                        sockClient.emit('publish', {
+                            user: topic[2],
+                            deviceId: topic[0],
+                            feed: topic[1],
+                            value: message,
+                            time: new Date().toLocaleTimeString()
+                        })
+                    } else {
+                        con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
+                            if (err) throw err;
+                            sockClient.emit('devStat', topic[0], "ONLINE")
+                        })
+
+                        sockClient.emit('publish', {
+                            user: topic[2],
+                            deviceId: topic[0],
+                            feed: topic[1],
+                            value: message,
+                            time: new Date().toLocaleTimeString()
+                        })
+                    }
+
+                    //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
+                } else {
+                    return
+                }
+
             } else {
                 return
             }
@@ -102,46 +141,7 @@ server.on('published', (packet) => {
         })
 
     }
-    /*
-    var message = packet.payload.toString()
-    //console.log(message)
-    var topic = packet.topic.split("/")
-    if (topic[2] != "NON") {
 
-        if (topic[1] == '$__VERSION') {
-            sockClient.emit("DEV_VERSION", {
-                version: message,
-                device: topic[0],
-                user: topic[2]
-            })
-        } else if (topic[1] == "FSYS") {
-            sockClient.emit('publish', {
-                user: topic[2],
-                deviceId: topic[0],
-                feed: topic[1],
-                value: message,
-                time: new Date().toLocaleTimeString()
-            })
-        } else {
-            con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
-                if (err) throw err;
-                sockClient.emit('devStat', topic[0], "ONLINE")
-            })
-
-            sockClient.emit('publish', {
-                user: topic[2],
-                deviceId: topic[0],
-                feed: topic[1],
-                value: message,
-                time: new Date().toLocaleTimeString()
-            })
-        }
-
-        //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
-    } else {
-        return
-    }
-    */
 
 });
 

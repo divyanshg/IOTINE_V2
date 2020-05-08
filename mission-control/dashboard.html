@@ -1288,7 +1288,7 @@
                         }
                     });
 
-                    if (widgets[j].datasets[0].data.length >= 5) {
+                    if (widgets[j].datasets[0].data.length >= parseInt(config.dataPoints)) {
                         widgets[j].datasets[0].data.shift()
                         config.labels.shift()
                         //$(".ndt").remove()

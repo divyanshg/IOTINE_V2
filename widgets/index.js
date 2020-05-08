@@ -61,6 +61,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             "changeText": "",
             "src": "",
             "color": "",
+            "dataPoints": "",
             "prevTime": "",
             "device": "",
             "tab": ""
@@ -92,6 +93,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
             schema.config.changeText = widget.changeText;
             schema.config.src = widget.src;
             schema.config.color = widget.color;
+            schema.config.dataPoints = widget.dataPoints
 
             schema.config.type = widget.chartType;
             schema.config.prevTime = widget.prevTime;
@@ -122,6 +124,7 @@ app.get('/widgets/:userId/:appId', (req, res) => {
                     "changeText": "",
                     "src": "",
                     "color": "",
+                    "dataPoints": "",
                     "prevTime": "",
                     "device": "",
                     "tab": ""

@@ -82,8 +82,14 @@ server.on('ready', function () {
 
 server.on('published', (packet) => {
     if (packet.topic.split('/')[0] != '$SYS') {
+        var content;
+        
+        try {
+            content = jwtDecode(packet.topic);
+        } catch (e) {
+            return
+        }
 
-        var content = jwtDecode(packet.topic);
 
         jwtTopic = packet.topic
 
@@ -95,7 +101,7 @@ server.on('published', (packet) => {
 
                 var message = content.value.toString()
                 console.log(message)
-                /*var topic = content.topic.split("/")
+                var topic = content.topic.split("/")
                 if (topic[2] != "NON") {
 
                     if (topic[1] == '$__VERSION') {
@@ -131,7 +137,7 @@ server.on('published', (packet) => {
                 } else {
                     return
                 }
-                */
+
 
             } else {
                 return

@@ -9,13 +9,21 @@ const app = express();
 
 app.post('/authority/verify/:token/:dev', (req, res) => {
 
-    console.log(req.params.token.substring(2).slice(0, -1))
+    var token = req.params.token
+    
+    if(token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)
 
-    jwt.verify(req.params.token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/'+req.params.dev+'/key.pem'), (err, authData) => {
-        
-        if(err) res.json({ status: 403 })
+    console.log(token)
 
-        res.json({ status: 200 })
+    jwt.verify(req.params.token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
+
+        if (err) res.json({
+            status: 403
+        })
+
+        res.json({
+            status: 200
+        })
     })
 })
 
@@ -41,12 +49,12 @@ app.post('/authority/login', (req,res) => {
 
 //REDO THIS ONE
 
-function verifyToken(req, res, next){
+function verifyToken(req, res, next) {
     //GET auth header Value
 
     const bearerHeader = req.headers['authorization']
 
-    if(typeof bearerHeader == 'undefined') return res.sendStatus(403)
+    if (typeof bearerHeader == 'undefined') return res.sendStatus(403)
 
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1]

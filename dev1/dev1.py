@@ -20,6 +20,6 @@ while True:
     IOTINE.publish("ENGINE_TEMPERATURE", str(random.randint(0, 100)), '') 
     IOTINE.doDefaults()
     IOTINE.publish("CONT_TEMP", str(random.randint(1, 100)), '')
-    IOTINE.publish("CORE_TEMP", str(random.randint(1, 100)), '')
+    #IOTINE.publish("CORE_TEMP", str(random.randint(1, 100)), '')
     IOTINE.publish("TYRE_PRESSURE_AVG", str(random.randint(1, 100)), '')
     time.sleep(1)

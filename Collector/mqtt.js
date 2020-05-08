@@ -37,7 +37,7 @@ var authenticate = function (client, username, passwd, callback) {
         con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
             if (err) throw err;
 
-            axios.post('http://192.168.31.249:6543/authority/verify/' + passwd).then(response => {
+            axios.post('http://192.168.31.249:6543/authority/verify/' + passwd+"/"+username).then(response => {
                 if (response.data.status == 200) {
                     var authorized = true
                     callback(null, authorized);

@@ -46,13 +46,14 @@ print(DEVICENAME)
 def publicKey():
     with open("key.pem") as key:
         key = key.read()
-        print(key)
         return key
+
+password = jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256')        
 
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect
-    client.username_pw_set(CONNSTRING, jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256'))
+    client.username_pw_set(CONNSTRING, password)
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

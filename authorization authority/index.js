@@ -17,9 +17,9 @@ app.get('/authority', (req, res) => {
     })
 })
 
-app.post('/authority/verify/:token', (req, res) => {
+app.post('/authority/verify/:token/:dev', (req, res) => {
 
-    jwt.verify(req.params.token, options.key, (err, authData) => {
+    jwt.verify(req.params.token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/'+req.params.dev+'/key.pem'), (err, authData) => {
         
         if(err) res.json({ status: 403 })
 
@@ -27,6 +27,7 @@ app.post('/authority/verify/:token', (req, res) => {
     })
 })
 
+/*
 app.post('/authority/login', (req,res) => {
     // Mock user
 
@@ -44,6 +45,7 @@ app.post('/authority/login', (req,res) => {
         })
     })
 })
+*/
 
 //REDO THIS ONE
 

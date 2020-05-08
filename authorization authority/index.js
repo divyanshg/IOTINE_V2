@@ -14,7 +14,7 @@ app.get('/authority', (req, res) => {
 
 app.post('/authority/verify/:token', (req, res) => {
 
-    jwt.verify(req.params.token, 'ThisIsAKey', (err, authData) => {
+    jwt.verify(req.params.token, 'virtual_SkNCX1RSVUNLXzAxYWFkiub54i6bibu64', (err, authData) => {
         
         if(err) res.json({ status: 403 })
 

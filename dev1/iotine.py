@@ -10,8 +10,6 @@ import sys
 
 import jwt
 
-password = jwt.encode({'some': 'payload'}, 'ThisIsAKeye', algorithm='HS256')
-
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"
 CONNSTRING = 'virtual_SkNCX1RSVUNLXzAxYWFk'
@@ -47,7 +45,7 @@ print(DEVICENAME)
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect
-    client.username_pw_set(CONNSTRING, password)
+    client.username_pw_set(CONNSTRING, jwt.encode({'some': 'payload'}, CONNSTRING+USER, algorithm='HS256'))
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

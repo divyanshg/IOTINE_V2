@@ -10,7 +10,7 @@ import sys
 
 import jwt
 
-password = jwt.encode({'some': 'payload'}, 'ThisIsAKey', algorithm='HS256')
+password = jwt.encode({'some': 'payload'}, 'ThisIsAKeye', algorithm='HS256')
 
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"

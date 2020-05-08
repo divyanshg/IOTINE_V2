@@ -87,11 +87,9 @@ server.on('published', (packet) => {
 
         jwtTopic = packet.topic
 
-        console.log(content.topic)
+        var device = content.topic.split('/')[0];
 
-        var user = content.topic.split('/')[2];
-
-        axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + user).then(response => {
+        axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status == 200) {
                 console.log(content.value)

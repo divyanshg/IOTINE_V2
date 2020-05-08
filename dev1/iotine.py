@@ -49,7 +49,7 @@ def publicKey():
         return key
 
 password = jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256')        
-
+print(password)
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect

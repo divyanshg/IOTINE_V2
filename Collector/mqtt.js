@@ -81,7 +81,7 @@ server.on('ready', function () {
 });
 
 server.on('published', (packet) => {
-    var content = jwt_decode(packet.topic);
+    var content = jwtDecode(packet.topic);
     console.log(content)
     console.log(content.topic)
     console.log(content.value)

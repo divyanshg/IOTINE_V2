@@ -3,6 +3,8 @@ var mosca = require('mosca');
 var mysql = require('mysql');
 var fs = require('fs')
 
+var jwtDecode = require('jwt-decode');
+
 const axios = require('axios')
 
 var con = mysql.createConnection({
@@ -79,6 +81,11 @@ server.on('ready', function () {
 });
 
 server.on('published', (packet) => {
+    var content = jwt_decode(packet.topic);
+    console.log(content)
+    console.log(content.topic)
+    console.log(content.value)
+    /*
     var message = packet.payload.toString()
     //console.log(message)
     var topic = packet.topic.split("/")
@@ -117,6 +124,8 @@ server.on('published', (packet) => {
     } else {
         return
     }
+    */
+
 });
 
 server.on('clientDisconnecting', function (client) {

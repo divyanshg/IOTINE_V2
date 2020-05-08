@@ -48,8 +48,8 @@ def publicKey():
         key = key.read()
         return key
 
-password = jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256')     
-print(password)
+password = jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256')   
+
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect
@@ -65,9 +65,9 @@ def will(topic, payload=None, qos=0, retain=False):
 def publish(feed, val, callback=None):
     if pubstop == False:
         if callback == '':
-            client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val))
+            client.publish(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256'), '')
         else:    
-            client.publish(CONNSTRING+"/"+feed+"/"+USER, str(val), callback=callback)
+            client.publish(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256'), '', callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

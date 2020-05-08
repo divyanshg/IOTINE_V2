@@ -1,10 +1,15 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 var https = require('https');
+const fs = require('fs');
 
 const axios = require('axios')
 
 const app = express();
+
+const options = {
+    key: fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4/key.pem')
+};
 
 app.get('/authority', (req, res) => {
     res.json({
@@ -14,7 +19,7 @@ app.get('/authority', (req, res) => {
 
 app.post('/authority/verify/:token', (req, res) => {
 
-    jwt.verify(req.params.token, 'virtual_SkNCX1RSVUNLXzAxYWFkiub54i6bibu64', (err, authData) => {
+    jwt.verify(req.params.token, options.key, (err, authData) => {
         
         if(err) res.json({ status: 403 })
 

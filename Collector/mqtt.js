@@ -87,6 +87,8 @@ server.on('published', (packet) => {
 
         jwtTopic = packet.topic
 
+        console.log(content.topic)
+
         var user = content.topic.split('/')[2];
 
         axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + user).then(response => {

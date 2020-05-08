@@ -83,7 +83,7 @@ server.on('ready', function () {
 server.on('published', (packet) => {
     if (packet.topic.split('/')[0] != '$SYS') {
         var content;
-        
+
         try {
             content = jwtDecode(packet.topic);
         } catch (e) {
@@ -100,8 +100,8 @@ server.on('published', (packet) => {
             if (response.data.status == 200) {
 
                 var message = content.value.toString()
-                console.log(message)
                 var topic = content.topic.split("/")
+                
                 if (topic[2] != "NON") {
 
                     if (topic[1] == '$__VERSION') {

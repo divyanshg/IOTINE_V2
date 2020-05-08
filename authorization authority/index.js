@@ -7,9 +7,6 @@ const axios = require('axios')
 
 const app = express();
 
-const options = {
-    key: fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4/key.pem')
-};
 
 app.get('/authority', (req, res) => {
     res.json({

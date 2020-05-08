@@ -103,4 +103,4 @@ def DISCONNECT(callback):
               
 def doDefaults():
     subscribe("$SYS/COMMANDS", '')   
-    publish("$__VERSION", "1.0.1", '')           
+    publish("$__VERSION", "1.5.0", '')           

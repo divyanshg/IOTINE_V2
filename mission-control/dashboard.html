@@ -1471,12 +1471,12 @@
         }
 
 
-        async function openTab(evt, id) {
+        function openTab(evt, id) {
             var i, tabcontent, tablinks;
 
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
-                await tabcontent[i].style.display = "none";
+                tabcontent[i].style.display = "none";
             }
 
             tablinks = document.getElementsByClassName("tablinks");
@@ -1484,7 +1484,7 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
 
-            await document.querySelector("#" + id).style.display = "block";
+            document.querySelector("#" + id).style.display = "block";
             evt.currentTarget.className += " active";
         }
 

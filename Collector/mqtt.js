@@ -94,12 +94,10 @@ server.on('published', (packet) => {
             if (response.data.status == 200) {
                 console.log(content.value)
             } else {
-                console.log('Err')
                 return
             }
 
         }).catch(err => {
-            console.log(err)
             return err
         })
 

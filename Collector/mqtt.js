@@ -81,11 +81,12 @@ server.on('ready', function () {
 });
 
 server.on('published', (packet) => {
-    var content = jwtDecode(packet.topic);
+    console.log(packet.topic)
+    /*var content = jwtDecode(packet.topic);
     console.log(content)
     console.log(content.topic)
     console.log(content.value)
-    /*
+    
     var message = packet.payload.toString()
     //console.log(message)
     var topic = packet.topic.split("/")

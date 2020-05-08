@@ -65,9 +65,9 @@ def will(topic, payload=None, qos=0, retain=False):
 def publish(feed, val, callback=None):
     if pubstop == False:
         if callback == '':
-            client.publish(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256'), '')
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256')), '')
         else:    
-            client.publish(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256'), '', callback=callback)
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val)}, publicKey(), algorithm='HS256')), '', callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

@@ -9,7 +9,7 @@ const app = express();
 
 app.post('/authority/verify/:token/:dev', (req, res) => {
 
-    console.log(req.params.token.substring(2).substring(0, req.params.token.length - 1))
+    console.log(req.params.token.substring(2).slice(0, -1))
 
     jwt.verify(req.params.token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/'+req.params.dev+'/key.pem'), (err, authData) => {
         

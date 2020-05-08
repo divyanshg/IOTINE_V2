@@ -85,11 +85,12 @@ server.on('published', (packet) => {
 
         var content = jwtDecode(packet.topic);
 
-        jwtTopic = packet.topic 
+        jwtTopic = packet.topic
 
         var user = content.topic.split('/')[2];
 
         axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + user).then(response => {
+
             if (response.data.status == 200) {
                 console.log(content.value)
             } else {

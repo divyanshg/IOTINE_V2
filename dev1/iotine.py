@@ -7,9 +7,7 @@ import math
 import json
 import string
 import sys
-import datetime
-
-datetime = datetime.datetime
+from datetime import date, datetime, timedelta
 
 import base64
 import hashlib

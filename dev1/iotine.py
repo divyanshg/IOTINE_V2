@@ -9,6 +9,8 @@ import string
 import sys
 import datetime
 
+datetime = datetime.datetime
+
 import base64
 import hashlib
 from Crypto.Cipher import AES

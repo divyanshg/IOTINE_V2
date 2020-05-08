@@ -43,7 +43,7 @@ print(DEVICENAME)
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect
-    client.username_pw_set(CONNSTRING)
+    client.username_pw_set(CONNSTRING, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImRpdiJ9LCJpYXQiOjE1ODg5NTE0NDV9.uVfXuIWrfyTZnevtEOYmnlyBr979MQj3aSqeeMxAx3U")
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

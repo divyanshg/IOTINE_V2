@@ -82,10 +82,11 @@ server.on('ready', function () {
 
 server.on('published', (packet) => {
     if (packet.topic.split('/')[0] != '$SYS') {
+        
         var content = jwtDecode(packet.topic);
         var user = content.topic.split('/')[2];
-        console.log(typeof packet.topic)
-        axios.post('http://192.168.31.249:6543/authority/verify/' + packet.topic + "/" + user).then(response => {
+
+        axios.post('http://192.168.31.249:6543/authority/verify/' + packet.topic.substring(2).substring(0, str.length - 1) + "/" + user).then(response => {
             if (response.data.status == 200) {
                 console.log(content.value)
             } else {

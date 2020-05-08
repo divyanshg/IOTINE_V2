@@ -10,7 +10,6 @@ import os
 import random
 import socket
 
-import jwt
 
 
 machine = machine
@@ -97,16 +96,14 @@ def listenToSystemCommands(topic, msg):
 
 def connect():
   global device_id, mqtt_server, connected, client
-  client = MQTTClient(client_id, mqtt_server, 1883, device_id, b'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImRpdiJ9LCJpYXQiOjE1ODg5NTE0NDV9.uVfXuIWrfyTZnevtEOYmnlyBr979MQj3aSqeeMxAx3U')
+  client = MQTTClient(client_id, mqtt_server, 1883, device_id, b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZCJ9.Gp_gdYW7tI2aROcF7K8_9ydSvfXlGAMN7nO8XhLKCV0')
   client.set_callback(listenToSystemCommands)
   try:
-
-      print(jwt.encode({'some': 'pyload'}, 'secret', algorithm='HS256'))
-      #client.connect()
+      client.connect()
   except OSError as e:
-      print("cannot connect to IOTINE.\nRebooting in 5s.")
-      time.sleep(5)
-      #restart_and_reconnect()    
+      print("cannot connect to IOTINE.\nRebooting in 15s.")
+      time.sleep(15)
+      restart_and_reconnect()    
 
 
   client.subscribe(device_id+'/$SYS/COMMANDS/NON')

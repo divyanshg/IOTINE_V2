@@ -55,7 +55,7 @@ def publicKey():
         key = key.read()
         return key
 
-password = jwt.encode({'some': 'payload', "iat":datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)   
+password = jwt.encode({'some': 'payload', "iat":datetime.utcnow(), "exp": datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)   
 
 def CONNECT():
     client.on_message = on_message
@@ -72,9 +72,9 @@ def will(topic, payload=None, qos=0, retain=False):
 def publish(feed, val, callback=None):
     if pubstop == False:
         if callback == '':
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.utcnow(), "exp": datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')
         else:    
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
+            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.utcnow(), "exp": datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

@@ -13,7 +13,7 @@ app.post('/authority/verify/:token/:dev', (req, res) => {
     
     if(token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)
 
-    console.log(token)
+    console.log(req.param.dev)
 
     jwt.verify(token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
 

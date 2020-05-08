@@ -94,8 +94,8 @@ server.on('published', (packet) => {
             if (response.data.status == 200) {
 
                 var message = content.value.toString()
-                //console.log(message)
-                var topic = content.topic.split("/")
+                console.log(message)
+                /*var topic = content.topic.split("/")
                 if (topic[2] != "NON") {
 
                     if (topic[1] == '$__VERSION') {
@@ -131,6 +131,7 @@ server.on('published', (packet) => {
                 } else {
                     return
                 }
+                */
 
             } else {
                 return

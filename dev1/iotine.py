@@ -42,10 +42,17 @@ def on_connect(client, userdata, flags, rc):
 ########################################
 client = mqtt.Client(DEVICENAME) #create new instance
 print(DEVICENAME)
+
+def publicKey():
+    with open("key.pem") as key:
+        key = key.read()
+        print(key)
+        return key
+
 def CONNECT():
     client.on_message = on_message
     client.on_connect = on_connect
-    client.username_pw_set(CONNSTRING, jwt.encode({'some': 'payload'}, CONNSTRING+USER, algorithm='HS256'))
+    client.username_pw_set(CONNSTRING, jwt.encode({'some': 'payload'}, publicKey(), algorithm='HS256'))
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

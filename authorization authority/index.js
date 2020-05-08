@@ -7,13 +7,6 @@ const axios = require('axios')
 
 const app = express();
 
-
-app.get('/authority', (req, res) => {
-    res.json({
-        message:"Welcome to the authority"
-    })
-})
-
 app.post('/authority/verify/:token/:dev', (req, res) => {
 
     jwt.verify(req.params.token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/'+req.params.dev+'/key.pem'), (err, authData) => {

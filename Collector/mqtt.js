@@ -28,30 +28,24 @@ var users = []
 var authenticate = function (client, username, passwd, callback) {
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
     if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return callback(null, true)
+    con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
+        if (err) throw err;
 
-    if (username.split("/")[1] == 'refresh') {
-        console.log("REFRESHER")
-        var authorized = true
-        callback(null, authorized);
-    } else {
-        con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
-            if (err) throw err;
+        axios.post('http://192.168.31.249:6543/authority/verify/' + passwd + "/" + username).then(response => {
+            if (response.data.status == 200) {
+                var authorized = true
+                callback(null, authorized);
+            } else {
+                var authorized = false;
+                callback(null, authorized)
+            }
 
-            axios.post('http://192.168.31.249:6543/authority/verify/' + passwd+"/"+username).then(response => {
-                if (response.data.status == 200) {
-                    var authorized = true
-                    callback(null, authorized);
-                } else {
-                    var authorized = false;
-                    callback(null, authorized)
-                }
+        }).catch(err => {
+            return err
+        })
 
-            }).catch(err => {
-                return err
-            })
+    });
 
-        });
-    }
 }
 
 var authorizePublish = function (client, topic, payload, callback) {

@@ -1,10 +1,10 @@
 const express = require('express')
-var https = require('https');
+var https = require('http');
 const fs = require('fs');
 
 const app = express();
 
-app.post('/query', (req, res) => {
+app.get('/query', (req, res) => {
     res.json({
         "msg": "323"
     })

@@ -73,9 +73,9 @@ def publish(data):
     if pubstop == False:
         for i in range(len(data)): 
 
-            feed = data[i].name
-            val = data[i].value
-            callback = data[i].callback
+            feed = data[i]["name"]
+            val = data[i]["value"]
+            callback = data[i]["callback"]
 
             if callback == '':
                 client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')

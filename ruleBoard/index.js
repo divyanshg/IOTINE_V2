@@ -2,8 +2,6 @@ const express = require('express')
 var https = require('https');
 const fs = require('fs');
 
-const axios = require('axios')
-
 const app = express();
 
 app.post('/query', (req, res) => {

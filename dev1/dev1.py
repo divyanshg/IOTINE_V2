@@ -11,34 +11,34 @@ def on_dc(smthng):
 
 time.sleep(3)
 
-IOTINE.publish([
-    {
-        "name":"ENGINE_OIL",
-        "value": str(random.randint(0, 200)),
-        "callback": ""
-    },
-    {
-        "name": "ENGINE_TEMPERATURE",
-        "value": str(random.randint(0, 100)),
-        "callback": ""
-    },
-    {
-        "name":"CONT_TEMP",
-        "value": str(random.randint(1, 100)),
-        "callback": ""
-    },
-    {
-        "name":"CORE_TEMP",
-        "value": str(random.randint(1, 100)),
-        "callback": ""
-    },
-    {
-        "name":"TYRE_PRESSURE_AVG",
-        "value": str(random.randint(1, 100)),
-        "callback": ""
-    }
-])
+while True:
 
-time.sleep(10)
+    IOTINE.publish([
+        {
+            "name":"ENGINE_OIL",
+            "value": str(random.randint(0, 200)),
+            "callback": ""
+        },
+        {
+            "name": "ENGINE_TEMPERATURE",
+            "value": str(random.randint(0, 100)),
+            "callback": ""
+        },
+        {
+            "name":"CONT_TEMP",
+            "value": str(random.randint(1, 100)),
+            "callback": ""
+        },
+        {
+            "name":"CORE_TEMP",
+            "value": str(random.randint(1, 100)),
+            "callback": ""
+        },
+        {
+            "name":"TYRE_PRESSURE_AVG",
+            "value": str(random.randint(1, 100)),
+            "callback": ""
+        }
+    ])
 
-IOTINE.DISCONNECT(on_dc)
+    time.sleep(10)

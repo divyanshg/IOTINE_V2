@@ -6,6 +6,9 @@ import requests as req
 
 print(IOTINE.CONNECT())
 
+def on_dc():
+    print("disconnected")
+
 time.sleep(3)
 
 while True:
@@ -39,5 +42,5 @@ while True:
     ])
 
 
-    IOTINE.DISCONNECT("")
+    IOTINE.DISCONNECT(on_dc)
     time.sleep(10)

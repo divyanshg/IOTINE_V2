@@ -69,12 +69,18 @@ def CONNECT():
 def will(topic, payload=None, qos=0, retain=False):
     client.will_set(topic, payload=payload, qos=qos, retain=retain)
 
-def publish(feed, val, callback=None):
+def publish(data):
     if pubstop == False:
-        if callback == '':
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')
-        else:    
-            client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
+        for i in range(len(data)): 
+
+            feed = data[i].name
+            val = data[i].value
+            callback = data[i].callback
+
+            if callback == '':
+                client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')
+            else:    
+                client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
 
 def subscribe(feed, callback=None):
     if callback == "":

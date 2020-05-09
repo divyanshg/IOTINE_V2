@@ -1,11 +1,9 @@
 var cors = require('cors')
-const express = require('express')
+const app = require('express')()
 const https = require('https');
 const mysql = require('mysql');
 const fs = require('fs');
 const bodyParser = require("body-parser")
-
-const app = express()
 
 const options = {
     key: fs.readFileSync('key.pem'),

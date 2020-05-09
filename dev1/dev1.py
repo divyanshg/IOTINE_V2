@@ -10,7 +10,8 @@ val = 30
 
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
-    print(message.topic, "/",msg)
+    if topic.split("/")[1] == "CORE_TEMP":
+        print("Ofooo")
     IOTINE.listenToSystemCommands(client, userdata, message)
 
 time.sleep(5)

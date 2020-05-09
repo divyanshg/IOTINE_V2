@@ -17,8 +17,6 @@ def on_message(client, userdata, message):
 time.sleep(5)
 timess = 0
 
-IOTINE.subscribe("CORE_TEMP", on_message)
-
 while True:
     IOTINE.publish("ENGINE_OIL", str(random.randint(0, 200)), '')
     IOTINE.publish("ENGINE_TEMPERATURE", str(random.randint(0, 100)), '') 

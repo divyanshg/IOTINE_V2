@@ -1,0 +1,22 @@
+{
+    "name":"High_Temperature_Rule",
+    "topic": "ENGINE_TEMPERATURE",
+    "device": "virtual_SkNCX1RSVUNLXzAxYWFk",
+    "user":"iub54i6bibu64",
+    "operator": "equal",
+    "parameter": "50",
+    "toDo": "email"
+}
+
+"SELECT `ENGINE_TEMPERATURE` FROM `iub54i6bibu64/virtual_SkNCX1RSVUNLXzAxYWFk` WHERE value > 50";
+
+INSERT INTO ENGINE_TEMPERATURE,ENGINE_OIL VALUES 50,20 OF_DEVICE virtual_SkNCX1RSVUNLXzAxYWFk
+
+{
+    "feeds": [],
+    "comparator": {
+                     "variable": "value",
+                     "operator": ">",
+                     "argument": "50" 
+                  }
+  }

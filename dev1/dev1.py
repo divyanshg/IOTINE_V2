@@ -13,7 +13,6 @@ def on_message(client, userdata, message):
     topic = message.topic.split("/")
     if topic[1] == "CORE_TEMP":
         print("Ofooo")
-    IOTINE.listenToSystemCommands(client, userdata, message)
 
 time.sleep(5)
 timess = 0

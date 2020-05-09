@@ -28,7 +28,7 @@ if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
     IOTINE_HOST = "192.168.31.249"
 
-def on_message(client, userdata, message):
+def listenToSystemCommands(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     topic = message.topic.split("/")
     global pubstop
@@ -58,7 +58,7 @@ def publicKey():
 password = jwt.encode({'some': 'payload', "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)   
 
 def CONNECT():
-    client.on_message = on_message
+    client.on_message = listenToSystemCommands
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING, password)
     client.connect_async(IOTINE_HOST) #connect to broker
@@ -78,10 +78,12 @@ def publish(feed, val, callback=None):
 
 def subscribe(feed, callback=None):
     if callback == "":
+        client.on_message = listenToSystemCommands
         return client.subscribe(CONNSTRING+"/"+feed+"/NON")
     else:
         client.on_message = callback
         client.subscribe(CONNSTRING+"/"+feed+"/NON")
+        client.on_message = listenToSystemCommands
 
 def is_published(topic):
     return topic.is_published()

@@ -2,6 +2,7 @@ var cors = require('cors')
 const express = require('express')
 const https = require('https');
 const mysql = require('mysql');
+const fs = require('fs');
 const bodyParser = require("body-parser")
 
 const app = express()
@@ -33,5 +34,7 @@ con.connect(function (err) {
 });
 
 app.get("/query", (req, res) => {
-    
+    res.json({
+        "msg": "test success"
+    })
 })

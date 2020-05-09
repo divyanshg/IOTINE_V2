@@ -6,6 +6,8 @@ import requests as req
 
 print(IOTINE.CONNECT())
 
+time.sleep(3)
+
 while True:
 
     IOTINE.publish([

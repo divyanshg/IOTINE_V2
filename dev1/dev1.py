@@ -41,4 +41,4 @@ IOTINE.publish([
 
 time.sleep(10)
 
-IOTINE.DISCONNECT(on_dc)s
+IOTINE.DISCONNECT(on_dc)

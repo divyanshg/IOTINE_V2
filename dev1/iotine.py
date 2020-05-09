@@ -106,7 +106,7 @@ def DISCONNECT(callback):
     if callback == '':
         client.disconnect()
     else:
-        client.disconnect()
+        callback(client.disconnect())
               
 def doDefaults():
     subscribe("$SYS/COMMANDS", '')   

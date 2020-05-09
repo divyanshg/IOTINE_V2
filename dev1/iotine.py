@@ -83,7 +83,6 @@ def subscribe(feed, callback=None):
     else:
         client.on_message = callback
         client.subscribe(CONNSTRING+"/"+feed+"/NON")
-        client.on_message = listenToSystemCommands
 
 def is_published(topic):
     return topic.is_published()

@@ -11,6 +11,7 @@ val = 30
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     print(message.topic, "/",msg)
+    IOTINE.listenToSystemCommands(client, userdata, message)
 
 time.sleep(5)
 timess = 0

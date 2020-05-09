@@ -1,9 +1,14 @@
 const express = require('express')
 var https = require('http');
 const fs = require('fs');
-
+const bodyParser = require("body-parser")
 const app = express();
 
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 const mysql = require('mysql');
 
 var con = mysql.createConnection({

@@ -26,7 +26,7 @@ con.connect(function (err) {
 
 app.get('/query', (req, res) => {
     console.log(req.body)
-    con.query("SELECT * FROM feed_vals WHERE deviceID = ? and user = ? and name = ?", [req.body.device, req.body.user, req.body.feeds[1]], (err, resp) => {
+    con.query("SELECT * FROM feed_vals WHERE deviceID = ? and user_id = ? and name = ?", [req.body.device, req.body.user, req.body.feeds[1]], (err, resp) => {
         console.log(resp)
     })
 })

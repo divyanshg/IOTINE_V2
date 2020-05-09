@@ -6,7 +6,7 @@ import requests as req
 
 print(IOTINE.CONNECT())
 
-def on_dc():
+def on_dc(smthng):
     print("disconnected")
 
 time.sleep(3)

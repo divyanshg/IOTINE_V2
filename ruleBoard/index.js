@@ -1,42 +1,15 @@
-var cors = require('cors')
-const app = require('express')()
-const https = require('https');
-const mysql = require('mysql');
+const express = require('express')
+var https = require('https');
 const fs = require('fs');
-const bodyParser = require("body-parser")
 
-const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-};
+const axios = require('axios')
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(cors())
+const app = express();
 
-const port = process.env.PORT || 3003;
-
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "divyanshg21",
-    password: "potty_khale",
-    database: "fila_iot"
-});
-
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
-
-app.get("/query", (req, res) => {
+app.post('/query', (req, res) => {
     res.json({
-        "msg": "test success"
+        "msg": "323"
     })
 })
 
-
-var server = https.createServer(options, app).listen(3003, function () {
-    console.log('listening on *:3000');
-});
+app.listen(3003, () => console.log("Server running : 3003"))

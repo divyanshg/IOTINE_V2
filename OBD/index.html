@@ -10,5 +10,13 @@
         <input type="file" name="inpFile" id="inpFile">
         <button type="submit">Upload Image</button>
     </form>
+
+    <script>
+        const inp = document.getElementById("inpFile")
+
+        inpFile.addEventListener("change", () => {
+            console.log(inpFile.files)
+        })
+    </script>
 </body>
 </html>

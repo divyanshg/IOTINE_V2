@@ -17,7 +17,7 @@
         inpFile.addEventListener("change", () => {
             for(const file of inpFile.files){
                 if(file.type.split("/")[0] != "image") return console.error("Please Select an Image File")
-                console.log(inpFile.files)
+                console.log(file)
             }
             
         })

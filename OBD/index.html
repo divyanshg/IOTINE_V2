@@ -15,6 +15,7 @@
         const inp = document.getElementById("inpFile")
 
         inpFile.addEventListener("change", () => {
+            if(inpFile.files.type.split("/")[0] != "image") return console.error("Please Select an Image File")
             console.log(inpFile.files)
         })
     </script>

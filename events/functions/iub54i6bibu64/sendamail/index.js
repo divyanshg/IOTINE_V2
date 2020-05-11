@@ -29,7 +29,7 @@ function sendMail(payload, mtime) {
             from: 'iotine.alert@gmail.com',
             to: 'divyanshg809@gmail.com',
             subject: 'Core temperature was high',
-            text: `Core temperature reached ${payload} on ${mtime}`
+            html: `Core temperature reached <b style="color:red">${payload}</b> on <b style="color:green;">${mtime}</b>`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

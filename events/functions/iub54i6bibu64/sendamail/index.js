@@ -65,7 +65,3 @@ function sendMail(payload, mtime) {
     });
 
 }
-
-function turnOffCooler() {
-    
-}

@@ -87,6 +87,7 @@ server.on('published', (packet) => {
 
         try {
             content = jwtDecode(packet.topic);
+            console.log(content.exp)
         } catch (e) {
             return
         }

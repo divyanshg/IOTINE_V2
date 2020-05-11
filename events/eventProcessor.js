@@ -1,14 +1,16 @@
 'use strict'
 
 exports.processEvent = (uModule, inputs, callback) => {
-    try {
-        
-        const mod = require(`./functions/${uModule}`)
+    return new Promise((resolve, reject) => {
+        try {
 
-        return String(mod.handler(inputs, callback)) 
+            const mod = require(`./functions/${uModule}`)
 
-    } catch (e) {
-       return "Unable to process event <br> "+ e
-    }
+            return resolve(String(mod.handler(inputs, callback)))
+
+        } catch (e) {
+            return reject("Unable to process event <br> " + e)
+        }
+    })
+
 }
-

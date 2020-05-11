@@ -114,7 +114,7 @@ io.on('connection', function (socket) {
                                 if (err) return err
 
                                 //Checking and running the events processing
-                                if (feedInfo[0].events != "[]") {
+                                if (feedInfo[0].events != null || feedInfo[0].events != '' || typeof feedInfo[0].events != 'undefined' || feedInfo[0].events != "[]") {
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {
@@ -137,7 +137,6 @@ io.on('connection', function (socket) {
                                         })
                                     })
                                 } else {
-                                    console.log("here")
                                     io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 

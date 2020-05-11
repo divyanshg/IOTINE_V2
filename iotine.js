@@ -44,3 +44,5 @@ const iotine = {
 
     }
 }
+
+exports.iotine = iotine;

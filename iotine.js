@@ -2,7 +2,11 @@
 
 const iotine = {
 
-    mailConfig: {emailAddress: '', password: '', service: ''},
+    mailConfig: {
+        emailAddress: '',
+        password: '',
+        service: ''
+    },
 
     configMail: (args) => {
         this.mailConfig.emailAddress = args.emailAddress;
@@ -14,33 +18,30 @@ const iotine = {
 
         var nodemailer = require('nodemailer');
 
-        return new Promise((resolve, reject) => {
+        if (this.mailConfig.emailAddress == '' || this.mailConfig.password == '' || this.mailConfig.service == '') return reject("Mail service has not been configured. Use configMail() to configure it now. \n Mail not Sent!")
 
-            if(this.mailConfig.emailAddress == '' || this.mailConfig.password == '' || this.mailConfig.service == '') return reject("Mail service has not been configured. Use configMail() to configure it now. \n Mail not Sent!")
+        var transporter = nodemailer.createTransport({
+            service: this.mailConfig.service,
+            auth: {
+                user: this.mailConfig.emailAddress,
+                pass: this.mailConfig.password
+            }
+        });
 
-            var transporter = nodemailer.createTransport({
-                service: this.mailConfig.service,
-                auth: {
-                    user: this.mailConfig.emailAddress,
-                    pass: this.mailConfig.password
-                }
-            });
+        var mailOpt = {
+            from: this.mailConfig.emailAddress,
+            to: mailOptions.reciever,
+            subject: mailOptions.subject,
+            text: mailOptions.body
+        };
 
-            var mailOpt = {
-                from: this.mailConfig.emailAddress,
-                to: mailOptions.reciever,
-                subject: mailOptions.subject,
-                text: mailOptions.body
-            };
-
-            transporter.sendMail(mailOpt, function (error, info) {
-                if (error) {
-                    return reject(error)
-                } else {
-                    return resolve(info)
-                }
-            });
-        })
+        transporter.sendMail(mailOpt, function (error, info) {
+            if (error) {
+                return error
+            } else {
+                return info
+            }
+        });
 
     }
 }

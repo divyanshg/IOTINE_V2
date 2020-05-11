@@ -6,9 +6,18 @@ var nodemailer = require('nodemailer');
 var stateCheck = 0;
 
 exports.handler = function (event, callback) {
+
     var payload = parseInt(event.msg);
     var mtime = event.timestamp;
 
+    sendMail(payload, mtime)
+
+    if (callback == null || callback == '') return data
+    callback(null, data);
+
+}
+
+function sendMail(payload, mtime) {
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;
         var transporter = nodemailer.createTransport({
@@ -18,7 +27,7 @@ exports.handler = function (event, callback) {
                 pass: 'div21902'
             }
         });
-    
+
         var mailOptions = {
             from: 'divg809@gmail.com',
             to: 'divyanshg809@gmail.com',
@@ -33,10 +42,7 @@ exports.handler = function (event, callback) {
                 return true
             }
         });
-    }else if(payload <= 30){
+    } else if (payload <= 30) {
         stateCheck = 0;
     }
-
-    if (callback == null || callback == '') return data
-    callback(null, data);
 }

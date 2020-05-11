@@ -120,7 +120,7 @@ io.on('connection', function (socket) {
 
                                     events.forEach(event => {
                                         eventProcessor.processEvent(`${msg.user}-${event}`, {"msg": msg.value, "timestamp": feedInfo[0].time}, (err, result) => {
-                                            console.log(test)
+                                            console.log(result)
                                         })
                                     })
                                 }

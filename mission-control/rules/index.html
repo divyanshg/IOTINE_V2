@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://192.168.31.249/analDash/chart.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-    
+
     <style>
         .no-js #loader {
             display: none;
@@ -222,7 +222,7 @@
                 <textarea style="height: 120px;"></textarea>
 
                 <label for="devices">Device</label>
-                <select id="devicesList" name="devices">
+                <select onchange="alert(this.value)" id="devicesList" name="devices">
                     <option value="0">Select your device</option>
                 </select>
 

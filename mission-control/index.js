@@ -3,7 +3,6 @@ var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
 
-var eventProcessor = require('../events/eventProcessor')
 
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
@@ -115,6 +114,8 @@ io.on('connection', function (socket) {
 
                                 //Checking and running the events processing
                                 if (feedInfo[0].events != "[]") {
+
+                                    var eventProcessor = require('../events/eventProcessor')
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {

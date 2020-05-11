@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
 
-    <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/mode/javascript/javascript.js"></script>
     <style>
         .no-js #loader {
             display: none;
@@ -289,8 +288,9 @@ exports.handler = async (event) => {
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.js">
-    </script>
+    <script type="text/javascript" src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.js"></script>
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/mode/javascript/javascript.js"></script>
+    
     <script>
         var user;
         var app = window.location.pathname.split("/")[3];
@@ -383,11 +383,7 @@ exports.handler = async (event) => {
             var editor = CodeMirror.fromTextArea(code, {
                 lineNumbers: true,
                 styleActiveLine: true,
-                matchBrackets: true,
-                continueComments: "Enter",
-                extraKeys: {
-                    "Ctrl-Q": "toggleComment"
-                }
+                matchBrackets: true
             });
             editor.setOption("theme", 'ayu-mirage');
         }

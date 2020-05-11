@@ -1,1 +1,265 @@
-Hello
+<!--
+
+    1.add event array to feed_val
+    2.create a folder in events/functions/<userId>/<eventName>
+    3. Append Code    
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOTINE DASHBOARD (BETA v2.0.2)</title>
+    <link rel="icon" type="image/png" href="https://192.168.31.249/logo.png">
+    <style>
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(https://192.168.31.249/IOTINE_V2/mission-control/332.gif) center no-repeat #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/xterm.css" />
+    <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://192.168.31.249/analDash/chart.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script>
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+</head>
+
+<body>
+    <div class="se-pre-con"></div>
+    <div class="sidebar">
+        <div class="inner">
+            <div class="main-panel">
+                <button onclick="window.location.replace('./')"><img title="IOTINE"
+                        src="https://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""></button>
+            </div>
+            <div class="bottom-panel">
+                <button><i class="material-icons">settings</i></button>
+                <button onclick="toggleDis('.side-settings')"><img
+                        src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
+                        alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="side-settings settings" style="display: none;">
+        <button>Settings</button>
+        <button>More</button>
+        <button>Fake</button>
+    </div>
+    </div>
+
+    <div id="app">
+        <div class="sc-gleUXh jZiiGj">
+            <div class="header-notification" style="height: auto; display: block; background-color: rgb(255, 203, 44);">
+                <div class="notification-container">
+                    <div class="notification-text">
+                        <p class="notification-info" style="color: rgb(73, 51, 0); text-shadow: none;">Your email
+                            address is divyanshg809@gmail.com. We need to verify your email to continue using the
+                            service.</p>
+                    </div>
+                    <div class="notification-action"><button onclick="$('.jZiiGj').toggle()"
+                            class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
+                            style="color: rgb(73, 51, 0);"><span>Resend verification email</span></button><img
+                            class="close-btn" src="" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-gtfDJT diMILA" style="display:block;">
+            <div class="sc-jMMfwr lhmKww">
+                <div class=" dash-size-regular sc-kGXeez fkEHRF">
+                    <div class="sc-kpOJdX iQYOlv">
+                        <div class="title-text sc-chPdSV jgeneq"></div>
+                        <div class="sub-text sc-kgoBCf cTHQrV"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sc-fOICqy eEQKgH">
+                <div class="sc-jtRlXQ dPoHcy">
+                    <ul>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink" href="#"
+                                    onclick="window.location.replace('/'+window.location.pathname)"><i class="material-icons">dashboard</i>
+                                    <div>Dashboard</div>
+                                </a></div>
+                        </li>
+                        <li class="sc-bEjcJn joFqRi">
+                            <div class="sc-ePZHVD ePRQm"><a class="navlink active" onclick="linkactive(this);window.location.replace('/rules'+window.location.pathname)"
+                                    ><i class="material-icons">repeat</i>
+                                    <div>Rules</div>
+                                </a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="appInner" id="appInner" style="display:none;"></div>
+        <div class="appInner mainappin">
+            <header class="sc-hEsumM felvod">
+                <div class="sc-cIShpX dQDczm">
+                    <div class="title">
+                        <span class="sc-jqCOkK gstZGj sc-frDJqD bvdgMY" size="9" font-weight="bold"
+                            letter-spacing="tight">
+                            <div class="sc-gbOuXE hMamKJ">
+                                <div class="sc-fjmCvl sLkAJ" size="24"><img
+                                        src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
+                                        alt=""></div>
+                                <h2 class="wlcm">Make your own rules!</h2>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="controls">
+                        <div class="commands">
+                            <button onclick="window.location.replace('/builder'+window.location.pathname)"><i
+                                    class="material-icons">edit</i></button>
+                            <button><i class="material-icons">notifications_none</i></button>
+                            <button onclick="toggleDis('#dash_settings')"><i
+                                    class="material-icons">settings</i></button>
+                        </div>
+                        <div onclick="$(this).toggle()" id="dash_settings" class="settings" style="display: none;">
+                            <button @click="toggleSettingsMenu">Settings</button>
+                            <button>More</button>
+                            <button @click="toggleTheme">Change Theme</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+        </div>
+    </div>
+    </div>
+    <div class="settingsModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>Dashboard Settings<span
+                    onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}"
+                    class="clsBtn">&times;</span></h1>
+            <h4>From here you can easily customize your dashboard experience.</h4>
+            <div id="terminal"></div>
+        </div>
+
+    </div>
+    <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
+    <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/components.js" type="text/javascript"></script>
+    <script>
+        let root = document.documentElement;
+        var lastTheme = window.localStorage.getItem("theme") || "light";
+
+        if (lastTheme == "dark") {
+            window.localStorage.setItem("theme", "dark")
+
+            root.style.setProperty("--appInner", "black")
+            root.style.setProperty("--title", "white")
+            root.style.setProperty("--navLink", "white")
+            root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
+            root.style.setProperty("--cmds", "white")
+            root.style.setProperty("--widBorder", "#2a2a2a")
+            root.style.setProperty("--tabsclr", "white")
+            root.style.setProperty("--thm-wid", "#151515")
+        } else {
+            window.localStorage.setItem("theme", "light")
+
+            root.style.setProperty("--appInner", "white")
+            root.style.setProperty("--title", "black")
+            root.style.setProperty("--navLink", "rgb(103, 111, 128)")
+            root.style.setProperty("--sidebar", "rgb(243, 245, 249)")
+            root.style.setProperty("--cmds", "black")
+            root.style.setProperty("--widBorder", "#d2d2d2")
+            root.style.setProperty("--tabsclr", "black")
+            root.style.setProperty("--thm-wid", "white")
+        }
+
+        function toggleDis(elm) {
+            var elm = document.querySelector(elm);
+            if (elm.style.display == "none") {
+                elm.style.display = "block"
+            } else if (elm.style.display == "block") {
+                elm.style.display = "none"
+                console.log("here")
+            }
+        }
+
+        function linkactive(elm) {
+            var prev = document.querySelector('.active')
+            prev.classList.remove("active")
+            elm.className += ' active'
+        }
+        var openedPanels = '';
+
+        var dashSettings = new River({
+            el: '#dash_settings',
+            data: {
+                icon: ''
+            },
+            methods: {
+                toggleSettingsMenu: () => {
+                    $('.mainBackDrop').toggle()
+                    $(".settingsModal").toggle()
+
+                    if (document.querySelector(".settingsModal").style.display = "block") {
+                        openedPanels = ".settingsModal"
+                    } else {
+                        openedPanels = ''
+                    }
+                },
+                toggleTheme: () => {
+                    var lastTheme = window.localStorage.getItem("theme") || "light";
+
+                    if (lastTheme == "light") {
+                        window.localStorage.setItem("theme", "dark")
+
+                        root.style.setProperty("--appInner", "black")
+                        root.style.setProperty("--title", "white")
+                        root.style.setProperty("--navLink", "white")
+                        root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
+                        root.style.setProperty("--cmds", "white")
+                        root.style.setProperty("--widBorder", "#2a2a2a")
+                        root.style.setProperty("--tabsclr", "white")
+                        root.style.setProperty("--thm-wid", "#151515")
+                    } else {
+                        window.localStorage.setItem("theme", "light")
+
+                        root.style.setProperty("--appInner", "white")
+                        root.style.setProperty("--title", "black")
+                        root.style.setProperty("--navLink", "rgb(103, 111, 128)")
+                        root.style.setProperty("--sidebar", "rgb(243, 245, 249)")
+                        root.style.setProperty("--cmds", "black")
+                        root.style.setProperty("--widBorder", "#d2d2d2")
+                        root.style.setProperty("--tabsclr", "black")
+                        root.style.setProperty("--thm-wid", "white")
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

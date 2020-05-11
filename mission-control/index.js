@@ -120,10 +120,9 @@ io.on('connection', function (socket) {
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {
-                                        eventProcessor.processEvent(`${msg.user}/${event}`, {
-                                            "msg": msg.value,
-                                            "timestamp": String(feedInfo[0].time)
-                                        }).then(response => {
+                                        msg.timestamp  = feedInfo[0].time
+                                        let msg = msg;
+                                        eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(response => {
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 

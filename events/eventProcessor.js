@@ -1,13 +1,12 @@
 'use strict'
 
-exports.processEvent = async (uModule, inputs) => {
+exports.processEvent = (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 
             var mod = require(`./functions/${uModule}/index`)
 
             var response = mod.handler(inputs)
-            await response
 
             return resolve(String(response))
 

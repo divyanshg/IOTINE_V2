@@ -4,7 +4,7 @@ exports.processEvent = (uModule, inputs, callback) => {
     return new Promise((resolve, reject) => {
         try {
 
-            const mod = require(`./functions/${uModule}`)
+            const mod = require(`./functions/${uModule}/index`)
 
             return resolve(String(mod.handler(inputs, callback)))
 

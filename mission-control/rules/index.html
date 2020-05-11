@@ -261,7 +261,7 @@
                 <div style="display: none;" class="eventFunction">
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your function</label>
-                    <textarea name="code" id="eventCode" cols="30" rows="10"></textarea>
+                    <textarea class="CodeMirror cm-s-ayu-mirage cm-error cm-bracket" name="code" id="eventCode" cols="30" rows="10"></textarea>
                 </div>
 
                 <div class="comnds">
@@ -278,7 +278,6 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.js">
     </script>
-    <script type="text/javascript" src="js/default.js"></script>
     <script>
         var user;
         var app = window.location.pathname.split("/")[3];
@@ -371,7 +370,8 @@
             var editor = CodeMirror.fromTextArea(code, {
                 lineNumbers: true,
                 styleActiveLine: true,
-                matchBrackets: true
+                matchBrackets: true,
+                mode: "text/javascript",
             });
         }
 

@@ -268,15 +268,17 @@
                     <label for="code">Create your function</label>
                     <textarea name="code" id="eventCode" cols="30" rows="10">
 'use strict'
-
+// sample function
 exports.handler = async (event) => {
+//Event contains all information of recieved message
     const response = {
         'status': 200,
-        'body': event.value
+        'valueRecieved': parseInt(event.value),
+        'recievedOn': String(event.timestamp)
     }
-
+                        
     console.log(response)
-}
+}                                            
                     </textarea>
                 </div>
 

@@ -4,7 +4,7 @@ exports.processEvent = async (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 
-            const mod = require(`./functions/${uModule}/index`)
+            var mod = require(`./functions/${uModule}/index`)
 
             var response = mod.handler(inputs)
             await response

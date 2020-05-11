@@ -42,6 +42,4 @@ function sendMail(payload, mtime) {
     } else if (payload <= 30) {
         stateCheck = 0;
     }
-
-    console.log("Sent!!")
 }

@@ -39,7 +39,7 @@ function sendMail(payload, mtime) {
                 return true
             }
         });
-    } else if (payload <= 30) {
+    } else if (payload <= 10) {
         stateCheck = 0;
     }
 }

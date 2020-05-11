@@ -74,6 +74,10 @@ app.get('/builder/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/builder.html')
 });
 
+app.get('/rules:userId', (req, res) => {
+    res.sendFile(__dirname + '/rules/index.html')
+})
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []

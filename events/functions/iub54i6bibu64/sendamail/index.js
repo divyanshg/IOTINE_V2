@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 }
 
 function sendMail(payload, mtime) {
-    if (payload >= 90 && stateCheck == 0) {
+    if (payload == 95 && stateCheck == 0) {
         stateCheck = 1;
         var transporter = nodemailer.createTransport({
             service: 'gmail',

@@ -268,9 +268,15 @@
                     <label for="code">Create your function</label>
                     <textarea name="code" id="eventCode" cols="30" rows="10">
 'use strict'
+
 // sample function
+
+const iotine = require('iotine-sdk')
+
 exports.handler = async (event) => {
+
 //Event contains all information of recieved message
+
     const response = {
         'status': 200,
         'valueRecieved': parseInt(event.value),

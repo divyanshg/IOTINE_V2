@@ -21,8 +21,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.css">
-        <link rel="stylesheet" type="text/css"
-            href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
+
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/mode/javascript/javascript.js"></script>
     <style>
         .no-js #loader {
             display: none;
@@ -262,7 +264,7 @@
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your function</label>
                     <textarea name="code" id="eventCode" cols="30" rows="10">
-"'use strict'
+'use strict'
 
 exports.handler = async (event) => {
     const response = {
@@ -271,7 +273,7 @@ exports.handler = async (event) => {
     }
 
     console.log(response)
-}"
+}
                     </textarea>
                 </div>
 
@@ -382,6 +384,10 @@ exports.handler = async (event) => {
                 lineNumbers: true,
                 styleActiveLine: true,
                 matchBrackets: true,
+                continueComments: "Enter",
+                extraKeys: {
+                    "Ctrl-Q": "toggleComment"
+                }
             });
             editor.setOption("theme", 'ayu-mirage');
         }

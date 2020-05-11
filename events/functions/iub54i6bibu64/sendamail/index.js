@@ -30,7 +30,13 @@ exports.handler = async (event) => {
     } else if (payload <= 10) {
         stateCheck = 0;
     }else if(payload <= 90){
-        turnOffCooler(event)
+        sockClient.emit('publish', {
+            user: event.user,
+            deviceId: 'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4',
+            feed: 'ESP_INT_LED',
+            value: "OFF",
+            time: new Date().toLocaleTimeString()
+        })
     }
 }
 
@@ -61,11 +67,5 @@ function sendMail(payload, mtime) {
 }
 
 function turnOffCooler() {
-    sockClient.emit('publish', {
-        user: event.user,
-        deviceId: 'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4',
-        feed: 'ESP_INT_LED',
-        value: "OFF",
-        time: new Date().toLocaleTimeString()
-    })
+    
 }

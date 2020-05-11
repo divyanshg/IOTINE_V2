@@ -11,9 +11,7 @@ exports.handler = async (event) => {
     var mtime = event.timestamp;
 
     await sendMail(payload, mtime)
-
-    return data
-
+    
 }
 
 function sendMail(payload, mtime) {
@@ -31,7 +29,7 @@ function sendMail(payload, mtime) {
             from: 'iotine.alert@gmail.com',
             to: 'divyanshg809@gmail.com',
             subject: 'Core temperature was high',
-            text: `Core temperature reached <b style="color:red;>${payload}</b> at <i> style="color:green;">${mtime}</i>`
+            text: `Core temperature reached ${payload} on ${mtime}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

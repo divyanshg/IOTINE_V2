@@ -35,6 +35,32 @@
             z-index: 9999;
             background: url(https://192.168.31.249/IOTINE_V2/mission-control/332.gif) center no-repeat #fff;
         }
+
+        input[type=text],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
     </style>
     <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/xterm.css" />
     <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/style.css">
@@ -104,13 +130,15 @@
                     <ul>
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink" href="#"
-                                    onclick="window.location.replace('/'+window.location.pathname)"><i class="material-icons">dashboard</i>
+                                    onclick="window.location.replace('/'+window.location.pathname)"><i
+                                        class="material-icons">dashboard</i>
                                     <div>Dashboard</div>
                                 </a></div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div class="sc-ePZHVD ePRQm"><a class="navlink active" onclick="linkactive(this);window.location.replace('/rules'+window.location.pathname)"
-                                    ><i class="material-icons">repeat</i>
+                            <div class="sc-ePZHVD ePRQm"><a class="navlink active"
+                                    onclick="linkactive(this);window.location.replace('/rules'+window.location.pathname)"><i
+                                        class="material-icons">repeat</i>
                                     <div>Rules</div>
                                 </a></div>
                         </li>
@@ -150,8 +178,25 @@
                 </div>
             </header>
 
-            <h4>Create a rule to evaluate messages sent by your things and specify what to do when a message is received (for example, write data to a DynamoDB table or invoke a Lambda function).</h4>
+            <h4>Create a rule to evaluate messages sent by your things and specify what to do when a message is received
+                (for example, write data to a DynamoDB table or invoke a Lambda function).</h4>
 
+            <form action="/action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                </select>
+
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
     </div>

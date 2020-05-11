@@ -23,7 +23,7 @@ function sendMail(payload, mtime) {
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;
         
-        console.log("HEYA!!")
+        console.log(iotine.mailConfig)
 
     } else if (payload <= 10) {
         stateCheck = 0;

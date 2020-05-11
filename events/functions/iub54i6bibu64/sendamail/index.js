@@ -1,11 +1,11 @@
 'use strict'
 
+
+var nodemailer = require('nodemailer');
+
 var stateCheck = 0;
 
 exports.handler = function (event, callback) {
-    var nodemailer = require('nodemailer');
-
-
     var payload = parseInt(event.msg);
     var timestamp = parseInt(event.timestamp);
 
@@ -34,7 +34,8 @@ exports.handler = function (event, callback) {
             }
         });
     }else if(payload <= 30){
-        stateCheck = 0
+        stateCheck = 0;
+        console.log(payload)
     }
 
     if (callback == null || callback == '') return data

@@ -7,7 +7,7 @@ var stateCheck = 0;
 
 exports.handler = async (event) => {
 
-    var payload = parseInt(event.msg);
+    var payload = parseInt(event.value);
     var mtime = event.timestamp;
 
     await sendMail(payload, mtime)

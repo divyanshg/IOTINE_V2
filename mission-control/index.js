@@ -117,12 +117,13 @@ io.on('connection', function (socket) {
                                 if (feedInfo[0].events != null || feedInfo[0].events != '' || typeof feedInfo[0].events != 'undefined' || JSON.parse(feedInfo[0].events) != []) {
                                     var events = JSON.parse(feedInfo[0].events)
 
+                                    
+                                    console.log(feedInfo[0].unit)
                                     events.forEach(event => {
                                         eventProcessor.processEvent(`${msg.user}/${event}`, {
                                             "msg": msg.value,
                                             "timestamp": String(feedInfo[0].time)
                                         }, null).then(response => {
-                                            console.log(feedInfo[0].unit)
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 

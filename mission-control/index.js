@@ -119,7 +119,7 @@ io.on('connection', function (socket) {
                                     events.forEach(event => {
                                         console.log(event)
                                     })
-                                //}
+                                }
 
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo.unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)

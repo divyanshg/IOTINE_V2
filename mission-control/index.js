@@ -119,7 +119,7 @@ io.on('connection', function (socket) {
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {
-                                        eventProcessor.processEvent(`${msg.user}-${event}`, {
+                                        eventProcessor.processEvent(`${msg.user}/${event}`, {
                                             "msg": msg.value,
                                             "timestamp": feedInfo[0].time
                                         }, null).then(response => {

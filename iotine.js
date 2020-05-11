@@ -14,9 +14,11 @@ const iotine = {
         this.mailConfig.service = args.service;
     },
 
-    sendMail: (mailOptions) => {
+    sendMail: async (mailOptions) => {
 
         var nodemailer = require('nodemailer');
+
+        await nodemailer;
 
         if (this.mailConfig.emailAddress == '' || this.mailConfig.password == '' || this.mailConfig.service == '') return reject("Mail service has not been configured. Use configMail() to configure it now. \n Mail not Sent!")
 

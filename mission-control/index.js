@@ -117,8 +117,6 @@ io.on('connection', function (socket) {
                                 if (feedInfo[0].events != null || feedInfo[0].events != '' || typeof feedInfo[0].events != 'undefined' || JSON.parse(feedInfo[0].events) != []) {
                                     var events = JSON.parse(feedInfo[0].events)
 
-                                    
-                                    console.log(feedInfo[0].unit)
                                     events.forEach(event => {
                                         eventProcessor.processEvent(`${msg.user}/${event}`, {
                                             "msg": msg.value,

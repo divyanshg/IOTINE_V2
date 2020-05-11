@@ -1372,7 +1372,7 @@
                         updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
                         var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
                         var latestData = chart.previousSibling
-                        latestData.innerHTML = msg.value + " " + unit[0].unit
+                        latestData.innerHTML = msg.value + " " + unit.unit
                         var ctx = chart.getContext("2d")
                         updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
 
@@ -1380,7 +1380,7 @@
                             false
                         if (!range) return
                         var latestData = range.previousSibling
-                        latestData.innerHTML = msg.value + " " + unit[0].unit
+                        latestData.innerHTML = msg.value + " " + unit.unit
                         updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
 
                         console.log(unit[0])

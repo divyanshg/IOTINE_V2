@@ -3,7 +3,7 @@ var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
 
-const eventProcessor = require('../events/eventProcessor')
+var eventProcessor = require('../events/eventProcessor')
 
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';

@@ -262,16 +262,16 @@
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your function</label>
                     <textarea name="code" id="eventCode" cols="30" rows="10">
-                        'use strict'
+"'use strict'
 
-                        exports.handler = async (event) => {
-                            const response = {
-                                'status': 200,
-                                'body': event.value
-                            }
+exports.handler = async (event) => {
+    const response = {
+        'status': 200,
+        'body': event.value
+    }
 
-                            console.log(response)
-                        }
+    console.log(response)
+}"
                     </textarea>
                 </div>
 

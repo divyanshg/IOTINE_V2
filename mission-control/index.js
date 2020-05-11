@@ -110,13 +110,14 @@ io.on('connection', function (socket) {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
                                 if (err) return err
-                                
-                                var events = JSON.parse(feedInfo.events)
 
-                                events.forEach(event => {
-                                    console.log(event)
-                                })
+                                if (feedInfo.events != null) {
+                                    var events = JSON.stringify(feedInfo.events)
 
+                                    events.forEach(event => {
+                                        console.log(event)
+                                    })
+                                }
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo.unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
@@ -144,7 +145,7 @@ io.on('connection', function (socket) {
                 if (res.length == 0) {
                     return
                 } else {
-                    io.to(res[0].uName).emit('devStat', device, status)                    
+                    io.to(res[0].uName).emit('devStat', device, status)
                     saveToLake({
                         "user": res[0].uName,
                         "msg": {

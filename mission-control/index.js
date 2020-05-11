@@ -115,6 +115,7 @@ io.on('connection', function (socket) {
                                 //Checking and running the events processing
                                 if (feedInfo[0].events != "[]") {
 
+                                    Object.keys(require.cache).forEach(function(key) { delete require.cache[key] })
                                     var eventProcessor = require('../events/eventProcessor')
                                     var events = JSON.parse(feedInfo[0].events)
 

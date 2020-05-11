@@ -1382,6 +1382,8 @@
                         var latestData = range.previousSibling
                         latestData.innerHTML = msg.value + " " + unit[0].unit
                         updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
+
+                        console.log(unit[0])
                         
                     } else {
                         return

@@ -3,10 +3,11 @@
 exports.handler = function (event, callback) {
     
     var payload = parseInt(event.msg);
-    var timestamp = parseInt(event.time);
+    var timestamp = parseInt(event.timestamp);
 
-    var data = timestamp
+    var data = payload
 
+    console.log(`data recieved : ${data}`)
     if(callback == null || callback == '') return data
     callback(null, data);
 }

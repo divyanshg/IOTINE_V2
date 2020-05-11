@@ -113,13 +113,12 @@ io.on('connection', function (socket) {
 
                                 //Checking and running the events processing
 
-                                //if (feedInfo.events != null || feedInfo.events != '' || typeof feedInfo.events != 'undefined') {
-                                    //var events = JSON.stringify(feedInfo.events)
+                                if (feedInfo[0].events != null || feedInfo[0].events != '' || typeof feedInfo[0].events != 'undefined' || JSON.parse(feedInfo[0].events) != []) {
+                                    var events = JSON.parse(feedInfo[0].events)
 
-                                    console.log(JSON.parse(feedInfo[0].events))
-                                    /*events.forEach(event => {
+                                    events.forEach(event => {
                                         console.log(event)
-                                    })*/
+                                    })
                                 //}
 
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo.unit)

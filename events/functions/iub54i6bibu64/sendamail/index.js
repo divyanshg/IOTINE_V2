@@ -1,5 +1,8 @@
 'use strict'
 
+
+var nodemailer = require('nodemailer');
+
 var stateCheck = 0;
 
 exports.handler = async (event) => {
@@ -12,12 +15,30 @@ exports.handler = async (event) => {
 }
 
 function sendMail(payload, mtime) {
-    if (payload >= 50 && stateCheck == 0) {
+    if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
-        
-        console.log("HEYA!!")
-        return true;
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'iotine.alert@gmail.com',
+                pass: 'div21902'
+            }
+        });
 
+        var mailOptions = {
+            from: 'iotine.alert@gmail.com',
+            to: 'divyanshg809@gmail.com',
+            subject: 'Core temperature was high',
+            text: `Core temperature reached ${payload} on ${mtime}`
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return
+            } else {
+                return true
+            }
+        });
     } else if (payload <= 10) {
         stateCheck = 0;
     }

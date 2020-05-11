@@ -30,12 +30,11 @@ exports.handler = function (event, callback) {
             if (error) {
                 return
             } else {
-                console.log(`mail sent : ${stateCheck}`)
+                return true
             }
         });
     }else if(payload <= 30){
         stateCheck = 0;
-        console.log(payload)
     }
 
     if (callback == null || callback == '') return data

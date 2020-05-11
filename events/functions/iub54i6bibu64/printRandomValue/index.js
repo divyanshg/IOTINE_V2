@@ -1,5 +1,5 @@
 'use strict'
 
 exports.handler = async(event) => {
-    return Math.floor(Math.random() * 100)
+    return console.log(Math.floor(Math.random() * parseInt(event.value)))
 }

@@ -184,7 +184,7 @@
 
             <form class="rulesForm" action="/action_page.php">
                 <label for="fname">Name</label>
-                <input type="text" id="rname" name="rulename">
+                <input type="text" id="rname" name="rulename" onchange="formatRuleName()">
 
                 <label for="lname">Description</label>
                 <textarea style="height: 120px;"></textarea>
@@ -242,6 +242,11 @@
             root.style.setProperty("--widBorder", "#d2d2d2")
             root.style.setProperty("--tabsclr", "black")
             root.style.setProperty("--thm-wid", "white")
+        }
+
+        var formatRuleName = () => {
+            var name = document.querySelector("#rname")
+            name.value = name.value.replace(" ", "-")
         }
     </script>
 </body>

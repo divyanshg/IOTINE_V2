@@ -122,7 +122,7 @@ io.on('connection', function (socket) {
                                             "msg": msg.value,
                                             "timestamp": String(feedInfo[0].time)
                                         }, null).then(response => {
-                                            
+                                            console.log(feedInfo[0].unit)
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 

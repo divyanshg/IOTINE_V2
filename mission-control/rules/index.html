@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IOTINE DASHBOARD (BETA v2.0.2)</title>
+    <title>Device Rules</title>
     <link rel="icon" type="image/png" href="https://192.168.31.249/logo.png">
     <style>
         .no-js #loader {
@@ -37,7 +37,7 @@
         }
 
         input[type=text],
-        select {
+        select, textarea {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -45,6 +45,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            resize: none;
         }
 
         input[type=submit] {
@@ -173,11 +174,11 @@
             </header>
 
             <form class="rulesForm" action="/action_page.php">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                <label for="fname">Name</label>
+                <input type="text" id="rname" name="rulename" >
 
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="lname">Description</label>
+                <textarea ></textarea>
 
                 <label for="country">Country</label>
                 <select id="country" name="country">

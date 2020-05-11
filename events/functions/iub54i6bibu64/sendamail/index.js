@@ -24,6 +24,7 @@ function sendMail(payload, mtime) {
         stateCheck = 1;
         
         console.log("HEYA!!")
+        return true;
 
     } else if (payload <= 10) {
         stateCheck = 0;

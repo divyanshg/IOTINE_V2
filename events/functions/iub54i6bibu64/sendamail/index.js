@@ -5,15 +5,14 @@ var nodemailer = require('nodemailer');
 
 var stateCheck = 0;
 
-exports.handler = function (event, callback) {
+exports.handler = async (event) => {
 
     var payload = parseInt(event.msg);
     var mtime = event.timestamp;
 
     sendMail(payload, mtime)
 
-    if (callback == null || callback == '') return data
-    callback(null, data);
+    return data
 
 }
 

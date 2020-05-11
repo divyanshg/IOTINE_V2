@@ -114,7 +114,7 @@ io.on('connection', function (socket) {
                                 if (err) return err
 
                                 //Checking and running the events processing
-                                if (feedInfo[0].events != []) {
+                                if (feedInfo[0].events != "[]") {
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {

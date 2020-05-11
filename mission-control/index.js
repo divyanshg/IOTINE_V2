@@ -116,7 +116,7 @@ io.on('connection', function (socket) {
                                 //if (feedInfo.events != null || feedInfo.events != '' || typeof feedInfo.events != 'undefined') {
                                     //var events = JSON.stringify(feedInfo.events)
 
-                                    console.log(JSON.stringify(feedInfo[0].events))
+                                    console.log(JSON.stringify(feedInfo))
                                     /*events.forEach(event => {
                                         console.log(event)
                                     })*/

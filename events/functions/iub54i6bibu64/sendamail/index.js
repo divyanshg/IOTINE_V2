@@ -9,8 +9,8 @@ exports.handler = function (event, callback) {
     var payload = parseInt(event.msg);
     var timestamp = parseInt(event.timestamp);
 
-    if (payload >= 50) {
-        stateCheck += 1;
+    if (payload >= 50 && stateCheck == 0) {
+        stateCheck = 1;
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -33,6 +33,8 @@ exports.handler = function (event, callback) {
                 console.log(`mail sent : ${stateCheck}`)
             }
         });
+    }else if(payload <= 30){
+        stateCheck = 0
     }
 
     if (callback == null || callback == '') return data

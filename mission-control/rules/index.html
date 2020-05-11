@@ -77,7 +77,8 @@
             margin-left: 25px;
         }
 
-        input:focus,select:focus,
+        input:focus,
+        select:focus,
         textarea:focus {
             outline: none;
         }
@@ -88,8 +89,12 @@
             height: 40px !important;
             background-color: white;
         }
-        .mainappin{
+
+        .mainappin {
             overflow: auto;
+        }
+        .comds{
+            display:flex;
         }
     </style>
     <script>
@@ -232,17 +237,22 @@
 
                 <div id="feedContainer" style="display: none;">
                     <label for="feedsList">Feed</label>
-                    <select onchange="document.querySelector('.eventFunction').style.display = 'block'" id="feedsList" name="feeds">
+                    <select onchange="document.querySelector('.eventFunction').style.display = 'block'" id="feedsList"
+                        name="feeds">
                         <option value="0">Select device feed</option>
                     </select>
                 </div>
 
                 <div style="display: none;" class="eventFunction">
-                    <h3>Action</h3>
+                    <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your functions</label>
                     <textarea name="code" id="" cols="30" rows="10"></textarea>
                 </div>
-                <input type="submit" value="Create Rule">
+
+                <div class="comnds">
+                    <input type="submit" value="Create Rule">
+                    <input type="submit" value="Cancel">
+                </div>
             </form>
         </div>
     </div>

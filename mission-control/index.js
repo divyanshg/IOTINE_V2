@@ -111,7 +111,7 @@ io.on('connection', function (socket) {
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
                                 if (err) return err
 
-                                if (feedInfo.events != null) {
+                                if (feedInfo.events != null || feedInfo.events != '' || typeof feedInfo.events != 'undefined') {
                                     var events = JSON.stringify(feedInfo.events)
 
                                     events.forEach(event => {

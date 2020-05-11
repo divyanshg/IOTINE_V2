@@ -1,11 +1,16 @@
 'use strict'
 
 
-var nodemailer = require('nodemailer');
+
+var iotine = require('../../../../iotine')
+iotine = iotine.iotine;
 
 var stateCheck = 0;
 
 exports.handler = async (event) => {
+
+
+    iotine.configMail({emailAddress: 'iotine.alert@gmail.com', password: 'div21902', service: 'gmail'})
 
     var payload = parseInt(event.msg);
     var mtime = event.timestamp;
@@ -17,28 +22,13 @@ exports.handler = async (event) => {
 function sendMail(payload, mtime) {
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'iotine.alert@gmail.com',
-                pass: 'div21902'
-            }
-        });
+        
+        iotine.sendMail().then(response => {
+            console.log(response)
+        }).catch(err => {
+            console.log(err)
+        })
 
-        var mailOptions = {
-            from: 'iotine.alert@gmail.com',
-            to: 'divyanshg809@gmail.com',
-            subject: 'Core temperature was high',
-            text: `Core temperature reached ${payload} on ${mtime}`
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return
-            } else {
-                return true
-            }
-        });
     } else if (payload <= 10) {
         stateCheck = 0;
     }

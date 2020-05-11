@@ -74,7 +74,7 @@ app.get('/builder/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/builder.html')
 });
 
-app.get('/rules:userId', (req, res) => {
+app.get('/rules:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 

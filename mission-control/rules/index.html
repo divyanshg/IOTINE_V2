@@ -21,6 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.css">
+        <link rel="stylesheet" type="text/css"
+            href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
     <style>
         .no-js #loader {
             display: none;
@@ -251,8 +253,7 @@
 
                 <div id="feedContainer" style="display: none;">
                     <label for="feedsList">Feed</label>
-                    <select onchange="loadEditor()" id="feedsList"
-                        name="feeds">
+                    <select onchange="loadEditor()" id="feedsList" name="feeds">
                         <option value="0">Select device feed</option>
                     </select>
                 </div>
@@ -368,7 +369,9 @@
             document.querySelector('.eventFunction').style.display = 'block'
             var code = $("#eventCode")[0];
             var editor = CodeMirror.fromTextArea(code, {
-                lineNumbers: true
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true
             });
         }
 

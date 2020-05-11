@@ -16,6 +16,7 @@ exports.handler = async (event) => {
     var mtime = event.timestamp;
     if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
+
         await sendMail(payload, mtime)
 
         sockClient.emit('publish', {
@@ -28,7 +29,7 @@ exports.handler = async (event) => {
 
     } else if (payload <= 10) {
         stateCheck = 0;
-    }else if(payload <= 90 && payload >= 80){
+    }else if(payload <= 90){
         turnOffCooler(event)
     }
 }

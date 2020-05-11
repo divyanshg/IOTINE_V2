@@ -61,8 +61,9 @@
         input[type=submit]:hover {
             background-color: #45a049;
         }
-        .rulesForm{
-            width:500px;
+
+        .rulesForm {
+            width: 500px;
         }
     </style>
     <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/xterm.css" />
@@ -160,7 +161,11 @@
                                 <div class="sc-fjmCvl sLkAJ" size="24"><img
                                         src="https://secure.gravatar.com/avatar/12c5d52b156cff381bbe700f159d237b?s=96&amp;d=https%3A%2F%2Fpro-icons-avatars.s3.amazonaws.com%2Fimg%2Fd2.png"
                                         alt=""></div>
-                                <h2 class="wlcm">Make your own rules!</h2>
+                                <h2 class="wlcm">Make your own rules!<br><span style="
+                                            font-size: 14px;
+                                            color: #656f80;
+                                        ">Create a rule to evaluate messages sent by your things and specify what to do when a message is received
+                (for example, write data to a DynamoDB table or invoke a Lambda function).</span></h2>
                             </div>
                         </span>
                     </div>
@@ -180,9 +185,6 @@
                     </div>
                 </div>
             </header>
-
-            <h4>Create a rule to evaluate messages sent by your things and specify what to do when a message is received
-                (for example, write data to a DynamoDB table or invoke a Lambda function).</h4>
 
             <form class="rulesForm" action="/action_page.php">
                 <label for="fname">First Name</label>

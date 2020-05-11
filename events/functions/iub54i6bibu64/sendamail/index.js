@@ -2,7 +2,7 @@
 
 
 
-var iotine = require('../../../../iotine')
+var iotine = require('./iotine')
 iotine = iotine.iotine;
 
 var stateCheck = 0;

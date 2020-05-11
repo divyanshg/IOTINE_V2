@@ -23,11 +23,7 @@ function sendMail(payload, mtime) {
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;
         
-        iotine.sendMail().then(response => {
-            console.log(response)
-        }).catch(err => {
-            console.log(err)
-        })
+        console.log(iotine.sendMail())
 
     } else if (payload <= 10) {
         stateCheck = 0;

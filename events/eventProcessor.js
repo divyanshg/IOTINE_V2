@@ -9,10 +9,10 @@ exports.processEvent = (uModule, inputs) => {
 
             var response = mod.handler(inputs)
 
-            return resolve(String(response))
+            resolve(String(response))
 
         } catch (e) {
-            return reject("Unable to process event <br> " + e)
+            reject("Unable to process event <br> " + e)
         }
     })
 

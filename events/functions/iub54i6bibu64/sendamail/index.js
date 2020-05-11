@@ -7,7 +7,7 @@ var stateCheck = 0;
 
 exports.handler = function (event, callback) {
     var payload = parseInt(event.msg);
-    var mtime = parseInt(event.timestamp);
+    var mtime = event.timestamp;
 
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;

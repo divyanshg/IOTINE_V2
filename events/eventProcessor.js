@@ -1,6 +1,6 @@
 'use strict'
 
-exports.processEvent = (uModule, inputs) => {
+exports.processEvent = async (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 

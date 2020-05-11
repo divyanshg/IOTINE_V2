@@ -10,7 +10,7 @@ exports.handler = async (event) => {
     var payload = parseInt(event.msg);
     var mtime = event.timestamp;
 
-    sendMail(payload, mtime)
+    await sendMail(payload, mtime)
 
     return data
 

@@ -137,6 +137,7 @@ io.on('connection', function (socket) {
                                         })
                                     })
                                 } else {
+                                    console.log("here")
                                     io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 

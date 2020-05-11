@@ -77,7 +77,8 @@
             margin-left: 25px;
         }
 
-        input:focus {
+        input:focus,select:focus,
+        textarea:focus {
             outline: none;
         }
 
@@ -311,7 +312,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:
                     var feeds = JSON.parse(xhttp.responseText)
-                    $("#feedContainer").toggle()
+                    document.querySelector("#feedContainer").style.display = "block"
                     if (feeds.length != 0) {
                         $("#feedsList").empty();
                         feeds.forEach(feed => {

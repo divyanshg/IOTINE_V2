@@ -3,6 +3,8 @@ var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
 
+const eventProcessor = require('../events/eventProcessor')
+
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 const key = "2hg34o09j09d23JJ2hg34o09j09d23JJ";
@@ -106,7 +108,7 @@ io.on('connection', function (socket) {
                             if (err) throw err;
                         });
                     } else {
-                        con.query('select unit, events from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, feedInfo) => {
+                        con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], (err, feedInfo) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
                                 if (err) return err
@@ -117,11 +119,11 @@ io.on('connection', function (socket) {
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {
-                                        console.log(event)
+                                        eventProcessor.processEvent(`${msg.user}-${event}`, {"msg": msg.value, "timestamp": feedInfo[0].time}, null)
                                     })
                                 }
 
-                                io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo.unit)
+                                io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                 var hw = encrypt(msg.value)

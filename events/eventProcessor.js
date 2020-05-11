@@ -6,7 +6,10 @@ exports.processEvent = (uModule, inputs) => {
 
             const mod = require(`./functions/${uModule}/index`)
 
-            return resolve(String(await mod.handler(inputs)))
+            var response = mod.handler(inputs)
+            await response
+
+            return resolve(String(response))
 
         } catch (e) {
             return reject("Unable to process event <br> " + e)

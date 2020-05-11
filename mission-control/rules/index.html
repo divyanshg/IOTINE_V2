@@ -317,7 +317,7 @@
         async function loadFeeds(dev) {
             var feedLst = document.querySelector("#feedsList");
             var xhttp = new XMLHttpRequest();
-            document.querySelector("#feedContainer").empty().append('<option value="0">Select your device</option>')
+            $("#feedContainer").empty().append('<option value="0">Select your device</option>')
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     // Typical action to be performed when the document is ready:

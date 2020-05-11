@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
     } else if (payload <= 10) {
         stateCheck = 0;
-    }else{
+    }else if(payload <= 90 && payload >= 80){
         turnOffCooler(event)
     }
 }

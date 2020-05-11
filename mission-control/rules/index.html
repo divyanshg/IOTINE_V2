@@ -259,7 +259,7 @@
 
                 <div style="display: none;" class="eventFunction">
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
-                    <label for="code">Create your functions</label>
+                    <label for="code">Create your function</label>
                     <textarea name="code" id="" cols="30" rows="10"></textarea>
                 </div>
 
@@ -270,16 +270,6 @@
             </form>
         </div>
     </div>
-    </div>
-    <div class="settingsModal modal" style="display: none;">
-        <div class="newAppInner">
-            <h1>Dashboard Settings<span
-                    onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}"
-                    class="clsBtn">&times;</span></h1>
-            <h4>From here you can easily customize your dashboard experience.</h4>
-            <div id="terminal"></div>
-        </div>
-
     </div>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>

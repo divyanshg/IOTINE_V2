@@ -23,13 +23,13 @@ function sendMail(payload, mtime) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'divg809@gmail.com',
+                user: 'iotine.alert@gmail.com',
                 pass: 'div21902'
             }
         });
 
         var mailOptions = {
-            from: 'divg809@gmail.com',
+            from: 'iotine.alert@gmail.com',
             to: 'divyanshg809@gmail.com',
             subject: 'Core temperature was high',
             text: `Core temperature reached ${payload} at ${mtime}`

@@ -58,7 +58,7 @@
         }
 
         input[type=submit] {
-            width: 100%;
+            width: 50%;
             background-color: rgb(56, 128, 255);
             color: white;
             padding: 14px 20px;
@@ -66,7 +66,13 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin-right:10px;
+            margin-right:5px;
+            margin-left:5px;
+        }
+
+        input.cancel{
+            background-color: transparent;
+            color: red;
         }
 
         input[type=submit]:hover {
@@ -252,7 +258,7 @@
 
                 <div class="comnds">
                     <input type="submit" value="Create Rule">
-                    <input type="submit" value="Cancel">
+                    <input type="submit" class="cancel" value="Cancel">
                 </div>
             </form>
         </div>

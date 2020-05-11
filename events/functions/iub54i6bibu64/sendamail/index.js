@@ -14,7 +14,7 @@ exports.handler = async (event) => {
 
     var payload = parseInt(event.value);
     var mtime = event.timestamp;
-    if (payload == 95 && stateCheck == 0) {
+    if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
         await sendMail(payload, mtime)
 
@@ -25,7 +25,7 @@ exports.handler = async (event) => {
             value: "ON",
             time: new Date().toLocaleTimeString()
         })
-        
+
     } else if (payload <= 10) {
         stateCheck = 0;
         turnOnCooler(event)

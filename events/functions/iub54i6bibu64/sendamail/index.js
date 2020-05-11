@@ -22,12 +22,12 @@ exports.handler = function (event, callback) {
             subject: 'Core temperature was high',
             text: `Core temperature reached ${payload} at ${timestamp}`
         };
-        
+
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 return
             } else {
-                return
+                console.log("mail sent")
             }
         });
     }

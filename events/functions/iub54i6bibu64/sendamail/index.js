@@ -7,7 +7,7 @@ var stateCheck = 0;
 
 exports.handler = function (event, callback) {
     var payload = parseInt(event.msg);
-    var timestamp = parseInt(event.timestamp);
+    var mtime = parseInt(event.timestamp);
 
     if (payload >= 50 && stateCheck == 0) {
         stateCheck = 1;
@@ -23,7 +23,7 @@ exports.handler = function (event, callback) {
             from: 'divg809@gmail.com',
             to: 'divyanshg809@gmail.com',
             subject: 'Core temperature was high',
-            text: `Core temperature reached ${payload} at ${timestamp}`
+            text: `Core temperature reached ${payload} at ${mtime}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

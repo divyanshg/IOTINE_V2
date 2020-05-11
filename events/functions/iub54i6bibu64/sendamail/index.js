@@ -1,9 +1,10 @@
 'use strict'
 
+var stateCheck = 0;
+
 exports.handler = function (event, callback) {
     var nodemailer = require('nodemailer');
 
-    var stateCheck = 0;
 
     var payload = parseInt(event.msg);
     var timestamp = parseInt(event.timestamp);

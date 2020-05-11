@@ -106,12 +106,18 @@ io.on('connection', function (socket) {
                             if (err) throw err;
                         });
                     } else {
-                        con.query('select unit, events from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, unit) => {
+                        con.query('select unit, events from feed_vals where user_id = ? and deviceID = ? and name =?', [msg.user, msg.deviceId, msg.feed], (err, feedInfo) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
                                 if (err) return err
-                                console.log(unit)
-                                io.to(msg.user).emit('subscribe', msg.feed, msg, unit)
+                                
+                                var events = JSON.parse(feedInfo.events)
+
+                                events.forEach(event => {
+                                    console.log(event)
+                                })
+
+                                io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo.unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                 var hw = encrypt(msg.value)

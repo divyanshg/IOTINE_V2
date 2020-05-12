@@ -418,7 +418,7 @@ exports.handler = async (event) => {
                 lineNumbers: true,
                 styleActiveLine: true,
                 matchBrackets: true,
-                onChange: function(){editor.save()},
+                onChange: function(){console.log(editor.getValue())},
             });
             editor.setOption("theme", 'ayu-mirage');
         }

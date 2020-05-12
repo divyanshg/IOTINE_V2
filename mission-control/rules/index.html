@@ -409,12 +409,12 @@ exports.handler = async (event) => {
 
 var output = document.querySelector(".output")
 function tester(){
-    var $ = function(){return false;}
-    var alert = function() {output.value += "\n You cannot use alert in an event function.";return false}
-    var window = function() {return false}
-    var prompt = function() {output.value += "\n You cannot use prompt in an event function.";return false}
-    var confirm = function() {output.value += "\n You cannot use confirm in an event function.";return false}
-    var document = function() {return false}
+    var $ = function(){return;}
+    var alert = function() {output.value += "\n You cannot use alert in an event function.";return}
+    var window = function() {return}
+    var prompt = function() {output.value += "\n You cannot use prompt in an event function.";return}
+    var confirm = function() {output.value += "\n You cannot use confirm in an event function.";return}
+    var document = function() {return}
     var console = {log: (msg) => { output.value += "\n"+JSON.stringify(msg); output.scrollTop = output.scrollHeight;}}
     var exports = {}
 

@@ -292,7 +292,7 @@
                             </div>
                         </div>
                     </header>
-                    <div class="sc-cmTdod fxybWW">
+                    <div style="display: block;" class="ruleList sc-cmTdod fxybWW">
                         <ul class=" dash-size-regular sc-eNQAEJ dcxxsX">
                             <li class="sc-jKJlTe PzdTN" v-for="item in items" :key="item" :id="item.id">
                                 <div class=" dash-size-regular sc-kGXeez iEQOUk">
@@ -589,6 +589,12 @@ function tester(){
                 console.log(e)
             }
         }
+
+        function newRule(){
+            $(".ruleList").toggle()
+            $(".rulesForm").toggle()
+        }
+
         getUser()
     </script>
 </body>

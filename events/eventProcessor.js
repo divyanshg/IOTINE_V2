@@ -14,7 +14,7 @@ con.connect(function (err) {
 });
 
 
-exports.processEvent = (uModule, inputs) => {
+processEvent = (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 
@@ -30,7 +30,7 @@ exports.processEvent = (uModule, inputs) => {
 
             saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
             return reject(e)
-            
+
         }
     })
 
@@ -53,3 +53,4 @@ function saveEventFailureLog(user, event, err) {
         })
     })
 }
+

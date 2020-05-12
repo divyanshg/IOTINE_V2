@@ -215,8 +215,8 @@ app.get('/deviceState/:user', (req, res) => {
 
 app.get('/runRule/:user', (req,res) => {
     console.log("here")
-    res.json(req.body.code)
-    console.log(req.body.code)
+    res.json({"status": 200})
+    console.log(req.body)
 })
 
 var getWidgets = (user, app) => {

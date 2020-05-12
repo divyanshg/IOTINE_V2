@@ -489,7 +489,7 @@ function tester(){
                 var output = document.querySelector(".output")
                 var console = {
                     log: (msg) => {
-                        output.value += "\nError: " + JSON.stringify(msg).replace(/['"]+/g, '');
+                        output.value += "\nError: " + msg;
                         output.scrollTop = output.scrollHeight;
                     }
                 }

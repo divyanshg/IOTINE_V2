@@ -595,9 +595,9 @@ function tester(){
             $(".rulesForm").toggle()
             var root = document.documentElement
             if (root.style.getPropertyValue("--brdr") == "none") {
-                root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
-            } else {
                 root.style.setProperty("--brdr", "none")
+            } else {
+                root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
             }
         }
 

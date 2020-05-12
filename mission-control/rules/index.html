@@ -423,6 +423,20 @@ exports.handler = async (event) => {
             editor.setOption("theme", 'ayu-mirage');
         }
 
+
+        async function runCode() {
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    var output = JSON.parse(xhttp.responseText)
+                    console.log(output)
+                }
+            };
+
+            var code = JSON.stringify({"code": document.querySelector('#eventCode').value})
+            xhttp.open("GET", "https://192.168.31.249:3000/runRule/" + user, true);
+            await xhttp.send(code);
+        }
         getUser()
     </script>
 </body>

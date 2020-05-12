@@ -79,7 +79,7 @@ app.get('/rules/:userId/:app', (req, res) => {
 })
 
 app.get('/runRule/:user', (req,res) => {
-    res.json(req.body)
+    res.json(JSON.parse(req.body.code))
 })
 
 var rooms = [{

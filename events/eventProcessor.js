@@ -14,7 +14,7 @@ con.connect(function (err) {
 });
 
 
-processEvent = (uModule, inputs) => {
+var processEvent = (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 
@@ -39,7 +39,7 @@ processEvent = (uModule, inputs) => {
 function saveEventSuccessLog(user, event, msg) {
     return new Promise((resolve, reject) => {
         con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES(${user}, ${event}, 'success', ${msg})`, (err, resp) => {
-            if(err) return reject(err)
+            if (err) return reject(err)
             return resolve(resp)
         })
     })
@@ -48,9 +48,16 @@ function saveEventSuccessLog(user, event, msg) {
 function saveEventFailureLog(user, event, err) {
     return new Promise((resolve, reject) => {
         con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES(${user}, ${event}, 'failure', ${err})`, (err, resp) => {
-            if(err) return reject(err)
+            if (err) return reject(err)
             return resolve(resp)
         })
     })
 }
 
+processEvent('iub54i6bibu64/sendamail', {
+    "user_id": "sample_user",
+    "deviceId": "sampleDevice",
+    "feed": "Sample_Feed",
+    "value": Math.floor(Math.random() * 100),
+    "timestamp": Date.now()
+})

@@ -79,6 +79,7 @@ app.get('/rules/:userId/:app', (req, res) => {
 })
 
 app.get('/runRule/:user', (req,res) => {
+    console.log("here")
     res.json(JSON.parse(req.body.code))
 })
 

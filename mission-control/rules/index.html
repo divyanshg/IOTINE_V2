@@ -429,7 +429,7 @@ exports.handler = async (event) => {
             editor.save()
             var scr = document.createElement('script')
 
-            /*scr.innerHTML += document.querySelector("#eventCode").value
+            scr.innerHTML += document.querySelector("#eventCode").value
             document.getElementsByTagName('head')[0].appendChild(scr)
 
             await exports.handler({
@@ -438,14 +438,7 @@ exports.handler = async (event) => {
                 "feed": "Sample_Feed",
                 "value": Math.floor(Math.random() * 100),
                 "timestamp": Date.now()
-            })*/
-            try {
-                eval(document.querySelector("#eventCode").value);
-            } catch (e) {
-                if (e instanceof SyntaxError) {
-                    alert(e.message);
-                }
-            }
+            })*
         }
         getUser()
     </script>

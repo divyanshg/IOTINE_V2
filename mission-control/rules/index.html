@@ -429,7 +429,7 @@ exports.handler = async (event) => {
             var xhttp = new XMLHttpRequest();
 
 
-            xhttp.open("GET", "https://192.168.31.249:3000/runRule/" + user, true);
+            xhttp.open("GET", "https://192.168.31.249:3002/runRule/" + user, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
 
             xhttp.onreadystatechange = function () {

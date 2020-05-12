@@ -477,13 +477,23 @@ function tester(){
             scr.innerHTML += '\n return exports;}'
             document.getElementsByTagName('head')[0].appendChild(scr)
 
-            await tester().handler({
-                "user_id": "sample_user",
-                "deviceId": "sampleDevice",
-                "feed": "Sample_Feed",
-                "value": Math.floor(Math.random() * 100),
-                "timestamp": Date.now()
-            })
+            try {
+                await tester().handler({
+                    "user_id": "sample_user",
+                    "deviceId": "sampleDevice",
+                    "feed": "Sample_Feed",
+                    "value": Math.floor(Math.random() * 100),
+                    "timestamp": Date.now()
+                })
+            } catch (e) {
+                var output = document.querySelector(".output")
+                var console = {
+                    log: (msg) => {
+                        output.value += "\nError: " + JSON.stringify(msg).replace(/['"]+/g, '');
+                        output.scrollTop = output.scrollHeight;
+                    }
+                }
+            }
         }
         getUser()
     </script>

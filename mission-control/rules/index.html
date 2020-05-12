@@ -317,6 +317,13 @@ exports.handler = async (event) => {
         </div>
     </div>
     </div>
+    <textarea name="" id="testa" cols="30" rows="10">
+function tester(){
+    var console = {}
+    console = console
+            console.log = alerts
+
+    </textarea>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
@@ -428,10 +435,13 @@ exports.handler = async (event) => {
         async function runCode() {
             editor.save()
             var scr = document.createElement('script')
+
+            scr.innerHTML = document.querySelector("#testa").value
             scr.innerHTML += document.querySelector("#eventCode").value
+            scr.innerHTML += '\n return exports;}'
             document.getElementsByTagName('head')[0].appendChild(scr)
 
-            await exports.handler({
+            await tester.exports.handler({
                 "user_id": "sample_user",
                 "deviceId": "sampleDevice",
                 "feed": "Sample_Feed",

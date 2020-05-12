@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
     <style>
+        :root{
+            --brdr: none;
+        }
         .no-js #loader {
             display: none;
         }
@@ -155,7 +158,7 @@
             font-weight: bold;
         }
         .hMamKJ{
-            border-bottom:none !important;
+            border-bottom:var(--brdr) !important;
         }
     </style>
     <script>
@@ -164,7 +167,7 @@
             $(".se-pre-con").fadeOut("slow");
         });
 
-        let root = document.documentElement;
+        var root = document.documentElement;
         var lastTheme = window.localStorage.getItem("theme") || "light";
 
         if (lastTheme == "dark") {
@@ -588,7 +591,8 @@ function tester(){
         function newRule(){
             $(".ruleList").toggle()
             $(".rulesForm").toggle()
-            document.querySelector(".hMamKJ").style.borderBottom = "1px solid rgb(236, 239, 244) !important"
+            var root = document.documentElement
+            root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
         }
 
         getUser()

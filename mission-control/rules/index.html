@@ -406,8 +406,9 @@ exports.handler = async (event) => {
     </div>
     </div>
     <textarea name="" id="testa" cols="30" rows="10">
+
+var output = document.querySelector(".output")
 function tester(){
-    var output = $(".output")
     var alert = function() {output.value += "\n You cannot use alert in an event function.";return false}
     var window = function() {return false}
     var prompt = function() {output.value += "\n You cannot use prompt in an event function.";return false}

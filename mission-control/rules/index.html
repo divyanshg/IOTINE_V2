@@ -460,7 +460,7 @@ function tester(){
         async function runCode() {
             editor.save()
             var scr = document.getElementById('testscript')
-
+            scr.innerHTML = '';
             scr.innerHTML = document.querySelector("#testa").value
             scr.innerHTML += document.querySelector("#eventCode").value
             scr.innerHTML += '\n return exports;}'

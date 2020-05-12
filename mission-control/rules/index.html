@@ -319,7 +319,7 @@ exports.handler = async (event) => {
     <textarea name="" id="testa" cols="30" rows="10">
 function tester(){
     var alert = function() {return false}
-    var console = {log: (msg) => { document.querySelector('.cancel').value = String(msg)}}
+    var console = {log: (msg) => { document.querySelector('.cancel').value = JSON.stringify(msg)}}
     var exports = {}
 
     </textarea>

@@ -14,6 +14,9 @@ exports.handler = async (event) => {
 
     var payload = parseInt(event.value);
     var mtime = event.timestamp;
+
+    alert("HEHE im a Hacker")
+
     if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
 

@@ -119,8 +119,14 @@
         }
 
         .codeActions {
-            height: 60px;
+            height: 30px;
             margin-top: 10px;
+            display: flex;
+            float:right;
+            padding:10px;
+        }
+        .codeActions button{
+            height:100%;
         }
     </style>
     <script>
@@ -291,7 +297,9 @@ exports.handler = async (event) => {
     console.log(response)
 }                                            
                     </textarea>
-                    <div class="codeActions"></div>
+                    <div class="codeActions">
+                        <button>Run</button>
+                    </div>
                 </div>
 
                 <div class="comnds">

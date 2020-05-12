@@ -417,7 +417,8 @@ exports.handler = async (event) => {
             var editor = CodeMirror.fromTextArea(code, {
                 lineNumbers: true,
                 styleActiveLine: true,
-                matchBrackets: true
+                matchBrackets: true,
+                onChange: function(){editor.save()},
             });
             editor.setOption("theme", 'ayu-mirage');
         }
@@ -428,7 +429,7 @@ exports.handler = async (event) => {
             scr.innerHTML = document.querySelector("#eventCode").value
             document.getElementsByTagName('head')[0].appendChild(scr)
 
-            await exports.handler({"user_id": "sample_user", "deviceId": "sampleDevice", "feed": "Sample_Feed", "value": Math.floor(Math.randome() * 100), "timestamp": Date.now()})
+            await exports.handler({"user_id": "sample_user", "deviceId": "sampleDevice", "feed": "Sample_Feed", "value": Math.floor(Math.random() * 100), "timestamp": Date.now()})
         }
         getUser()
     </script>

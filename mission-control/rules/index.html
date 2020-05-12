@@ -185,6 +185,7 @@
             root.style.setProperty("--thm-wid", "white")
         }
     </script>
+    <script id="testscript"></script>
 </head>
 
 <body>
@@ -458,7 +459,7 @@ function tester(){
 
         async function runCode() {
             editor.save()
-            var scr = document.createElement('script')
+            var scr = document.getElementById('testscript')
 
             scr.innerHTML = document.querySelector("#testa").value
             scr.innerHTML += document.querySelector("#eventCode").value

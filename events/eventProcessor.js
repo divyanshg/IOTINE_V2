@@ -14,7 +14,7 @@ con.connect(function (err) {
 });
 
 
-var processEvent = (uModule, inputs) => {
+exports.processEvent = (uModule, inputs) => {
     return new Promise((resolve, reject) => {
         try {
 
@@ -53,11 +53,3 @@ function saveEventFailureLog(user, event, err) {
         })
     })
 }
-
-processEvent('iub54i6bibu64/sendamail', {
-    "user_id": "sample_user",
-    "deviceId": "sampleDevice",
-    "feed": "Sample_Feed",
-    "value": Math.floor(Math.random() * 100),
-    "timestamp": Date.now()
-})

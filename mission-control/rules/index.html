@@ -563,8 +563,13 @@ function tester(){
             editor.setOption("theme", 'ayu-mirage');
         }
 
+        var prevRun = false;
 
         async function runCode() {
+            if(prevRun){
+                document.getElementsByTagName('head')[0].lastElementChild.remove();
+                prevRun = false;
+            }
             editor.save()
             var scr = document.createElement('script')
 
@@ -595,6 +600,8 @@ function tester(){
                 console.log(e)
                 $(".runBtn").html("Run")
             }
+
+            prevRun = true;
         }
 
         var brdr = "none";

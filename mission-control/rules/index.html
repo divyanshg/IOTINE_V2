@@ -24,9 +24,10 @@
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
     <style>
-        :root{
+        :root {
             --brdr: none;
         }
+
         .no-js #loader {
             display: none;
         }
@@ -157,8 +158,9 @@
             width: 700px !important;
             font-weight: bold;
         }
-        .hMamKJ{
-            border-bottom:var(--brdr) !important;
+
+        .hMamKJ {
+            border-bottom: var(--brdr) !important;
         }
     </style>
     <script>
@@ -297,7 +299,7 @@
                     </header>
                     <div style="display: block;" class="ruleList sc-cmTdod fxybWW">
                         <ul class=" dash-size-regular sc-eNQAEJ dcxxsX">
-                            <li class="sc-jKJlTe PzdTN" v-for="item in items" :key="item" :id="item.id">
+                            <li class="sc-jKJlTe PzdTN" v-for="item in items" :id="item.id">
                                 <div class=" dash-size-regular sc-kGXeez iEQOUk">
                                     <div class="sc-kAzzGY eMCnFW"><img class="avatar"
                                             src="https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1"></div>
@@ -588,11 +590,15 @@ function tester(){
             }
         }
 
-        function newRule(){
+        function newRule() {
             $(".ruleList").toggle()
             $(".rulesForm").toggle()
             var root = document.documentElement
-            root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
+            if (root.style.setProperty("--brdr") == "none") {
+                root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
+            } else {
+                root.style.setProperty("--brdr", "none")
+            }
         }
 
         getUser()

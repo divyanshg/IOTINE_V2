@@ -319,7 +319,8 @@ exports.handler = async (event) => {
     console.log(response)
 }                                            
                     </textarea>
-                        <textarea name="output" class="output cm-s-ayu-mirage" cols="30" rows="10" contenteditable="false"></textarea>
+                        <textarea name="output" class="output cm-s-ayu-mirage" cols="30" rows="10"
+                            contenteditable="false"></textarea>
                     </div>
                     <div class="codeActions">
                         <button onclick="runCode()">Run</button>
@@ -352,6 +353,9 @@ function tester(){
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/hint/show-hint.js"></script>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/hint/javascript-hint.js"></script>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/mode/javascript/javascript.js"></script>
+
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/edit/matchbrackets.js "></script>
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/display/fullscreen.js "></script>
 
     <script>
         var user;
@@ -449,8 +453,14 @@ function tester(){
                 styleActiveLine: true,
                 matchBrackets: true,
                 extraKeys: {
-                    "Ctrl-Space": "autocomplete"
-                },
+                    "Ctrl-Space": "autocomplete",
+                    "F11": function (cm) {
+                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    },
+                    "Esc": function (cm) {
+                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                    }
+                }
             });
             editor.setOption("theme", 'ayu-mirage');
         }

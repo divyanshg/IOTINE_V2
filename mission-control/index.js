@@ -78,10 +78,6 @@ app.get('/rules/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 
-app.get('/runRule/:user', (req,res) => {
-    console.log("here")
-    res.json(JSON.parse(req.body.code))
-})
 
 var rooms = [{
         name: "iub54i6bibu64",

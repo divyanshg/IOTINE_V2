@@ -212,6 +212,12 @@ app.get('/deviceState/:user', (req, res) => {
     }))
 })
 
+
+app.get('/runRule/:user', (req,res) => {
+    console.log("here")
+    res.json(JSON.parse(req.body.code))
+})
+
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
         con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {

@@ -78,6 +78,10 @@ app.get('/rules/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 
+app.get('/runRule/:user', (req,res) => {
+    res.json(req.body)
+})
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []

@@ -374,7 +374,7 @@ function tester(){
 
         var formatRuleName = () => {
             var name = document.querySelector("#rname")
-            name.value = name.value.replace(/\s+/g, '-').toLowerCase();
+            name.value = name.value.replace(/\s+/g, '-');
         }
 
         async function getDevices(val) {

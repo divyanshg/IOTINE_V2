@@ -293,7 +293,7 @@
                             <div class="sc-feJyhm cznHAf">
                                 <div style="margin-bottom:10px;" class="sc-feJyhm cznHAf">
                                     <button class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
-                                        onclick="newRule()"><span>New Rule</span></button>
+                                        onclick="newRule(this)">New Rule</button>
                                 </div>
                             </div>
                         </div>
@@ -593,15 +593,17 @@ function tester(){
 
         var brdr = "none";
 
-        function newRule() {
+        function newRule(btn) {
             $(".ruleList").toggle()
             $(".rulesForm").toggle()
             var root = document.documentElement
             if (brdr == "none") {
                 root.style.setProperty("--brdr", "1px solid rgb(236, 239, 244)")
+                btn.innerHTML = "Cancel"
                 brdr = true;
             } else {
                 root.style.setProperty("--brdr", "none")
+                btn.innerHTML = "New Rule"
                 brdr = "none"
             }
         }

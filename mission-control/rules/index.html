@@ -337,8 +337,9 @@ exports.handler = async (event) => {
     </div>
     <textarea name="" id="testa" cols="30" rows="10">
 function tester(){
-    var alert = function() {document.querySelector('.output').value += "\n You cannot use alert in an event function.";return false}
-    var console = {log: (msg) => { document.querySelector('.output').value += "\n"+JSON.stringify(msg).replace(/['"]+/g, '')}}
+    var output = document.querySelector(".output")
+    var alert = function() {output.value += "\n You cannot use alert in an event function.";return false}
+    var console = {log: (msg) => { output.value += "\n"+JSON.stringify(msg).replace(/['"]+/g, ''); output.scrollTop = objDiv.scrollHeight;}}
     var exports = {}
 
     </textarea>

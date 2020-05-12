@@ -1,7 +1,7 @@
 'use strict'
 
 const mysql = require('mysql')
-
+const counter = 0;
 var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
@@ -44,6 +44,8 @@ exports.processEvent = (uModule, inputs) => {
 }
 
 function saveEventSuccessLog(user, event, msg) {
+    if(count >= 10) return
+    count += 1;
     return new Promise((resolve, reject) => {
         con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES('${user}', '${event}', 'success', '${msg}')`, (err, resp) => {
             if (err) return reject(err)
@@ -53,6 +55,8 @@ function saveEventSuccessLog(user, event, msg) {
 }
 
 function saveEventFailureLog(user, event, err) {
+    if(count >= 10) return
+    count += 1;
     return new Promise((resolve, reject) => {
         con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES('${user}', '${event}', 'failure', '${err}')`, (err, resp) => {
             if (err) return reject(err)

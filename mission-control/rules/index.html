@@ -345,6 +345,7 @@ function tester(){
     var window = function() {return false}
     var prompt = function() {output.value += "\n You cannot use prompt in an event function.";return false}
     var confirm = function() {output.value += "\n You cannot use confirm in an event function.";return false}
+    var document = function() {return false}
     var console = {log: (msg) => { output.value += "\n"+JSON.stringify(msg); output.scrollTop = output.scrollHeight;}}
     var exports = {}
 

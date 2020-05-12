@@ -427,6 +427,8 @@ exports.handler = async (event) => {
             var scr = document.createElement('script')
             scr.innerHTML = document.querySelector("#eventCode").value
             document.getElementsByTagName('head')[0].appendChild(scr)
+
+            await exports.handler({"user_id": "sample_user", "deviceId": "sampleDevice", "feed": "Sample_Feed", "value": Math.floor(Math.randome() * 100), "timestamp": Date.now()})
         }
         getUser()
     </script>

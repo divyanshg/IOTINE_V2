@@ -153,7 +153,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 
 app.get('/user/:name', (req, res) => {
     con.query('select user_id from users where username = ? limit 1', [req.params.name], (err, resp) => {
-        if (err) throw err;
+        if (err) return err;
         res.send(resp[0].user_id)
     })
 });

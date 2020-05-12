@@ -37,7 +37,7 @@ var con = mysql.createConnection({
 });
 
 con.connect(function (err) {
-    if (err) throw err;
+    if (err) return err;
     console.log("Connected!");
 });
 
@@ -109,7 +109,7 @@ io.on('connection', function (socket) {
                         ]
                         var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value, unit) VALUES ?";
                         con.query(sql, [feedvalue], function (err, result) {
-                            if (err) throw err;
+                            if (err) return err;
                         });
                     } else {
                         con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], (err, feedInfo) => {
@@ -168,7 +168,7 @@ io.on('connection', function (socket) {
             return
         } else {
             con.query('select * from devices where deviceID = ?', [device], (err, res) => {
-                if (err) throw err;
+                if (err) return err;
                 if (res.length == 0) {
                     return
                 } else {

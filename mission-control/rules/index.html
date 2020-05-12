@@ -286,23 +286,23 @@
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your function</label><br>
                     <textarea name="code" id="eventCode" cols="30" rows="15">
-'use strict'
+    'use strict'
 
-// sample function
-var exports = {}
+    // sample function
+    var exports = {}
 
-exports.handler = async (event) => {
+    exports.handler = async (event) => {
 
-//event contains all information of recieved message
+    //event contains all information of recieved message
 
-    const response = {
-        'status': 200,
-        'valueRecieved': parseInt(event.value),
-        'recievedOn': String(event.timestamp)
-    }
+        const response = {
+            'status': 200,
+            'valueRecieved': parseInt(event.value),
+            'recievedOn': String(event.timestamp)
+        }
                         
-    console.log(response)
-}                                            
+        console.log(response)
+    }                                            
                     </textarea>
                     <div class="codeActions">
                         <button onclick="runCode()">Run</button>
@@ -317,11 +317,11 @@ exports.handler = async (event) => {
         </div>
     </div>
     </div>
-    <textarea name="" id="testa" cols="30" rows="10">'
-        function tester(){
-            var console = {}
-            console = console
-            console.log = alerts
+    <textarea name="" id="testa" cols="30" rows="10">
+function tester(){
+    var console = {}
+    console = console
+    console.log = alerts
 
     </textarea>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>

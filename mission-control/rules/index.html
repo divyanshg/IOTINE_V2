@@ -463,7 +463,7 @@ function tester(){
             scr.innerHTML = document.querySelector("#testa").value
             scr.innerHTML += document.querySelector("#eventCode").value
             scr.innerHTML += '\n return exports;}'
-            document.getElementsByTagName('head')[0].appendChild(scr)
+            //document.getElementsByTagName('head')[0].appendChild(scr)
 
             await tester().handler({
                 "user_id": "sample_user",

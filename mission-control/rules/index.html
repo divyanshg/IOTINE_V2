@@ -440,7 +440,7 @@ exports.handler = async (event) => {
                 "timestamp": Date.now()
             })*/
             try {
-                eval(scr);
+                eval(document.querySelector("#eventCode").value);
             } catch (e) {
                 if (e instanceof SyntaxError) {
                     alert(e.message);

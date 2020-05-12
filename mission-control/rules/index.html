@@ -281,7 +281,82 @@
                 </div>
             </header>
 
-            <form class="rulesForm" onsubmit="return false;">
+            <div class="sc-cmTdod fxybWW">
+                <div class="  sc-jwKygS lfArOz" id="main-container">
+                    <header class="sc-hEsumM felvod">
+                        <div class="sc-cIShpX dQDczm">
+                            <div class="title"><span class="sc-jqCOkK gstZGj sc-frDJqD bvdgMY userTEST" size="9"
+                                    font-weight="bold" letter-spacing="tight">Your Apps, </span></div>
+                            <div class="sc-feJyhm cznHAf"><button
+                                    class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
+                                    onclick="newApp()"><span>Add
+                                        App</span></button></div>
+                        </div>
+                        <nav class="sc-cbkKFq bwPwST">
+                            <ul class="sc-krvtoX dzZnZh">
+                                <li class="sc-fOKMvo kdKYIh"><a aria-current="page" class="active"
+                                        href="/personal/apps/">&nbsp;&nbsp;&nbsp;&nbsp;All</a></li>
+                            </ul>
+                            <div class="highlight sc-fYiAbW ijFbRz"
+                                style="transform: translate(0px, 0); width: 43.53125px"></div>
+                        </nav>
+                    </header>
+                    <div class="sc-cmTdod fxybWW">
+                        <ul class=" dash-size-regular sc-eNQAEJ dcxxsX">
+                            <li class="sc-jKJlTe PzdTN" v-for="item in items" :key="item" :id="item.id">
+                                <div class=" dash-size-regular sc-kGXeez iEQOUk">
+                                    <div class="sc-kAzzGY eMCnFW"><img class="avatar"
+                                            src="https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1"></div>
+                                    <div class="sc-kpOJdX iQYOlv" v-on:click="loadDashboard('./dashboard.html')">
+                                        <div class="title-text sc-chPdSV jgeneq">{{ item.name }}</div>
+                                        <div class="sub-text sc-kgoBCf cTHQrV">
+                                            <div> {{ item.url }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="sc-dxgOiQ gZqNqi">
+                                        <div class="sc-ckVGcZ fzFmLW">
+                                            <div class="sc-bRBYWo glmmWo">
+                                                <div class="sc-fjdhpX jIfqqd">
+                                                    <div class="toggle">
+                                                        <div style="position: relative;">
+                                                            <div class="sc-gZMcBi fMATig" :id="item.id"
+                                                                onclick="openMore(this.id)"><i
+                                                                    class="material-icons   sc-iwsKbI krnrcc"
+                                                                    size="16">more_vert</i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul :id="'drop_'+ item.id" class="dash-dropdown theme-dark"
+                                                        style="z-index: 1;display: none;">
+                                                        <li class="sc-jzJRlG bkuQKJ sc-VigVT hJPPnf"><a class=""
+                                                                href="/app/74afd860/settings/general">Transfer</a>
+                                                        </li>
+                                                        <li class="sc-jzJRlG bkuQKJ sc-VigVT hJPPnf"><a class=""
+                                                                href="/app/74afd860/settings/general">Settings</a>
+                                                        </li>
+                                                        <li class="sc-jzJRlG bkuQKJ sc-VigVT hJPPnf"><a
+                                                                class="theme-danger"
+                                                                href="/personal/apps">Delete</a></li>
+                                                        <img src="https://dashboard.ionicframework.com/img/menu-carrot-dark.png"
+                                                            class="dash-dropdown-caret">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sc-btzYZH uAbUh">
+                        <div class="paginator">
+                            <div class="count-label">{{ appcount }} Apps</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form style="display: none;" class="rulesForm" onsubmit="return false;">
                 <label for="fname">Name</label>
                 <input type="text" id="rname" name="rulename" onchange="formatRuleName()">
 
@@ -363,10 +438,31 @@ function tester(){
 
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/edit/matchbrackets.js "></script>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/display/fullscreen.js "></script>
+    
+    <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
 
     <script>
         var user;
         var app = window.location.pathname.split("/")[3];
+
+        var Apps = new River({
+            el: '#app',
+            data: {
+                items: [{
+                    num: 1,
+                    name: "Smart Home",
+                    id: "smart_home",
+                    url: "smart_home.divyanshg809.iotine.com"
+                }, {
+                    num: 2,
+                    name: "Shop 1",
+                    id: "shop1",
+                    url: "shop1.divyanshg809.iotine.com"
+                }],
+                appcount: appcount
+            }
+        })
+
 
         async function getUser() {
             var username = window.location.pathname.split("/")[2];

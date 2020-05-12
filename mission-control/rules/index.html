@@ -441,7 +441,7 @@ function tester(){
             scr.innerHTML += '\n}'
             document.getElementsByTagName('head')[0].appendChild(scr)
 
-            await test.exports.handler({
+            await tester.exports.handler({
                 "user_id": "sample_user",
                 "deviceId": "sampleDevice",
                 "feed": "Sample_Feed",

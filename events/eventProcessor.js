@@ -24,7 +24,14 @@ exports.processEvent = (uModule, inputs) => {
             var mod = require(`./functions/${uModule}/index`)
 
             saveEventSuccessLog(uModule.split("/")[0], uModule.split("/")[1], "Event ran successfully")
-            resolve(String(mod.handler(inputs)))
+            try {
+                var output = mod.handler(inputs)
+                resolve(String(output))
+            } catch (e) {
+                saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
+                return reject(e)
+
+            }
 
         } catch (e) {
 

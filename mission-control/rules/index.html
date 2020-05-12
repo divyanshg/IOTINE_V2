@@ -23,7 +23,8 @@
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.css">
     <link rel="stylesheet" type="text/css"
         href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
-
+        <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/hint/show-hint.js"></script>
+        <script src="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/addon/hint/javascript-hint.js"></script>
     <style>
         .no-js #loader {
             display: none;
@@ -446,6 +447,7 @@ function tester(){
                 lineNumbers: true,
                 styleActiveLine: true,
                 matchBrackets: true,
+                extraKeys: {"Ctrl-Space": "autocomplete"},
             });
             editor.setOption("theme", 'ayu-mirage');
         }

@@ -94,6 +94,7 @@
         .rulesForm {
             width: 500px;
             margin-left: 25px;
+            margin-top: -50px;
         }
 
         input:focus,
@@ -171,7 +172,7 @@
 
         var root = document.documentElement;
         var lastTheme = window.localStorage.getItem("theme") || "light";
-
+        root.style.setProperty("--brdr", "none")
         if (lastTheme == "dark") {
             window.localStorage.setItem("theme", "dark")
 

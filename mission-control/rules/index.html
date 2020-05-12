@@ -241,7 +241,7 @@
                     <ul>
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm"><a aria-current="page" class="navlink" href="#"
-                                    onclick="window.location.replace('/'+window.location.pathname)"><i
+                                    onclick="window.location.replace(`https://192.168.31.249:3000/${window.location.pathname.split('/')[1]}/${window.location.pathname.split('/')[2]}`)"><i
                                         class="material-icons">dashboard</i>
                                     <div>Dashboard</div>
                                 </a></div>
@@ -458,12 +458,12 @@ function tester(){
 
         async function runCode() {
             editor.save()
-            var scr = document.getElementById('testscript')
-            scr.innerHTML = '';
+            var scr = document.createElement('script')
+
             scr.innerHTML = document.querySelector("#testa").value
             scr.innerHTML += document.querySelector("#eventCode").value
             scr.innerHTML += '\n return exports;}'
-            //document.getElementsByTagName('head')[0].appendChild(scr)
+            document.getElementsByTagName('head')[0].appendChild(scr)
 
             await tester().handler({
                 "user_id": "sample_user",
@@ -475,8 +475,6 @@ function tester(){
         }
         getUser()
     </script>
-
-<script id="testscript"></script>
 </body>
 
 </html>

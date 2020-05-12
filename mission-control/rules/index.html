@@ -411,21 +411,27 @@ exports.handler = async (event) => {
             await xhttp.send();
         }
 
-        var code = $("#eventCode")[0];
-        var editor = CodeMirror.fromTextArea(code, {
-            lineNumbers: true,
-            styleActiveLine: true,
-            matchBrackets: true,
-        });
-        editor.setOption("theme", 'ayu-mirage');
 
         function loadEditor() {
             document.querySelector('.eventFunction').style.display = 'block'
+            var code = $("#eventCode")[0];
+            var editor = CodeMirror.fromTextArea(code, {
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+            });
+            editor.setOption("theme", 'ayu-mirage');
         }
 
 
         async function runCode() {
-            editor.getValue()
+            var code = $("#eventCode")[0];
+            var editor = CodeMirror.fromTextArea(code, {
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+            });
+            editor.setOption("theme", 'ayu-mirage');
             editor.save()
             var scr = document.createElement('script')
             scr.innerHTML = document.querySelector("#eventCode").value

@@ -38,7 +38,7 @@ var processEvent = (uModule, inputs) => {
 
 function saveEventSuccessLog(user, event, msg) {
     return new Promise((resolve, reject) => {
-        con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES(${user}, ${event}, 'success', ${msg})`, (err, resp) => {
+        con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES('${user}', '${event}', 'success', '${msg}')`, (err, resp) => {
             if (err) return reject(err)
             return resolve(resp)
         })
@@ -47,7 +47,7 @@ function saveEventSuccessLog(user, event, msg) {
 
 function saveEventFailureLog(user, event, err) {
     return new Promise((resolve, reject) => {
-        con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES(${user}, ${event}, 'failure', ${err})`, (err, resp) => {
+        con.query(`INSERT INTO eventLogs(user, event, type, msg) VALUES('${user}', '${event}', 'failure', '${err}')`, (err, resp) => {
             if (err) return reject(err)
             return resolve(resp)
         })

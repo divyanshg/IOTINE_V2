@@ -440,7 +440,7 @@ function tester(){
             scr.innerHTML += '\n return exports;}'
             document.getElementsByTagName('head')[0].appendChild(scr)
 
-            await tester.handler({
+            await tester().handler({
                 "user_id": "sample_user",
                 "deviceId": "sampleDevice",
                 "feed": "Sample_Feed",

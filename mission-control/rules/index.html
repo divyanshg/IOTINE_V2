@@ -290,8 +290,6 @@
 
 // sample function
 
-const iotine = require('iotine-sdk')
-
 exports.handler = async (event) => {
 
 //event contains all information of recieved message
@@ -425,20 +423,9 @@ exports.handler = async (event) => {
 
 
         async function runCode() {
-            console.log("herre")
-            var xhttp = new XMLHttpRequest();
-
-
-            xhttp.open("GET", "https://192.168.31.249:3002/runRule/" + user+"/"+document.querySelector('#eventCode').value, true);
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    var output = JSON.parse(xhttp.responseText)
-                    console.log(output)
-                }
-            };
-
-            await xhttp.send();
+            var scr = document.createElement('script')
+            scr.innerHTML = document.querySelector("#eventCode").value
+            document.getElementsByTagName('head')[0].appendChild(scr)
         }
         getUser()
     </script>

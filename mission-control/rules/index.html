@@ -136,6 +136,10 @@
             padding-left: 10px;
             padding-right: 10px;
         }
+        .codeRun{
+            display: flex;
+            width:800px
+        }
     </style>
     <script>
         $(window).load(function () {
@@ -285,7 +289,8 @@
                 <div style="display: none;" class="eventFunction">
                     <h2 style="padding-bottom: 5px;border-bottom: 1px solid rgb(236, 239, 244);">Action</h2>
                     <label for="code">Create your function</label><br>
-                    <textarea name="code" id="eventCode" cols="30" rows="15">
+                    <div class="codeRun">
+                        <textarea name="code" id="eventCode" cols="30" rows="15">
 'use strict'
 
 // sample function
@@ -303,6 +308,8 @@ exports.handler = async (event) => {
     console.log(response)
 }                                            
                     </textarea>
+                        <textarea name="output" class="output" cols="30" rows="10"></textarea>
+                    </div>
                     <div class="codeActions">
                         <button onclick="runCode()">Run</button>
                     </div>
@@ -319,7 +326,7 @@ exports.handler = async (event) => {
     <textarea name="" id="testa" cols="30" rows="10">
 function tester(){
     var alert = function() {return false}
-    var console = {log: (msg) => { document.querySelector('.cancel').value = JSON.stringify(msg).replace(/['"]+/g, '')}}
+    var console = {log: (msg) => { document.querySelector('.output').value += "\n"+JSON.stringify(msg).replace(/['"]+/g, '')}}
     var exports = {}
 
     </textarea>

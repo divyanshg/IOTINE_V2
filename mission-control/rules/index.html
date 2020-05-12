@@ -59,7 +59,7 @@
             resize: none;
         }
 
-        input[type=submit] {
+        input[type=button] {
             width: 50%;
             background-color: rgb(56, 128, 255);
             color: white;
@@ -78,7 +78,7 @@
             border: 1px solid #ccc;
         }
 
-        input[type=submit]:hover {
+        input[type=button]:hover {
             background-color: #3c7cdc;
         }
 
@@ -263,7 +263,7 @@
                 </div>
             </header>
 
-            <form class="rulesForm" action="/action_page.php">
+            <form class="rulesForm">
                 <label for="fname">Name</label>
                 <input type="text" id="rname" name="rulename" onchange="formatRuleName()">
 
@@ -311,8 +311,8 @@ exports.handler = async (event) => {
                 </div>
 
                 <div class="comnds">
-                    <input type="submit" value="Create Rule">
-                    <input type="submit" class="cancel" value="Cancel">
+                    <input type="button" value="Create Rule">
+                    <input type="button" class="cancel" value="Cancel">
                 </div>
             </form>
         </div>

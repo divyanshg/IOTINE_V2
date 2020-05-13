@@ -128,7 +128,7 @@ async function loadPROPS(dev) {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
             var props = JSON.parse(xhttp.responseText)
-            loadFeeds(devID)
+            loadFeeds(devID, ".tFeeds")
 
             mnam.innerHTML = props[0].dName;
             dn.innerHTML = props[0].dName;
@@ -144,9 +144,11 @@ async function loadPROPS(dev) {
     $(".devPROPERTIES").toggle()
 
 }
-async function loadFeeds(dev) {
-    var tfds = document.querySelector(".tFeeds")
-    $(".tFeeds").html('<tr><th>FEEDS</th></tr><tr><th>NAME</th><th>UNIT</th></tr>')
+async function loadFeeds(dev, elm) {
+    var tfds = document.querySelector(elm)
+    if (elm = ".tFeeds") {
+        $(elm).html('<tr><th>FEEDS</th></tr><tr><th>NAME</th><th>UNIT</th></tr>')
+    }
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

@@ -13,6 +13,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "white")
     root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
+    root.style.setProperty("--shadow", "0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff0d")
 
     root.style.setProperty("--card-btn", "rgb(49, 49, 49)")
     root.style.setProperty("--backDrop", "#0b0b0bcc")
@@ -29,6 +30,8 @@ if (lastTheme == "dark") {
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
     root.style.setProperty("--backDrop", "#f4f4f4cc")
+
+    root.style.setProperty("--shadow", "0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80")
 
     root.style.setProperty("--card-btn", "#f3f3f3")
 }

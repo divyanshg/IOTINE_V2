@@ -55,6 +55,7 @@ var dashSettings = new River({
                 root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
                 root.style.setProperty("--card-btn", "rgb(49, 49, 49)")
                 root.style.setProperty("--backDrop", "#0b0b0bcc")
+                root.style.setProperty("--shadow", "0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff0d")
 
                 document.querySelector(".darkCheck").className += " checked"
 
@@ -73,6 +74,7 @@ var dashSettings = new River({
                 root.style.setProperty("--someTexts", "white")
                 root.style.setProperty("--card-btn", "#f3f3f3")
                 root.style.setProperty("--backDrop", "#f4f4f4cc")
+                root.style.setProperty("--shadow", "0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80")
 
                 document.querySelector(".darkCheck").classList.remove("checked")
             }

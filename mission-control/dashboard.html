@@ -325,8 +325,8 @@
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <div class="mstbtm">
         <ul>
-            <li class="active" onclick="$('.maindash').show();$('.hostorical').hide()">DYNAMIC</li>
-            <li onclick="$('.maindash').hide();$('.hostorical').show()">HISTORICAL</li>
+            <li class="dashSwitch active" onclick="dashactive(this);$('.maindash').show();$('.hostorical').hide()">DYNAMIC</li>
+            <li class="dashSwitch" onclick="dashactive(this);$('.maindash').hide();$('.hostorical').show()">HISTORICAL</li>
         </ul>
     </div>
 </body>

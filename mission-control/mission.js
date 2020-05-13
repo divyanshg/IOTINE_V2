@@ -180,6 +180,27 @@ async function loadFeeds(dev, elm) {
     await xhttp.send();
 }
 
+async function histloadFeeds(elm) {
+    var tfds = document.querySelector(elm)
+    var dev = tfds.value.split("@")[1]
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            var feeds = JSON.parse(xhttp.responseText)
+
+            $(".histfeedsList").show()
+            feeds.forEach(feed => {
+                $(".histfeedsList").append(`<option value="histFeed@${feed.name}">${feed.name}</option>`)
+            })
+            return fds
+        }
+    };
+    xhttp.open("GET", "https://192.168.31.249:3002/feeds/" + user + "/" + dev, true);
+    await xhttp.send();
+}
+
 function rstDev(elm) {
     var device = elm.getAttribute("data-dev")
     socket.emit('publish', {

@@ -1798,6 +1798,7 @@ div.form {
     text-align: left;
     border-radius: 8px;
     display: flex;
+    position: relative;
 }
 
 .settings .button:hover {
@@ -2047,7 +2048,9 @@ select {
 }
 
 .darkSwitch {
-    position: relative;
+    position: absolute;
+    right: 10px;
+    top: 11px;
     display: inline-block;
     width: 45px;
     height: 25px;
@@ -2074,10 +2077,10 @@ select {
 .darkSlider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 19px;
+    width: 19px;
     left: 4px;
-    bottom: 2.5px;
+    bottom: 3.5px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;

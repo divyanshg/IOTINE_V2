@@ -2128,3 +2128,27 @@ div.button img {
     margin-top: 5px;
     margin-left: 20px;
 }
+.seperator{
+    margin-right: 16px;
+    background-color: #ced0d4;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+hr {
+    background: #dadde1;
+    border-width: 0;
+    color: #dadde1;
+    height: 1px;
+}
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}

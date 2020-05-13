@@ -188,6 +188,7 @@ async function histloadFeeds(elm) {
 
             $(".histfeedsList").show()
             feeds.forEach(feed => {
+                if (feeds.length == 0) return $(".histfeedsList").append(`<option value="none">NO FEEDS FOUND</option>`)
                 $(".histfeedsList").append(`<option value="histFeed@${feed.name}">${feed.name}</option>`)
             })
             return fds

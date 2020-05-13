@@ -1741,7 +1741,13 @@ div.form {
 /* Style the tab */
 .tab {
     overflow: hidden;
-    background-color: transparent;
+    background-color: var(--thm-wid);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px #00000033;
+    position: fixed;
+    /* margin-bottom: 10px; */
+    /* width: 94%; */
+    padding: 8px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -1754,22 +1760,23 @@ div.form {
     padding: 14px 16px;
     margin-right: 10px;
     transition: 0.3s;
+    border-radius: 8px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #1b1b1b45;
+    background-color: var(--card-btn);
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-    border-bottom: 1px solid rgb(56, 128, 255);
+    background-color: #d2d2d2;
     color: var(--tabsclr) !important;
 }
 
 /* Style the tab content */
 .tabcontent {
-    margin-top: 10px;
+    margin-top: 70px;
     display: none;
     border-top: none;
     height: auto;

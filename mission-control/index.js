@@ -86,6 +86,9 @@ app.get('/rules/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 
+app.get('/rulejs', (req, res) => {
+    res.sendFile(__dirname + '/rules/rules.js')
+});
 
 var rooms = [{
         name: "iub54i6bibu64",

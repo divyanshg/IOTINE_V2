@@ -25,3 +25,4 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "black")
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
+}

@@ -1478,7 +1478,7 @@ select {
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
-    border: 1px solid var(--wid-brdr);
+    border: 1px solid var(--card-btn);
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -1511,8 +1511,8 @@ select {
 
 .form .cancel {
     width: 47%;
-    background-color: white;
-    border: 1px solid #ccc !important;
+    background-color: var(--thm-wid);
+    border: 1px solid var(--card-btn) !important;
     color: red;
     padding: 14px 20px;
     margin: 8px 0;
@@ -1871,7 +1871,8 @@ select {
     padding: 5px !important;
     height: 30px;
     border-radius: 10px;
-    border: 1px solid #dedede;
+    background-color: var(--thm-wid);
+    border: 1px solid var(--card-btn);
 }
 
 .propane label {

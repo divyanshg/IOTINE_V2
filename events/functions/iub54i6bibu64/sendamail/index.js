@@ -22,22 +22,14 @@ exports.handler = async (event) => {
 
         sockClient.emit('publish', {
             user: event.user,
-            deviceId: 'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4',
-            feed: 'ESP_INT_LED',
-            value: "ON",
+            deviceId: 'virtual_SkNCX1RSVUNLXzAxYWFk',
+            feed: '02_TYRE_PRESSURE',
+            value: event.value,
             time: new Date().toLocaleTimeString()
         })
 
     } else if (payload <= 10) {
         stateCheck = 0;
-    }else if(payload <= 90){
-        sockClient.emit('publish', {
-            user: event.user,
-            deviceId: 'gUvSTHbQnMuUWI6HHqwiDBvdp6PKbYU4',
-            feed: 'ESP_INT_LED',
-            value: "OFF",
-            time: new Date().toLocaleTimeString()
-        })
     }
 }
 

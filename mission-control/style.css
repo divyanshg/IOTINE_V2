@@ -2050,7 +2050,7 @@ select {
 .darkSwitch {
     position: absolute;
     right: 10px;
-    top: 11px;
+    top: 15px;
     display: inline-block;
     width: 45px;
     height: 25px;

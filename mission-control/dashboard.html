@@ -210,9 +210,29 @@
                         <div class="commands">
                             <button onclick="window.location.replace('/builder'+window.location.pathname)"><i
                                     class="material-icons">edit</i></button>
-                            <button><i class="material-icons">notifications_none</i></button>
+                            <button onclick="toggleDis('#dash_notifs')"><i class="material-icons">notifications_none</i></button>
                             <button onclick="toggleDis('#dash_settings')"><i
                                     class="material-icons">settings</i></button>
+                        </div>
+                        <div id="dash_notif" class="settings" style="display: none;">
+                            <div class="button profile">
+                                <img src="https://scontent.fdel10-1.fna.fbcdn.net/v/t1.30497-1/cp0/c18.0.60.60a/p60x60/84241059_189132118950875_4138507100605120512_n.jpg?_nc_cat=1&_nc_sid=7206a8&_nc_ohc=a-1kBr5bVMsAX_WqgOo&_nc_ht=scontent.fdel10-1.fna&oh=5df1924acababb2c145767672f2646f0&oe=5EE17C73" alt="">
+                                <span class="text">Divyansh Gupta</span>
+                                <span class="sub-text">See your profile</span>
+                            </div>
+                            <hr class="seperator">
+                            <div class="button"><i class="material-icons">report</i><span class="text">Give feedback</span></div>
+                            <hr class="seperator">
+                            <div class="button" @click="toggleSettingsMenu"><i class="material-icons">settings</i><span
+                                    class="text">Dashboard settings</span></div>
+                            <div class="button"><i class="material-icons">help</i><span class="text">Help &
+                                    support</span></div>
+                            <div class="button" @click="toggleTheme"><i style="transform: rotate(-210deg);"
+                                    class="material-icons">brightness_2</i><span class="text">Dark mode</span><label
+                                    class="darkSwitch"><input @click="toggleTheme" class="darkCheck"
+                                        type="checkbox"><span class="darkSlider round"></span></label></div>
+                            <div class="button"><i class="material-icons">exit_to_app</i><span
+                                    class="text">Logout</span></div>
                         </div>
                         <div id="dash_settings" class="settings" style="display: none;">
                             <div class="button profile">

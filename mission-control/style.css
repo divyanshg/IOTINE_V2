@@ -1780,7 +1780,7 @@ div.form {
     height: fit-content;
     min-height: 20px;
     cursor: pointer;
-    color: black !important;
+    color: var(--title) !important;
     width: 360px;
     position: absolute;
     right: 20px;

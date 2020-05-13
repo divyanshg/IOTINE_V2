@@ -12,6 +12,7 @@
     --card-btn: #f3f3f3;
     --backDrop:#f4f4f4cc;
     --shadow:0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80;
+    --active:#d2d2d2;
 }
 *:focus{
     outline:none;
@@ -1770,7 +1771,7 @@ div.form {
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #d2d2d2;
+    background-color: var(--active);
     color: var(--tabsclr) !important;
 }
 

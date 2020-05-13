@@ -811,7 +811,7 @@ function createLog(feed, fedd, config, bdy) {
     logCont.className += " log-" + feed;
     logCont.style.color = config.color + " !important"
 
-    logCont.innerHTML += "CONNECTED TO " + config.device + "/" + fedd + "\nWaiting For Data...\n"
+    logCont.value += "CONNECTED TO " + config.device + "/" + fedd + "\nWaiting For Data...\n"
 
     bdy.className += " wid-txt"
 
@@ -1045,7 +1045,7 @@ function updateLog(id, msg, feed) {
     var logCont = document.querySelector(id) || false;
     if (!logCont) return
     var cont = logCont.parentNode
-    logCont.innerHTML += msg.time +" : Message Recieved " + msg.value + "\n"
+    logCont.value += msg.time +" : Message Recieved " + msg.value + "\n"
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
 socket.on('subscribe', (feed, msg, unit) => {

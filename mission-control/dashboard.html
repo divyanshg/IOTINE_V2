@@ -366,7 +366,7 @@
     <div class="mstbtm">
         <ul>
             <li class="dashSwitch active"
-                onclick="dashactive(this);$('.maindash').show();$('.historical').hide();clearDashHistory()">DYNAMIC</li>
+                onclick="dashactive(this);$('.maindash').show();$('.historyModal').hide();$('.historical').hide();clearDashHistory();$('.mainBackDrop').hide();openedPanels=''">DYNAMIC</li>
             <li class="dashSwitch"
                 onclick="dashactive(this);$('.maindash').hide();$('.historical').show();$('.historyModal').show();$('.mainBackDrop').show();openedPanels='.historyModal'">
                 HISTORICAL</li>

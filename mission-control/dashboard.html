@@ -329,6 +329,9 @@
             <h4>From here you can see all the historical data sent by your device.</h4>
 
             <div class="historicalForm form">
+                <selec class="devicesList">
+                    <option :value="'hist-'+device.deviceID" v-for="device in devices">{{ device.type }} / {{ device.name }}</option>
+                </selec>
                 <input type="button" class="save" value="Show"
                     onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
                 <input type="button" class="cancel" value="Cancel"

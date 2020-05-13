@@ -1561,7 +1561,7 @@ div.form {
     margin: 2px !important;
     text-transform: uppercase;
     background-color: var(--card-btn);
-    color:var(--someText)
+    color:var(--someText);
     padding: 5px;
     border-radius: 8px;
     width: auto;

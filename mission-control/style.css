@@ -11,6 +11,7 @@
     --someTexts: rgb(39, 44, 55);
     --card-btn: #f3f3f3;
     --backDrop:#f4f4f4cc;
+    --light-shadow:0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80;
 }
 
 body {
@@ -120,6 +121,8 @@ body {
 
     border-top-right-radius: 18px;
     transition: 0.3s ease all;
+
+    box-shadow: var(--light-shadow);
 }
 
 .devicesContainer #devices {
@@ -1331,6 +1334,7 @@ button:focus {
     transform: translate(-50%, -50%);
 
     display: flex;
+    box-shadow: var(--light-shadow);
 }
 
 .clsBtn {

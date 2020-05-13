@@ -7,7 +7,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--appInner", "#18191a")
     root.style.setProperty("--title", "white")
     root.style.setProperty("--navLink", "white")
-    root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
+    root.style.setProperty("--sidebar", "white")
     root.style.setProperty("--cmds", "white")
     root.style.setProperty("--widBorder", "#2a2a2a")
     root.style.setProperty("--tabsclr", "white")
@@ -17,7 +17,7 @@ if (lastTheme == "dark") {
 } else {
     window.localStorage.setItem("theme", "light")
 
-    root.style.setProperty("--appInner", "white")
+    root.style.setProperty("--appInner", "#f0f2f5")
     root.style.setProperty("--title", "black")
     root.style.setProperty("--navLink", "rgb(103, 111, 128)")
     root.style.setProperty("--sidebar", "rgb(243, 245, 249)")

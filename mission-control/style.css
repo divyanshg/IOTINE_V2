@@ -1,9 +1,9 @@
 :root {
     transition: 0.3s ease all !important;
-    --appInner: white;
+    --appInner: #f0f2f5;
     --title: black;
     --navLink: rgb(103, 111, 128);
-    --sidebar: rgb(243, 245, 249);
+    --sidebar: white;
     --widBorder: #d2d2d2;
     --cmds: black;
     --tabsclr: black;
@@ -1533,7 +1533,7 @@ div.form {
     width: 400px;
 
     border-radius: 8px;
-    border: 1px solid var(--widBorder);
+    box-shadow: 0 1px 2px #00000033;
 
     padding: 10px;
     margin: 10px;

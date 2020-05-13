@@ -1788,7 +1788,7 @@ div.form {
     padding: 10px;
 }
 
-.settings button {
+.settings .button {
     width: 100%;
     padding: 15px 10px 15px;
     border: none;
@@ -1799,7 +1799,7 @@ div.form {
     border-radius: 8px;
 }
 
-.settings button:hover {
+.settings .button:hover {
     background-color: whitesmoke;
 }
 

@@ -109,12 +109,16 @@
                     </div>
                     <div class="cmdBdy">
                         <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
-                        <button onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();openedPanels = '.addFileModal'" class="">ADD FILE</button>
+                        <button
+                            onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();openedPanels = '.addFileModal'"
+                            class="">ADD FILE</button>
                         <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
-                        <button style="width:100%;" onclick="devFiles(this);$('.mainBackDrop').toggle();openedPanels = '.fsModal'" data-dev="" class="fs-btn">VIEW
+                        <button style="width:100%;"
+                            onclick="devFiles(this);$('.mainBackDrop').toggle();openedPanels = '.fsModal'" data-dev=""
+                            class="fs-btn">VIEW
                             FILES</button>
                     </div>
                 </div>
@@ -288,8 +292,7 @@
 
     <div class="addFileModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Add New File<span
-                    onclick=";$('.addFileModal').toggle();$('.mainBackDrop').toggle();"
+            <h1>Add New File<span onclick=";$('.addFileModal').toggle();$('.mainBackDrop').toggle();"
                     class="clsBtn">&times;</span></h1>
             <h4>Add new files to tour devices or edit the existing ones.</h4>
             <div class="form" id="file_container">
@@ -300,28 +303,37 @@
                 <div class="fprev">
                     <iframe class="fprevframe" frameborder="0"></iframe>
                 </div>
-                <input type="button" onclick="newFileDev(this)" class="ior-btn" value="Save to Device" data-dev="">
-                <input type="button" class="cancel" value="Cancel" onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
+                <input type="button" onclick="newFileDev(this)" class="save ior-btn" value="Save to Device" data-dev="">
+                <input type="button" class="cancel" value="Cancel"
+                    onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
             </div>
         </div>
     </div>
     <div class="fsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();" class="clsBtn">&times;</span></h1>
+            <h1>Browse Device<span onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();"
+                    class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
             <div class="devFiles"></div>
-            <input type="button" class="cancel" value="Done" onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();">
+            <input type="button" class="save" value="Done"
+                onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();">
         </div>
     </div>
 
     <div class="historyModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();" class="clsBtn">&times;</span></h1>
-            <h4>From here you can see all the files present on your device.</h4>
+            <h1>Historical View<span onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();"
+                    class="clsBtn">&times;</span></h1>
+            <h4>From here you can see all the historical data sent by your device.</h4>
 
-            <div class="devFiles"></div>
-            <input type="button" class="cancel" value="Done" onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
+            <div class="historicalForm">
+
+            </div>
+            <input type="button" class="save" value="Show"
+                onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
+            <input type="button" class="cancel" value="Cancel"
+                onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
         </div>
     </div>
 

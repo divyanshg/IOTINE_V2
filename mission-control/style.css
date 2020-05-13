@@ -1791,7 +1791,7 @@ div.form {
     width: 360px;
     position: absolute;
     right: 20px;
-    box-shadow: 0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80;
+    box-shadow: var(--shadow);
     padding: 10px;
 }
 

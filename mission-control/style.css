@@ -9,7 +9,7 @@
     --tabsclr: black;
     --thm-wid: white;
     --someTexts: rgb(39, 44, 55);
-    --card-btn:#f3f3f3;
+    --card-btn: #f3f3f3;
 }
 
 body {
@@ -2110,7 +2110,7 @@ select {
     border-radius: 50%;
 }
 
-div.button i{
+div.button i {
     background-color: #d4d4d4;
     border-radius: 50%;
     padding: 5px;
@@ -2118,17 +2118,18 @@ div.button i{
 }
 
 div.button img {
-    height:60px;
-    width:60px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     font-size: 20px;
 }
 
-.settings .button .text{
+.settings .button .text {
     margin-top: 5px;
     margin-left: 20px;
 }
-.seperator{
+
+.seperator {
     margin-right: 16px;
     background-color: #ced0d4;
     margin-bottom: 8px;
@@ -2142,6 +2143,7 @@ hr {
     color: #dadde1;
     height: 1px;
 }
+
 hr {
     display: block;
     unicode-bidi: isolate;
@@ -2153,7 +2155,8 @@ hr {
     border-style: inset;
     border-width: 1px;
 }
-.profile .text{
+
+.profile .text {
     font-weight: 600;
     font-size: 1.0625rem;
     -webkit-font-smoothing: antialiased;
@@ -2161,6 +2164,10 @@ hr {
     font-family: inherit;
     margin-left: 10px;
 }
-.profile .sub-text{
-    
+
+.profile .sub-text {
+    margin-top: 25px;
+    margin-left: -130px;
+    color: #6f6f6f;
+    font-weight: 100;
 }

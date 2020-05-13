@@ -122,7 +122,32 @@
             <h3 class="mname"></h3><br>
 
             <br>
-            <table class="props"><tr><th>PROPERTY</th><th>VALUE</th></tr><tr><td>ID</td><td id="tdid"></td></tr><tr><td>NAME</td><td id="tdname"></td></tr><tr><td>TEMPLATE</td><td id="ttempl"></td></tr></table> <br><br><table class="tFeeds"><tr><th>FEEDS</th></tr><tr><th>NAME</th>th>UNIT</th></tr> </table>
+            <table class="props">
+                <tr>
+                    <th>PROPERTY</th>
+                    <th>VALUE</th>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td id="tdid"></td>
+                </tr>
+                <tr>
+                    <td>NAME</td>
+                    <td id="tdname"></td>
+                </tr>
+                <tr>
+                    <td>TEMPLATE</td>
+                    <td id="ttempl"></td>
+                </tr>
+            </table> <br><br>
+            <table class="tFeeds">
+                <tr>
+                    <th>FEEDS</th>
+                </tr>
+                <tr>
+                    <th>NAME</th>th>UNIT</th>
+                </tr>
+            </table>
         </div>
     </div>
     </div>
@@ -204,7 +229,7 @@
                     </div>
                 </div>
             </header>
-            
+
             <div style="display: none;" class="historical">
 
             </div>
@@ -219,37 +244,6 @@
             </div>
         </div>
     </div>
-    </div>
-
-    <div class="newAppModal modal" style="display: none;">
-        <div class="newAppInner">
-            <h1>New Application<span onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()"
-                    class="clsBtn">&times;</span></h1>
-            <h4>Answer a few quick questions and we'll get your app up and running.</h4>
-            <div class="form">
-                <form action="/action_page.php">
-                    <label for="appname">Application Name</label>
-                    <input v-model="newAppName" type="text" id="appname" name="appname">
-
-                    <label for="appurl">URL</label>
-                    <div class="url">
-                        <input type="text" id="appurl" name="appurl" :value="newAppName">
-                        <p id="mainurl">.divyanshg809.iotine.com</p>
-                    </div>
-                    <label for="country">Country</label>
-                    <select id="country" name="country">
-                        <option value="usa">India</option>
-                        <option value="australia">Australia</option>
-                        <option value="canada">Canada</option>
-                        <option value="usa">USA</option>
-                    </select>
-
-                    <input type="button" v-on:click="addDevice" class="save" value="Create">
-                    <input type="button" class="cancel" value="Cancel"
-                        onclick="$('.newAppModal').toggle();$('.mainBackDrop').toggle()">
-                </form>
-            </div>
-        </div>
     </div>
     <div class="newDeviceModal modal" style="display: none;">
         <div class="se-pre-con"></div>
@@ -288,7 +282,6 @@
                     onclick="$('.mainBackDrop').toggle();$('.settingsModal').toggle();if (document.querySelector('.settingsModal').style.display = 'block') {openedPanels = '.settingsModal'} else {openedPanels = ''}"
                     class="clsBtn">&times;</span></h1>
             <h4>From here you can easily customize your dashboard experience.</h4>
-            <div id="terminal"></div>
         </div>
 
     </div>
@@ -296,7 +289,7 @@
     <div class="addFileModal modal" style="display: none;">
         <div class="newAppInner">
             <h1>Add New File<span
-                    onclick=";$('.addFileModal').toggle();if (document.querySelector('.addFileModal').style.display = 'block') {openedPanels = '.addFileModal'} else {openedPanels = ''}"
+                    onclick=";$('.addFileModal').toggle();openedPanels = '.addFileModal'"
                     class="clsBtn">&times;</span></h1>
             <h4>Add new files to tour devices or edit the existing ones.</h4>
             <div class="form" id="file_container">
@@ -314,19 +307,33 @@
     </div>
     <div class="fsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span onclick="$('.fsModal').toggle();" class="clsBtn">&times;</span></h1>
+            <h1>Browse Device<span onclick="$('.fsModal').toggle();openedPanels = '.fsModal'" class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
             <div class="devFiles"></div>
             <input type="button" class="cancel" value="Done" onclick="$('.fsModal').toggle();">
         </div>
     </div>
+
+    <div class="historyModal modal" style="display: none;">
+        <div class="newAppInner">
+            <h1>Browse Device<span onclick="$('.historyModal').toggle();openedPanels = '.historyModal'" class="clsBtn">&times;</span></h1>
+            <h4>From here you can see all the files present on your device.</h4>
+
+            <div class="devFiles"></div>
+            <input type="button" class="cancel" value="Done" onclick="$('.fsModal').toggle();">
+        </div>
+    </div>
+
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <div class="mstbtm">
         <ul>
-            <li class="dashSwitch active" onclick="dashactive(this);$('.maindash').show();$('.hostorical').hide()">DYNAMIC</li>
-            <li class="dashSwitch" onclick="dashactive(this);$('.maindash').hide();$('.hostorical').show()">HISTORICAL</li>
+            <li class="dashSwitch active"
+                onclick="dashactive(this);$('.maindash').show();$('.hostorical').hide();clearDashHistory()">DYNAMIC</li>
+            <li class="dashSwitch"
+                onclick="dashactive(this);$('.maindash').hide();$('.hostorical').show();$('.historyModal').show()">
+                HISTORICAL</li>
         </ul>
     </div>
 </body>

@@ -13,7 +13,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "white")
     root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
-    $(".darkCheck").prop("checked", true)
+    $(".darkCheck").prop("checked", false)
 } else {
     window.localStorage.setItem("theme", "light")
 
@@ -26,5 +26,5 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "black")
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
-    $(".darkCheck").prop("checked", false)
+    $(".darkCheck").prop("checked", true)
 }

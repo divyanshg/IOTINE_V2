@@ -2147,6 +2147,10 @@ div.profile img {
     font-size: 20px;
 }
 
+.profile .text{
+    margin-top:10px;
+}
+
 .settings .button .text {
     margin-top: 5px;
     margin-left: 20px;

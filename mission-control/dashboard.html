@@ -356,7 +356,7 @@
                 <input type="button" class="save" value="Show"
                     onclick="loadHistory();$('.historyModal').toggle();$('.mainBackDrop').toggle();">
                 <input type="button" class="cancel" value="Cancel"
-                    onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
+                    onclick="dashactive(document.querySelector('.dyna'));$('.maindash').show();$('.historyModal').hide();$('.historical').hide();clearDashHistory();$('.mainBackDrop').hide();openedPanels=''">
             </div>
         </div>
     </div>
@@ -365,9 +365,9 @@
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <div class="mstbtm">
         <ul>
-            <li class="dashSwitch active"
+            <li class="dashSwitch dyna active"
                 onclick="dashactive(this);$('.maindash').show();$('.historyModal').hide();$('.historical').hide();clearDashHistory();$('.mainBackDrop').hide();openedPanels=''">DYNAMIC</li>
-            <li class="dashSwitch"
+            <li class="dashSwitch histo"
                 onclick="dashactive(this);$('.maindash').hide();$('.historical').show();$('.historyModal').show();$('.mainBackDrop').show();openedPanels='.historyModal'">
                 HISTORICAL</li>
         </ul>

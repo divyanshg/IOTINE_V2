@@ -66,6 +66,10 @@ var client = mqtt.connect('mqtt://192.168.31.249:1883', {
 
 const dataCamp = require('../Data-Camp/dataCamp').dataCamp
 
+app.get('/apps/:userId', (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+});
+
 app.get('/:userId/:appId', function (req, res) {
     res.sendFile(__dirname + '/dashboard.html');
 });

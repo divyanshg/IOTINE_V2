@@ -2136,7 +2136,7 @@ div.button i {
     font-size: 20px;
 }
 
-div.button img {
+div.profile img {
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -2146,6 +2146,11 @@ div.button img {
 .settings .button .text {
     margin-top: 5px;
     margin-left: 20px;
+}
+
+#dash_notifs .notifText {
+    margin-top: 5px;
+    word-break: break-all;
 }
 
 .seperator {

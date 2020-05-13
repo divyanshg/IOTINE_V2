@@ -2153,6 +2153,13 @@ div.profile img {
     word-break: break-all;
 }
 
+#dash_notif.button i {
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 20px;
+    color: rgb(56, 128, 255) !important;
+}
+
 .seperator {
     margin-right: 16px;
     background-color: var(--card-btn);

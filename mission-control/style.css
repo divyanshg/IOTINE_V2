@@ -2137,7 +2137,7 @@ div.button img {
 
 .seperator {
     margin-right: 16px;
-    background-color: #ced0d4;
+    background-color: var(--card-btn);
     margin-bottom: 8px;
     margin-top: 8px;
     margin-left: 8px;

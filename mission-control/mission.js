@@ -1253,4 +1253,7 @@ socket.on('DEV_VERSION', (msg) => {
         }
     })
 })
-console.log("DASHBOARD IS READY")
+
+function loadHistory(){
+    
+}

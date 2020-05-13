@@ -315,9 +315,10 @@
                     class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
-            <div class="devFiles"></div>
-            <input type="button" class="save" value="Done"
-                onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();">
+            <div class="devFiles form">
+                <input type="button" class="save" value="Done"
+                    onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();">
+            </div>
         </div>
     </div>
 
@@ -327,13 +328,12 @@
                     class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the historical data sent by your device.</h4>
 
-            <div class="historicalForm">
-
+            <div class="historicalForm form">
+                <input type="button" class="save" value="Show"
+                    onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
+                <input type="button" class="cancel" value="Cancel"
+                    onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
             </div>
-            <input type="button" class="save" value="Show"
-                onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">
-            <input type="button" class="cancel" value="Cancel"
-                onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();">
         </div>
     </div>
 

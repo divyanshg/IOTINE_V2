@@ -10,6 +10,7 @@
     --thm-wid: white;
     --someTexts: rgb(39, 44, 55);
     --card-btn: #f3f3f3;
+    --backDrop:#f4f4f4cc;
 }
 
 body {
@@ -289,7 +290,7 @@ img {
     overflow: hidden;
 }
 
-.jgeneq {
+.jgeneqa {
     color: rgb(39, 44, 55);
 }
 
@@ -389,7 +390,7 @@ textarea {
 }
 
 .mainBackDrop {
-    background-color: rgba(0, 0, 0, 0.514);
+    background-color: var(--backDrop);
     height: 100%;
     width: 100%;
 
@@ -401,7 +402,7 @@ textarea {
 }
 
 .backDrop {
-    background-color: rgba(0, 0, 0, 0.514);
+    background-color: var(--backDrop);
     height: 100%;
     width: 100%;
 
@@ -450,7 +451,7 @@ textarea {
     max-width: 150px;
 }
 
-.jgeneq {
+.jgeneqa {
     color: rgb(39, 44, 55);
 }
 

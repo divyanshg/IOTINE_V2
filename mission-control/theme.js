@@ -15,6 +15,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--someTexts", "white")
 
     root.style.setProperty("--card-btn", "rgb(49, 49, 49)")
+    root.style.setProperty("--backDrop", "#0b0b0bcc")
 } else {
     window.localStorage.setItem("theme", "light")
 
@@ -27,6 +28,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "black")
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
+    root.style.setProperty("--backDrop", "#f4f4f4cc")
 
     root.style.setProperty("--card-btn", "#f3f3f3")
 }

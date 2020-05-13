@@ -2153,7 +2153,7 @@ div.profile img {
     word-break: break-all;
 }
 
-#dash_notifs.button i {
+#dash_notifs div.button i {
     border-radius: 50%;
     padding: 5px;
     font-size: 17px;

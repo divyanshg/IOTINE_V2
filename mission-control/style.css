@@ -1774,7 +1774,7 @@ div.form {
 }
 
 .settings {
-    background: white;
+    background: var(--thm-wid);
     border-radius: 8px;
     /* border: 1px solid gray; */
     height: fit-content;

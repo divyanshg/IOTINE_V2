@@ -807,7 +807,7 @@ function createRange(feedd, feed, config, bdy) {
 }
 
 function createLog(feed, fedd, config, bdy) {
-    var logCont = document.createElement("textarea  ")
+    var logCont = document.createElement("textarea")
     logCont.className += " log-" + feed;
     logCont.style.color = config.color + " !important"
 

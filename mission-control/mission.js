@@ -330,7 +330,7 @@ var devices = new River({
     }
 })
 
-var histDevices = new River({
+var histdevices = new River({
     el: '.histdevicesList',
     data: {
         devices: []

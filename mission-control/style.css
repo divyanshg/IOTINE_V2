@@ -2086,7 +2086,7 @@ select {
     transition: .4s;
 }
 
-.darkCheck:checked+.darkSlider {
+.darkCheck.checked+.darkSlider {
     background-color: #2196F3;
 }
 
@@ -2094,7 +2094,7 @@ select {
     box-shadow: 0 0 1px #2196F3;
 }
 
-.darkCheck:checked+.darkSlider:before {
+.darkCheck.checked+.darkSlider:before {
     -webkit-transform: translateX(18px);
     -ms-transform: translateX(18px);
     transform: translateX(18px);

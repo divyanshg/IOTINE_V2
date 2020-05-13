@@ -54,6 +54,8 @@ var dashSettings = new River({
                 root.style.setProperty("--thm-wid", "#242526")
                 root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
 
+                $(".darkCheck").prop("checked", true)
+
             } else {
                 window.localStorage.setItem("theme", "light")
 
@@ -1254,6 +1256,6 @@ socket.on('DEV_VERSION', (msg) => {
     })
 })
 
-function loadHistory(){
+function loadHistory() {
 
 }

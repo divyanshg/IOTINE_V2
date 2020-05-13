@@ -1963,19 +1963,33 @@ button#nTAB {
 
 .mstbtm {
     position: fixed;
-    bottom: 0px;
-    height: 15px;
-    width: 100%;
+    bottom: -3px;
+    right: -83px;
+    height: 40px;
+    width: 300px;
     display: flex;
     background-color: var(--appInner);
+    /* border-radius: 4px; */
 }
 
 .mstbtm ul {
-    float: right;
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #333333; */=
+    border-radius: 4px;
 }
 
 .mstbtm .active {
     border-top: 1px solid rgb(0, 153, 255);
+}
+
+.mstbtm ul li {
+    float: left;
+    margin-left: 15px;
+    padding: 10px;
 }
 
 .ripple {

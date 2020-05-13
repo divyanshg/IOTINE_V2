@@ -90,6 +90,10 @@ app.get('/rulejs', (req, res) => {
     res.sendFile(__dirname + '/rules/rules.js')
 });
 
+app.get('/theme', (req, res) => {
+    res.sendFile(__dirname + '/theme.js')
+});
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []

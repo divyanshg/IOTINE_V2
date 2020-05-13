@@ -13,16 +13,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Rules</title>
-    
+
     <link rel="icon" type="image/png" href="https://192.168.31.249/logo.png">
 
     <link rel="stylesheet" href="https://192.168.31.249/IOTINE_V2/mission-control/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.css">
-    <link rel="stylesheet" type="text/css" href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
-    
+    <link rel="stylesheet" type="text/css"
+        href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://192.168.31.249/IOTINE_V2/mission-control/rules/cm/theme/ayu-mirage.css">
+
     <style>
         :root {
             --brdr: none;
@@ -169,34 +171,9 @@
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");
         });
-
-        var root = document.documentElement;
-        var lastTheme = window.localStorage.getItem("theme") || "light";
-        root.style.setProperty("--brdr", "none")
-        if (lastTheme == "dark") {
-            window.localStorage.setItem("theme", "dark")
-
-            root.style.setProperty("--appInner", "black")
-            root.style.setProperty("--title", "white")
-            root.style.setProperty("--navLink", "white")
-            root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
-            root.style.setProperty("--cmds", "white")
-            root.style.setProperty("--widBorder", "#2a2a2a")
-            root.style.setProperty("--tabsclr", "white")
-            root.style.setProperty("--thm-wid", "#151515")
-        } else {
-            window.localStorage.setItem("theme", "light")
-
-            root.style.setProperty("--appInner", "white")
-            root.style.setProperty("--title", "black")
-            root.style.setProperty("--navLink", "rgb(103, 111, 128)")
-            root.style.setProperty("--sidebar", "rgb(243, 245, 249)")
-            root.style.setProperty("--cmds", "black")
-            root.style.setProperty("--widBorder", "#d2d2d2")
-            root.style.setProperty("--tabsclr", "black")
-            root.style.setProperty("--thm-wid", "white")
-        }
     </script>
+
+    <script src="/theme"></script>
 </head>
 
 <body>

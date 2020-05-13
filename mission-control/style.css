@@ -8,6 +8,7 @@
     --cmds: black;
     --tabsclr: black;
     --thm-wid: white;
+    --someTexts: rgb(39, 44, 55);
 }
 
 body {
@@ -1095,7 +1096,7 @@ button:focus {
 }
 
 .jgeneq {
-    color: rgb(39, 44, 55);
+    color: var(--someTexts)
 }
 
 .iEQOUk.dash-size-regular .sc-kgoBCf {

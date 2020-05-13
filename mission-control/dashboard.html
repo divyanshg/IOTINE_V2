@@ -215,12 +215,14 @@
                         </div>
                         <div id="dash_settings" class="settings" style="display: none;">
                             <div class="button profile">
-                                <img src="https://scontent.fdel10-1.fna.fbcdn.net/v/t1.30497-1/cp0/c18.0.60.60a/p60x60/84241059_189132118950875_4138507100605120512_n.jpg?_nc_cat=1&_nc_sid=7206a8&_nc_ohc=a-1kBr5bVMsAX_WqgOo&_nc_ht=scontent.fdel10-1.fna&oh=5df1924acababb2c145767672f2646f0&oe=5EE17C73" alt="">
+                                <img src="https://scontent.fdel10-1.fna.fbcdn.net/v/t1.30497-1/cp0/c18.0.60.60a/p60x60/84241059_189132118950875_4138507100605120512_n.jpg?_nc_cat=1&_nc_sid=7206a8&_nc_ohc=a-1kBr5bVMsAX_WqgOo&_nc_ht=scontent.fdel10-1.fna&oh=5df1924acababb2c145767672f2646f0&oe=5EE17C73"
+                                    alt="">
                                 <span class="text">Divyansh Gupta</span>
                                 <span class="sub-text">See your profile</span>
                             </div>
                             <hr class="seperator">
-                            <div class="button"><i class="material-icons">report</i><span class="text">Give feedback</span></div>
+                            <div class="button"><i class="material-icons">report</i><span class="text">Give
+                                    feedback</span></div>
                             <hr class="seperator">
                             <div class="button" @click="toggleSettingsMenu"><i class="material-icons">settings</i><span
                                     class="text">Dashboard settings</span></div>
@@ -238,7 +240,26 @@
             </header>
 
             <div style="display: none;" class="historical">
-                <div class="widget historicalWidget"></div>
+                <div class="widget historicalWidget">
+                    <table id="table_id" class="display">
+                        <thead>
+                            <tr>
+                                <th>Column 1</th>
+                                <th>Column 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Row 1 Data 1</td>
+                                <td>Row 1 Data 2</td>
+                            </tr>
+                            <tr>
+                                <td>Row 2 Data 1</td>
+                                <td>Row 2 Data 2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- TAB LINKS -->
             <div style="display: block;" class="maindash">
@@ -354,7 +375,8 @@
     <div class="mstbtm">
         <ul>
             <li class="dashSwitch dyna active"
-                onclick="dashactive(this);$('.maindash').show();$('.historyModal').hide();$('.historical').hide();$('.mainBackDrop').hide();openedPanels='';clearDashHistory();">DYNAMIC</li>
+                onclick="dashactive(this);$('.maindash').show();$('.historyModal').hide();$('.historical').hide();$('.mainBackDrop').hide();openedPanels='';clearDashHistory();">
+                DYNAMIC</li>
             <li class="dashSwitch histo"
                 onclick="dashactive(this);$('.maindash').hide();$('.historical').show();$('.historyModal').show();$('.mainBackDrop').show();openedPanels='.historyModal'">
                 HISTORICAL</li>
@@ -379,6 +401,10 @@
     } else {
         document.querySelector(".darkCheck").classList.remove("checked")
     }
+
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
 </script>
 
 </html>

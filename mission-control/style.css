@@ -1797,6 +1797,7 @@ div.form {
     transition: 0.3s ease all;
     text-align: left;
     border-radius: 8px;
+    display:flex;
 }
 
 .settings .button:hover {

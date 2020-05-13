@@ -2110,10 +2110,17 @@ select {
     border-radius: 50%;
 }
 
-div.button i, div.button img {
+div.button {
     background-color: #d4d4d4;
     border-radius: 50%;
     padding: 5px;
+    font-size: 20px;
+}
+
+div.button img {
+    height:60px;
+    width:60px;
+    border-radius: 50%;
     font-size: 20px;
 }
 

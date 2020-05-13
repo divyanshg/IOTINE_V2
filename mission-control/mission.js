@@ -186,7 +186,7 @@ async function histloadFeeds(elm) {
             // Typical action to be performed when the document is ready:
             var feeds = JSON.parse(xhttp.responseText)
 
-            $(".histfeedsList").show()
+            $(".histfeedsList").show().empty()
             feeds.forEach(feed => {
                 if (feeds.length == 0) return $(".histfeedsList").append(`<option value="none">NO FEEDS FOUND</option>`)
                 $(".histfeedsList").append(`<option value="histFeed@${feed.name}">${feed.name}</option>`)

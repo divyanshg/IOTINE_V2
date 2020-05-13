@@ -18,13 +18,11 @@ exports.handler = async (event) => {
     if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
 
-        await sendMail(payload, mtime)
-
         sockClient.emit('publish', {
             user: event.user,
             deviceId: 'virtual_SkNCX1RSVUNLXzAxYWFk',
-            feed: '02_TYRE_PRESSURE',
-            value: event.value,
+            feed: 'CORE_TEMP',
+            value: String(event.value),
             time: new Date().toLocaleTimeString()
         })
 

@@ -1,4 +1,3 @@
-
 function toggleDis(elm) {
     var elm = document.querySelector(elm);
     if (elm.style.display == "none") {
@@ -46,6 +45,8 @@ var dashSettings = new River({
                 root.style.setProperty("--widBorder", "#2a2a2a")
                 root.style.setProperty("--tabsclr", "white")
                 root.style.setProperty("--thm-wid", "#151515")
+                root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
+
             } else {
                 window.localStorage.setItem("theme", "light")
 
@@ -57,6 +58,8 @@ var dashSettings = new River({
                 root.style.setProperty("--widBorder", "#d2d2d2")
                 root.style.setProperty("--tabsclr", "black")
                 root.style.setProperty("--thm-wid", "white")
+
+                root.style.setProperty("--someTexts", "white")
             }
         }
     }

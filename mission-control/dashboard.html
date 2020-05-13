@@ -204,9 +204,12 @@
                     </div>
                 </div>
             </header>
+            
+            <div style="display: none;" class="historical">
 
+            </div>
             <!-- TAB LINKS -->
-            <div class="maindash">
+            <div style="display: block;" class="maindash">
                 <div class="tab">
 
                 </div>
@@ -322,8 +325,8 @@
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <div class="mstbtm">
         <ul>
-            <li class="active">DYNAMIC</li>
-            <li>HISTORICAL</li>
+            <li class="active" onclick="$('.maindash').show();$('.hostorical').hide()">DYNAMIC</li>
+            <li onclick="$('.maindash').hide();$('.hostorical').show()">HISTORICAL</li>
         </ul>
     </div>
 </body>

@@ -1,7 +1,7 @@
 let root = document.documentElement;
 var lastTheme = window.localStorage.getItem("theme") || "light";
 
-if (lastTheme == "light") {
+if (lastTheme == "dark") {
     window.localStorage.setItem("theme", "dark")
 
     root.style.setProperty("--appInner", "#18191a")
@@ -14,7 +14,7 @@ if (lastTheme == "light") {
     root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
 
-    $(".darkCheck").prop('checked', false);
+    $(".darkCheck").prop('checked', true);
 } else {
     window.localStorage.setItem("theme", "light")
 
@@ -27,5 +27,5 @@ if (lastTheme == "light") {
     root.style.setProperty("--tabsclr", "black")
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
-    $(".darkCheck").prop('checked', true);
+    $(".darkCheck").prop('checked', false);
 }

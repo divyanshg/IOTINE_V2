@@ -1989,7 +1989,7 @@ button#nTAB {
     padding: 0;
     overflow: hidden;
     /* background-color: #333333; */
-    =border-radius: 4px;
+    border-radius: 4px;
 }
 
 .mstbtm .active {

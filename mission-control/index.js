@@ -74,6 +74,10 @@ app.get('/builder/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/builder.html')
 });
 
+app.get('/mission', (req, res) => {
+    res.sendFile(__dirname + '/mission.js')
+});
+
 app.get('/rules/:userId/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })

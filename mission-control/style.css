@@ -2067,7 +2067,8 @@ button#nTAB {
 select {
     width: 100% !important;
     height: 40px !important;
-    background-color: white;
+    background-color: var(--thm-wid);
+    border: 1px solid var(--card-btn);
 }
 
 .darkSwitch {

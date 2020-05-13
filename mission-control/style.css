@@ -2116,7 +2116,7 @@ div.button i {
     font-size: 20px;
 }
 
-.settings .button span{
+.settings .button .text{
     margin-top: 5px;
     margin-left: 20px;
 }

@@ -722,10 +722,10 @@ function lineChart(id, config, widgetBdy, prev) {
 
     var ctx = chartContainer.getContext('2d')
 
-    ctx.fillStyle = "#3880ff";
+    ctx.fillStyle = "#d4d4d4";
     ctx.font = '15px Arial';
 
-    var textString = "NOT RECIEVING ANY DATA IN " + id.split("-")[0],
+    var textString = "NO DATA",
         textWidth = ctx.measureText(textString).width;
 
 

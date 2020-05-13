@@ -722,7 +722,7 @@ function lineChart(id, config, widgetBdy, prev) {
 
     var ctx = chartContainer.getContext('2d')
 
-    ctx.fillStyle = "#d4d4d4";
+    ctx.fillStyle = "#a5a5a5";
     ctx.font = '15px Arial';
 
     var textString = "NO DATA",

@@ -13,6 +13,7 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "white")
     root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
+    $(".darkCheck").click()
 } else {
     window.localStorage.setItem("theme", "light")
 

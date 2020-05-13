@@ -807,11 +807,11 @@ function createRange(feedd, feed, config, bdy) {
 }
 
 function createLog(feed, fedd, config, bdy) {
-    var logCont = document.createElement("code")
-    logCont.className += " log-" + feed
+    var logCont = document.createElement("textarea  ")
+    logCont.className += " log-" + feed;
     logCont.style.color = config.color + " !important"
 
-    logCont.innerHTML += "CONNECTED TO " + config.device + "/" + fedd + "<br>Waiting For Data...<br>"
+    logCont.innerHTML += "CONNECTED TO " + config.device + "/" + fedd + "\nWaiting For Data...\n"
 
     bdy.className += " wid-txt"
 
@@ -1045,7 +1045,7 @@ function updateLog(id, msg, feed) {
     var logCont = document.querySelector(id) || false;
     if (!logCont) return
     var cont = logCont.parentNode
-    logCont.innerHTML += "<kbd>" + msg.time + "</kbd> : Message Recieved " + msg.value + "<br>"
+    logCont.innerHTML += msg.time +" : Message Recieved " + msg.value + "\n"
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
 socket.on('subscribe', (feed, msg, unit) => {

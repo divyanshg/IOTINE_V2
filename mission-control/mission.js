@@ -69,6 +69,8 @@ var dashSettings = new River({
                 root.style.setProperty("--thm-wid", "white")
 
                 root.style.setProperty("--someTexts", "white")
+
+                document.querySelector(".darkCheck").classList.remove("checked")
             }
         }
     }

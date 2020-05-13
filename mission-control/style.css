@@ -1980,12 +1980,14 @@ button#nTAB {
 
 .mstbtm {
     position: fixed;
-    bottom: -3px;
+    bottom: -5px;
     right: -83px;
     height: 40px;
     width: 300px;
     display: flex;
-    background-color: var(--appInner);
+    background-color: var(--thm-wid);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
     /* border-radius: 4px; */
 }
 

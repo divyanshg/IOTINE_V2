@@ -330,6 +330,13 @@ var devices = new River({
     }
 })
 
+var histDevices = new River({
+    el: '.histdevicesList',
+    data: {
+        devices: []
+    }
+})
+
 var searchForm = new River({
     el: '.searchForm',
     data: {
@@ -382,6 +389,11 @@ var newdevice = new River({
     methods: {
         addDevice() {
             devices.devices.push({
+                name: document.getElementById('Devicename').value,
+                type: document.querySelector("#dTemplate").value,
+                deviceID: document.querySelector("#Deviceurl").value
+            })
+            histdevices.devices.push({
                 name: document.getElementById('Devicename').value,
                 type: document.querySelector("#dTemplate").value,
                 deviceID: document.querySelector("#Deviceurl").value
@@ -569,10 +581,24 @@ async function getDevices() {
                         version: "v" + device.fver,
                         fs: ''
                     })
+                    histdevices.devices.push({
+                        name: dname,
+                        type: device.template,
+                        deviceID: device.deviceID,
+                        version: "v" + device.fver,
+                        fs: ''
+                    })
                     $("#" + device.deviceID).siblings(".cTHQrV").children(".devVer").html("v" +
                         device.version)
                 } else {
                     devices.devices.push({
+                        name: device.dName,
+                        type: device.template,
+                        deviceID: device.deviceID,
+                        version: "v" + device.fver,
+                        fs: ''
+                    })
+                    histdevices.devices.push({
                         name: device.dName,
                         type: device.template,
                         deviceID: device.deviceID,

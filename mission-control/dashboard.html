@@ -329,12 +329,12 @@
             <h4>From here you can see all the historical data sent by your device.</h4>
 
             <div class="historicalForm form">
-                <select class="histdevicesList" onchange="histloadFeeds(this);$('.histfeedsList').show()" >
+                <select class="histdevicesList" onchange="histloadFeeds(this);" >
                     <option value="">Select Device</option>
                     <option :value="'hist@'+device.deviceID" v-for="device in devices">{{ device.type }} / {{ device.name }}</option>
                 </select>
 
-                <select style="display: none;" class="histfeedsList">
+                <select class="histfeedsList">
                     <option value="">Select Feed</option>
                 </select>
                 <input type="button" class="save" value="Show"

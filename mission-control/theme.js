@@ -4,14 +4,14 @@ var lastTheme = window.localStorage.getItem("theme") || "light";
 if (lastTheme == "dark") {
     window.localStorage.setItem("theme", "dark")
 
-    root.style.setProperty("--appInner", "black")
+    root.style.setProperty("--appInner", "#18191a")
     root.style.setProperty("--title", "white")
     root.style.setProperty("--navLink", "white")
     root.style.setProperty("--sidebar", "rgb(49, 49, 49)")
     root.style.setProperty("--cmds", "white")
     root.style.setProperty("--widBorder", "#2a2a2a")
     root.style.setProperty("--tabsclr", "white")
-    root.style.setProperty("--thm-wid", "#151515")
+    root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
 } else {
     window.localStorage.setItem("theme", "light")

@@ -330,10 +330,12 @@
 
             <div class="historicalForm form">
                 <select class="histdevicesList" onchange="histloadFeeds(this)" >
+                    <option value="">Select Device</option>
                     <option :value="'hist@'+device.deviceID" v-for="device in devices">{{ device.type }} / {{ device.name }}</option>
                 </select>
 
                 <select class="histfeedsList">
+                    <option value="">Select Feed</option>
                 </select>
                 <input type="button" class="save" value="Show"
                     onclick="$('.historyModal').toggle();$('.mainBackDrop').toggle();">

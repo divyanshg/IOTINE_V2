@@ -1802,7 +1802,7 @@ div.form {
 }
 
 .settings .button:hover {
-    background-color: whitesmoke;
+    background-color: var(--sidebar);
 }
 
 .side-settings {

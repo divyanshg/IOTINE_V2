@@ -1732,7 +1732,7 @@ div.form {
     margin-bottom: 5px;
 }
 
-.wid-txt textarea {
+.wid-txt .textarea {
     color: #00b10f;
     margin-top: 5px;
     overflow-y: auto;

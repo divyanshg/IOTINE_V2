@@ -1327,8 +1327,8 @@ button:focus {
     width: 600px;
     max-width: 100%;
 
-    background-color: white;
-    color: black !important;
+    background-color: var(--thm-wid);
+    color: var(--title) !important;
 
     z-index: 1000;
     border-radius: 8px;
@@ -1473,11 +1473,12 @@ button:focus {
 
 .form input[type=text],
 select {
+    background-color: var(--thm-wid);
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--wid-brdr);
     border-radius: 4px;
     box-sizing: border-box;
 }

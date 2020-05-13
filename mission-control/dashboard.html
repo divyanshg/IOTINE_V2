@@ -109,12 +109,12 @@
                     </div>
                     <div class="cmdBdy">
                         <button onclick="updtDev(this)" data-dev="" class="updt-btn">UPDATE</button>
-                        <button onclick="$('.addFileModal').toggle();" class="">ADD FILE</button>
+                        <button onclick="$('.addFileModal').toggle();$('.mainBackDrop').toggle();openedPanels = '.addFileModal'" class="">ADD FILE</button>
                         <button onclick="ioState(this)" class="ios-btn" data-dev="">I/O STATE</button>
                     </div>
                     <div class="cmdBdy">
                         <button style="width:100%;">EDIT DEVICE</button>
-                        <button style="width:100%;" onclick="devFiles(this)" data-dev="" class="fs-btn">VIEW
+                        <button style="width:100%;" onclick="devFiles(this);$('.mainBackDrop').toggle();openedPanels = '.fsModal'" data-dev="" class="fs-btn">VIEW
                             FILES</button>
                     </div>
                 </div>
@@ -289,7 +289,7 @@
     <div class="addFileModal modal" style="display: none;">
         <div class="newAppInner">
             <h1>Add New File<span
-                    onclick=";$('.addFileModal').toggle();$('.mainBackDrop').toggle();openedPanels = '.addFileModal'"
+                    onclick=";$('.addFileModal').toggle();$('.mainBackDrop').toggle();"
                     class="clsBtn">&times;</span></h1>
             <h4>Add new files to tour devices or edit the existing ones.</h4>
             <div class="form" id="file_container">
@@ -307,7 +307,7 @@
     </div>
     <div class="fsModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();openedPanels = '.fsModal'" class="clsBtn">&times;</span></h1>
+            <h1>Browse Device<span onclick="$('.fsModal').toggle();$('.mainBackDrop').toggle();" class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
             <div class="devFiles"></div>
@@ -317,7 +317,7 @@
 
     <div class="historyModal modal" style="display: none;">
         <div class="newAppInner">
-            <h1>Browse Device<span onclick="$('.historyModal').toggle();openedPanels = '.historyModal'" class="clsBtn">&times;</span></h1>
+            <h1>Browse Device<span onclick="$('.historyModal').toggle();" class="clsBtn">&times;</span></h1>
             <h4>From here you can see all the files present on your device.</h4>
 
             <div class="devFiles"></div>

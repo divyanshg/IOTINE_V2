@@ -1560,6 +1560,11 @@ div.form {
 .wid-head {
     margin: 2px !important;
     text-transform: uppercase;
+    background-color: var(--card-btn);
+    padding: 5px;
+    border-radius: 8px;
+    width: auto;
+    text-align: center;
 }
 
 .chart {
@@ -1674,8 +1679,9 @@ div.form {
 
 .latData {
     float: right;
-    margin-top: -20px;
+    margin-top: -26px;
     margin-bottom: -1px;
+    margin-right: 10px;
 }
 
 .map-wid {

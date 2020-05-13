@@ -2148,19 +2148,6 @@ div.profile img {
     margin-left: 20px;
 }
 
-#dash_notifs .notifText {
-    margin-top: 5px;
-    margin-left:5px;
-    word-break: break-all;
-}
-
-#dash_notifs div.button i {
-    background-color: transparent;
-    border-radius: 50%;
-    padding: 5px;
-    font-size: 15px;
-    color: rgb(56, 128, 255) !important;
-}
 
 .seperator {
     margin-right: 16px;

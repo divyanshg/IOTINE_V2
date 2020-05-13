@@ -2031,3 +2031,9 @@ button#nTAB {
     height: 95%;
     overflow: auto;
 }
+
+select {
+    width: 100% !important;
+    height: 40px !important;
+    background-color: white;
+}

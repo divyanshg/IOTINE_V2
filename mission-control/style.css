@@ -2153,3 +2153,12 @@ hr {
     border-style: inset;
     border-width: 1px;
 }
+.profile .text{
+    font-weight: 600;
+    font-size: 1.0625rem;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.1765;
+    font-family: inherit;
+    margin-left: 10px;
+
+}

@@ -10,8 +10,8 @@ const key = "2hg34o09j09d23JJ2hg34o09j09d23JJ";
 const iv = "2hg34o09j09d23JJ";
 
 const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
+    key: fs.readFileSync('./localhost.key'),
+    cert: fs.readFileSync('./localhost.cert')
 };
 
 var http = require('https')

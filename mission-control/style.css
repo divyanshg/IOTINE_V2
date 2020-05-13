@@ -9,6 +9,7 @@
     --tabsclr: black;
     --thm-wid: white;
     --someTexts: rgb(39, 44, 55);
+    --card-btn:#f3f3f3;
 }
 
 body {
@@ -1802,7 +1803,7 @@ div.form {
 }
 
 .settings .button:hover {
-    background-color: var(--sidebar);
+    background-color: var(--card-btn);
 }
 
 .side-settings {

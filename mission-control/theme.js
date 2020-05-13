@@ -14,6 +14,8 @@ if (lastTheme == "dark") {
     root.style.setProperty("--thm-wid", "#242526")
     root.style.setProperty("--someTexts", "white")
 
+    root.style.setProperty("--card-btn", "rgb(49, 49, 49)")
+
     document.querySelector(".darkCheck").className += " checked"
 } else {
     window.localStorage.setItem("theme", "light")
@@ -27,5 +29,8 @@ if (lastTheme == "dark") {
     root.style.setProperty("--tabsclr", "black")
     root.style.setProperty("--thm-wid", "white")
     root.style.setProperty("--someTexts", "rgb(39, 44, 55)")
+
+    root.style.setProperty("--card-btn", "#f3f3f3")
+
     document.querySelector(".darkCheck").classList.remove("checked")
 }

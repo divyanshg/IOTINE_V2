@@ -1986,6 +1986,9 @@ button#nTAB {
     border-top: 1px solid rgb(0, 153, 255);
 }
 
+.mstbtm ul li:hover{
+   background-color: var(--sidebar)
+}
 .mstbtm ul li {
     float: left;
     margin-left: 15px;

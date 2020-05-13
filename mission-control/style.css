@@ -2180,3 +2180,10 @@ hr {
     color: #6f6f6f;
     font-weight: 100;
 }
+
+.historicalWidget {
+    height: 600px;
+    width: 1400px;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}

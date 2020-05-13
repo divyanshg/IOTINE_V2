@@ -13,6 +13,13 @@ function linkactive(elm) {
     prev.classList.remove("active")
     elm.className += ' active'
 }
+
+function dashactive(elm) {
+    var prev = document.querySelector('.dashSwitch.active')
+    prev.classList.remove("active")
+    elm.className += ' active'
+}
+
 var openedPanels = '';
 
 var dashSettings = new River({

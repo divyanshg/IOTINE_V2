@@ -188,11 +188,17 @@
                                 </a></div>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div class="sc-ePZHVD ePRQm"><a class="navlink "
-                                    onclick="linkactive(this);window.location.replace('/rules'+window.location.pathname)"><i
-                                        class="material-icons">security</i>
-                                    <div>Defend</div>
-                                </a></div>
+                            <span class="caret">
+                                <div class="sc-ePZHVD ePRQm"><a class="navlink "
+                                        onclick="linkactive(this);window.location.replace('/rules'+window.location.pathname)"><i
+                                            class="material-icons">security</i>
+                                        <div>Defend</div>
+                                    </a></div>
+                            </span>
+                            <ul class="nested">
+                                <li>Water</li>
+                                <li>Coffee</li>
+                            </ul>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
                             <div class="sc-ePZHVD ePRQm"><a class="navlink "
@@ -402,9 +408,16 @@
             <h4>This will give you an overview on how iotine works.</h4>
             <div class="contents">
                 <div class="button">
-                    <div class="intro-item"><img src="https://media.amazonwebservices.com/blog/2015/deck_compute_chip_300_1.png" alt="" class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio obcaecati at temporibus.</div>   
-                    <div class="intro-item"><img src="https://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt="" class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio obcaecati at temporibus.</div>  
-                    <div class="intro-item"><img src="https://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt="" class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio obcaecati at temporibus.</div>      
+                    <div class="intro-item"><img
+                            src="https://media.amazonwebservices.com/blog/2015/deck_compute_chip_300_1.png" alt=""
+                            class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
+                        obcaecati at temporibus.</div>
+                    <div class="intro-item"><img src="https://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""
+                            class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
+                        obcaecati at temporibus.</div>
+                    <div class="intro-item"><img src="https://192.168.31.249/IOTINE_V2/mission-control/logo.png" alt=""
+                            class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
+                        obcaecati at temporibus.</div>
                 </div>
             </div>
         </div>
@@ -482,6 +495,16 @@
     $(document).ready(function () {
         $('#table_id').DataTable();
     });
+
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
 </script>
 
 </html>

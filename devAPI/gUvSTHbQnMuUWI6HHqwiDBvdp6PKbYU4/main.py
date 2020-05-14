@@ -55,8 +55,8 @@ def on_pub(s):
 iotine.subscribe("ESP_INT_LED", on_sub)
 
 def main_loop():
-  if sw.value() == 0:
-      button_pressed()
+  #if sw.value() == 0:
+  button_pressed()
   #iotine.publish(
   #    [
   #      {
@@ -70,6 +70,7 @@ def main_loop():
   #    ]
   #, on_pub)     
   iotine.checkMsg()
+  sleep(5)
 
 iotine.loop(main_loop)
     

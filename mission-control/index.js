@@ -129,7 +129,7 @@ io.on('connection', function (socket) {
                     } else {
                         con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], async (err, feedInfo) => {
                             if (err) return err;
-                            con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
+                            con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], async (err, res) => {
                                 if (err) return err
 
                                 //Checking and running the events processing

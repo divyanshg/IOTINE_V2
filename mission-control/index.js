@@ -108,7 +108,7 @@ io.on('connection', function (socket) {
     socket.on("JoinTheMess", (data) => {
         socket.join(data)
     })
-    socket.on('publish', async function (msg) {
+    socket.on('publish', function (msg) {
         if (msg.feed.split("/")[0] != "$SYS") {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
@@ -127,7 +127,7 @@ io.on('connection', function (socket) {
                             if (err) return err;
                         });
                     } else {
-                        con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], (err, feedInfo) => {
+                        con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], async (err, feedInfo) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], (err, res) => {
                                 if (err) return err

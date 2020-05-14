@@ -2237,6 +2237,7 @@ hr {
 
 .nested {
     display: none;
+    list-style-type: none;
 }
 
 .nestactive {

@@ -160,6 +160,8 @@ body {
     flex-direction: column;
     display: flex;
     padding: 20px;
+
+    margin-top: -25px;
 }
 
 .cards {
@@ -178,7 +180,6 @@ body {
 }
 
 .cards:hover {
-    //box-shadow: 10px 10px 5px #e7e7e7;
     background: url(https://dashboard.ionicframework.com/img/hub/bg-setup-panes.svg) 0% 0% / cover, linear-gradient(90deg, rgb(127, 108, 248) 0%, rgb(120, 175, 249) 100%) 0% 0% / 100%;
 }
 
@@ -186,15 +187,16 @@ body {
     transform: scale(2.2);
     /* background-position: center; */
     /* background-size: cover; */
-    width: 33px !important;
-    margin-left: -6px;
+    width: 50px !important;
+    margin-left: -14px;
 }
 
 .main-panel img,
 .bottom-panel img {
+    margin-top:-17px;
     align-self: center;
     width: 24px;
-    height: 24px;
+    height:35px;
     border-radius: 16px;
 }
 
@@ -746,6 +748,8 @@ h6 {
     position: sticky;
     top: 0px;
     z-index: 99999;
+    box-shadow: 0 1px 2px #00000033;
+    /* margin-bottom: 10px;*/
 }
 
 .header-notification {

@@ -1557,6 +1557,17 @@ div.form {
     /*background: url(http://192.168.31.249/IOTINE_V2/mission-control/332.gif) center no-repeat #fff !important;*/
 }
 
+.widget:hover {
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+h4.wid-head:hover {
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}
+
 .wid-head {
     margin: 2px !important;
     text-transform: uppercase;

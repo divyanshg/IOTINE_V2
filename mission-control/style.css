@@ -10,12 +10,13 @@
     --thm-wid: white;
     --someTexts: rgb(39, 44, 55);
     --card-btn: #f3f3f3;
-    --backDrop:#f4f4f4cc;
-    --shadow:0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80;
-    --active:#d2d2d2;
+    --backDrop: #f4f4f4cc;
+    --shadow: 0 12px 28px 0 #00000033, 0 2px 4px 0 #0000001a, inset 0 0 0 1px #ffffff80;
+    --active: #d2d2d2;
 }
-*:focus{
-    outline:none;
+
+*:focus {
+    outline: none;
 }
 
 body {
@@ -61,7 +62,7 @@ body {
 
     min-height: 100vh;
     padding: 14px;
-    border-right:0.5px solid #313131
+    border-right: 0.5px solid #313131
 }
 
 .sidebar .inner {
@@ -193,10 +194,10 @@ body {
 
 .main-panel img,
 .bottom-panel img {
-    margin-top:-17px;
+    margin-top: -17px;
     align-self: center;
     width: 24px;
-    height:35px;
+    height: 35px;
     border-radius: 16px;
 }
 
@@ -1577,7 +1578,7 @@ h4.wid-head:hover {
     margin: 2px !important;
     text-transform: uppercase;
     background-color: var(--card-btn);
-    color:var(--someText);
+    color: var(--someText);
     padding: 5px;
     border-radius: 8px;
     width: auto;
@@ -2084,7 +2085,7 @@ button#nTAB {
     width: 100%;
     height: 95%;
     overflow: auto;
-    padding-left:50px;
+    padding-left: 50px;
 }
 
 select {
@@ -2170,8 +2171,8 @@ div.profile img {
     font-size: 20px;
 }
 
-.profile .text{
-    margin-top:20px !important;
+.profile .text {
+    margin-top: 20px !important;
 }
 
 .settings .button .text {
@@ -2217,17 +2218,27 @@ hr {
     width: 1400px;
     max-width: 100% !important;
     max-height: 100% !important;
-    overflow-y:auto;
+    overflow-y: auto;
 }
-.intro-item{
-    padding:10px;
+
+.intro-item {
+    padding: 10px;
     height: 100px;
-    width:100%;
+    width: 100%;
     display: flex;
 }
+
 .intro-img {
-    height:80px;
-    width:80px;
+    height: 80px;
+    width: 80px;
     flex-wrap: wrap;
-    margin-right:20px;
+    margin-right: 20px;
+}
+
+.nested {
+    display: none;
+}
+
+.nestactive {
+    display: block;
 }

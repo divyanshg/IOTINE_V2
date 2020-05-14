@@ -18,13 +18,13 @@ exports.handler = async (event) => {
     if (payload >= 90 && stateCheck == 0) {
         stateCheck = 1;
 
-        sockClient.emit('publish', {
+        /*sockClient.emit('publish', {
             user: event.user,
             deviceId: 'virtual_SkNCX1RSVUNLXzAxYWFk',
             feed: 'CORE_TEMP',
             value: String(event.value),
             time: new Date().toLocaleTimeString()
-        })
+        })*/
 
     } else if (payload <= 10) {
         stateCheck = 0;

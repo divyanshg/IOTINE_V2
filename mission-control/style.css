@@ -2223,7 +2223,9 @@ hr {
     padding:10px;
     height: 100px;
     width:100%;
+    display: flex;
 }
 .intro-img {
-    
+    height:50px;
+    width:50px;
 }

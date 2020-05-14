@@ -2226,6 +2226,8 @@ hr {
     display: flex;
 }
 .intro-img {
-    height:50px;
-    width:50px;
+    height:80px;
+    width:80px;
+    flex-wrap: wrap;
+    margin-right:20px;
 }

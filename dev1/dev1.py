@@ -9,7 +9,7 @@ print(IOTINE.CONNECT())
 def on_dc(smthng):
     print("disconnected")
 
-time.sleep(3)
+time.sleep(10)
 
 while True:
 

@@ -28,6 +28,7 @@ const sockClient = io.connect("https://192.168.31.249:3000", {
 var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {
+    console.log(client.connection.stream.remoteAddress)
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
 
     if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return callback(null, true)

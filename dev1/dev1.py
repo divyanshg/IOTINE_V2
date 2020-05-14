@@ -23,6 +23,26 @@ while True:
             "name":"CORE_TEMP",
             "value": str(random.randint(1, 100)),
             "callback": ""
+        },
+        {
+            "name":"02_TYRE_PRESSURE",
+            "value": str(random.randint(0, 200)),
+            "callback": ""
+        },
+        {
+            "name":"CORE_HUMID",
+            "value": str(random.randint(1, 100)),
+            "callback": ""
+        },
+        {
+            "name":"ENGINE_TEMPERATURE",
+            "value": str(random.randint(0, 200)),
+            "callback": ""
+        },
+        {
+            "name":"TYRE_PRESSURE_AVG",
+            "value": str(random.randint(1, 100)),
+            "callback": ""
         }
     ])
 

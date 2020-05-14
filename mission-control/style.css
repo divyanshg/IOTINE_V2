@@ -1566,6 +1566,7 @@ h4.wid-head:hover {
     background-color: whitesmoke;
     color: black;
     cursor: pointer;
+    box-shadow: var(--shadow);
 }
 
 .wid-head {

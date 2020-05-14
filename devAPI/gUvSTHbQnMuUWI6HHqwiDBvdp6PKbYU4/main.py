@@ -52,8 +52,6 @@ def on_pub(s):
   #print("message Sent")
   return 1
 
-
-iotine.subscribe("ESP_X", on_sub)
 iotine.subscribe("ESP_INT_LED", on_sub)
 
 def main_loop():
@@ -71,9 +69,7 @@ def main_loop():
   #      }
   #    ]
   #, on_pub)     
-  iotine.checkMsg()   
-  if iotine.pubstop == False:
-    moveServo(joystick(adcx))
+  iotine.checkMsg()
 
 iotine.loop(main_loop)
     

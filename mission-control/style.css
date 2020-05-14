@@ -2219,3 +2219,8 @@ hr {
     max-height: 100% !important;
     overflow-y:auto;
 }
+.intro-item{
+    padding:10px;
+    height: 100px;
+    width:100%;
+}

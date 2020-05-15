@@ -12,7 +12,7 @@ def on_dc(smthng):
 time.sleep(10)
 
 while True:
-
+    IOTINE.doDefaults()
     IOTINE.publish([
         {
             "name":"ENGINE_OIL",

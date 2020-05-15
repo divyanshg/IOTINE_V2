@@ -2282,8 +2282,7 @@ hr {
     width:100%;
     background-color: var(--appInner);
 }
-
-.behaveBox{
+.behaveBoxModal{
     height: 450px;
     width: 450px;
     background-color: var(--thm-wid);

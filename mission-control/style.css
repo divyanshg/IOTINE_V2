@@ -2291,3 +2291,6 @@ hr {
     padding: 32px;
     color:var(--title)
 }
+.behaveForm{
+    display: flex;
+}

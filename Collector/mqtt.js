@@ -62,7 +62,7 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    con.query('update devices set status = "IDLE" where cINST = ?', [client.id], (err, restu) => {
+    con.query('update devices set status = "IDLE" and sourceIp = ? where cINST = ?', [client.connection.stream.remoteAddress, client.id], (err, restu) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if (err) throw err;

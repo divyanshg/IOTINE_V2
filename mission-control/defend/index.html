@@ -143,6 +143,11 @@
                 </div>
             </header>
 
+            <div class="featureList">
+                <div class="feature"></div>
+                <div class="feature"></div>
+                <div class="feature"></div>
+            </div>
 
         </div>
     </div>
@@ -157,14 +162,6 @@
 <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
 
 <script>
-    var lastTheme = window.localStorage.getItem("theme") || "light";
-
-    if (lastTheme == "dark") {
-        document.querySelector(".darkCheck").className += " checked"
-    } else {
-        document.querySelector(".darkCheck").classList.remove("checked")
-    }
-
     var toggler = document.getElementsByClassName("caret");
     var i;
 

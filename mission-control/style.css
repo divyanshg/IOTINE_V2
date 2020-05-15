@@ -2243,3 +2243,15 @@ hr {
 .nestactive {
     display: block;
 }
+
+.featureList{
+    display:flex;
+    height:100%;
+    width:100%;
+}
+.feature{
+    height:300px;
+    min-width:200px;
+    background-color: var(--thm-wid);
+    box-shadow: var(--shadow);
+}

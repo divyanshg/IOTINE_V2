@@ -2250,7 +2250,7 @@ hr {
 
 .feature {
     height: 400px;
-    min-width: 250px;
+    max-width: 250px;
     background-color: var(--thm-wid);
     border-radius: 8px;
     margin: 16px;

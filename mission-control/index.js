@@ -94,6 +94,10 @@ app.get('/theme', (req, res) => {
     res.sendFile(__dirname + '/theme.js')
 });
 
+app.get('/defend', (req, res) => {
+    res.sendFile(__dirname + '/defend/index.html')
+})
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []

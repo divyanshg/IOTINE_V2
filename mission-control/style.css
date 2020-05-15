@@ -150,7 +150,7 @@ body {
     width: calc(100% - 65px);
     height: 100vh;
 
-    background-color: white;
+    background-color: var(--appInner);
 }
 
 .appInner {

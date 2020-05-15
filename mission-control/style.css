@@ -2246,7 +2246,6 @@ hr {
 
 .featureList {
     display: flex;
-    margin-left: calc(50% - 450px);
 }
 
 .feature {
@@ -2261,4 +2260,9 @@ hr {
 .feature:hover{
     cursor: pointer;
     box-shadow: var(--shadow);
+}
+
+.feature img{
+    height:50%;
+    width:100%;
 }

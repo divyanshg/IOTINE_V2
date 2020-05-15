@@ -94,7 +94,7 @@ app.get('/theme', (req, res) => {
     res.sendFile(__dirname + '/theme.js')
 });
 
-app.get('/defend/:user', (req, res) => {
+app.get('/defend/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/defend/index.html')
 })
 

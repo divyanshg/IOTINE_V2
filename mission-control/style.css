@@ -2255,6 +2255,9 @@ hr {
     border-radius: 8px;
     margin: 16px;
     box-shadow: 0 1px 2px #00000033;
+    padding: 32px;
+    text-align: center;
+    color:var(--title)
 }
 
 .feature:hover{
@@ -2265,4 +2268,8 @@ hr {
 .feature img{
     height:50%;
     width:100%;
+}
+.feature h3{
+    font-weight: bold;
+    color: var(--title)
 }

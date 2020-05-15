@@ -148,12 +148,11 @@
 
 
             <div style="display: none;" class="behave">
-                <div class="newDeviceModal modal" style="display: none;">
+                <div class="behaveBoxModal modal">
                     <div class="se-pre-con"></div>
                     <div class="newAppInner">
-                        <h1>New Device<span onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle()"
-                                class="clsBtn">&times;</span></h1>
-                        <h4>Answer a few quick questions and we'll get your device up and running.</h4>
+                        <h1>Expected behaviours</h1>
+                        <h4>CREATE SECURITY PROFILE</h4>
                         <div class="form">
                             <form action="/action_page.php">
                                 <label for="Devicename">Device Name</label>
@@ -171,9 +170,9 @@
                                 <div class="url">
                                     <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
                                 </div>
-                                <input type="button" v-on:click="addDevice" class="save" value="Create">
+                                <input type="button" class="save" value="Next">
                                 <input type="button" class="cancel" value="Cancel"
-                                    onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle();sideBar.toggleDevices()">
+                                    onclick="$('.behaveBoxModal').toggle();">
                             </form>
                         </div>
                     </div>

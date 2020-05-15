@@ -150,14 +150,14 @@ io.on('connection', function (socket) {
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                             var hw = encrypt(msg.value)
-                                            await saveToLake(msg)
+                                            //await saveToLake(msg)
 
                                         }).catch(async (err) => {
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                             var hw = encrypt(msg.value)
-                                            await saveToLake(msg)
+                                            //await saveToLake(msg)
                                         })
                                     })
                                 } else {
@@ -165,7 +165,7 @@ io.on('connection', function (socket) {
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
 
                                     var hw = encrypt(msg.value)
-                                    await saveToLake(msg)
+                                    //await saveToLake(msg)
                                 }
 
 

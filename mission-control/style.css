@@ -2283,8 +2283,7 @@ hr {
     background-color: var(--appInner);
 }
 .behaveBoxModal{
-    height: 450px;
-    width: 450px;
+    height: 550px;
     background-color: var(--thm-wid);
     border-radius: 8px !important;
     margin: 16px;

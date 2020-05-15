@@ -156,14 +156,17 @@
                         <div class="form">
                             <form action="/action_page.php">
                                 <label for="Devicename">Name</label>
-                                <input type="text" id="Devicename" name="Devicename" placeholder="Security profile name" value="">
-            
+                                <input type="text" id="Devicename" name="Devicename" placeholder="Security profile name"
+                                    value="">
+
                                 <h3 for="dTemplate">Behaviours</h3>
-                                
+                                <label for="">Specify how your device should behave. You can use cloud-side metrics
+                                    without a device agent deployed.
+                                    Note: once created, behavior names cannot be edited. </label>
                                 <input type="button" class="cancel" value="Cancel"
-                                    onclick="$('.behaveBoxModal').toggle();">
+                                    onclick="$('.behaveBoxModal').toggle();">&nbsp;&nbsp;
                                 <input type="button" class="save" value="Next">
-                                
+
                             </form>
                         </div>
                     </div>
@@ -172,36 +175,38 @@
 
             <div style="display: block;" class="featureList">
                 <div style="display: flex;">
-                <div class="feature form">
-                    <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/behave.png" alt="">
-                    <h3>Define device behavior</h3>
-                    <p>
-                        Security profiles contain behaviors that define how your devices should behave. Device Defender
-                        Detect evaluates device activity against expected behavior and notifies you when it finds
-                        anomalies.
-                    </p>
-                    <input type="button" onclick="$('.behave').show();$('.featureList').hide();" class="save" value="Get started">
-                </div>
-                <div class="feature form">
-                    <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/monitor.png" alt="">
-                    <h3>Monitor device activity</h3>
-                    <p>
-                        Device Defender Detect monitors device activity collected from the cloud and, optionally, an
-                        agent installed on the device.
-                    </p>
-                    <input type="button" class="save" value="Learn More">
-                </div>
-                <div class="feature form">
-                    <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/anom.png" alt="">
-                    <h3>Investigate anomalies</h3>
-                    <p>
-                        Device Defender Detect enables you to investigate active violation events and to view trends
-                        over time for your fleet, a specific security profile, or a single device.
-                    </p>
-                    <input type="button" class="save" value="Explore">
+                    <div class="feature form">
+                        <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/behave.png" alt="">
+                        <h3>Define device behavior</h3>
+                        <p>
+                            Security profiles contain behaviors that define how your devices should behave. Device
+                            Defender
+                            Detect evaluates device activity against expected behavior and notifies you when it finds
+                            anomalies.
+                        </p>
+                        <input type="button" onclick="$('.behave').show();$('.featureList').hide();" class="save"
+                            value="Get started">
+                    </div>
+                    <div class="feature form">
+                        <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/monitor.png" alt="">
+                        <h3>Monitor device activity</h3>
+                        <p>
+                            Device Defender Detect monitors device activity collected from the cloud and, optionally, an
+                            agent installed on the device.
+                        </p>
+                        <input type="button" class="save" value="Learn More">
+                    </div>
+                    <div class="feature form">
+                        <img src="https://192.168.31.249/IOTINE_V2/mission-control/defend/anom.png" alt="">
+                        <h3>Investigate anomalies</h3>
+                        <p>
+                            Device Defender Detect enables you to investigate active violation events and to view trends
+                            over time for your fleet, a specific security profile, or a single device.
+                        </p>
+                        <input type="button" class="save" value="Explore">
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
     </div>

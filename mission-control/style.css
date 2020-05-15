@@ -2273,3 +2273,7 @@ hr {
     font-weight: bold;
     color: var(--title)
 }
+
+.feature .save{
+    width:100% !important;
+}

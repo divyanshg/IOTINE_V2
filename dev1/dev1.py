@@ -11,6 +11,8 @@ def on_dc(smthng):
 
 time.sleep(10)
 
+IOTINE.will("ENGINE_OIL", 34)
+
 while True:
     IOTINE.doDefaults()
     IOTINE.publish([

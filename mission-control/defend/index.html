@@ -152,24 +152,14 @@
                     <div class="se-pre-con"></div>
                     <div class="newAppInner">
                         <h1>Expected behaviours</h1>
-                        <h4>CREATE SECURITY PROFILE</h4>
+                        <h4>Create security profile</h4>
                         <div class="form">
                             <form action="/action_page.php">
-                                <label for="Devicename">Device Name</label>
-                                <input type="text" id="Devicename" name="Devicename" value="">
+                                <label for="Devicename">Name</label>
+                                <input type="text" id="Devicename" name="Devicename" placeholder="Security profile name" value="">
             
-                                <label for="dTemplate">Device Template</label>
-                                <select v-on:change="addTemplate" id="dTemplate" name="dTemplate">
-                                    <option id="null_temp" value="">Select Template</option>
-                                    <option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new
-                                            template</a></option>
-                                </select>
-            
-                                <label for="Deviceurl">Device Connection String</label>
-                                <h4>This helps your device securely connect with us.</h4>
-                                <div class="url">
-                                    <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
-                                </div>
+                                <h3 for="dTemplate">Device Template</h3>
+                                
                                 <input type="button" class="save" value="Next">
                                 <input type="button" class="cancel" value="Cancel"
                                     onclick="$('.behaveBoxModal').toggle();">

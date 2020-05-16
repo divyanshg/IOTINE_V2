@@ -415,6 +415,7 @@ var deviceActions = new River({
 })
 
 function step2(typ) {
+    console.log("here")
     if (typ == 'virt') {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
     }

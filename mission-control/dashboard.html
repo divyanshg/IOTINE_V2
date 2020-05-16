@@ -389,20 +389,16 @@
                 <form style="display:none;" class="step3">
                     <h3>Make your device Trusted.</h3>
                     <div style="display: flex;">
-                        <div onclick="step2('real');" class="dtype real">
-                            <h4>Add your device</h4>
-                            <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/raspberry-pi-2-564282.png"
-                                alt="" class="intro-img">
-                            <p>Connect your own physical device's to IOTINE</p>
+                        <div onclick="step4('self');" class="dtype real">
+                            <h4>Add your certificates</h4>
+                            <p>Upload your certificates signed by any CA.</p>
                         </div>
-                        <div onclick="step2('virt');" class="dtype virt">
-                            <h4>Add a virtual device</h4>
-                            <img src="https://www.airnguru.com/wp-content/uploads/2019/01/cloud-computing-svg.png"
-                                alt="" class="intro-img">
-                            <p>Deploy virtual device's in the IOTINE Cloud.</p>
+                        <div onclick="step4('auto');" class="dtype virt">
+                            <h4>Use auto generated certificates</h4>
+                            <p>We will generate certificates for your device.</p>
                         </div>
                     </div>
-                    <input type="button" v-on:click="addDevice" class="save" value="Next">
+                    <input type="button" v-on:click="addDevice" class="save" value="Create">
                     <input type="button" class="cancel" value="Back" onclick="step3()">
                 </form>
             </div>

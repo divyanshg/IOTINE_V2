@@ -2314,5 +2314,5 @@ hr {
     height: 50px;
     width: 50px;
     flex-wrap: wrap;   
-    margin-right: none !important;
+    margin-right: 0px !important;
 }

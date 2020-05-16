@@ -414,6 +414,18 @@ var deviceActions = new River({
     }
 })
 
+function step2(typ) {
+    if (typ == 'virt') {
+        document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
+    }
+    $(".step1").animate({
+        left: '-500px',
+        display: 'none'
+    });
+    $(".step2").animate({
+        display: 'block'
+    });
+}
 
 var newdevice = new River({
     el: '.newDeviceModal',
@@ -485,18 +497,7 @@ var newdevice = new River({
             xhttp.open("POST", "https://192.168.31.249:3002/newTempl/" + user + "/" + name, true);
             await xhttp.send();
         },
-        step2(typ) {
-            if (typ == 'virt') {
-                document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
-            }
-            $(".step1").animate({
-                left: '-500px',
-                display: 'none'
-            });
-            $(".step2").animate({
-                display: 'block'
-            });
-        }
+
 
     }
 })

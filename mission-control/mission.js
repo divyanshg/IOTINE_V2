@@ -415,12 +415,10 @@ var deviceActions = new River({
 })
 
 function step2(typ) {
-    console.log("here")
     if (typ == 'virt') {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
     }
     $(".step1").animate({
-        left: '-500px',
         display: 'none'
     });
     $(".step2").animate({

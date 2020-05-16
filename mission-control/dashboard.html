@@ -189,26 +189,23 @@
                         </li>
                         <li class="sc-bEjcJn joFqRi">
                             <span class="caret">
-                                <div class="sc-ePZHVD ePRQm"><a class="navlink "
-                                        onclick="linkactive(this);"><i
+                                <div class="sc-ePZHVD ePRQm"><a class="navlink " onclick="linkactive(this);"><i
                                             class="material-icons">security</i>
                                         <div>Defend</div>
                                     </a></div>
                             </span>
                             <ul class="nested">
+                                <div class="sc-ePZHVD ePRQm"><a class="navlink " onclick="linkactive(this);">
+                                        <div>Audit</div>
+                                    </a></div>
                                 <div class="sc-ePZHVD ePRQm"><a class="navlink "
-                                    onclick="linkactive(this);">
-                                    <div>Audit</div>
-                                </a></div>
-                                <div class="sc-ePZHVD ePRQm"><a class="navlink "
-                                    onclick="linkactive(this); window.location.replace('/defend'+window.location.pathname)">
-                                    <div>Detect</div>
-                                </a></div>
+                                        onclick="linkactive(this); window.location.replace('/defend'+window.location.pathname)">
+                                        <div>Detect</div>
+                                    </a></div>
                             </ul>
                         </li>
                         <li class="sc-bEjcJn joFqRi">
-                            <div class="sc-ePZHVD ePRQm"><a class="navlink "
-                                    onclick="linkactive(this);"><i
+                            <div class="sc-ePZHVD ePRQm"><a class="navlink " onclick="linkactive(this);"><i
                                         class="material-icons">compare_arrows</i>
                                     <div>Test</div>
                                 </a></div>
@@ -369,10 +366,11 @@
                     <div class="url">
                         <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
                     </div>
-                    <input type="button" v-on:click="addDevice" class="save" value="Create">
-                    <input type="button" class="cancel" value="Cancel"
-                        onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle();sideBar.toggleDevices()">
+
                 </form>
+                <input type="button" v-on:click="addDeviceStep2" class="save" value="Next">
+                <input type="button" class="cancel" value="Cancel"
+                    onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle();sideBar.toggleDevices()">
             </div>
         </div>
     </div>

@@ -426,8 +426,8 @@ function step2(typ) {
         document.querySelector("#Deviceurl").value = makeid(32)
         $(".url").show()
     }
+    $(".step1").toggle()
     $(".step2").toggle()
-    $(".step3").toggle()
 }
 
 function step3() {
@@ -438,8 +438,8 @@ function step3() {
         document.querySelector("#Deviceurl").value = makeid(32)
         $(".url").show()
     }
-    $(".step1").toggle()
     $(".step2").toggle()
+    $(".step3").toggle()
 }
 
 var newdevice = new River({

@@ -418,8 +418,8 @@ function step2(typ) {
     if (typ == 'virt') {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
     }
-    $(".step1").hide()
-    $(".step2").show()
+    $(".step1").toggle()
+    $(".step2").toggle()
 }
 
 var newdevice = new River({

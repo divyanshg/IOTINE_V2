@@ -2295,13 +2295,13 @@ hr {
     display: flex;
 }
 
-.step1{
-    display: flex;
-}
-
 .dtype{
     height:200px;
     width:150px;
-    box-shadow: var(--shadow);
+    box-shadow: #00000033;
     border-radius:8px;
+}
+
+.dtype:hover{
+    box-shadow: var(--shadow);
 }

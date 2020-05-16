@@ -2295,29 +2295,13 @@ hr {
     display: flex;
 }
 
-
-.form-inline {  
+.step1{
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-  }
-  
-  .form-inline label {
-    margin: 5px 10px 5px 0;
-  }
-  
-  .form-inline input {
-    vertical-align: middle;
-  }
-  
-  
-  @media (max-width: 800px) {
-    .form-inline input {
-      margin: 10px 0;
-    }
-    
-    .form-inline {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  }
+}
+
+.dtype{
+    height:200px;
+    width:150px;
+    box-shadow: var(--shadow);
+    border-radius:8px;
+}

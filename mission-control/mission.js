@@ -414,7 +414,23 @@ var deviceActions = new River({
     }
 })
 
+var typ;
+
 function step2(typ) {
+    if (typ == 'virt') {
+        typ = 'virt'
+        document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
+        $(".url").hide()
+    } else {
+        typ = 'real'
+        document.querySelector("#Deviceurl").value = makeid(32)
+        $(".url").show()
+    }
+    $(".step2").toggle()
+    $(".step3").toggle()
+}
+
+function step3() {
     if (typ == 'virt') {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
         $(".url").hide()

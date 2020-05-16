@@ -414,6 +414,19 @@ var deviceActions = new River({
     }
 })
 
+function step2(typ){
+    if(typ == 'virt'){
+        document.querySelector("#Deviceurl").value = "virtual_"+document.querySelector("#Deviceurl").value
+    }
+    $(".step1").animate({
+        left: '-500px',
+        display: 'none'
+      });
+      $(".step2").animate({
+        display: 'block'
+      });  
+}
+
 var newdevice = new River({
     el: '.newDeviceModal',
     data: {

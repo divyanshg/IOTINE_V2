@@ -2302,6 +2302,7 @@ hr {
     border-radius:8px;
     margin:16px;
     cursor: pointer;
+    text-align:center;
 }
 
 .dtype:hover{

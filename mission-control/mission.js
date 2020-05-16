@@ -417,8 +417,10 @@ var deviceActions = new River({
 function step2(typ) {
     if (typ == 'virt') {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
-    }else{
-        document.querySelector("#Deviceurl").value =  makeid(32)
+        $(".url").hide()
+    } else {
+        document.querySelector("#Deviceurl").value = makeid(32)
+        $(".url").show()
     }
     $(".step1").toggle()
     $(".step2").toggle()

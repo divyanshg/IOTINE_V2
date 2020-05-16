@@ -355,16 +355,14 @@
                     <div style="display: flex;">
                         <div onclick="step2('real');" class="dtype real">
                             <h4>Add your device</h4>
-                            <img
-                            src="https://cdn.iconscout.com/icon/premium/png-512-thumb/raspberry-pi-2-564282.png" alt=""
-                            class="intro-img"> 
+                            <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/raspberry-pi-2-564282.png"
+                                alt="" class="intro-img">
                             <p>Connect your own physical device's to IOTINE</p>
                         </div>
                         <div onclick="step2('virt');" class="dtype virt">
                             <h4>Add a virtual device</h4>
-                            <img
-                            src="https://www.airnguru.com/wp-content/uploads/2019/01/cloud-computing-svg.png" alt=""
-                            class="intro-img"> 
+                            <img src="https://www.airnguru.com/wp-content/uploads/2019/01/cloud-computing-svg.png"
+                                alt="" class="intro-img">
                             <p>Deploy virtual device's in the IOTINE Cloud.</p>
                         </div>
                     </div>
@@ -380,16 +378,15 @@
                                 template</a></option>
                     </select>
 
-                    <label for="Deviceurl">Device Connection String</label>
-                    <h4>This helps your device securely connect with us.</h4>
                     <div class="url">
+                        <label for="Deviceurl">Device Connection String</label>
+                        <h4>This helps your device securely connect with us.</h4>
                         <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
                     </div>
                     <input type="button" v-on:click="addDevice" class="save" value="Next">
-                    <input type="button" class="cancel" value="Back"
-                    onclick="step2()">
+                    <input type="button" class="cancel" value="Back" onclick="step2()">
                 </form>
-                
+
             </div>
         </div>
     </div>

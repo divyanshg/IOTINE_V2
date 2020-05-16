@@ -385,9 +385,8 @@
                     <div class="url">
                         <input disabled type="text" id="Deviceurl" name="Deviceurl" :value="connstring">
                     </div>
-
+                    <input type="button" v-on:click="addDeviceStep2" class="save" value="Next">
                 </form>
-                <input type="button" v-on:click="addDeviceStep2" class="save" value="Next">
                 <input type="button" class="cancel" value="Cancel"
                     onclick="$('.newDeviceModal').toggle();$('.mainBackDrop').toggle();sideBar.toggleDevices()">
             </div>

@@ -2298,7 +2298,7 @@ hr {
 .dtype{
     height:200px;
     width:150px;
-    box-shadow: #00000033;
+    box-shadow:0 1px 2px #00000033;
     border-radius:8px;
 }
 

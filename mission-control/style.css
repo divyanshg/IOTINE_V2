@@ -2304,7 +2304,7 @@ hr {
     margin:16px;
     cursor: pointer;
     text-align:center;
-    background-color: var(--thm-wid);
+    background-color: var(--card-btn)
 }
 
 .dtype:hover{

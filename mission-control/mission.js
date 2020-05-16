@@ -406,6 +406,7 @@ var deviceActions = new River({
             sideBar.toggleDevices()
             newdevice.getTemplates();
             newdevice.connstring = makeid(32)
+            document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()
             openedPanels = '.newDeviceModal'
@@ -430,6 +431,7 @@ var newdevice = new River({
                 type: document.querySelector("#dTemplate").value,
                 deviceID: document.querySelector("#Deviceurl").value
             })
+
             saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
                 .value, document.querySelector("#Deviceurl").value)
             $('.mainBackDrop').toggle()

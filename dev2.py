@@ -15,8 +15,22 @@ def on_message(client, userdata, message):
 time.sleep(5)
 timess = 0
 while True:
-    IOTINE.publish("tempo", str(random.randint(0, 200)), '')
-    IOTINE.publish("humido", str(random.randint(0, 100)), '') 
     IOTINE.doDefaults()
-    IOTINE.publish("avg", str(random.randint(1, 100)), '')
+    IOTINE.publish([
+        {
+            "name":"tempo",
+            "value": random.randint(0, 100),
+            "callback": ''
+        },
+        {
+            "name":"humido",
+            "value": random.randint(0, 100),
+            "callback": ''
+        },
+        {
+            "name":"avg",
+            "value": random.randint(0, 100),
+            "callback": ''
+        },
+        ])
     time.sleep(1)

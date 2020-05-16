@@ -154,7 +154,6 @@
                         <h1>Expected behaviours</h1>
                         <h4>Create security profile</h4>
                         <div class="form">
-                            <form action="/action_page.php">
                                 <label for="Devicename">Name</label>
                                 <input type="text" id="Devicename" name="Devicename" placeholder="Security profile name"
                                     value="">
@@ -163,7 +162,7 @@
                                 <label for="">Specify how your device should <b>behave</b>. You can use cloud-side metrics
                                     without a device agent deployed. <br>
                                     Note: once created, behavior names cannot be edited. </label>
-                                
+                                <div class="behaveForm">
                                     <form class="form-inline" action="/action_page.php">
                                         <label for="email">Email:</label>
                                         <input type="email" id="email" placeholder="Enter email" name="email">
@@ -174,11 +173,11 @@
                                         </label>
                                         <button type="submit">Submit</button>
                                       </form>
+                                </div>
                                 <input type="button" class="save" value="Next">
                                 <input type="button" class="cancel" value="Cancel"
                                     onclick="$('.behave').hide();$('.featureList').show()">
 
-                            </form>
                         </div>
                     </div>
                 </div>

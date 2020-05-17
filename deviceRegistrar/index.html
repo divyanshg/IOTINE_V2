@@ -6,9 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="certificateUpload/sampleDevice" method="post" enctype="multipart/form-data">
-        <input type="file" name="filetoupload"><br>
+    <form action="https://192.168.31.249:3005/certificateUpload/" method="post" enctype="multipart/form-data">
+        <input type="file" name="filetoupload" multiple><br>
         <input type="submit">
     </form>
 </body>
+<script>
+    document.querySelector(".form").action += prompt("device please")
+</script>
 </html>

@@ -585,7 +585,7 @@ async function saveDevice(name, templ, did) {
             console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
         }
     };
-    xhttp.open("GET", "https://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
+    xhttp.open("POST", "https://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
         templ, true);
     await xhttp.send();
 }
@@ -598,7 +598,7 @@ async function savevDevice(name, templ, did) {
             console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
         }
     };
-    xhttp.open("POST", "https://192.168.31.249:3002/virtualDevice/" + user + "/" + name + "/" + templ + "/" + did, true);
+    xhttp.open("GET", "https://192.168.31.249:3002/virtualDevice/" + user + "/" + name + "/" + templ + "/" + did, true);
     await xhttp.send();
 }
 

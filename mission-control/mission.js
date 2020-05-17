@@ -505,28 +505,6 @@ var newdevice = new River({
             openedPanels = ''
             sideBar.toggleDevices()
         },
-
-        addvDevice() {
-            var certs = document.querySelector(".certform");
-            certs = certs.action.split("/")
-            devices.devices.push({
-                name: document.getElementById('Devicename').value,
-                type: document.querySelector("#dTemplate").value,
-                deviceID: certs[certs.length -1]
-            })
-            histdevices.devices.push({
-                name: document.getElementById('Devicename').value,
-                type: document.querySelector("#dTemplate").value,
-                deviceID: certs[certs.length -1]
-            })
-
-            savevDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
-                .value, certs[certs.length -1])
-            $('.mainBackDrop').toggle()
-            $(".newDeviceModal").toggle()
-            openedPanels = ''
-            sideBar.toggleDevices()
-        },
         async getTemplates() {
             var tempList = $("#null_temp")
             var xhttp = new XMLHttpRequest();
@@ -576,6 +554,28 @@ var newdevice = new River({
 
     }
 })
+
+function addvDevice() {
+    var certs = document.querySelector(".certform");
+    certs = certs.action.split("/")
+    devices.devices.push({
+        name: document.getElementById('Devicename').value,
+        type: document.querySelector("#dTemplate").value,
+        deviceID: certs[certs.length -1]
+    })
+    histdevices.devices.push({
+        name: document.getElementById('Devicename').value,
+        type: document.querySelector("#dTemplate").value,
+        deviceID: certs[certs.length -1]
+    })
+
+    savevDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
+        .value, certs[certs.length -1])
+    $('.mainBackDrop').toggle()
+    $(".newDeviceModal").toggle()
+    openedPanels = ''
+    sideBar.toggleDevices()
+}
 
 async function saveDevice(name, templ, did) {
     var xhttp = new XMLHttpRequest();

@@ -455,10 +455,10 @@ function uploadCert() {
     var x = document.getElementById("userCerts");
 
     if ('files' in x) {
-        if (x.files.length < 2) {
+        if (x.files.length < 1) {
             alert("You are missing some files.");
             return false;
-        }else if(x.files.length > 2){
+        }else if(x.files.length > 1){
             alert("Remove any extra file you uploaded.")
             return false;
         } else {

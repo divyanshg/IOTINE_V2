@@ -131,6 +131,7 @@ io.on('connection', function (socket) {
                             if (err) return err;
                         });
                     } else {
+                        console.log(msg.unit)
                         con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], async (err, feedInfo) => {
                             if (err) return err;
                             con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], async (err, res) => {

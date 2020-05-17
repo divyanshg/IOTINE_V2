@@ -409,7 +409,7 @@ var deviceActions = new River({
         newDev() {
             sideBar.toggleDevices()
             newdevice.getTemplates();
-            newdevice.connstring = makeid(32)
+            newdevice.connstring = "_"+makeid(32)
             document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()

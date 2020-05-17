@@ -413,7 +413,8 @@ var deviceActions = new River({
             newdevice.connstring = "_"+makeid(32)
             document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
-            $(".newDeviceModal").toggle()openedPanels = '.newDeviceModal'
+            $(".newDeviceModal").toggle()
+            openedPanels = '.newDeviceModal'
         }
     }
 })

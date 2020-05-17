@@ -9,8 +9,8 @@ const app = express();
 const options = {
     key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('cert.pem')
-  };
-  
+};
+
 var http = require('https')
 
 app.use(express.json());
@@ -151,10 +151,24 @@ app.get('/tabs/:userId/:appId', (req, res) => {
     }))
 })
 
+app.get('/virtualDevice/:user/:name/:templ/:id', (req, res) => {
+    var device = req.params;
+    if (!fs.existsSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`)) {
+        fs.mkdirSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`);
+    }
+
+    fs.copyFile('/var/www/html/IOTINE_V2/key.pem', `/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/key.pem`, (err) => {
+        if (err) throw err;
+
+        saveDevice(device.userId, device.name, device.did, device.templ)
+        res.send("Device Saved!")
+    });
+})
+
 app.get('/user/:name', (req, res) => {
     con.query('select user_id from users where username = ? limit 1', [req.params.name], (err, resp) => {
         if (err) return err;
-        if(typeof resp[0] == 'undefined') return
+        if (typeof resp[0] == 'undefined') return
         res.send(resp[0].user_id)
     })
 });
@@ -214,9 +228,11 @@ app.get('/deviceState/:user', (req, res) => {
 })
 
 
-app.get('/runRule/:user/:code', (req,res) => {
+app.get('/runRule/:user/:code', (req, res) => {
     console.log("here")
-    res.json({"status": 200})
+    res.json({
+        "status": 200
+    })
     console.log(req.params.code)
 })
 

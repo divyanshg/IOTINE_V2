@@ -287,7 +287,6 @@
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
     <script src="https://192.168.31.249/IOTINE_V2/mission-control/river_v1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         var socket = io()
         getUser();
@@ -1083,7 +1082,7 @@
                         }
                     });
 
-                    if (widgets[j].datasets[0].data.length >= 5) {
+                    if (widgets[j].datasets[0].data.length >= parseInt(config.dataPoints)) {
                         widgets[j].datasets[0].data.shift()
                         config.labels.shift()
                         //$(".ndt").remove()
@@ -1102,7 +1101,7 @@
                 if (mfeed == feed) {
                     var chart = document.querySelector(".chart-" + feed)
                     var latestData = chart.previousSibling
-                    latestData.innerHTML = msg.value + " " + unit[0].unit
+                    latestData.innerHTML = msg.value + " " + unit
                     var ctx = chart.getContext("2d")
                     updateChart("chart-" + feed, ctx, msg, feed)
                 } else {

@@ -19,8 +19,6 @@ app.post('/authority/verify/:token/:dev', (req, res) => {
             status: 403
         })
 
-        console.log(fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'))
-
         res.json({
             status: 200
         })

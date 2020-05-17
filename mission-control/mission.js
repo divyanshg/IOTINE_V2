@@ -413,6 +413,7 @@ var deviceActions = new River({
             document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()
+            $("#dTemplate").html("")
             openedPanels = '.newDeviceModal'
         }
     }

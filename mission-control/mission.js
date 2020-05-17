@@ -425,7 +425,7 @@ function step2(typ) {
         $(".url").hide()
     } else {
         typ = 'real'
-        document.querySelector("#Deviceurl").value = makeid(32)
+        document.querySelector("#Deviceurl").value = '_' +makeid(32)
         $(".url").show()
     }
     certs.action += document.querySelector("#Deviceurl").value
@@ -438,7 +438,7 @@ function step3() {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
         $(".url").hide()
     } else {
-        document.querySelector("#Deviceurl").value = makeid(32)
+        document.querySelector("#Deviceurl").value = '_' +makeid(32)
         $(".url").show()
     }
     $(".step2").toggle()

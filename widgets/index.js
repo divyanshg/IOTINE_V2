@@ -160,7 +160,7 @@ app.get('/virtualDevice/:user/:name/:templ/:id', (req, res) => {
     fs.copyFile('/var/www/html/IOTINE_V2/key.pem', `/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/key.pem`, (err) => {
         if (err) throw err;
 
-        saveDevice(device.userId, device.name, device.did, device.templ)
+        saveDevice(device.user, device.name, device.id, device.templ)
         res.send("Device Saved!")
     });
 })

@@ -417,6 +417,8 @@ var deviceActions = new River({
 var typ;
 
 function step2(typ) {
+
+    var certs = document.querySelector(".certform");
     if (typ == 'virt') {
         typ = 'virt'
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
@@ -426,6 +428,7 @@ function step2(typ) {
         document.querySelector("#Deviceurl").value = makeid(32)
         $(".url").show()
     }
+    certs.action += document.querySelector("#Deviceurl").value
     $(".step1").toggle()
     $(".step2").toggle()
 }
@@ -449,7 +452,6 @@ function step4(){
 }
 
 function uploadCert() {
-    var certs = document.querySelector(".certform");
     var x = document.getElementById("userCerts");
 
     if ('files' in x) {
@@ -462,8 +464,6 @@ function uploadCert() {
         } else {
             for (var i = 0; i < x.files.length; i++) {
                 var file = x.files[i];
-
-                certs.action += document.querySelector("#Deviceurl").value
                 newdevice.addDevice()
                 return true
             }

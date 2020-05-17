@@ -144,7 +144,11 @@ async function loadPROPS(dev) {
 
             mnam.innerHTML = props[0].dName;
             dn.innerHTML = props[0].dName;
-            did.innerHTML = props[0].deviceID;
+            if (props[0].deviceID.split("_")[0] == 'virtual') {
+                did.innerHTML = "VIRTUAL DEVICE"
+            } else {
+                did.innerHTML = props[0].deviceID;
+            }
             dtmpl.innerHTML = props[0].template
 
             fds = []
@@ -427,7 +431,7 @@ function step2(typ) {
         $(".finalBtn").show()
     } else {
         typ = 'real'
-        document.querySelector("#Deviceurl").value = '_' +makeid(32)
+        document.querySelector("#Deviceurl").value = '_' + makeid(32)
         $(".url").show()
 
         $(".forReal").show();
@@ -443,14 +447,14 @@ function step3() {
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
         $(".url").hide()
     } else {
-        document.querySelector("#Deviceurl").value = '_' +makeid(32)
+        document.querySelector("#Deviceurl").value = '_' + makeid(32)
         $(".url").show()
     }
     $(".step2").toggle()
     $(".step3").toggle()
 }
 
-function step4(){
+function step4() {
 
     $(".step3").hide()
     $(".certform").show()
@@ -463,7 +467,7 @@ function uploadCert() {
         if (x.files.length < 1) {
             alert("You are missing some files.");
             return false;
-        }else if(x.files.length > 1){
+        } else if (x.files.length > 1) {
             alert("Remove any extra file you uploaded.")
             return false;
         } else {
@@ -490,16 +494,16 @@ var newdevice = new River({
             devices.devices.push({
                 name: document.getElementById('Devicename').value,
                 type: document.querySelector("#dTemplate").value,
-                deviceID: certs[certs.length -1]
+                deviceID: certs[certs.length - 1]
             })
             histdevices.devices.push({
                 name: document.getElementById('Devicename').value,
                 type: document.querySelector("#dTemplate").value,
-                deviceID: certs[certs.length -1]
+                deviceID: certs[certs.length - 1]
             })
 
             saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
-                .value, certs[certs.length -1])
+                .value, certs[certs.length - 1])
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()
             openedPanels = ''
@@ -561,16 +565,16 @@ function addvDevice() {
     devices.devices.push({
         name: document.getElementById('Devicename').value,
         type: document.querySelector("#dTemplate").value,
-        deviceID: certs[certs.length -1]
+        deviceID: certs[certs.length - 1]
     })
     histdevices.devices.push({
         name: document.getElementById('Devicename').value,
         type: document.querySelector("#dTemplate").value,
-        deviceID: certs[certs.length -1]
+        deviceID: certs[certs.length - 1]
     })
 
     savevDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
-        .value, certs[certs.length -1])
+        .value, certs[certs.length - 1])
     $('.mainBackDrop').toggle()
     $(".newDeviceModal").toggle()
     openedPanels = ''

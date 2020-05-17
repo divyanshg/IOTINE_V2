@@ -3,6 +3,7 @@ const express = require('express');
 var app = express();
 var formidable = require('formidable');
 var fs = require('fs');
+const bodyParser = require('body-parser');
 var cors = require('cors')
 
 const options = {

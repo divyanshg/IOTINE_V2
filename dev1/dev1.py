@@ -37,12 +37,12 @@ while True:
         },
         {
             "name":"ENGINE_TEMPERATURE",
-            "value": str(random.randint(0, 200)),
+            "value": str(random.randint(0, 200))+"/C",
             "callback": ""
         },
         {
             "name":"TYRE_PRESSURE_AVG",
-            "value": str(random.randint(1, 100)),
+            "value": str(random.randint(1, 100))+"/psi",
             "callback": ""
         }
     ])

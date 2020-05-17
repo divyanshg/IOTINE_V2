@@ -80,16 +80,8 @@ def publish(data):
             if callback == '':
                 client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '')
             else:    
-                client.publish(str(jwt.encode({'topic': CONNSTRING+"/"+feed+"/"+USER, 'value': str(val), "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)), '', callback=callback)
-
-def subscribe(feed, callback=None):
-    if callback == "":
-        client.on_message = listenToSystemCommands
-        return client.subscribe(CONNSTRING+"/"+feed+"/NON")
-    else:
-        client.on_message = callback
-        client.subscribe(CONNSTRING+"/"+feed+"/NON")
-
+):
+    client.will_set(topic, paylo
 def is_published(topic):
     return topic.is_published()
 
@@ -102,6 +94,33 @@ def UNSUBSCRIBE(topic, callback=None):
     else:
         callback(client.unsubscribe(topic))
         
+def DISCONNECT(callback):
+    if callback == '':
+        client.disconnect()
+    else:
+        callback(client.disconnect())
+              
+def doDefaults():
+    subscribe("$SYS/COMMANDS", '')   
+    publish([{"name":"$__VERSION","value": "1.7.2","callback": ''}])           
+def DISCONNECT(callback):
+    if callback == '':
+        client.disconnect()
+    else:
+        callback(client.disconnect())
+              
+def doDefaults():
+    subscribe("$SYS/COMMANDS", '')   
+    publish([{"name":"$__VERSION","value": "1.7.2","callback": ''}])           
+def DISCONNECT(callback):
+    if callback == '':
+        client.disconnect()
+    else:
+        callback(client.disconnect())
+              
+def doDefaults():
+    subscribe("$SYS/COMMANDS", '')   
+    publish([{"name":"$__VERSION","value": "1.7.2","callback": ''}])           
 def DISCONNECT(callback):
     if callback == '':
         client.disconnect()

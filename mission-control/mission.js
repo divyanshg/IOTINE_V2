@@ -423,10 +423,15 @@ function step2(typ) {
         typ = 'virt'
         document.querySelector("#Deviceurl").value = "virtual_" + document.querySelector("#Deviceurl").value
         $(".url").hide()
+        $(".forReal").hide();
+        $(".finalBtn").show()
     } else {
         typ = 'real'
         document.querySelector("#Deviceurl").value = '_' +makeid(32)
         $(".url").show()
+
+        $(".forReal").show();
+        $(".finalBtn").hide()
     }
     certs.action += document.querySelector("#Deviceurl").value
     $(".step1").toggle()
@@ -500,6 +505,28 @@ var newdevice = new River({
             openedPanels = ''
             sideBar.toggleDevices()
         },
+
+        addvDevice() {
+            var certs = document.querySelector(".certform");
+            certs = certs.action.split("/")
+            devices.devices.push({
+                name: document.getElementById('Devicename').value,
+                type: document.querySelector("#dTemplate").value,
+                deviceID: certs[certs.length -1]
+            })
+            histdevices.devices.push({
+                name: document.getElementById('Devicename').value,
+                type: document.querySelector("#dTemplate").value,
+                deviceID: certs[certs.length -1]
+            })
+
+            savevDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
+                .value, certs[certs.length -1])
+            $('.mainBackDrop').toggle()
+            $(".newDeviceModal").toggle()
+            openedPanels = ''
+            sideBar.toggleDevices()
+        },
         async getTemplates() {
             var tempList = $("#null_temp")
             var xhttp = new XMLHttpRequest();
@@ -560,6 +587,18 @@ async function saveDevice(name, templ, did) {
     };
     xhttp.open("POST", "https://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
         templ, true);
+    await xhttp.send();
+}
+
+async function savevDevice(name, templ, did) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
+        }
+    };
+    xhttp.open("POST", "https://192.168.31.249:3002/virtualDevice/" + user + "/" + name + "/" + templ + "/" + did, true);
     await xhttp.send();
 }
 

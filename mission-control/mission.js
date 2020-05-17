@@ -408,13 +408,12 @@ var deviceActions = new River({
     methods: {
         newDev() {
             sideBar.toggleDevices()
+            $("#dTemplate").html('<option id="null_temp" value="">Select Template</option><option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>')
             newdevice.getTemplates();
             newdevice.connstring = "_"+makeid(32)
             document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
-            $(".newDeviceModal").toggle()
-            $("#dTemplate").html('<option id="null_temp" value="">Select Template</option><option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>')
-            openedPanels = '.newDeviceModal'
+            $(".newDeviceModal").toggle()openedPanels = '.newDeviceModal'
         }
     }
 })

@@ -26,21 +26,13 @@ app.post('/certificateUpload/:device', (req, res) => {
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
             res.write('File uploaded and moved!');
-            console.log(files)
             res.end();
         });
     });
 })
 
 app.get('/', (req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/html'
-    });
-    res.write('<form action="certificateUpload/sampleDevice" method="post" enctype="multipart/form-data">');
-    res.write('<input type="file" name="filetoupload"><br>');
-    res.write('<input type="submit">');
-    res.write('</form>');
-    return res.end();
+    res.sendFile(__dirname + '/index.html')
 })
 
 var port = 3005;

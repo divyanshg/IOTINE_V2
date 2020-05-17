@@ -134,6 +134,7 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
+                        unit:content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
                     })
                 }

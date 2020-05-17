@@ -10,14 +10,16 @@ const app = express();
 app.post('/authority/verify/:token/:dev', (req, res) => {
 
     var token = req.params.token
-    
-    if(token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)
+
+    if (token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)
 
     jwt.verify(token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
 
         if (err) res.json({
             status: 403
         })
+
+        console.log(fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'))
 
         res.json({
             status: 200

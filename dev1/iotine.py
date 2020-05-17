@@ -17,8 +17,8 @@ import jwt
 
 GPIO = GPIO
 IOTINE_HOST="192.168.31.249"
-CONNSTRING = 'roqCdb6GZoh98sYcgsa17bwccHZe0yvr'
-DEVICENAME = 'roqCdb6GZoh98sYcgsa17bwccHZe0yvr'
+CONNSTRING = 'SJhyIqpzNpLEXgMDz2s582gurkJ0wXe3'
+DEVICENAME = 'SJhyIqpzNpLEXgMDz2s582gurkJ0wXe3'
 USER = 'iub54i6bibu64'
 pubstop = False
 

@@ -494,7 +494,7 @@ var newdevice = new River({
             })
 
             saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")
-                .value, document.querySelector("#Deviceurl").value)
+                .value, certs[certs.length -1])
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()
             openedPanels = ''

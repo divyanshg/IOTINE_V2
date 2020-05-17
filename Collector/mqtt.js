@@ -103,7 +103,7 @@ server.on('published', (packet) => {
 
             if (response.data.status != 200) return
 
-            var message = content.value.toString()
+            var message = content.value.split("/")[0].toString()
             var topic = content.topic.split("/")
 
             if (topic[2] != "NON") {
@@ -120,6 +120,7 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
+                        unit:content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
                     })
                 } else {

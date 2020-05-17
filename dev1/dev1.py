@@ -17,17 +17,17 @@ while True:
     IOTINE.publish([
         {
             "name":"ENGINE_OIL",
-            "value": str(random.randint(0, 200)),
+            "value": str(random.randint(0, 200))+"/Ltrs",
             "callback": ""
         },
         {
             "name":"CORE_TEMP",
-            "value": str(random.randint(1, 100)),
+            "value": str(random.randint(1, 100))+"/C",
             "callback": ""
         },
         {
             "name":"02_TYRE_PRESSURE",
-            "value": str(random.randint(0, 200)),
+            "value": str(random.randint(0, 200))+"/PSI",
             "callback": ""
         },
         {

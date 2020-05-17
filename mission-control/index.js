@@ -124,7 +124,7 @@ io.on('connection', function (socket) {
                     } else if (respp.length == 0) {
                         if (msg.deviceId == "$SYS") return
                         var feedvalue = [
-                            [null, msg.feed, msg.deviceId, msg.user, msg.value, '']
+                            [null, msg.feed, msg.deviceId, msg.user, msg.value, msg.unit]
                         ]
                         var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value, unit) VALUES ?";
                         con.query(sql, [feedvalue], function (err, result) {

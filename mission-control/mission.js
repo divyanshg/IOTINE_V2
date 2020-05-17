@@ -442,6 +442,29 @@ function step3() {
     $(".step3").toggle()
 }
 
+function step4(certTyp) {
+    var certs = document.querySelector(".certform");
+    var x = document.getElementById("userCerts");
+
+    if ('files' in x) {
+        if (x.files.length < 2) {
+            alert("You are missing some files.");
+        }else if(x.files.length > 2){
+            alert("Remove any extra file you uploaded.")
+        } else {
+            for (var i = 0; i < x.files.length; i++) {
+                var file = x.files[i];
+
+                certs.action += document.querySelector("#Deviceurl").value
+                newdevice.addDevice()
+                return true
+            }
+        }
+    }
+
+
+}
+
 var newdevice = new River({
     el: '.newDeviceModal',
     data: {

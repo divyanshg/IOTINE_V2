@@ -398,8 +398,17 @@
                             <p>We will generate certificates for your device.</p>
                         </div>
                     </div>
-                    <input type="button" v-on:click="addDevice" class="save" value="Create">
-                    <input type="button" class="cancel" value="Back" onclick="step3()">
+                </form>
+                <form style="display: none;" class="certform" onsubmit="return checkCertificates()"
+                    action="https://192.168.31.249:3005/certificateUpload/" method="post" enctype="multipart/form-data">
+                    <input id="userCerts" type="file" name="filetoupload" multiple><br>
+                    <input type="submit">
+
+                    <div style="display: none;" class="finalBtn">
+                        <input type="button" v-on:click="addDevice" class="save" value="Create">
+                        <input type="button" class="cancel" value="Back" onclick="step3()">
+                    </div>
+
                 </form>
             </div>
         </div>

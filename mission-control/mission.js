@@ -480,15 +480,17 @@ var newdevice = new River({
     },
     methods: {
         addDevice() {
+            var certs = document.querySelector(".certform");
+            certs = certs.action.split("/")
             devices.devices.push({
                 name: document.getElementById('Devicename').value,
                 type: document.querySelector("#dTemplate").value,
-                deviceID: document.querySelector("#Deviceurl").value
+                deviceID: certs[certs.length -1]
             })
             histdevices.devices.push({
                 name: document.getElementById('Devicename').value,
                 type: document.querySelector("#dTemplate").value,
-                deviceID: document.querySelector("#Deviceurl").value
+                deviceID: certs[certs.length -1]
             })
 
             saveDevice(document.getElementById('Devicename').value, document.querySelector("#dTemplate")

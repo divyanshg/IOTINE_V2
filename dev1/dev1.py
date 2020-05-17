@@ -32,7 +32,7 @@ while True:
         },
         {
             "name":"CORE_HUMID",
-            "value": str(random.randint(1, 100)),
+            "value": str(random.randint(1, 100))+"/",
             "callback": ""
         },
         {

@@ -585,7 +585,7 @@ async function saveDevice(name, templ, did) {
             console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
         }
     };
-    xhttp.open("POST", "https://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
+    xhttp.open("GET", "https://192.168.31.249:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
         templ, true);
     await xhttp.send();
 }

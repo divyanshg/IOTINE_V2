@@ -152,6 +152,7 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 })
 
 app.get('/virtualDevice/:user/:name/:templ/:id', (req, res) => {
+    console.log("here")
     var device = req.params;
     if (!fs.existsSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`)) {
         fs.mkdirSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`);

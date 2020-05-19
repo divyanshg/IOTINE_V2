@@ -23,7 +23,7 @@ app.use(cors())
 const port = process.env.PORT || 3002;
 
 var con = mysql.createConnection({
-    host: "iotine.ddns.net",
+    host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"

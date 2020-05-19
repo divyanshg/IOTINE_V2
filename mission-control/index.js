@@ -30,7 +30,7 @@ const mysql = require('mysql');
 
 
 var con = mysql.createConnection({
-    host: "iotine.ddns.net",
+    host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"

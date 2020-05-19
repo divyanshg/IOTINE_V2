@@ -31,7 +31,7 @@ const mysql = require('mysql');
 
 
 var con = mysql.createConnection({
-    host: "http://103.50.151.90/",
+    host: "103.50.151.90",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"

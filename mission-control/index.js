@@ -12,7 +12,7 @@ const iv = "2hg34o09j09d23JJ";
 const options = {
     key: fs.readFileSync('./private.key'),
     cert: fs.readFileSync('./certificate.crt'),
-    ca:[fs.readFileSync('./ca_bundle.crt')]
+    ca: [fs.readFileSync('./ca_bundle.crt')]
 };
 
 var http = require('https')
@@ -43,7 +43,7 @@ con.connect(function (err) {
 });
 
 app.use(cors())
-
+app.enable("trust proxy");
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 function encrypt(text) {
@@ -66,6 +66,12 @@ var client = mqtt.connect('mqtt://iotine.ddns.net:1883', {
 })
 
 const dataCamp = require('../Data-Camp/dataCamp').dataCamp
+
+app.use(function (request, response) {
+    if (!request.secure) {
+        response.redirect("https://" + request.headers.host + request.url);
+    }
+});
 
 app.get('/apps/:userId', (req, res) => {
     res.sendFile(__dirname + '/index.html')
@@ -140,12 +146,14 @@ io.on('connection', function (socket) {
                                 //Checking and running the events processing
                                 if (feedInfo[0].events != "[]") {
 
-                                    Object.keys(require.cache).forEach(function(key) { delete require.cache[key] })
+                                    Object.keys(require.cache).forEach(function (key) {
+                                        delete require.cache[key]
+                                    })
                                     var eventProcessor = require('../events/eventProcessor')
                                     var events = JSON.parse(feedInfo[0].events)
 
                                     events.forEach(event => {
-                                        msg.timestamp  = feedInfo[0].time
+                                        msg.timestamp = feedInfo[0].time
                                         eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)

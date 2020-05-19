@@ -30,7 +30,7 @@ var users = []
 var authenticate = function (client, username, passwd, callback) {
     // DEVICE IP client.connection.stream.remoteAddress
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
-
+    console.log(client)
     if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return callback(null, true)
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;

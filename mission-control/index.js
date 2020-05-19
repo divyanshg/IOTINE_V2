@@ -60,7 +60,7 @@ function decrypt(text) {
     return decrypted.toString();
 }
 
-var client = mqtt.connect('mqtt://192.168.31.249:1883', {
+var client = mqtt.connect('mqtt://103.50.151.90:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 

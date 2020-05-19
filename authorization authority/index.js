@@ -4,7 +4,10 @@ var https = require('https');
 const fs = require('fs');
 
 const axios = require('axios')
-
+const options = {
+    key: fs.readFileSync('./localhost.key'),
+    cert: fs.readFileSync('./localhost.crt')
+};
 const app = express();
 
 app.post('/authority/verify/:token/:dev', (req, res) => {

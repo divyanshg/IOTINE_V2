@@ -8,7 +8,7 @@ var jwtDecode = require('jwt-decode');
 const axios = require('axios')
 
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "103.50.151.90",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"

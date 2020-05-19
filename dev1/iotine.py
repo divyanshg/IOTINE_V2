@@ -16,7 +16,7 @@ from Crypto import Random
 import jwt
 
 GPIO = GPIO
-IOTINE_HOST="103.50.151.90"
+IOTINE_HOST="192.168.31.249"
 CONNSTRING = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
 DEVICENAME = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
 USER = 'iub54i6bibu64'
@@ -24,9 +24,9 @@ pubstop = False
 
 JWTalgorithm = 'HS512'
 
-if IOTINE_HOST != "103.50.151.90":
+if IOTINE_HOST != "192.168.31.249":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
-    IOTINE_HOST = "103.50.151.90"
+    IOTINE_HOST = "192.168.31.249"
 
 def listenToSystemCommands(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))

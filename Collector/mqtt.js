@@ -8,7 +8,7 @@ var jwtDecode = require('jwt-decode');
 const axios = require('axios')
 
 var con = mysql.createConnection({
-    host: "103.50.151.90",
+    host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"
@@ -20,7 +20,7 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("https://103.50.151.90:3000", {
+const sockClient = io.connect("https://localhost:3000", {
     secure: true,
     rejectUnauthorized: false
 });

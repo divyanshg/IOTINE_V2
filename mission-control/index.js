@@ -12,7 +12,7 @@ const iv = "2hg34o09j09d23JJ";
 const options = {
     key: fs.readFileSync('./localhost.key'),
     cert: fs.readFileSync('./localhost.crt'),
-    ca:fs.readFileSync('./ca_bundle.crt')
+    ca:[fs.readFileSync('./ca_bundle.crt')]
 };
 
 var http = require('https')

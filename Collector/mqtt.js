@@ -20,7 +20,7 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("https://192.168.31.249:3000", {
+const sockClient = io.connect("https://103.50.151.90:3000", {
     secure: true,
     rejectUnauthorized: false
 });
@@ -35,7 +35,7 @@ var authenticate = function (client, username, passwd, callback) {
     con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
         if (err) throw err;
 
-        axios.post('http://192.168.31.249:6543/authority/verify/' + passwd + "/" + username).then(response => {
+        axios.post('http://103.50.151.90:6543/authority/verify/' + passwd + "/" + username).then(response => {
             if (response.data.status == 200) {
                 var authorized = true
                 callback(null, authorized);
@@ -99,7 +99,7 @@ server.on('published', (packet) => {
 
         var device = content.topic.split('/')[0];
 
-        axios.post('http://192.168.31.249:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
+        axios.post('http://103.50.151.90:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status != 200) return
 

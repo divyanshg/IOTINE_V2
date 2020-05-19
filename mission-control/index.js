@@ -30,7 +30,7 @@ const mysql = require('mysql');
 
 
 var con = mysql.createConnection({
-    host: "103.50.151.90",
+    host: "localhost",
     user: "divyanshg21",
     password: "potty_khale",
     database: "fila_iot"
@@ -60,7 +60,7 @@ function decrypt(text) {
     return decrypted.toString();
 }
 
-var client = mqtt.connect('mqtt://103.50.151.90:1883', {
+var client = mqtt.connect('mqtt://iotine.ddns.net:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 

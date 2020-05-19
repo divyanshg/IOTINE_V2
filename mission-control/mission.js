@@ -681,7 +681,7 @@ function loadLink(lnk, elm) {
 getUser();
 var user;
 var app = window.location.pathname.split("/")[2];
-var socket = io('https://iotine.ddns.net:3000/', {
+var socket = io('iotine.ddns.net:3000/', {
     secure: true,
     rejectUnauthorized: false
 });

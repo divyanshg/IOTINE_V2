@@ -7,10 +7,10 @@ const fs = require('fs');
 const app = express();
 
 const options = {
-    key: fs.readFileSync('./localhost.key'),
-    cert: fs.readFileSync('./localhost.crt')
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.crt'),
+    ca:[fs.readFileSync('./ca_bundle.crt')]
 };
-
 var http = require('https')
 
 app.use(express.json());

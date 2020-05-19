@@ -7,8 +7,9 @@ const bodyParser = require('body-parser');
 var cors = require('cors')
 
 const options = {
-    key: fs.readFileSync('./localhost.key'),
-    cert: fs.readFileSync('./localhost.crt')
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.crt'),
+    ca:[fs.readFileSync('./ca_bundle.crt')]
 };
 
 app.use(express.json());

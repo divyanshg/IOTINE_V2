@@ -43,7 +43,6 @@ con.connect(function (err) {
 });
 
 app.use(cors())
-app.enable("trust proxy");
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 function encrypt(text) {

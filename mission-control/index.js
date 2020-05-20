@@ -32,7 +32,7 @@ const mysql = require('mysql');
 
 var con = mysql.createConnection({
     host: "localhost",
-    user: "divyanshg21",
+    user: "root",
     password: "potty_khale",
     database: "fila_iot"
 });

@@ -24,7 +24,7 @@ const port = process.env.PORT || 3002;
 
 var con = mysql.createConnection({
     host: "localhost",
-    user: "divyanshg21",
+    user: "root",
     password: "potty_khale",
     database: "fila_iot"
 });

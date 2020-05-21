@@ -25,7 +25,6 @@ const sockClient = io.connect("https://192.168.31.72:3000/", {
     rejectUnauthorized: false
 });
 
-sockClient.on('connect', () => {console.log("here")})
 
 var server = new mosca.Server(settings);
 var users = []
@@ -63,10 +62,10 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
-    if(client.id.split("_")[0] == "mqttjs") return
+    if (client.id.split("_")[0] == "mqttjs") return
     con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
         if (err) throw err;
-        con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
+        con.query('SELECT * FROM devices WHERE cINST = ?', [client.id], (err, res) => {
             if (err) throw err;
             if (res.length == 0) return
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
@@ -91,7 +90,7 @@ server.on('published', (packet) => {
 
         try {
             content = jwtDecode(packet.topic);
-            if(content.exp == null || typeof content.exp == 'undefined' || content.exp == '') return
+            if (content.exp == null || typeof content.exp == 'undefined' || content.exp == '') return
         } catch (e) {
             return
         }
@@ -101,13 +100,12 @@ server.on('published', (packet) => {
 
         var device = content.topic.split('/')[0];
 
-        axios.post('https://103.50.151.90:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
+        axios.post('http://103.50.151.90:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status != 200) return
 
             var message = content.value.split("/")[0].toString()
             var topic = content.topic.split("/")
-            console.log("HERE : "+ message)
 
             if (topic[2] != "NON") {
 
@@ -123,7 +121,7 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
-                        unit:content.value.split("/")[1].toString(),
+                        unit: content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
                     })
                 } else {
@@ -137,7 +135,7 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
-                        unit:content.value.split("/")[1].toString(),
+                        unit: content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
                     })
                 }

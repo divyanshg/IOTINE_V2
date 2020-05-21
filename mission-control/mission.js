@@ -4,7 +4,6 @@ function toggleDis(elm) {
         elm.style.display = "block"
     } else if (elm.style.display == "block") {
         elm.style.display = "none"
-        console.log("here")
     }
 }
 
@@ -308,7 +307,6 @@ function newFileDev(elm) {
         value: document.querySelector("#furl").value,
         time: new Date().toLocaleTimeString()
     })
-    console.log("here")
     $("#" + device).parent().prev().children().attr(
         "src",
         "https://pro-icons-avatars.s3.amazonaws.com/icons/0.png?v=1")

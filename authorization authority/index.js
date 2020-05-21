@@ -5,9 +5,9 @@ const fs = require('fs');
 
 const axios = require('axios')
 const options = {
-    key: fs.readFileSync('../private.key'),
-    cert: fs.readFileSync('../certificate.crt'),
-    ca:[fs.readFileSync('../ca_bundle.crt')]
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.crt'),
+    ca:[fs.readFileSync('./ca_bundle.crt')]
 };
 const app = express();
 
@@ -26,6 +26,8 @@ app.post('/authority/verify/:token/:dev', (req, res) => {
         res.json({
             status: 200
         })
+
+        res.end()
     })
 })
 

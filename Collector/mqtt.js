@@ -10,7 +10,7 @@ const axios = require('axios')
 var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
-    password: "potty_khale",
+    password: "div21902",
     database: "fila_iot"
 });
 
@@ -76,7 +76,7 @@ server.on('ready', function () {
     console.log("ready");
     con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
-    server.authenticate = authenticate;
+    //server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
     //server.on('')

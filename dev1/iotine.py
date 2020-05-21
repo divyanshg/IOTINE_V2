@@ -14,7 +14,7 @@ import hashlib
 import jwt
 
 #GPIO = GPIO
-IOTINE_HOST="iotine.ddns.net"
+IOTINE_HOST="iotine.zapto.org"
 CONNSTRING = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
 DEVICENAME = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
 USER = 'iub54i6bibu64'
@@ -22,9 +22,9 @@ pubstop = False
 
 JWTalgorithm = 'HS512'
 
-if IOTINE_HOST != "iotine.ddns.net":
+if IOTINE_HOST != "iotine.zapto.org":
     print("CUSTOM HOST IS NOT SUPPORTED!/nSITCHING BACK TO IOTINE_HOST")
-    IOTINE_HOST = "iotine.ddns.net"
+    IOTINE_HOST = "iotine.zapto.org"
 
 def listenToSystemCommands(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))

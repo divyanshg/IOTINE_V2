@@ -10,9 +10,9 @@ const key = "2hg34o09j09d23JJ2hg34o09j09d23JJ";
 const iv = "2hg34o09j09d23JJ";
 
 const options = {
-    key: fs.readFileSync('../private.key'),
-    cert: fs.readFileSync('../certificate.crt'),
-    ca: [fs.readFileSync('../ca_bundle.crt')]
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.crt'),
+    ca: [fs.readFileSync('./ca_bundle.crt')]
 };
 
 var http = require('https')
@@ -33,7 +33,7 @@ const mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "divyanshg21",
-    password: "potty_khale",
+    password: "div21902",
     database: "fila_iot"
 });
 

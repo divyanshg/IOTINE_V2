@@ -75,7 +75,7 @@ server.on('clientConnected', function (client) {
 server.on('ready', function () {
     console.log("ready");
     con.connect()
-    sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
+    //sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
     server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;

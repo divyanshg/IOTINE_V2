@@ -111,8 +111,6 @@ var rooms = [{
 io.on('connection', function (socket) {
     socket.on("JoinTheMess", (data) => {
         socket.join(data)
-        
-        socket.emit("JoinTheMess", data)
     })
     socket.on('publish', function (msg) {
         console.log(msg)

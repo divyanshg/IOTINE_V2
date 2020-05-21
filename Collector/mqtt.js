@@ -64,15 +64,15 @@ var authorizeSubscribe = function (client, topic, callback) {
 
 server.on('clientConnected', function (client) {
     console.log("Here1")
-    con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
-        if (err) throw err;
+    //con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
+        //if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if (err) throw err;
             if (res.length == 0) return
             console.log("Here2")
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
-    })
+    //})
 });
 
 server.on('ready', function () {

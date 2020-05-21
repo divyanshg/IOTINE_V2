@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt #import the client1
 import os
 import time
 import random
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import math
 import json
 import string
@@ -15,7 +15,7 @@ from Crypto.Cipher import AES
 from Crypto import Random
 import jwt
 
-GPIO = GPIO
+#GPIO = GPIO
 IOTINE_HOST="iotine.ddns.net"
 CONNSTRING = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
 DEVICENAME = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'

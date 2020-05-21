@@ -113,6 +113,7 @@ io.on('connection', function (socket) {
         socket.join(data)
     })
     socket.on('publish', function (msg) {
+        console.log(msg)
         if (msg.feed.split("/")[0] != "$SYS") {
             if (msg.feed == "FSYS") {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)

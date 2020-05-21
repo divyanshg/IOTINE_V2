@@ -382,7 +382,8 @@
                     <div style="display: block;" class="url">
                         <label for="Deviceurl">Device Connection String</label>
                         <h4>This helps your device securely connect with us.</h4>
-                        <input disabled type="text" id="Deviceurl" style="background-color: #9cff7b33;" name="Deviceurl" :value="connstring">
+                        <input disabled type="text" id="Deviceurl" style="background-color: #9cff7b33;" name="Deviceurl"
+                            :value="connstring">
                     </div>
                     <div style="display: block;" class="forReal">
                         <input type="button" onclick="step3()" class="save" value="Next">
@@ -407,7 +408,8 @@
                     </div>
                 </form>
                 <form style="display: none;" class="certform" onsubmit="return uploadCert()"
-                    action="https://iotine.zapto.org:3005/certificateUpload/" method="post" enctype="multipart/form-data">
+                    action="https://iotine.zapto.org:3005/certificateUpload/" method="post"
+                    enctype="multipart/form-data">
                     <input id="userCerts" type="file" name="filetoupload" multiple><br>
                     <input type="submit" value="Upload Key">
 
@@ -457,11 +459,13 @@
                             src="https://cdn.iconscout.com/icon/premium/png-512-thumb/raspberry-pi-2-564282.png" alt=""
                             class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
                         obcaecati at temporibus.</div>
-                    <div class="intro-item"><img src="https://iotine.zapto.org/IOTINE_V2/mission-control/logo.png" alt=""
-                            class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
+                    <div class="intro-item"><img src="https://iotine.zapto.org/IOTINE_V2/mission-control/logo.png"
+                            alt="" class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto
+                        odio
                         obcaecati at temporibus.</div>
-                    <div class="intro-item"><img src="https://iotine.zapto.org/IOTINE_V2/mission-control/logo.png" alt=""
-                            class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto odio
+                    <div class="intro-item"><img src="https://iotine.zapto.org/IOTINE_V2/mission-control/logo.png"
+                            alt="" class="intro-img"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex iusto
+                        odio
                         obcaecati at temporibus.</div>
                 </div>
             </div>
@@ -521,7 +525,8 @@
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="https://iotine.zapto.org/analDash/chart.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js">
+</script>
 <script src="https://iotine.zapto.org/IOTINE_V2/mission-control/river_v1.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/mission"></script>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDIT DASHBOARD</title>
     <script src="/theme"></script>
-    <link rel="icon" type="image/png" href="https://103.50.151.90/logo.png">
+    <link rel="icon" type="image/png" href="https://iotine.zapto.org/logo.png">
     <style>
         .no-js #loader {
             display: none;
@@ -26,13 +26,13 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url(https://103.50.151.90/IOTINE_V2/mission-control/332.gif) center no-repeat #fff;
+            background: url(https://iotine.zapto.org/IOTINE_V2/mission-control/332.gif) center no-repeat #fff;
         }
     </style>
-    <link rel="stylesheet" href="https://103.50.151.90/IOTINE_V2/mission-control/style.css">
+    <link rel="stylesheet" href="https://iotine.zapto.org/IOTINE_V2/mission-control/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://103.50.151.90/analDash/chart.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
         $(window).load(function () {
@@ -48,8 +48,8 @@
         <div class="inner">
             <div class="main-panel">
                 <button
-                    onclick="window.location.replace('https://103.50.151.90:3002/'+window.location.pathname.split('/')[2]+'/'+window.location.pathname.split('/')[3])"><img
-                        title="IOTINE" src="https://103.50.151.90/IOTINE_V2/mission-control/logo.png" alt=""></button>
+                    onclick="window.location.replace('https://iotine.zapto.org:3002/'+window.location.pathname.split('/')[2]+'/'+window.location.pathname.split('/')[3])"><img
+                        title="IOTINE" src="https://iotine.zapto.org/IOTINE_V2/mission-control/logo.png" alt=""></button>
             </div>
             
         </div>
@@ -64,7 +64,7 @@
                         </p>
                     </div>
                     <div class="notification-action"><button
-                            onclick="window.location.replace('https://103.50.151.90:3000/'+window.location.pathname.split('/')[2]+'/'+window.location.pathname.split('/')[3])"
+                            onclick="window.location.replace('https://iotine.zapto.org:3000/'+window.location.pathname.split('/')[2]+'/'+window.location.pathname.split('/')[3])"
                             class=" dash-color-primary dash-size-regular sc-gzVnrw cqGrfU"
                             style="color: rgb(73, 51, 0);"><span>Done</span></button><img class="close-btn" src=""
                             style="display: none;">
@@ -276,7 +276,7 @@
     </div>
     <div class="backDrop" @click="hideOpenedPanel" style="display: none;"></div>
     <div class="mainBackDrop" onclick="hideAll()" style="display: none;"></div>
-    <script src="https://103.50.151.90/IOTINE_V2/mission-control/river_v1.js"></script>
+    <script src="https://iotine.zapto.org/IOTINE_V2/mission-control/river_v1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io()
@@ -296,7 +296,7 @@
                     socket.emit("JoinTheMess", user)
                 }
             };
-            xhttp.open("GET", "https://103.50.151.90:3002/user/" + username, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/user/" + username, true);
             await xhttp.send();
         }
 
@@ -380,7 +380,7 @@
                     }
                 }
             };
-            xhttp.open("GET", "https://103.50.151.90:3002/feeds/" + user + "/" + dev, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/feeds/" + user + "/" + dev, true);
             await xhttp.send();
         }
 
@@ -407,7 +407,7 @@
                     })
                 }
             };
-            xhttp.open("GET", "https://103.50.151.90:3002/devices/" + user, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/devices/" + user, true);
             await xhttp.send();
         }
 
@@ -495,7 +495,7 @@
 
             var xhttp = new XMLHttpRequest();
 
-            xhttp.open("POST", "https://103.50.151.90:3002/newWidget/" + user + "/" + app, true);
+            xhttp.open("POST", "https://iotine.zapto.org:3002/newWidget/" + user + "/" + app, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
 
             xhttp.onreadystatechange = function () {
@@ -714,7 +714,7 @@
                     createTabs()
                 }
             };
-            xhttp.open("GET", "https://103.50.151.90:3002/user/" + username, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/user/" + username, true);
             await xhttp.send();
         }
 
@@ -728,7 +728,7 @@
                         resolve(JSON.parse(xhttp.responseText))
                     }
                 };
-                xhttp.open("GET", "https://103.50.151.90:3002/tabs/" + user + "/" + app, true);
+                xhttp.open("GET", "https://iotine.zapto.org:3002/tabs/" + user + "/" + app, true);
                 xhttp.send();
             })
         }
@@ -931,7 +931,7 @@
                     })
                 }
             };
-            xhttp.open("GET", "https://103.50.151.90:3002/widgets/" + user + "/" + app, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/widgets/" + user + "/" + app, true);
             await xhttp.send();
         }
 
@@ -992,7 +992,7 @@
                     createTabs()
                 }
             };
-            xhttp.open("POST", "https://103.50.151.90:3002/newTab/" + user + "/" + app + "/" + name, true);
+            xhttp.open("POST", "https://iotine.zapto.org:3002/newTab/" + user + "/" + app + "/" + name, true);
             xhttp.send();
         }
 
@@ -1205,7 +1205,7 @@
             }
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "https://103.50.151.90:3002/updateWidget/" + user + "/" + app, true);
+            xhttp.open("POST", "https://iotine.zapto.org:3002/updateWidget/" + user + "/" + app, true);
             xhttp.setRequestHeader("Content-Type", "application/json");
 
             xhttp.onreadystatechange = function () {

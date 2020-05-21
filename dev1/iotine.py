@@ -11,8 +11,6 @@ import datetime
 
 import base64
 import hashlib
-from Crypto.Cipher import AES
-from Crypto import Random
 import jwt
 
 #GPIO = GPIO

@@ -1157,7 +1157,6 @@ function updateLog(id, msg, feed) {
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
 socket.on('subscribe', (feed, msg, unit) => {
-    console.log("here")
     if (unit != "DIRS") {
         feeds.forEach(mfeed => {
             if (mfeed == feed + "-" + msg.deviceId) {

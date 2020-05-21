@@ -155,7 +155,7 @@ async function loadPROPS(dev) {
 
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/devProps/" + user + "/" + devID, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/devProps/" + user + "/" + devID, true);
     await xhttp.send();
     $(".devPROPERTIES").toggle()
 
@@ -189,7 +189,7 @@ async function loadFeeds(dev) {
             return fds
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/feeds/" + user + "/" + dev, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/feeds/" + user + "/" + dev, true);
     await xhttp.send();
 }
 
@@ -210,7 +210,7 @@ async function histloadFeeds(elm) {
             return fds
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/feeds/" + user + "/" + dev, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/feeds/" + user + "/" + dev, true);
     await xhttp.send();
 }
 
@@ -530,7 +530,7 @@ var newdevice = new River({
                     }
                 }
             };
-            xhttp.open("GET", "https://iotine.ddns.net:3002/templates/" + user, true);
+            xhttp.open("GET", "https://iotine.zapto.org:3002/templates/" + user, true);
             await xhttp.send();
         },
         async addTemplate() {
@@ -552,7 +552,7 @@ var newdevice = new River({
                     console.log("%c TEMPLATE HAS BEEN SAVED.", "color:palegreen;")
                 }
             };
-            xhttp.open("POST", "https://iotine.ddns.net:3002/newTempl/" + user + "/" + name, true);
+            xhttp.open("POST", "https://iotine.zapto.org:3002/newTempl/" + user + "/" + name, true);
             await xhttp.send();
         },
 
@@ -590,7 +590,7 @@ async function saveDevice(name, templ, did) {
             console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
         }
     };
-    xhttp.open("POST", "https://iotine.ddns.net:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
+    xhttp.open("POST", "https://iotine.zapto.org:3002/newDevice/" + user + "/" + name + "/" + did + "/" +
         templ, true);
     await xhttp.send();
 }
@@ -603,7 +603,7 @@ async function savevDevice(name, templ, did) {
             console.log("%c DEVICE HAS BEEN SAVED.", "color:palegreen;")
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/virtualDevice/" + user + "/" + name + "/" + templ + "/" + did, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/virtualDevice/" + user + "/" + name + "/" + templ + "/" + did, true);
     await xhttp.send();
 }
 
@@ -681,7 +681,7 @@ function loadLink(lnk, elm) {
 getUser();
 var user;
 var app = window.location.pathname.split("/")[2];
-var socket = io('iotine.ddns.net:3000/', {
+var socket = io('iotine.zapto.org:3000/', {
     secure: true,
     rejectUnauthorized: false
 });
@@ -698,7 +698,7 @@ async function getUser() {
             createTabs()
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/user/" + username, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/user/" + username, true);
     await xhttp.send();
 }
 
@@ -752,7 +752,7 @@ async function getDevices() {
             updateDeviceStatus()
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/devices/" + user, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/devices/" + user, true);
     await xhttp.send();
 }
 
@@ -766,7 +766,7 @@ function getTabs() {
                 resolve(JSON.parse(xhttp.responseText))
             }
         };
-        xhttp.open("GET", "https://iotine.ddns.net:3002/tabs/" + user + "/" + app, true);
+        xhttp.open("GET", "https://iotine.zapto.org:3002/tabs/" + user + "/" + app, true);
         xhttp.send();
     })
 }
@@ -1023,7 +1023,7 @@ async function createWidget() {
             })
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/widgets/" + user + "/" + app, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/widgets/" + user + "/" + app, true);
     await xhttp.send();
 }
 
@@ -1258,7 +1258,7 @@ async function updateDeviceStatus() {
             })
         }
     };
-    xhttp.open("GET", "https://iotine.ddns.net:3002/deviceState/" + user, true);
+    xhttp.open("GET", "https://iotine.zapto.org:3002/deviceState/" + user, true);
     await xhttp.send()
 }
 

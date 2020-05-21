@@ -20,10 +20,10 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-/*const sockClient = io.connect("https://iotine.zapto.org:3000", {
+const sockClient = io.connect("https://iotine.zapto.org:3000", {
     secure: true,
     rejectUnauthorized: false
-});*/
+});
 
 var server = new mosca.Server(settings);
 var users = []
@@ -67,7 +67,7 @@ server.on('clientConnected', function (client) {
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if (err) throw err;
             if (res.length == 0) return
-            //sockClient.emit('devStat', res[0].deviceID, "IDLE")
+            sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })
 });
@@ -75,7 +75,7 @@ server.on('clientConnected', function (client) {
 server.on('ready', function () {
     console.log("ready");
     con.connect()
-    //sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
+    sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
     server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
     //server.authorizeSubscribe = authorizeSubscribe;
@@ -109,34 +109,34 @@ server.on('published', (packet) => {
             if (topic[2] != "NON") {
 
                 if (topic[1] == '$__VERSION') {
-                   /* sockClient.emit("DEV_VERSION", {
+                    sockClient.emit("DEV_VERSION", {
                         version: message,
                         device: topic[0],
                         user: topic[2]
-                    })*/
+                    })
                 } else if (topic[1] == "FSYS") {
-                   /* sockClient.emit('publish', {
+                    sockClient.emit('publish', {
                         user: topic[2],
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
                         unit:content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
-                    })*/
+                    })
                 } else {
                     con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
                         if (err) throw err;
-                        //sockClient.emit('devStat', topic[0], "ONLINE")
+                        sockClient.emit('devStat', topic[0], "ONLINE")
                     })
 
-                   /* sockClient.emit('publish', {
+                    sockClient.emit('publish', {
                         user: topic[2],
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
                         unit:content.value.split("/")[1].toString(),
                         time: new Date().toLocaleTimeString()
-                    })*/
+                    })
                 }
 
                 //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)
@@ -160,6 +160,6 @@ server.on('clientDisconnecting', function (client) {
 server.on("clientDisconnected", function (client) {
     con.query('update devices set status = "OFFLINE" where deviceID = ?', [client.id], (err, res) => {
         if (err) throw err;
-        //sockClient.emit('devStat', client.id, "OFFLINE")
+        sockClient.emit('devStat', client.id, "OFFLINE")
     })
 });

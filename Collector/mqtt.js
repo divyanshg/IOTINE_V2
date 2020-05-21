@@ -25,6 +25,8 @@ const sockClient = io.connect("https://iotine.zapto.org:3000/", {
     rejectUnauthorized: false
 });
 
+sockClient.on('connect', () => {console.log("here")})
+
 var server = new mosca.Server(settings);
 var users = []
 var authenticate = function (client, username, passwd, callback) {

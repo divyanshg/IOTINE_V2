@@ -24,12 +24,12 @@ app.post('/certificateUpload/:device', (req, res) => {
     form.parse(req, function (err, fields, files) {
         console.log(files)
         console.log(files.length)
-        if (!fs.existsSync(`/var/www/html/IOTINE_V2/Collector/certificates/${req.params.device}/`)) {
-            fs.mkdirSync(`/var/www/html/IOTINE_V2/Collector/certificates/${req.params.device}/`);
+        if (!fs.existsSync(`/var/www/IOTINE/IOTINE_V2/Collector/certificates/${req.params.device}/`)) {
+            fs.mkdirSync(`/var/www/IOTINE/IOTINE_V2/Collector/certificates/${req.params.device}/`);
         }
 
         var oldpath = files.filetoupload.path;
-        var newpath = `/var/www/html/IOTINE_V2/Collector/certificates/${req.params.device}/${files.filetoupload.name}`;
+        var newpath = `/var/www/IOTINE/IOTINE_V2/Collector/certificates/${req.params.device}/${files.filetoupload.name}`;
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
             res.write('File uploaded and moved!');

@@ -11,7 +11,7 @@ var con = mysql.createConnection({
 con.connect(function (err) {
     if (err) return err;
     console.log("Connected!");
-    con.query("SELECT * FROM devices", (err, res) => {
+    con.query("UPDATE devices SET sourceIp = '192.168.31.249'", (err, res) => {
         if(err) throw err;
         console.log(res)
     })

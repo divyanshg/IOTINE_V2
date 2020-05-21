@@ -63,6 +63,7 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
+    if(client.id.split("_")[0] == "mqttjs") return
     console.log(client.connection.stream.remoteAddress)
     con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
         if (err) throw err;

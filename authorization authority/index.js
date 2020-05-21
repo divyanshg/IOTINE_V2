@@ -17,7 +17,7 @@ app.post('/authority/verify/:token/:dev', (req, res) => {
 
     if (token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)
 
-    jwt.verify(token, fs.readFileSync('/var/www/html/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
+    jwt.verify(token, fs.readFileSync('/var/www/IOTINE/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
 
         if (err) res.json({
             status: 403

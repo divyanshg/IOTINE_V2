@@ -20,7 +20,7 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("iotine.zapto.org:3000/", {
+const sockClient = io.connect("https://iotine.zapto.org:3000/", {
     secure: true,
     rejectUnauthorized: false
 });

@@ -11,8 +11,9 @@ var con = mysql.createConnection({
 con.connect(function (err) {
     if (err) return err;
     console.log("Connected!");
-    con.query("UPDATE devices SET sourceIp = '192.168.31.249'", (err, res) => {
-        if(err) throw err;
-        console.log(res)
+    con.query('SELECT * FROM devices WHERE cINST = ?', ["_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc"], (err, res) => {
+        if (err) throw err;
+        if (res.length == 0) return
+        console.log("Here2")
     })
 });

@@ -64,13 +64,11 @@ var authorizeSubscribe = function (client, topic, callback) {
 
 server.on('clientConnected', function (client) {
     if(client.id.split("_")[0] == "mqttjs") return
-    console.log(client.connection.stream.remoteAddress)
     con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
         if (err) throw err;
         con.query('select * from devices where cINST = ?', [client.id], (err, res) => {
             if (err) throw err;
             if (res.length == 0) return
-            console.log("Here2")
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
         })
     })
@@ -109,6 +107,7 @@ server.on('published', (packet) => {
 
             var message = content.value.split("/")[0].toString()
             var topic = content.topic.split("/")
+            console.log("HERE : "+ message)
 
             if (topic[2] != "NON") {
 

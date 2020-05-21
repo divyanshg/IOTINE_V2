@@ -60,7 +60,7 @@ function decrypt(text) {
     return decrypted.toString();
 }
 
-var client = mqtt.connect('mqtt://iotine.ddns.net:1883', {
+var client = mqtt.connect('mqtt://iotine.zapto.org:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 

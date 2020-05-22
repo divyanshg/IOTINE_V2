@@ -287,7 +287,7 @@
         var type;
 
         async function getUser() {
-            var username = window.location.pathname.split("/")[2];
+            var username = localStorage["currentLoggedInUser"];
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {

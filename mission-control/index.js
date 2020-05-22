@@ -1,13 +1,11 @@
 require('dotenv').config();
+
 var cors = require('cors')
 var app = require('express')();
 const fs = require('fs');
 
-
-const crypto = require('crypto');
-const algorithm = 'aes-256-cbc';
-const key = "2hg34o09j09d23JJ2hg34o09j09d23JJ";
-const iv = "2hg34o09j09d23JJ";
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 const options = {
     key: fs.readFileSync('./private.key'),
@@ -17,64 +15,56 @@ const options = {
 
 var http = require('https')
 
-const cipher = crypto.createCipher('aes-128-cbc', 'mypassword');
-const decipher = crypto.createDecipher('aes-128-cbc', 'mypassword');
-
 var server = http.createServer(options, app).listen(3000, function () {
     console.log('listening on *:3000');
 });
 
 var io = require('socket.io').listen(server);
 var mqtt = require('mqtt')
-const mysql = require('mysql');
 
+var dataCamp;
 
-
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "divyanshg21",
-    password: "div21902",
-    database: "fila_iot"
-});
-
-con.connect(function (err) {
-    if (err) return err;
-    console.log("Connected!");
+MongoClient.connect(url, {useUnifiedTopology: true}, function (err, db) {
+    if (err) throw err;
+    dataCamp = db.db("fila_iot");
 });
 
 app.use(cors())
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
-function encrypt(text) {
-    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
-    let encrypted = cipher.update(text);
-    encrypted = Buffer.concat([encrypted, cipher.final()]);
-    return encrypted.toString('hex')
-}
-
-function decrypt(text) {
-    let encryptedText = Buffer.from(text, 'hex');
-    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
-    let decrypted = decipher.update(encryptedText);
-    decrypted = Buffer.concat([decrypted, decipher.final()]);
-    return decrypted.toString();
-}
 
 var client = mqtt.connect('mqtt://192.168.31.72:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 
-const dataCamp = require('../Data-Camp/dataCamp').dataCamp
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/login.html')
+})
 
-app.get('/apps/:userId', (req, res) => {
+app.get('/login/:user/:pass', (req, res) => {
+    dataCamp.collection("users").find({username: req.params.user, password: req.params.pass}).toArray((err, resp) => {
+        if(err) return err;
+
+        if(resp.length == 0){
+            res.json({status: 404}); 
+            res.end();
+            return;
+        }else{
+            res.json({status:200})
+            res.end()
+        }
+    })
+})
+
+app.get('/apps', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
 
-app.get('/:userId/:appId', function (req, res) {
+app.get('/dashboard/:appId', function (req, res) {
     res.sendFile(__dirname + '/dashboard.html');
 });
 
-app.get('/builder/:userId/:app', (req, res) => {
+app.get('/builder/:app', (req, res) => {
     res.sendFile(__dirname + '/builder.html')
 });
 
@@ -82,7 +72,7 @@ app.get('/mission', (req, res) => {
     res.sendFile(__dirname + '/mission.js')
 });
 
-app.get('/rules/:userId/:app', (req, res) => {
+app.get('/rules/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 
@@ -97,6 +87,10 @@ app.get('/theme', (req, res) => {
 app.get('/defend/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/defend/index.html')
 })
+
+app.get('*', function(req, res){
+    res.sendFile(__dirname + '/404.html');
+});
 
 var rooms = [{
         name: "iub54i6bibu64",
@@ -118,22 +112,19 @@ io.on('connection', function (socket) {
                 io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
                 saveToLake(msg)
             } else {
-                con.query('select * from feed_vals where  name = ? and deviceID = ?', [msg.feed, msg.deviceId], (err, respp) => {
+
+                dataCamp.collection("feed_vals").find({"name": msg.feed, "deviceID": msg.deviceId}).toArray(function (err, respp) {
                     if (err) {
                         return err;
                     } else if (respp.length == 0) {
                         if (msg.deviceId == "$SYS") return
-                        var feedvalue = [
-                            [null, msg.feed, msg.deviceId, msg.user, msg.value, msg.unit]
-                        ]
-                        var sql = "INSERT INTO feed_vals (id, name, deviceID, user_id, value, unit) VALUES ?";
-                        con.query(sql, [feedvalue], function (err, result) {
+                        dataCamp.collection("feed_vals").insertOne({"name": msg.feed, "deviceID": msg.deviceId, "user_id": msg.user, "value": msg.value, "unit": msg.unit}, (err, result) => {
                             if (err) return err;
                         });
                     } else {
-                        con.query('select unit, events, time from feed_vals where user_id = ? and deviceID = ? and name =? limit 1', [msg.user, msg.deviceId, msg.feed], async (err, feedInfo) => {
+                        dataCamp.collection("feed_vals").find({"user_id": msg.user, "deviceID": msg.deviceId, "name": msg.feed}).toArray((err, feedInfo) => {
                             if (err) return err;
-                            con.query('UPDATE feed_vals SET value =? WHERE user_id=? AND deviceID=? AND name=?', [msg.value, msg.user, msg.deviceId, msg.feed], async (err, res) => {
+                            dataCamp.collection("feed_vals").updateOne({"user_id": msg.user, "deviceID": msg.deviceId, "name": msg.feed}, { $set: {"value": msg.value} }, (err, res) => {
                                 if (err) return err
 
                                 //Checking and running the events processing
@@ -150,24 +141,18 @@ io.on('connection', function (socket) {
                                         eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-
-                                            var hw = encrypt(msg.value)
-                                            //await saveToLake(msg)
+                                            await saveToLake(msg)
 
                                         }).catch(async (err) => {
                                             io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
                                             client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-
-                                            var hw = encrypt(msg.value)
-                                            //await saveToLake(msg)
+                                            await saveToLake(msg)
                                         })
                                     })
                                 } else {
                                     io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-
-                                    var hw = encrypt(msg.value)
-                                    //await saveToLake(msg)
+                                    saveToLake(msg)
                                 }
 
 
@@ -188,7 +173,7 @@ io.on('connection', function (socket) {
         if (device.split("_")[0] == "mqttjs") {
             return
         } else {
-            con.query('select * from devices where deviceID = ?', [device], (err, res) => {
+            dataCamp.collection("devices").find({"deviceID": device}).toArray((err, res) => {
                 if (err) return err;
                 if (res.length == 0) {
                     return
@@ -212,14 +197,13 @@ io.on('connection', function (socket) {
         })
         saveToLake(msg)
     })
-
 });
 
 var saveToLake = async (msg) => {
     var vals = [
         [null, msg.user, JSON.stringify(msg)]
     ]
-    con.query("insert into lake(id, user, msg) values ?", [vals], (err, res) => {
+    dataCamp.collection("lake").insertOne(msg, (err, res) => {
         return "OK"
     })
 }

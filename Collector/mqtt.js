@@ -1,19 +1,19 @@
-const dataCamp = require('../Data-Camp/dataCamp').dataCamp
 var mosca = require('mosca');
-var mysql = require('mysql');
 var fs = require('fs')
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 var jwtDecode = require('jwt-decode');
 
 const axios = require('axios')
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "divyanshg21",
-    password: "div21902",
-    database: "fila_iot"
-});
+var dataCamp;
 
+MongoClient.connect(url, {useUnifiedTopology: true}, function (err, db) {
+    if (err) throw err;
+    dataCamp = db.db("fila_iot");
+});
 
 var settings = {
     port: 1883
@@ -32,10 +32,10 @@ var authenticate = function (client, username, passwd, callback) {
     // DEVICE IP client.connection.stream.remoteAddress
     //var is_available = dataCamp.DMS_SEARCH_DEVICE(username)  
     if (typeof username == 'undefined' || username == 'MASTER@SERVER@WEB_DASH_HOST') return callback(null, true)
-    con.query("SELECT * FROM devices WHERE deviceID = ?", [username], function (err, result, fields) {
+    dataCamp.collection("devices").find({"deviceID": username}).toArray((err, result) => {
         if (err) throw err;
 
-        axios.post('http://103.50.151.90:6543/authority/verify/' + passwd + "/" + username).then(response => {
+        axios.post('http://localhost:6543/authority/verify/' + passwd + "/" + username).then(response => {
             if (response.data.status == 200) {
                 var authorized = true
                 callback(null, authorized);
@@ -63,9 +63,9 @@ var authorizeSubscribe = function (client, topic, callback) {
 
 server.on('clientConnected', function (client) {
     if (client.id.split("_")[0] == "mqttjs") return
-    con.query('update devices set status = "IDLE", sourceIp = ? where cINST = ?', [String(client.connection.stream.remoteAddress), client.id], (err, restu) => {
+    dataCamp.collection("devices").updateOne({"cINST": client.id}, { $set: {"status": "IDLE", "sourceIp": String(client.connection.stream.remoteAddress)} }, (err, restu) => {
         if (err) throw err;
-        con.query('SELECT * FROM devices WHERE cINST = ?', [client.id], (err, res) => {
+        dataCamp.collection("devices").find({"cINST": client.id}).toArray((err, res) => {
             if (err) throw err;
             if (res.length == 0) return
             sockClient.emit('devStat', res[0].deviceID, "IDLE")
@@ -75,7 +75,6 @@ server.on('clientConnected', function (client) {
 
 server.on('ready', function () {
     console.log("ready");
-    con.connect()
     sockClient.emit("JoinTheMess", "MQTT@COLLECTOR@MASTER")
     server.authenticate = authenticate;
     //server.authorizePublish = authorizePublish;
@@ -100,7 +99,7 @@ server.on('published', (packet) => {
 
         var device = content.topic.split('/')[0];
 
-        axios.post('http://103.50.151.90:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
+        axios.post('http://localhost:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status != 200) return
 
@@ -125,7 +124,7 @@ server.on('published', (packet) => {
                         time: new Date().toLocaleTimeString()
                     })
                 } else {
-                    con.query('update devices set status = "ONLINE" where deviceID = ?', [topic[0]], (err, res) => {
+                    dataCamp.collection("devices").updateOne({"deviceID": topic[0]}, { $set: {"Status": "ONLINE"} }, (err, res) => {
                         if (err) throw err;
                         sockClient.emit('devStat', topic[0], "ONLINE")
                     })
@@ -159,7 +158,7 @@ server.on('clientDisconnecting', function (client) {
     console.log(client.id)
 })
 server.on("clientDisconnected", function (client) {
-    con.query('update devices set status = "OFFLINE" where deviceID = ?', [client.id], (err, res) => {
+    dataCamp.collection("devices").updateOne({"deviceID": client.id}, { $set:{"status": "OFFLINE"} }, (err, res) => {
         if (err) throw err;
         sockClient.emit('devStat', client.id, "OFFLINE")
     })

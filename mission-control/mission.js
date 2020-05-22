@@ -684,7 +684,7 @@ var socket = io('iotine.zapto.org:3000/', {
     rejectUnauthorized: false
 });
 async function getUser() {
-    var username = window.location.pathname.split("/")[1];
+    var username = localStorage["currentLoggedInUser"];
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -700,7 +700,7 @@ async function getUser() {
     await xhttp.send();
 }
 
-document.querySelector(".wlcm").innerHTML += window.location.pathname.split("/")[1]
+document.querySelector(".wlcm").innerHTML += localStorage["currentLoggedInUser"]
 
 async function getDevices() {
     var xhttp = new XMLHttpRequest();

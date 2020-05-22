@@ -1,10 +1,13 @@
 require('dotenv').config()
 var cors = require('cors')
 const express = require('express');
-var mysql = require('mysql');
+
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 const options = {
     key: fs.readFileSync('./private.key'),
@@ -22,17 +25,13 @@ app.use(cors())
 
 const port = process.env.PORT || 3002;
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "divyanshg21",
-    password: "div21902",
-    database: "fila_iot"
+var dataCamp;
+
+MongoClient.connect(url, {useUnifiedTopology: true}, function (err, db) {
+    if (err) throw err;
+    dataCamp = db.db("fila_iot");
 });
 
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
 
 
 app.get('/widgets/:userId/:appId', (req, res) => {
@@ -166,7 +165,7 @@ app.get('/virtualDevice/:user/:name/:templ/:id', (req, res) => {
 })
 
 app.get('/user/:name', (req, res) => {
-    con.query('select user_id from users where username = ? limit 1', [req.params.name], (err, resp) => {
+    dataCamp.collection("users").find({username: req.params.name}, {projection: {user_id:1}}).toArray((err, resp) => {
         if (err) return err;
         if (typeof resp[0] == 'undefined') return
         res.send(resp[0].user_id)
@@ -238,7 +237,7 @@ app.get('/runRule/:user/:code', (req, res) => {
 
 var getWidgets = (user, app) => {
     return new Promise((resolve, reject) => {
-        con.query("select * from widgets where user = ? and app = ?", [user, app], function (err, widgets) {
+        dataCamp.collection("widgets").find({user: user, app: app}).toArray((err, widgets) => {
             if (err) return reject(err);
             resolve(widgets)
         });
@@ -248,7 +247,7 @@ var getWidgets = (user, app) => {
 
 var updateWidget = (user, app, widget) => {
     return new Promise((resolve, reject) => {
-        con.query('UPDATE widgets SET name = ?, feed = ?, backgroundColor = ?, borderColor = ?, borderWidth = ?, device = ?, label = ? WHERE id = ? ', [widget.name, widget.feed, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.device, widget.feed, widget.id], (err, res) => {
+        dataCamp.collection("widgets").updateOne({id: widget.id}, { $set: {name: widget.name,feed: widget.feed,backgroundColor: widget.datasets[0].backgroundColor,borderColor: widget.datasets[0].borderColor,borderWidth: widget.datasets[0].borderWidth,device: widget.config.device,label: widget.feed} }, (err, res) => {
             if (err) return reject(err);
             resolve(res)
         })
@@ -257,7 +256,7 @@ var updateWidget = (user, app, widget) => {
 
 var getTemplate = (user) => {
     return new Promise((resolve, reject) => {
-        con.query('select name from template where user = ?', [user], (err, templates) => {
+        dataCamp.collection("template").find({user: user}, { projection: {name:1} }).toArray((err,res) => {
             if (err) return reject(err);
             resolve(templates)
         })
@@ -265,10 +264,7 @@ var getTemplate = (user) => {
 }
 
 var saveWidget = (user, app, widget) => {
-    var widgets = [
-        [null, user, app, widget.name, widget.feed, widget.type, widget.datasets[0].label, widget.datasets[0].backgroundColor, widget.datasets[0].borderColor, widget.datasets[0].borderWidth, widget.config.type, widget.config.prevTime, widget.config.device, widget.config.tab]
-    ]
-    con.query("INSERT INTO `widgets`(`id`, `user`, `app`, `name`, `feed`, `type`, `label`,  `backgroundColor`, `borderColor`, `borderWidth`,`chartType`, `prevTime`, `device`, `tab`) VALUES ?", [widgets], (err, res) => {
+    dataCamp.collection("widgets").insertOne({user, app,name: widget.name,feed: widget.feed,type: widget.type,label: widget.datasets[0].label,backgroundColor: widget.datasets[0].backgroundColor,borderColor: widget.datasets[0].borderColor,borderWidth: widget.datasets[0].borderWidth,chartType: widget.config.type,prevTime: widget.config.prevTime,device: widget.config.device,tab: widget.config.tab}, (err, res) => {
         if (err) throw err;
         return 1
     })
@@ -276,7 +272,7 @@ var saveWidget = (user, app, widget) => {
 
 var getTabs = (user, app) => {
     return new Promise((resolve, reject) => {
-        con.query('select name, tabId from tabs where user =? and app = ?', [user, app], (err, tabs) => {
+        dataCamp.collection("tabs").find({user: user, app: app}, { projection: {name:1, tabId:1} }).toArray((err,tabs) => {
             if (err) return reject(err);
             resolve(tabs)
         })
@@ -284,10 +280,7 @@ var getTabs = (user, app) => {
 }
 
 var saveTab = (user, app, name) => {
-    var tab = [
-        [null, user, app, name, makeid()]
-    ]
-    con.query('insert into tabs(id, user, app, name, tabId) VALUES ?', [tab], (err, res) => {
+    dataCamp.collection("tabs").insertOne({user, app, name, tabId: makeid()}, (err, res) => {
         if (err) throw err;
         return 1
     })
@@ -295,28 +288,22 @@ var saveTab = (user, app, name) => {
 
 var getDevices = (user, dev) => {
     return new Promise((resolve, reject) => {
-        con.query('select dName,template,deviceID,fver from devices where uName = ?', [user], (err, devices) => {
+        dataCamp.collection("devices").find({uName: user}, { projection: {dName:1, template:1, deviceID:1, fver:1} }).toArray((err, devices) => {
             if (err) return reject(err);
             resolve(devices)
         })
     })
 }
 
-var saveDevice = (user, name, did, templ) => {
-    var device = [
-        [null, did, name, templ, user]
-    ]
-    con.query('insert into devices(_id, deviceID, dName, template, uName) values ?', [device], (err, res) => {
+var saveDevice = (uName, dName, deviceID, template) => {
+    dataCamp.collection("devices").insertOne({deviceID, dName, template, uName}, (err, res) => {
         if (err) throw err;
         return 1;
     })
 }
 
 var saveTemplate = (user, name) => {
-    var template = [
-        [null, name, user]
-    ]
-    con.query('insert into template(id, name, user) values ?', [template], (err, res) => {
+    dataCamp.collection("template").insertOne({name, user}, (err, res) => {
         if (err) throw err;
         return 1;
     })
@@ -325,7 +312,7 @@ var saveTemplate = (user, name) => {
 
 var getFeeds = (user, dev, templ) => {
     return new Promise((resolve, reject) => {
-        con.query('select name,unit from feed_vals where user_id = ? and deviceID = ?', [user, dev], (err, feeds) => {
+        dataCamp.collection("feed_vals").find({deviceID: dev, user_id: user}, {projection: {name:1, unit:1} }).toArray((err,feeds) => {
             if (err) return reject(err);
             resolve(feeds)
         })
@@ -334,7 +321,7 @@ var getFeeds = (user, dev, templ) => {
 
 var getProps = (user, device) => {
     return new Promise((resolve, reject) => {
-        con.query('select dName,deviceID,template from devices where uName =? and deviceID = ?', [user, device], (err, props) => {
+        dataCamp.collection("devices").find({"uName": user, "deviceID": device}, { projection: {dName: 1, deviceID:1, template:1} }).toArray((err, props) => {
             if (err) return reject(err);
             resolve(props)
         })
@@ -343,7 +330,7 @@ var getProps = (user, device) => {
 
 var getDeviceState = (user) => {
     return new Promise((resolve, reject) => {
-        con.query('select deviceID,status from devices where uName = ?', [user], (err, stats) => {
+        dataCamp.collection("devices").find({"uName": user}, { projection: {status: 1, deviceID: 1} }).toArray((err, stats) => {
             if (err) reject(err);
             resolve(stats)
         })

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://iotine.zapto.org/ -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>SignUp and Login</title>
+	<script>
+		if (localStorage['currentLoggedInUser'] != "") {
+			window.location.replace("https://iotine.zapto.org/apps/")
+		}
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="https://iotine.zapto.org/IOTINE_V2/mission-control/login.css">
+	<link rel="stylesheet" href="https://iotine.zapto.org/IOTINE_V2/mission-control/font-awesome.min.css">
+
+	<style type="text/css">
+		button.btn[data-v-cef78672] {
+			display: inline-block;
+			font-weight: 300;
+			line-height: 1.25;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			user-select: none;
+			border: 1px solid transparent;
+			cursor: pointer;
+			letter-spacing: 1px;
+			transition: all .15s ease
+		}
+
+		button.btn.btn-sm[data-v-cef78672] {
+			padding: .4rem .8rem;
+			font-size: .8rem;
+			border-radius: .2rem
+		}
+
+		button.btn.btn-primary[data-v-cef78672] {
+			color: #fff;
+			background-color: #45C8F1;
+			border-color: #45C8F1
+		}
+
+		button.btn.btn-outline-primary[data-v-cef78672] {
+			color: #45C8F1;
+			background-color: transparent;
+			border-color: #45C8F1
+		}
+
+		button.btn.btn-danger[data-v-cef78672] {
+			color: #fff;
+			background-color: #FF4949;
+			border-color: #FF4949
+		}
+
+		.text-muted[data-v-cef78672] {
+			color: #8492A6
+		}
+
+		.text-center[data-v-cef78672] {
+			text-align: center
+		}
+
+		.drop-down-enter[data-v-cef78672],
+		.drop-down-leave-to[data-v-cef78672] {
+			transform: translateX(0) translateY(-20px);
+			transition-timing-function: cubic-bezier(0.74, 0.04, 0.26, 1.05);
+			opacity: 0
+		}
+
+		.drop-down-enter-active[data-v-cef78672],
+		.drop-down-leave-active[data-v-cef78672] {
+			transition: all .15s
+		}
+
+		.move-left-enter[data-v-cef78672],
+		.move-left-leave-to[data-v-cef78672] {
+			transform: translateY(0) translateX(-80px);
+			transition-timing-function: cubic-bezier(0.74, 0.04, 0.26, 1.05);
+			opacity: 0
+		}
+
+		.move-left-enter-active[data-v-cef78672],
+		.move-left-leave-active[data-v-cef78672] {
+			transition: all .15s
+		}
+
+		.shake[data-v-cef78672] {
+			animation: shake-data-v-cef78672 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+			transform: translate3d(0, 0, 0)
+		}
+
+		@keyframes shake-data-v-cef78672 {
+
+			10%,
+			90% {
+				transform: translate3d(-1px, 0, 0)
+			}
+
+			20%,
+			80% {
+				transform: translate3d(2px, 0, 0)
+			}
+
+			30%,
+			50%,
+			70% {
+				transform: translate3d(-4px, 0, 0)
+			}
+
+			40%,
+			60% {
+				transform: translate3d(4px, 0, 0)
+			}
+		}
+
+		.pulse[data-v-cef78672] {
+			animation: pulse-data-v-cef78672 2s ease infinite
+		}
+
+		@keyframes pulse-data-v-cef78672 {
+			0% {
+				opacity: .7
+			}
+
+			50% {
+				opacity: .4
+			}
+
+			100% {
+				opacity: .7
+			}
+		}
+
+		.flash-once[data-v-cef78672] {
+			animation: flash-once 3.5s ease 1
+		}
+
+		@keyframes fade-up-data-v-cef78672 {
+			0% {
+				transform: translate3d(0, 10px, 0);
+				opacity: 0
+			}
+
+			100% {
+				transform: translate3d(0, 0, 0);
+				opacity: 1
+			}
+		}
+
+		.fade-in[data-v-cef78672] {
+			animation: fade-in-data-v-cef78672 .3s ease-in-out
+		}
+
+		@keyframes fade-in-data-v-cef78672 {
+			0% {
+				opacity: 0
+			}
+
+			100% {
+				opacity: 1
+			}
+		}
+
+		.spin[data-v-cef78672] {
+			animation-name: spin-data-v-cef78672;
+			animation-duration: 2000ms;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear
+		}
+
+		@keyframes spin-data-v-cef78672 {
+			from {
+				transform: rotate(0deg)
+			}
+
+			to {
+				transform: rotate(360deg)
+			}
+		}
+
+		.bounceIn[data-v-cef78672] {
+			animation-name: bounceIn-data-v-cef78672;
+			transform-origin: center bottom;
+			animation-duration: 1s;
+			animation-fill-mode: both;
+			animation-iteration-count: 1
+		}
+
+		@keyframes bounceIn-data-v-cef78672 {
+
+			0%,
+			20%,
+			40%,
+			60%,
+			80%,
+			100% {
+				-webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+				transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+			}
+
+			0% {
+				opacity: 1;
+				-webkit-transform: scale3d(0.8, 0.8, 0.8);
+				transform: scale3d(0.8, 0.8, 0.8)
+			}
+
+			20% {
+				-webkit-transform: scale3d(1.1, 1.1, 1.1);
+				transform: scale3d(1.1, 1.1, 1.1)
+			}
+
+			40% {
+				-webkit-transform: scale3d(0.9, 0.9, 0.9);
+				transform: scale3d(0.9, 0.9, 0.9)
+			}
+
+			60% {
+				opacity: 1;
+				-webkit-transform: scale3d(1.03, 1.03, 1.03);
+				transform: scale3d(1.03, 1.03, 1.03)
+			}
+
+			80% {
+				-webkit-transform: scale3d(0.97, 0.97, 0.97);
+				transform: scale3d(0.97, 0.97, 0.97)
+			}
+
+			100% {
+				opacity: 1;
+				-webkit-transform: scale3d(1, 1, 1);
+				transform: scale3d(1, 1, 1)
+			}
+		}
+
+		@keyframes dots-data-v-cef78672 {
+
+			0%,
+			20% {
+				color: rgba(0, 0, 0, 0);
+				text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0)
+			}
+
+			40% {
+				color: #8492A6;
+				text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0)
+			}
+
+			60% {
+				text-shadow: 0.25em 0 0 #8492A6, 0.5em 0 0 rgba(0, 0, 0, 0)
+			}
+
+			80%,
+			100% {
+				text-shadow: .25em 0 0 #8492A6, .5em 0 0 #8492A6
+			}
+		}
+
+		@keyframes recording-data-v-cef78672 {
+			0% {
+				box-shadow: 0px 0px 5px 0px rgba(173, 0, 0, 0.3)
+			}
+
+			65% {
+				box-shadow: 0px 0px 5px 5px rgba(173, 0, 0, 0.3)
+			}
+
+			90% {
+				box-shadow: 0px 0px 5px 5px rgba(173, 0, 0, 0)
+			}
+		}
+
+		html[data-v-cef78672] {
+			max-height: 500px
+		}
+
+		body[data-v-cef78672] {
+			margin: 0;
+			font-size: 100%;
+			color: #3C4858;
+			width: 350px;
+			max-height: 500px
+		}
+
+		a[data-v-cef78672] {
+			text-decoration: none;
+			color: #45C8F1
+		}
+
+		h1[data-v-cef78672],
+		h2[data-v-cef78672],
+		h3[data-v-cef78672],
+		h4[data-v-cef78672] {
+			margin-top: 0
+		}
+
+		.container_selected_area[data-v-cef78672] {
+			padding: 0px;
+			position: fixed;
+			z-index: 1000000;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			display: none;
+			visibility: hidden
+		}
+
+		.container_selected_area.active[data-v-cef78672] {
+			visibility: visible;
+			display: block
+		}
+
+		.container_selected_area .label[data-v-cef78672] {
+			font-family: "Didact Gothic Regular", sans-serif;
+			font-size: 22px;
+			text-align: center;
+			padding-top: 15px
+		}
+
+		.container_selected_area .area[data-v-cef78672] {
+			border: 1px solid #1e83ff;
+			background: rgba(30, 131, 255, 0.1);
+			display: none;
+			position: fixed;
+			z-index: 1000000;
+			box-sizing: border-box
+		}
+
+		.container_selected_area .area.active[data-v-cef78672] {
+			display: block;
+			top: 0px;
+			left: 0px
+		}
+
+		.hide[data-v-cef78672] {
+			display: none
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+
+			<form onsubmit="return false;" method="POST">
+				<img src="https://iotine.zapto.org/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
+				<h1>Create Account</h1>
+				<span>or use your email for registration</span>
+				<input type="text" name="name" placeholder="Name">
+				<input type="username" name="username" autocomplete="off" placeholder="Username">
+				<input type="password" name="password" autocomplete="off" placeholder="Password">
+				<button>SignUp</button><br>
+				<button id="signInGhost" class="mobile ghost">Sign In</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form onsubmit="return false;" name="signInForm" method="POST">
+				<img src="https://iotine.zapto.org/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
+				<h1>Sign In</h1>
+				<span>or use your account</span>
+				<input type="username" name="username" id="user" autocomplete="off" placeholder="Username">
+				<input type="password" name="password" id="pass" autocomplete="off" placeholder="Password">
+				<a href="http://iotine.zapto.org/#">Forgot Your Password?</a>
+
+				<button onclick="signIN()">Sign In</button><br>
+				<button id="signUpGhost" class="mobile ghost">SignUp</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Hello, There!</h1>
+					<p>Enter your details and start journey with us! <br> <br> Or</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info. <br> <br> Or</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		const signUpButton = document.getElementById('signUp');
+		const signUpGhost = document.getElementById('signUpGhost');
+
+		const signInButton = document.getElementById('signIn');
+		const signInGhost = document.getElementById('signInGhost');
+
+		const container = document.getElementById('container');
+
+
+		navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+		signUpGhost.addEventListener('click', () => {
+			navigator.vibrate(100);
+			container.classList.add("right-panel-active");
+		});
+
+		signUpButton.addEventListener('click', () => {
+			navigator.vibrate(100);
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener('click', () => {
+			navigator.vibrate(100);
+
+			container.classList.remove("right-panel-active");
+		});
+		signInGhost.addEventListener('click', () => {
+			navigator.vibrate(100);
+			container.classList.remove("right-panel-active");
+		});
+
+		if (navigator.vibrate) {
+			console.log("Vibration support")
+		}
+
+		function signIN() {
+			var user = document.querySelector("#user").value,
+				pass = document.querySelector("#pass").value
+
+			if (user == '' || pass == '') {
+				alert("Please provide your credentials!")
+				return;
+			}
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					// Typical action to be performed when the document is ready:
+					var resp = JSON.parse(xhttp.responseText);
+					if (resp.status == 200) {
+						localStorage['currentLoggedInUser'] = user;
+						window.location.replace(`https://iotine.zapto.org/apps/${user}`)
+					} else {
+						alert("There was a problem logging you in!")
+					}
+				}
+			};
+			xhttp.open("GET", "https://iotine.zapto.org/login/" + user + "/" + pass, true);
+			xhttp.send();
+		}
+	</script>
+
+
+
+
+	<input type="file" id="" name="file" style="display: none;">
+	<div data-v-cef78672="" class="container_selected_area"
+		style="cursor: url(&quot;chrome-extension://ialiedlpfknneamnbemcgmaboleiccdd/assets/images/cursor-imagen.svg&quot;) 9 9, crosshair;">
+		<div data-v-cef78672="" class="area"></div>
+	</div>
+</body>
+
+</html>

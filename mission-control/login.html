@@ -5,9 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 	<title>SignUp and Login</title>
-	<script>
+		<script>
 		if (localStorage['currentLoggedInUser'] != "") {
-			window.location.replace("https://iotine.zapto.org/apps/")
+			window.location.replace("https://iotine.zapto.org/apps/"+localStorage["currentLoggedInUser"])
 		}
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

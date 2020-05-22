@@ -56,15 +56,23 @@ app.get('/login/:user/:pass', (req, res) => {
     })
 })
 
-app.get('/apps', (req, res) => {
+app.get('/apps/:user', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
 
-app.get('/dashboard/:appId', function (req, res) {
-    res.sendFile(__dirname + '/dashboard.html');
+app.get('/dashboard/:user/:appId', function (req, res) {
+    dataCamp.collection("apps").find({name: req.params.appId, user: req.params.user}).toArray((err, resp) => {
+        if(err) return err;
+        if(resp.length == 0){
+             res.sendFile(__dirname + '/404.html');
+             return;
+        }else{
+            res.sendFile(__dirname + '/dashboard.html');
+        }
+    })
 });
 
-app.get('/builder/:app', (req, res) => {
+app.get('/builder/dashboard/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/builder.html')
 });
 
@@ -72,7 +80,7 @@ app.get('/mission', (req, res) => {
     res.sendFile(__dirname + '/mission.js')
 });
 
-app.get('/rules/:app', (req, res) => {
+app.get('/rules/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/rules/index.html')
 })
 

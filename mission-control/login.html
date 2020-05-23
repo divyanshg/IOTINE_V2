@@ -5,14 +5,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 	<title>SignUp and Login</title>
-		<script>
-		if (localStorage['currentLoggedInUser'] != "") {
-			window.location.replace("https://iotine.zapto.org/apps/"+localStorage["currentLoggedInUser"])
+	<script>
+		if (localStorage['currentLoggedInUser'] == "" || !localStorage["currentLoggedInUser"]) {
+			console.log("")
+		} else {
+
+			window.location.replace("https://iotine.zapto.org/apps/" + localStorage["currentLoggedInUser"])
 		}
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="https://iotine.zapto.org/IOTINE_V2/mission-control/login.css">
-	<link rel="stylesheet" href="https://iotine.zapto.org/IOTINE_V2/mission-control/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://iotine.zapto.org:6546/IOTINE_V2/mission-control/login.css">
+	<link rel="stylesheet" href="https://iotine.zapto.org/IOTINE_V2/mission-control:6546/font-awesome.min.css">
 
 	<style type="text/css">
 		button.btn[data-v-cef78672] {
@@ -345,7 +348,7 @@
 		<div class="form-container sign-up-container">
 
 			<form onsubmit="return false;" method="POST">
-				<img src="https://iotine.zapto.org/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
+				<img src="https://iotine.zapto.org:6546/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
 				<h1>Create Account</h1>
 				<span>or use your email for registration</span>
 				<input type="text" name="name" placeholder="Name">
@@ -357,7 +360,7 @@
 		</div>
 		<div class="form-container sign-in-container">
 			<form onsubmit="return false;" name="signInForm" method="POST">
-				<img src="https://iotine.zapto.org/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
+				<img src="https://iotine.zapto.org:6546/IOTINE_V2/mission-control/filament.svg" alt="" class="logo">
 				<h1>Sign In</h1>
 				<span>or use your account</span>
 				<input type="username" name="username" id="user" autocomplete="off" placeholder="Username">

@@ -873,9 +873,6 @@ function createButton(id, feed, config, bdy) {
     bdy.className += " btn-wid"
 
     buttonCont.innerHTML = config.text
-    buttonCont.style.backgroundColor = config.bgcolor
-    buttonCont.style.borderColor = config.borderColor
-    buttonCont.style.color = config.textColor
 
     buttonCont.addEventListener('click', () => {
         pubii(buttonCont, feed, config)

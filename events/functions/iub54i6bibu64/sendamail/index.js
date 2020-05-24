@@ -4,7 +4,7 @@
 var nodemailer = require('nodemailer');
 
 const io = require("socket.io-client");
-const sockClient = io.connect("https://192.168.31.249:3000", {
+const sockClient = io.connect("https://iotine.zapto.org", {
     secure: true,
     rejectUnauthorized: false
 });
@@ -12,23 +12,18 @@ var stateCheck = 0;
 
 exports.handler = async (event) => {
 
-    var payload = parseInt(event.value);
+    var payload = event.value
     var mtime = event.timestamp;
 
-    if (payload >= 90 && stateCheck == 0) {
-        stateCheck = 1;
+    sockClient.emit('publish', {
+        user: event.user,
+        deviceId: '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcu',
+        feed: 'cooler_stat',
+        value: String(event.value),
+        time: new Date().toLocaleTimeString()
+    })
 
-        /*sockClient.emit('publish', {
-            user: event.user,
-            deviceId: 'virtual_SkNCX1RSVUNLXzAxYWFk',
-            feed: 'CORE_TEMP',
-            value: String(event.value),
-            time: new Date().toLocaleTimeString()
-        })*/
-
-    } else if (payload <= 10) {
-        stateCheck = 0;
-    }
+    sendMail(payload, mtime)
 }
 
 function sendMail(payload, mtime) {
@@ -43,8 +38,8 @@ function sendMail(payload, mtime) {
     var mailOptions = {
         from: 'iotine.alert@gmail.com',
         to: 'divyanshg809@gmail.com',
-        subject: 'Core temperature was high',
-        html: `Core temperature reached <b style="color:red">${payload}</b> on <b style="color:green;">${mtime}</b>`
+        subject: 'Cooler status',
+        html: `Coller was turned <b style="color:red">${payload}</b> at <b style="color:green;">${mtime}</b>`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

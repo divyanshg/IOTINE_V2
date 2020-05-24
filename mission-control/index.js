@@ -24,7 +24,9 @@ var mqtt = require('mqtt')
 
 var dataCamp;
 
-MongoClient.connect(url, {useUnifiedTopology: true}, function (err, db) {
+MongoClient.connect(url, {
+    useUnifiedTopology: true
+}, function (err, db) {
     if (err) throw err;
     dataCamp = db.db("fila_iot");
 });
@@ -42,15 +44,22 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/login/:user/:pass', (req, res) => {
-    dataCamp.collection("users").find({username: req.params.user, password: req.params.pass}).toArray((err, resp) => {
-        if(err) return err;
+    dataCamp.collection("users").find({
+        username: req.params.user,
+        password: req.params.pass
+    }).toArray((err, resp) => {
+        if (err) return err;
 
-        if(resp.length == 0){
-            res.json({status: 404}); 
+        if (resp.length == 0) {
+            res.json({
+                status: 404
+            });
             res.end();
             return;
-        }else{
-            res.json({status:200})
+        } else {
+            res.json({
+                status: 200
+            })
             res.end()
         }
     })
@@ -61,12 +70,15 @@ app.get('/apps/:user', (req, res) => {
 });
 
 app.get('/dashboard/:user/:appId', function (req, res) {
-    dataCamp.collection("apps").find({name: req.params.appId, user: req.params.user}).toArray((err, resp) => {
-        if(err) return err;
-        if(resp.length == 0){
-             res.sendFile(__dirname + '/404.html');
-             return;
-        }else{
+    dataCamp.collection("apps").find({
+        name: req.params.appId,
+        user: req.params.user
+    }).toArray((err, resp) => {
+        if (err) return err;
+        if (resp.length == 0) {
+            res.sendFile(__dirname + '/404.html');
+            return;
+        } else {
             res.sendFile(__dirname + '/dashboard.html');
         }
     })
@@ -96,7 +108,7 @@ app.get('/defend/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/defend/index.html')
 })
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
     res.sendFile(__dirname + '/404.html');
 });
 
@@ -121,49 +133,68 @@ io.on('connection', function (socket) {
                 saveToLake(msg)
             } else {
 
-                dataCamp.collection("feed_vals").find({"name": msg.feed, "deviceID": msg.deviceId}).toArray(function (err, respp) {
+                dataCamp.collection("feed_vals").find({
+                    "name": msg.feed,
+                    "deviceID": msg.deviceId
+                }).toArray(function (err, respp) {
                     if (err) {
                         return err;
                     } else if (respp.length == 0) {
                         if (msg.deviceId == "$SYS") return
-                        dataCamp.collection("feed_vals").insertOne({"name": msg.feed, "deviceID": msg.deviceId, "user_id": msg.user, "value": msg.value, "unit": msg.unit}, (err, result) => {
+                        dataCamp.collection("feed_vals").insertOne({
+                            "name": msg.feed,
+                            "deviceID": msg.deviceId,
+                            "user_id": msg.user,
+                            "value": msg.value,
+                            "unit": msg.unit
+                        }, (err, result) => {
                             if (err) return err;
                         });
                     } else {
-                        dataCamp.collection("feed_vals").find({"user_id": msg.user, "deviceID": msg.deviceId, "name": msg.feed}).toArray((err, feedInfo) => {
+                        dataCamp.collection("feed_vals").find({
+                            "user_id": msg.user,
+                            "deviceID": msg.deviceId,
+                            "name": msg.feed
+                        }).toArray((err, feedInfo) => {
                             if (err) return err;
-                            dataCamp.collection("feed_vals").updateOne({"user_id": msg.user, "deviceID": msg.deviceId, "name": msg.feed}, { $set: {"value": msg.value} }, (err, res) => {
+                            dataCamp.collection("feed_vals").updateOne({
+                                "user_id": msg.user,
+                                "deviceID": msg.deviceId,
+                                "name": msg.feed
+                            }, {
+                                $set: {
+                                    "value": msg.value
+                                }
+                            }, (err, res) => {
                                 if (err) return err
 
                                 //Checking and running the events processing
                                 if (feedInfo[0].events != "[]") {
 
                                     Object.keys(require.cache).forEach(function (key) {
-                                        delete require.cache[key]
-                                    })
-                                    var eventProcessor = require('../events/eventProcessor')
-                                    var events = JSON.parse(feedInfo[0].events)
+                                          delete require.cache[key]
+                                      })
+                                      var eventProcessor = require('../events/eventProcessor')
+                                      var events = JSON.parse(`${feedInfo[0].events}`)
 
-                                    events.forEach(event => {
-                                        msg.timestamp = feedInfo[0].time
-                                        eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
-                                            io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                            await saveToLake(msg)
+                                      events.forEach(event => {
+                                          msg.timestamp = feedInfo[0].time
+                                          eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
+                                              io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                              client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                              await saveToLake(msg)
 
-                                        }).catch(async (err) => {
-                                            io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                            await saveToLake(msg)
-                                        })
-                                    })
+                                          }).catch(async (err) => {
+                                              io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                              client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                              await saveToLake(msg)
+                                          })
+                                      })
                                 } else {
                                     io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
                                     saveToLake(msg)
                                 }
-
-
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
@@ -181,7 +212,9 @@ io.on('connection', function (socket) {
         if (device.split("_")[0] == "mqttjs") {
             return
         } else {
-            dataCamp.collection("devices").find({"deviceID": device}).toArray((err, res) => {
+            dataCamp.collection("devices").find({
+                "deviceID": device
+            }).toArray((err, res) => {
                 if (err) return err;
                 if (res.length == 0) {
                     return

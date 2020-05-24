@@ -15,8 +15,8 @@ import jwt
 
 #GPIO = GPIO
 IOTINE_HOST="iotine.zapto.org"
-CONNSTRING = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
-DEVICENAME = '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcuoc'
+CONNSTRING = '_wlPFr8'
+DEVICENAME = '_wlPFr8'
 USER = 'iub54i6bibu64'
 pubstop = False
 
@@ -53,12 +53,13 @@ def publicKey():
         key = key.read()
         return key
 
-password = jwt.encode({'some': 'payload', "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)}, publicKey(), algorithm=JWTalgorithm)   
+password = jwt.encode({'some': 'payload', "iat":datetime.datetime.utcnow(), "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=500)}, publicKey(), algorithm=JWTalgorithm)   
 
 def CONNECT():
     client.on_message = listenToSystemCommands
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING, password)
+    print(password)
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

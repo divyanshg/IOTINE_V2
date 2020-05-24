@@ -972,6 +972,8 @@ async function createWidget() {
                 document.querySelector("#nowid").style.display = "none"
             }
             //wids.push(wids)
+
+            console.log(widgets)
             widgets.forEach(widget => {
                 var widgetBdy = document.createElement('div')
                 var head = document.createElement('h4');

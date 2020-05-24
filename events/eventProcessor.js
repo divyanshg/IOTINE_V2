@@ -2,16 +2,6 @@
 
 const mysql = require('mysql')
 const counter = 0;
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "divyanshg21",
-    password: "potty_khale",
-    database: "fila_iot"
-});
-
-con.connect(function (err) {
-    if (err) return err;
-});
 
 
 exports.processEvent = (uModule, inputs) => {
@@ -23,26 +13,26 @@ exports.processEvent = (uModule, inputs) => {
             })
             var mod = require(`./functions/${uModule}/index`)
 
-            saveEventSuccessLog(uModule.split("/")[0], uModule.split("/")[1], "Event ran successfully")
+            //saveEventSuccessLog(uModule.split("/")[0], uModule.split("/")[1], "Event ran successfully")
             try {
                 var output = mod.handler(inputs)
                 resolve(String(output))
             } catch (e) {
-                saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
+                //saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
                 return reject(e)
 
             }
 
         } catch (e) {
 
-            saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
+            //saveEventFailureLog(uModule.split("/")[0], uModule.split("/")[1], e)
             return reject(e)
 
         }
     })
 
 }
-
+/*
 function saveEventSuccessLog(user, event, msg) {
     if(count >= 10) return
     count += 1;
@@ -63,4 +53,4 @@ function saveEventFailureLog(user, event, err) {
             return resolve(resp)
         })
     })
-}
+}*/

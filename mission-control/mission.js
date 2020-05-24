@@ -679,7 +679,7 @@ function loadLink(lnk, elm) {
 getUser();
 var user;
 var app = window.location.pathname.split("/")[3];
-var socket = io('iotine.zapto.org:3000/', {
+var socket = io('iotine.zapto.org/', {
     secure: true,
     rejectUnauthorized: false
 });

@@ -169,7 +169,7 @@ io.on('connection', function (socket) {
                                 if (err) return err
 
                                 //Checking and running the events processing
-                                if (feedInfo[0].events != "[]") {
+                                /*if (feedInfo[0].events != "[]") {
 
                                     Object.keys(require.cache).forEach(function (key) {
                                           delete require.cache[key]
@@ -190,11 +190,11 @@ io.on('connection', function (socket) {
                                               await saveToLake(msg)
                                           })
                                       })
-                                } else {
+                                } else {*/
                                     io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                     client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
                                     saveToLake(msg)
-                                }
+                                //}
                             })
 
                             //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)

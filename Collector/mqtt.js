@@ -20,7 +20,7 @@ var settings = {
 }
 
 const io = require("socket.io-client");
-const sockClient = io.connect("https://192.168.31.72:3000/", {
+const sockClient = io.connect("https://192.168.31.72/", {
     secure: true,
     rejectUnauthorized: false
 });

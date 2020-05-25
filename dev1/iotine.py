@@ -59,7 +59,6 @@ def CONNECT():
     client.on_message = listenToSystemCommands
     client.on_connect = on_connect
     client.username_pw_set(CONNSTRING, password)
-    print(password)
     client.connect_async(IOTINE_HOST) #connect to broker
     client.loop_start() #start the loop
 

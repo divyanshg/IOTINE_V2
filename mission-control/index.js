@@ -5,7 +5,7 @@ var app = require('express')();
 const fs = require('fs');
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://192.168.31.72:27017/";
 
 const options = {
     key: fs.readFileSync('./private.key'),
@@ -16,7 +16,7 @@ const options = {
 var http = require('https')
 
 var server = http.createServer(options, app).listen(3000, function () {
-    console.log('listening on *:3000');
+    console.log('Server ready');
 });
 
 var io = require('socket.io').listen(server);

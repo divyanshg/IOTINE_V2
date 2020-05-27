@@ -681,7 +681,10 @@ var user;
 var app = window.location.pathname.split("/")[3];
 var socket = io('iotine.zapto.org/', {
     secure: true,
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
+    transports: ['websocket'],
+    reconnection: true,
+    reconnectionAttempts: Infinity
 });
 async function getUser() {
     var username = localStorage["currentLoggedInUser"];

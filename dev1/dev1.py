@@ -2,6 +2,8 @@ import iotine as IOTINE
 import random
 import time
 import requests as req
+import os
+import sys
 
 
 print(IOTINE.CONNECT())
@@ -10,6 +12,10 @@ def on_dc(smthng):
     print("disconnected")
 
 time.sleep(2)
+
+
+def resetTest():
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 while True:
@@ -46,5 +52,6 @@ while True:
             "callback": ""
         }
     ])
+    IOTINE.DISCONNECT(resetTest)
 
     time.sleep(2)

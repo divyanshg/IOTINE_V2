@@ -2,7 +2,7 @@ var mosca = require('mosca');
 var fs = require('fs')
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://192.168.31.72:27017/";
 
 var jwtDecode = require('jwt-decode');
 
@@ -35,7 +35,7 @@ var authenticate = function (client, username, passwd, callback) {
     dataCamp.collection("devices").find({"deviceID": username}).toArray((err, result) => {
         if (err) throw err;
 
-        axios.post('http://localhost:6543/authority/verify/' + passwd + "/" + username).then(response => {
+        axios.post('http://192.168.31.72:6543/authority/verify/' + passwd + "/" + username).then(response => {
             if (response.data.status == 200) {
                 var authorized = true
                 callback(null, authorized);
@@ -62,6 +62,7 @@ var authorizeSubscribe = function (client, topic, callback) {
 }
 
 server.on('clientConnected', function (client) {
+    console.log("Connected")
     if (client.id.split("_")[0] == "mqttjs") return
     dataCamp.collection("devices").updateOne({"cINST": client.id}, { $set: {"status": "IDLE", "sourceIp": String(client.connection.stream.remoteAddress)} }, (err, restu) => {
         if (err) throw err;
@@ -99,7 +100,7 @@ server.on('published', (packet) => {
 
         var device = content.topic.split('/')[0];
 
-        axios.post('http://localhost:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
+        axios.post('http://192.168.31.72:6543/authority/verify/' + jwtTopic + "/" + device).then(response => {
 
             if (response.data.status != 200) return
 

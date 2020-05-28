@@ -35,7 +35,7 @@ app.use(cors())
 var secrateKey = "23ibu43b5ib345ubi43ub545234938gbr934gb439b54e98rgbwe3fgbew9"
 
 
-var client = mqtt.connect('mqtt://192.168.31.72:1883', {
+var client = mqtt.connect('192.168.31.72:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 
@@ -70,6 +70,7 @@ app.get('/apps/:user', (req, res) => {
 });
 
 app.get('/dashboard/:user/:appId', function (req, res) {
+    console.log("Here")
     dataCamp.collection("apps").find({
         name: req.params.appId,
         user: req.params.user

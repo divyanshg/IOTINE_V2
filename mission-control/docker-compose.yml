@@ -6,6 +6,6 @@ services:
        volumes: 
           - ./mission-control:/var/www/IOTINE/IOTINE_V2/mission-control/
        ports:
-          - "30001-30050:3000"
+          - "30001-30005:3000"
 
     

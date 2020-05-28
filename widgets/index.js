@@ -256,7 +256,7 @@ var updateWidget = (user, app, widget) => {
 
 var getTemplate = (user) => {
     return new Promise((resolve, reject) => {
-        dataCamp.collection("template").find({user: user}, { projection: {name:1} }).toArray((err,res) => {
+        dataCamp.collection("template").find({user: user}, { projection: {name:1} }).toArray((err,templates) => {
             if (err) return reject(err);
             resolve(templates)
         })

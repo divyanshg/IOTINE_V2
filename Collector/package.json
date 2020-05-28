@@ -4,6 +4,7 @@
   "description": "Main interaction point of devices to the database",
   "main": "mqtt.js",
   "scripts": {
+    "start": "nodemon mqtt.js",
     "test": "nodemon mqtt.js"
   },
   "author": "Divyansh Gupta",
@@ -19,6 +20,6 @@
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   }
 }

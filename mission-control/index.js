@@ -18,7 +18,7 @@ var http = require('https')
 var PORT = process.env.PORT || 3000;
 
 var server = http.createServer(options, app).listen(PORT, function () {
-    console.log('Server ready '+PORT);
+    console.log('Mission ready '+PORT);
 });
 
 var io = require('socket.io').listen(server);
@@ -85,7 +85,6 @@ app.get('/apps/:user', (req, res) => {
 });
 
 app.get('/dashboard/:user/:appId', function (req, res) {
-    console.log("Here")
     dataCamp.collection("apps").find({
         name: req.params.appId,
         user: req.params.user
@@ -137,20 +136,28 @@ var rooms = [{
         devices: []
     }
 ]
-/*
+
 dataController_Sub.on("message", (topic, msg) => {
-    handlePublish(JSON.parse(msg))
-})*/
+    if(topic == "publish"){
+        handlePublish(JSON.parse(msg))
+    }else if(topic == "devStat"){
+        handleDevStat()
+    }else if(topic == "dev_version"){
+        handleDevVersion(JSON.parse(msg))
+    }
+})
 
 dataController_Sub.subscribe("publish")
+//dataController_Sub.subscribe("devStat")
+dataController_Sub.subscribe("dev_version")
 
 io.on('connection', function (socket) {
     socket.on("JoinTheMess", (data) => {
         socket.join(data)
     })
+
     socket.on('publish', function (msg) {
         dataController_Pub.publish("publish", JSON.stringify(msg));
-        handlePublish(msg)
     });
 
     socket.on('devStat', (device, status) => {
@@ -177,11 +184,7 @@ io.on('connection', function (socket) {
         }
     })
     socket.on('DEV_VERSION', (msg) => {
-        io.to(msg.user).emit("DEV_VERSION", {
-            version: msg.version,
-            device: msg.device
-        })
-        saveToLake(msg)
+        dataController_Pub.publish("dev_version", JSON.stringify(msg));
     })
 });
 
@@ -192,6 +195,18 @@ var saveToLake = async (msg) => {
     dataCamp.collection("lake").insertOne(msg, (err, res) => {
         return "OK"
     })
+}
+
+var handleDevVersion = (msg) => {
+    io.to(msg.user).emit("DEV_VERSION", {
+        version: msg.version,
+        device: msg.device
+    })
+    saveToLake(msg)
+}
+
+var handleDevStat = () => {
+    return
 }
 
 var handlePublish = (msg) => {

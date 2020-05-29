@@ -228,7 +228,6 @@ app.get('/deviceState/:user', (req, res) => {
 
 
 app.get('/runRule/:user/:code', (req, res) => {
-    console.log("here")
     res.json({
         "status": 200
     })

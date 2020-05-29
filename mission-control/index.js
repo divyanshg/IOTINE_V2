@@ -15,12 +15,27 @@ const options = {
 
 var http = require('https')
 
-var server = http.createServer(options, app).listen(3000, function () {
-    console.log('Server ready');
+var PORT = process.env.PORT || 3000;
+
+var server = http.createServer(options, app).listen(PORT, function () {
+    console.log('Server ready '+PORT);
 });
 
 var io = require('socket.io').listen(server);
 var mqtt = require('mqtt')
+var redis = require("redis");
+
+var dataController_Pub = redis.createClient({
+    host : '192.168.31.72',  
+    no_ready_check: true,
+    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",                                                                                                                                                           
+});
+
+var dataController_Sub = redis.createClient({
+    host : '192.168.31.72',  
+    no_ready_check: true,
+    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",                                                                                                                                                           
+});
 
 var dataCamp;
 
@@ -122,91 +137,20 @@ var rooms = [{
         devices: []
     }
 ]
+/*
+dataController_Sub.on("message", (topic, msg) => {
+    handlePublish(JSON.parse(msg))
+})*/
+
+dataController_Sub.subscribe("publish")
 
 io.on('connection', function (socket) {
     socket.on("JoinTheMess", (data) => {
         socket.join(data)
     })
     socket.on('publish', function (msg) {
-        if (msg.feed.split("/")[0] != "$SYS") {
-            if (msg.feed == "FSYS") {
-                io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
-                saveToLake(msg)
-            } else {
-
-                dataCamp.collection("feed_vals").find({
-                    "name": msg.feed,
-                    "deviceID": msg.deviceId
-                }).toArray(function (err, respp) {
-                    if (err) {
-                        return err;
-                    } else if (respp.length == 0) {
-                        if (msg.deviceId == "$SYS") return
-                        dataCamp.collection("feed_vals").insertOne({
-                            "name": msg.feed,
-                            "deviceID": msg.deviceId,
-                            "user_id": msg.user,
-                            "value": msg.value,
-                            "unit": msg.unit
-                        }, (err, result) => {
-                            if (err) return err;
-                        });
-                    } else {
-                        dataCamp.collection("feed_vals").find({
-                            "user_id": msg.user,
-                            "deviceID": msg.deviceId,
-                            "name": msg.feed
-                        }).toArray((err, feedInfo) => {
-                            if (err) return err;
-                            dataCamp.collection("feed_vals").updateOne({
-                                "user_id": msg.user,
-                                "deviceID": msg.deviceId,
-                                "name": msg.feed
-                            }, {
-                                $set: {
-                                    "value": msg.value
-                                }
-                            }, (err, res) => {
-                                if (err) return err
-
-                                //Checking and running the events processing
-                                /*if (feedInfo[0].events != "[]") {
-
-                                    Object.keys(require.cache).forEach(function (key) {
-                                          delete require.cache[key]
-                                      })
-                                      var eventProcessor = require('../events/eventProcessor')
-                                      var events = JSON.parse(`${feedInfo[0].events}`)
-
-                                      events.forEach(event => {
-                                          msg.timestamp = feedInfo[0].time
-                                          eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
-                                              io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                              client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                              await saveToLake(msg)
-
-                                          }).catch(async (err) => {
-                                              io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                              client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                              await saveToLake(msg)
-                                          })
-                                      })
-                                } else {*/
-                                    io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
-                                    client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                    saveToLake(msg)
-                                //}
-                            })
-
-                            //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
-                        })
-                    }
-
-                })
-            }
-        } else {
-            client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-        }
+        dataController_Pub.publish("publish", JSON.stringify(msg));
+        handlePublish(msg)
     });
 
     socket.on('devStat', (device, status) => {
@@ -248,4 +192,86 @@ var saveToLake = async (msg) => {
     dataCamp.collection("lake").insertOne(msg, (err, res) => {
         return "OK"
     })
+}
+
+var handlePublish = (msg) => {
+    if (msg.feed.split("/")[0] != "$SYS") {
+        if (msg.feed == "FSYS") {
+            io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
+            saveToLake(msg)
+        } else {
+
+            dataCamp.collection("feed_vals").find({
+                "name": msg.feed,
+                "deviceID": msg.deviceId
+            }).toArray(function (err, respp) {
+                if (err) {
+                    return err;
+                } else if (respp.length == 0) {
+                    if (msg.deviceId == "$SYS") return
+                    dataCamp.collection("feed_vals").insertOne({
+                        "name": msg.feed,
+                        "deviceID": msg.deviceId,
+                        "user_id": msg.user,
+                        "value": msg.value,
+                        "unit": msg.unit
+                    }, (err, result) => {
+                        if (err) return err;
+                    });
+                } else {
+                    dataCamp.collection("feed_vals").find({
+                        "user_id": msg.user,
+                        "deviceID": msg.deviceId,
+                        "name": msg.feed
+                    }).toArray((err, feedInfo) => {
+                        if (err) return err;
+                        dataCamp.collection("feed_vals").updateOne({
+                            "user_id": msg.user,
+                            "deviceID": msg.deviceId,
+                            "name": msg.feed
+                        }, {
+                            $set: {
+                                "value": msg.value
+                            }
+                        }, (err, res) => {
+                            if (err) return err
+
+                            //Checking and running the events processing
+                            /*if (feedInfo[0].events != "[]") {
+
+                                Object.keys(require.cache).forEach(function (key) {
+                                      delete require.cache[key]
+                                  })
+                                  var eventProcessor = require('../events/eventProcessor')
+                                  var events = JSON.parse(`${feedInfo[0].events}`)
+
+                                  events.forEach(event => {
+                                      msg.timestamp = feedInfo[0].time
+                                      eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
+                                          io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                          client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                          await saveToLake(msg)
+
+                                      }).catch(async (err) => {
+                                          io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                          client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                          await saveToLake(msg)
+                                      })
+                                  })
+                            } else {*/
+                                io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
+                                client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                saveToLake(msg)
+                            //}
+                        })
+
+                        //dataCamp.updateFeed(msg.user, msg.deviceId, msg.feed, msg.value)
+                    })
+                }
+
+            })
+        }
+    } else {
+        client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+    }
 }

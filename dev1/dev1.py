@@ -14,7 +14,7 @@ def on_dc(smthng):
 time.sleep(2)
 
 
-def resetTest():
+def resetTest(s):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
@@ -52,6 +52,6 @@ while True:
             "callback": ""
         }
     ])
-    IOTINE.DISCONNECT(resetTest)
+    #IOTINE.DISCONNECT(resetTest)
 
     time.sleep(2)

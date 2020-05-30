@@ -18,7 +18,7 @@ var http = require('https')
 var PORT = process.env.PORT || 3000;
 
 var server = http.createServer(options, app).listen(PORT, function () {
-    console.log('Mission ready '+PORT);
+    console.log('Server ready '+PORT);
 });
 
 var io = require('socket.io').listen(server);
@@ -127,6 +127,10 @@ app.get('*', function (req, res) {
     res.sendFile(__dirname + '/404.html');
 });
 
+app.get("/ink", (req, res) => {
+    res.sendFile(__dirname + '/ink/')
+})
+
 var rooms = [{
         name: "iub54i6bibu64",
         devices: []
@@ -185,6 +189,10 @@ io.on('connection', function (socket) {
     })
     socket.on('DEV_VERSION', (msg) => {
         dataController_Pub.publish("dev_version", JSON.stringify(msg));
+    })
+
+    socket.on('drawing', (msg) => {
+        io.to(msg.classID).emit("drawing", msg)
     })
 });
 

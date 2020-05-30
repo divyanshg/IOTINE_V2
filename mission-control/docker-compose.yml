@@ -4,7 +4,7 @@ services:
        build: .
        restart: always
        volumes: 
-          - .:.
+         - /var/www/IOTINE/IOTINE_V2/mission-control
        ports:
           - "30001-30005:3000"
 

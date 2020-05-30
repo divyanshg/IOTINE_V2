@@ -7,7 +7,7 @@ const fs = require('fs');
 const app = express();
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://192.168.31.72:27017/";
 
 const options = {
     key: fs.readFileSync('./private.key'),
@@ -152,11 +152,11 @@ app.get('/tabs/:userId/:appId', (req, res) => {
 
 app.get('/virtualDevice/:user/:name/:templ/:id', (req, res) => {
     var device = req.params;
-    if (!fs.existsSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`)) {
-        fs.mkdirSync(`/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/`);
+    if (!fs.existsSync(`/var/www/IOTINE/IOTINE_V2/Collector/certificates/${device.id}/`)) {
+        fs.mkdirSync(`/var/www/IOTINE/IOTINE_V2/Collector/certificates/${device.id}/`);
     }
 
-    fs.copyFile('/var/www/html/IOTINE_V2/key.pem', `/var/www/html/IOTINE_V2/Collector/certificates/${device.id}/key.pem`, (err) => {
+    fs.copyFile('/var/www/IOTINE/IOTINE_V2/key.pem', `/var/www/IOTINE/IOTINE_V2/Collector/certificates/${device.id}/key.pem`, (err) => {
         if (err) throw err;
 
         saveDevice(device.user, device.name, device.id, device.templ)

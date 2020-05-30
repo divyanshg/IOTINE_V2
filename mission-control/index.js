@@ -123,13 +123,15 @@ app.get('/defend/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/defend/index.html')
 })
 
+app.get("/ink", (req, res) => {
+    res.sendFile(__dirname + '/ink/index.html')
+})
+
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/404.html');
 });
 
-app.get("/ink", (req, res) => {
-    res.sendFile(__dirname + '/ink/')
-})
+
 
 var rooms = [{
         name: "iub54i6bibu64",

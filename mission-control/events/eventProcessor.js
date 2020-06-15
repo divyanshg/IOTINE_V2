@@ -31,8 +31,7 @@ exports.processEvent = (uModule, inputs) => {
         }
     })
 
-}
-/*
+}/*
 function saveEventSuccessLog(user, event, msg) {
     if(count >= 10) return
     count += 1;

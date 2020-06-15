@@ -19,9 +19,7 @@ app.post('/authority/verify/:token/:dev', (req, res) => {
 
     jwt.verify(token, fs.readFileSync('/var/www/IOTINE/IOTINE_V2/Collector/certificates/' + req.params.dev + '/key.pem'), (err, authData) => {
 
-        if (err) res.json({
-            status: 403
-        })
+        if (err) return res.json({status: 403})
 
         res.json({
             status: 200

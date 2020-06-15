@@ -1,3 +1,5 @@
+var token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjp7InNlbnQiOiJzZW50X2Zyb21fSU9USU5FIn0sImlhdCI6MTU5MTI5MTg5NX0.tboASeYWxX7eb4o0t82IhkbWYIb_cxrz8MNMeqPi1Xg";
+
 function toggleDis(elm) {
     var elm = document.querySelector(elm);
     if (elm.style.display == "none") {
@@ -155,6 +157,10 @@ async function loadPROPS(dev) {
         }
     };
     xhttp.open("GET", "https://iotine.zapto.org/app/devProps/" + user + "/" + devID, true);
+
+
+    xhttp.setRequestHeader("Authorization", token)
+
     await xhttp.send();
     $(".devPROPERTIES").toggle()
 
@@ -189,6 +195,9 @@ async function loadFeeds(dev) {
         }
     };
     xhttp.open("GET", "https://iotine.zapto.org/app/feeds/" + user + "/" + dev, true);
+
+    xhttp.setRequestHeader("Authorization", token)
+
     await xhttp.send();
 }
 
@@ -210,6 +219,7 @@ async function histloadFeeds(elm) {
         }
     };
     xhttp.open("GET", "https://iotine.zapto.org/app/feeds/" + user + "/" + dev, true);
+    xhttp.setRequestHeader("Authorization", token)
     await xhttp.send();
 }
 
@@ -699,7 +709,9 @@ async function getUser() {
             createTabs()
         }
     };
+
     xhttp.open("GET", "https://iotine.zapto.org/app/user/" + username, true);
+    xhttp.setRequestHeader("Authorization", token)
     await xhttp.send();
 }
 
@@ -754,6 +766,7 @@ async function getDevices() {
         }
     };
     xhttp.open("GET", "https://iotine.zapto.org/app/devices/" + user, true);
+    xhttp.setRequestHeader("Authorization", token)
     await xhttp.send();
 }
 
@@ -768,6 +781,7 @@ function getTabs() {
             }
         };
         xhttp.open("GET", "https://iotine.zapto.org/app/tabs/" + user + "/" + app, true);
+        xhttp.setRequestHeader("Authorization", token)
         xhttp.send();
     })
 }
@@ -976,7 +990,6 @@ async function createWidget() {
             }
             //wids.push(wids)
 
-            console.log(widgets)
             widgets.forEach(widget => {
                 var widgetBdy = document.createElement('div')
                 var head = document.createElement('h4');
@@ -1023,7 +1036,9 @@ async function createWidget() {
             })
         }
     };
+    
     xhttp.open("GET", "https://iotine.zapto.org/app/widgets/" + user + "/" + app, true);
+    xhttp.setRequestHeader("Authorization", token)
     await xhttp.send();
 }
 
@@ -1259,6 +1274,7 @@ async function updateDeviceStatus() {
         }
     };
     xhttp.open("GET", "https://iotine.zapto.org/app/deviceState/" + user, true);
+    xhttp.setRequestHeader("Authorization", token)
     await xhttp.send()
 }
 

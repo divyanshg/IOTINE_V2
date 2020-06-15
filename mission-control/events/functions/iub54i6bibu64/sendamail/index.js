@@ -2,7 +2,7 @@
 
 
 var nodemailer = require('nodemailer');
-
+const axios = require('axios')
 const io = require("socket.io-client");
 const sockClient = io.connect("https://iotine.zapto.org", {
     secure: true,
@@ -15,15 +15,23 @@ exports.handler = async (event) => {
     var payload = event.value
     var mtime = event.timestamp;
 
-    sockClient.emit('publish', {
-        user: event.user,
-        deviceId: '_wlPFr8mNWRFZcUgbxbK08Oh79uCBcu',
-        feed: 'cooler_stat',
-        value: String(event.value),
-        time: new Date().toLocaleTimeString()
-    })
+    //axios.get('http://192.168.31.72:5678/api').then(response => {
+        /*sockClient.emit('publish', {
+            user: event.user,
+            deviceId: '_wlPFr8',
+            feed: 'CORE_TEMP',
+            value: String(event.value),
+            time: new Date().toLocaleTimeString(),
+            from:"evente"
+        })*/
+        //console.log(response.data)
+    //}).catch(err => {
+        //console.log(err)
+    //})
+    
+    console.log(JSON.parse(payload))
 
-    sendMail(payload, mtime)
+    //sendMail(payload, mtime)
 }
 
 function sendMail(payload, mtime) {

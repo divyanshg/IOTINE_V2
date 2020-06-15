@@ -477,12 +477,30 @@ body {
   background-color: white;
 }
 
-.whiteboard {
+.whiteboard, .storeboard {
   width: 100%;
   cursor: crosshair;
   margin-left: -5px;
 }
 
+.whiteboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 0;
+  background-color: transparent;
+}
+
+.storeboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: -2;
+}
 .colors {
   position: relative;
   display: flex;
@@ -711,4 +729,9 @@ body {
   height: 24px;
   width: 24px;
   margin: 10px;
+}
+
+.toolActive{
+  border-color:#2d81f7;
+  color:#2d81f7;
 }

@@ -39,9 +39,11 @@ var authenticate = function (client, username, passwd, callback) {
             if (response.data.status == 200) {
                 var authorized = true
                 callback(null, authorized);
-            } else {
+            } else if(response.data.status == 403){
                 var authorized = false;
                 callback(null, authorized)
+            }else{
+                return
             }
 
         }).catch(err => {

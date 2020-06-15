@@ -37,7 +37,7 @@ MongoClient.connect(url, {
 
 app.get('/login', (req, res) => {
     const token = jwt.sign({
-        message
+        msg: "test"
     }, options.key);
 
     res.json({

@@ -1,4 +1,4 @@
-var token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjp7InNlbnQiOiJzZW50X2Zyb21fSU9USU5FIn0sImlhdCI6MTU5MTI5MTg5NX0.tboASeYWxX7eb4o0t82IhkbWYIb_cxrz8MNMeqPi1Xg";
+var token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc2ciOiJ0ZXN0IiwiaWF0IjoxNTkyMjMyNjg5fQ._uXDhlT4UjOZRZ3yl941NCZ1JwFzQGCosjKeFlpJWko";
 
 function toggleDis(elm) {
     var elm = document.querySelector(elm);
@@ -418,7 +418,7 @@ var deviceActions = new River({
             sideBar.toggleDevices()
             $("#dTemplate").html('<option id="null_temp" value="">Select Template</option><option v-on:click="addTemplate" value="CNT"><a href="#" style="color:blue;">+ Create new template</a></option>')
             newdevice.getTemplates();
-            newdevice.connstring = "_"+makeid(32)
+            newdevice.connstring = "_" + makeid(32)
             document.querySelector("#Deviceurl").value = newdevice.connstring
             $('.mainBackDrop').toggle()
             $(".newDeviceModal").toggle()
@@ -1036,7 +1036,7 @@ async function createWidget() {
             })
         }
     };
-    
+
     xhttp.open("GET", "https://iotine.zapto.org/app/widgets/" + user + "/" + app, true);
     xhttp.setRequestHeader("Authorization", token)
     await xhttp.send();
@@ -1171,29 +1171,50 @@ function updateLog(id, msg, feed) {
     logCont.innerHTML += msg.time + " : Message Recieved " + msg.value + "\n"
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
+
+var images = [
+    {
+        "id":"something",
+        "imgByte":""
+    }
+]
+var finalvalue;
 socket.on('subscribe', (feed, msg, unit) => {
     if (unit != "DIRS") {
         feeds.forEach(mfeed => {
-            if (mfeed == feed + "-" + msg.deviceId) {
+                if (unit == "IMG") {
+                    
 
-                updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
-                updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
-                var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
-                var latestData = chart.previousSibling
-                latestData.innerHTML = msg.value + " " + unit
-                var ctx = chart.getContext("2d")
-                updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
+                    picId = msg.value.split("^")[0]
 
-                var range = document.querySelector(".range-" + feed + "-" + msg.deviceId) ||
-                    false
-                if (!range) return
-                var latestData = range.previousSibling
-                latestData.innerHTML = msg.value + " " + unit
-                updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
-            } else {
-                return
-            }
-        })
+                    bytePos = msg.value.split("^")[1]
+                    mainByte = msg.value.split("^")[2].slice(1).slice(2).substring(0, msg.value.split("^")[2].length-1);
+
+                    //images.push({"id":picId, "imgByte": ""})
+                    finalvalue += mainByte
+                    console.log(finalvalue)
+                } else {
+                    if (mfeed == feed + "-" + msg.deviceId) {
+
+                        updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
+                        updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
+                        var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
+                        var latestData = chart.previousSibling
+                        latestData.innerHTML = msg.value + " " + unit
+                        var ctx = chart.getContext("2d")
+                        updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
+
+                        var range = document.querySelector(".range-" + feed + "-" + msg.deviceId) ||
+                            false
+                        if (!range) return
+                        var latestData = range.previousSibling
+                        latestData.innerHTML = msg.value + " " + unit
+                        updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
+                    } else {
+                        return
+                    }
+                }
+                })
     }
 });
 

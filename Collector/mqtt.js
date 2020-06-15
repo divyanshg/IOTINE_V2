@@ -106,7 +106,7 @@ server.on('published', (packet) => {
 
             if (response.data.status != 200) return
 
-            var message = content.value.split("/")[0].toString()
+            var message = content.value.toString()
             var topic = content.topic.split("/")
 
             if (topic[2] != "NON") {
@@ -123,9 +123,10 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
-                        unit: content.value.split("/")[1].toString(),
+                        unit: content.unit.toString(),
                         time: new Date().toLocaleTimeString()
                     })
+                    console.log(content.unit.toString())
                 } else {
                     dataCamp.collection("devices").updateOne({"deviceID": topic[0]}, { $set: {"Status": "ONLINE"} }, (err, res) => {
                         if (err) throw err;
@@ -137,9 +138,10 @@ server.on('published', (packet) => {
                         deviceId: topic[0],
                         feed: topic[1],
                         value: message,
-                        unit: content.value.split("/")[1].toString(),
+                        unit: content.unit.toString(),
                         time: new Date().toLocaleTimeString()
                     })
+                    console.log(content.unit.toString())
                 }
 
                 //dataCamp.updateFeed('iub54i6bibu64', 'SkNCX1RSVUNLXzAxYWFk', 'retg54', message)

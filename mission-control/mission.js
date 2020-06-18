@@ -785,6 +785,22 @@ function getTabs() {
         xhttp.send();
     })
 }
+
+function loadImage(link) {
+    return new Promise((resolve, reject) => {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                resolve(JSON.parse(xhttp.responseText))
+            }
+        };
+        xhttp.open("GET", link, true);
+        xhttp.setRequestHeader("Authorization", token)
+        xhttp.send();
+    })
+}
+
 /*
 var widgets = [{
     name:"Fake Live",
@@ -1172,42 +1188,48 @@ function updateLog(id, msg, feed) {
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
 
-var images = [
-    {
-        "id":"something",
-        "imgByte":""
-    }
-]
-var finalvalue;
+
 socket.on('subscribe', (feed, msg, unit) => {
     if (unit != "DIRS") {
         feeds.forEach(mfeed => {
-                if (unit == "IMG") {
-            
-                    console.log("IMG - ",msg)
-            
-                } else {
-                    if (mfeed == feed + "-" + msg.deviceId) {
+            if (unit == "IMG") {
 
-                        updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
-                        updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
-                        var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
-                        var latestData = chart.previousSibling
-                        latestData.innerHTML = msg.value + " " + unit
-                        var ctx = chart.getContext("2d")
-                        updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
+                loadImage(msg).then(encodedImage => {
+                    try {
+                        encodedImage = encodedImage.image.replace("undefined", "")
 
-                        var range = document.querySelector(".range-" + feed + "-" + msg.deviceId) ||
-                            false
-                        if (!range) return
-                        var latestData = range.previousSibling
-                        latestData.innerHTML = msg.value + " " + unit
-                        updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
-                    } else {
-                        return
+                        var image = document.querySelector(".testImager");
+                        image.src = `data:image/png;base64,${encodedImage}`;
+                    } catch (e) {
+                        return e
                     }
-                }
+
+                }).catch(err => {
+                    console.log(err)
                 })
+
+            } else {
+                if (mfeed == feed + "-" + msg.deviceId) {
+
+                    updateButton("btn-" + feed + "-" + msg.deviceId, msg, feed)
+                    updateLog(".log-" + feed + "-" + msg.deviceId, msg, feed)
+                    var chart = document.querySelector(".chart-" + feed + "-" + msg.deviceId)
+                    var latestData = chart.previousSibling
+                    latestData.innerHTML = msg.value + " " + unit
+                    var ctx = chart.getContext("2d")
+                    updateChart("chart-" + feed + "-" + msg.deviceId, ctx, msg, feed)
+
+                    var range = document.querySelector(".range-" + feed + "-" + msg.deviceId) ||
+                        false
+                    if (!range) return
+                    var latestData = range.previousSibling
+                    latestData.innerHTML = msg.value + " " + unit
+                    updateRange(".range-" + feed + "-" + msg.deviceId, msg.value, feed)
+                } else {
+                    return
+                }
+            }
+        })
     }
 });
 

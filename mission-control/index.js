@@ -222,10 +222,11 @@ var handleDevVersion = (msg) => {
 var handleDevStat = () => {
     return
 }
-
+var chunckCount = 0;
 var handlePublish = (msg) => {
     if (msg.feed.split("/")[0] != "$SYS") {
         if (msg.unit == "IMG" || msg.unit == "img") {
+            
             var recievedByte = JSON.parse(msg.value);
 
             var imgID = recievedByte.imgID
@@ -243,8 +244,13 @@ var handlePublish = (msg) => {
             }, (err, res) => {
                 if (err) return err
             });
-
-            io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/imgStore/${userID}/${imgID}`, msg.unit)
+            chunckCount += 1;
+            if(chunckCount >= recievedByte.totalBytes){
+                
+                io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`, msg.unit)
+                chunckCount = 0;
+            
+            }
 
             return
         } else if (msg.feed == "FSYS") {

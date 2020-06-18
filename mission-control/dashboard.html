@@ -16,6 +16,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
     <style>
+        .testImager {
+            max-height: 165px;
+            width: 366px;
+            z-index: 100;
+            position: fixed;
+            margin-top: 10px;
+            margin-left: 2px;
+            border-radius: 5px;
+            min-height: 165px !important;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
         .no-js #loader {
             display: none;
         }
@@ -236,8 +249,7 @@
                     </div>
                     <div class="controls">
                         <div class="commands">
-                            <button
-                                onclick="window.location.replace('/builder'+window.location.pathname)"><i
+                            <button onclick="window.location.replace('/builder'+window.location.pathname)"><i
                                     class="material-icons">edit</i></button>
                             <button onclick="toggleDis('#dash_settings');this.style.transform = 'rotate(80deg)';"><i
                                     class="material-icons">settings</i></button>
@@ -526,6 +538,7 @@
                 HISTORICAL</li>
         </ul>
     </div>
+    <img src="" class="testImager" style="height:200px;width:400px;z-index:100;position: fixed;" alt="">
 </body>
 
 
@@ -561,7 +574,7 @@
         });
     }
 
-    function logOUT(){
+    function logOUT() {
         localStorage["currentLoggedInUser"] = '';
         window.location.reload()
     }

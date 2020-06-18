@@ -45,6 +45,40 @@ app.get('/login', (req, res) => {
     })
 })
 
+app.get('/imgStore/:user/:imgID', isAuthorized, (req, res) => {
+    jwt.verify(req.token, options.key, (err, data) => {
+        if(err) res.sendStatus(403)
+        dataCamp.collection("chuncked_images").find({userID: req.params.user, imgID: req.params.imgID}).toArray((err, bytes) => {
+            if(err) return err
+            
+            var arrange = (a,b) => {
+                const posA = parseInt(a.bytePos);
+                const posB = parseInt(b.bytePos);
+
+                let comparison = 0;
+
+                if(posA > posB) {
+                    comparison = 1;
+                }else if( posA < posB){
+                    comparison = -1;
+                }
+
+                return comparison;
+            }
+
+            bytes.sort(arrange)
+
+            var mergedByte;
+
+            bytes.forEach(byte => { mergedByte += byte.byte })
+
+            res.json({"image": mergedByte})
+
+            mergedByte = ''
+        })
+    })
+})
+
 app.get('/dashboards/:user', isAuthorized, (req, res) => {
     jwt.verify(req.token, options.key, (err, data) => {
         if(err) res.sendStatus(403)

@@ -18,7 +18,7 @@ var http = require('https')
 var PORT = process.env.PORT || 3000;
 
 var server = http.createServer(options, app).listen(PORT, function () {
-    console.log('Server ready '+PORT);
+    console.log('Server ready ' + PORT);
 });
 
 var io = require('socket.io').listen(server);
@@ -26,15 +26,15 @@ var mqtt = require('mqtt')
 var redis = require("redis");
 
 var dataController_Pub = redis.createClient({
-    host : '192.168.31.72',  
+    host: '192.168.31.72',
     no_ready_check: true,
-    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",                                                                                                                                                           
+    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",
 });
 
 var dataController_Sub = redis.createClient({
-    host : '192.168.31.72',  
+    host: '192.168.31.72',
     no_ready_check: true,
-    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",                                                                                                                                                           
+    auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",
 });
 
 var dataCamp;
@@ -148,11 +148,11 @@ var rooms = [{
 ]
 
 dataController_Sub.on("message", (topic, msg) => {
-    if(topic == "publish"){
+    if (topic == "publish") {
         handlePublish(JSON.parse(msg))
-    }else if(topic == "devStat"){
+    } else if (topic == "devStat") {
         handleDevStat()
-    }else if(topic == "dev_version"){
+    } else if (topic == "dev_version") {
         handleDevVersion(JSON.parse(msg))
     }
 })
@@ -225,7 +225,29 @@ var handleDevStat = () => {
 
 var handlePublish = (msg) => {
     if (msg.feed.split("/")[0] != "$SYS") {
-        if (msg.feed == "FSYS") {
+        if (msg.unit == "IMG" || msg.unit == "img") {
+            var recievedByte = JSON.parse(msg.value);
+
+            var imgID = recievedByte.imgID
+            var userID = msg.user
+            var bytePos = recievedByte.bytePos
+
+            var byte = recievedByte.byte.slice(1).slice(1)
+            byte = byte.substring(0, byte.length-1);
+            
+            dataCamp.collection("chuncked_images").insertOne({
+                imgID,
+                userID,
+                bytePos,
+                byte
+            }, (err, res) => {
+                if (err) return err
+            });
+
+            io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/imgStore/${userID}/${imgID}`, msg.unit)
+
+            return
+        } else if (msg.feed == "FSYS") {
             io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             saveToLake(msg)
         } else {
@@ -266,27 +288,27 @@ var handlePublish = (msg) => {
                             if (err) return err
 
                             //Checking and running the events processing
-                            if(typeof feedInfo[0].events !== 'undefined') {
+                            if (typeof feedInfo[0].events !== 'undefined') {
 
                                 Object.keys(require.cache).forEach(function (key) {
-                                      delete require.cache[key]
-                                  })
-                                  var eventProcessor = require('./events/eventProcessor')
-                                  var events = feedInfo[0].events
+                                    delete require.cache[key]
+                                })
+                                var eventProcessor = require('./events/eventProcessor')
+                                var events = feedInfo[0].events
 
-                                  events.forEach(event => {
-                                      msg.timestamp = feedInfo[0].time
-                                      eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
-                                          io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                          client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                          await saveToLake(msg)
+                                events.forEach(event => {
+                                    msg.timestamp = feedInfo[0].time
+                                    eventProcessor.processEvent(`${msg.user}/${event}`, msg).then(async response => {
+                                        io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                        client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                        await saveToLake(msg)
 
-                                      }).catch(async (err) => {
-                                          io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
-                                          client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
-                                          await saveToLake(msg)
-                                      })
-                                  })
+                                    }).catch(async (err) => {
+                                        io.to(msg.user).emit('subscribe', msg.feed, msg, String(feedInfo[0].unit))
+                                        client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)
+                                        await saveToLake(msg)
+                                    })
+                                })
                             } else {
                                 io.to(msg.user).emit('subscribe', msg.feed, msg, feedInfo[0].unit)
                                 client.publish(msg.deviceId + "/" + msg.feed + "/NON", msg.value)

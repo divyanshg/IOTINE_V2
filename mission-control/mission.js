@@ -1183,22 +1183,9 @@ socket.on('subscribe', (feed, msg, unit) => {
     if (unit != "DIRS") {
         feeds.forEach(mfeed => {
                 if (unit == "IMG") {
-                    
-
-                    picId = msg.value.split("^")[0]
-
-                    bytePos = msg.value.split("^")[1]
-
-                    if(bytePos == "1" || bytePos == 1){
-                        mainByte = msg.value.split("^")[2].slice(1).slice(2)
-                        mainByte = mainByte.substring(0, mainByte.length-1);
-                    }else{
-                        mainByte = msg.value.split("^")[2]
-                    }
-
-                    //images.push({"id":picId, "imgByte": ""})
-                    finalvalue += mainByte
-                    console.log(finalvalue)
+            
+                    console.log("IMG - ",msg)
+            
                 } else {
                     if (mfeed == feed + "-" + msg.deviceId) {
 

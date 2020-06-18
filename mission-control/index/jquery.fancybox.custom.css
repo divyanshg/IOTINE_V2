@@ -1,0 +1,18 @@
+.fancybox-wrap {
+	z-index: 99999 !important;
+}
+
+.fancybox-opened {
+	z-index: 999999 !important;
+}
+
+/* Overlay helper */
+.fancybox-overlay,
+#fancybox-overlay {
+	z-index: 99999 !important;
+}
+
+.mobile-mode.preview .fancybox-overlay {
+	width: 320px !important;
+	overflow: hidden !important;
+}

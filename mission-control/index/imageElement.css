@@ -1,0 +1,1080 @@
+.image-element .image-wrapper{
+	border-radius: inherit;
+	-webkit-border-radius: inherit;
+	-moz-border-radius: inherit;
+	zoom: 1;
+	
+	/* this fixes the overflow:hidden in Chrome */
+	/*-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);*/
+}
+.image-element .image-wrapper.scrollTo, .image-element .image-wrapper.scrollTo img,
+.image-element .image-wrapper.anchorLinkTo, .image-element .image-wrapper.anchorLinkTo img{
+	cursor: pointer;
+}
+.image-element img{
+	margin: 0;
+	padding: 0;
+}
+.image-element figure {
+	position: relative;
+	z-index: 0;
+  	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	zoom: 1;
+}
+.image-element figure div.img{
+	position: relative;
+  	overflow: hidden;
+	width: 100%;
+  	height: 100%;
+  	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+ 	-o-transition: 500ms;
+  	transition: 500ms;
+}
+.image-element figure figcaption {
+  	position: absolute;
+	z-index: 0;
+	width: 100%;
+  	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+	word-wrap: break-word;
+}
+.image-element figure figcaption .title, .image-element figure figcaption .caption{
+	display: block;
+}
+.image-element figure figcaption div,
+.image-element figure figcaption a span.caption-wrapper{
+	display: block;
+	margin: 10px 15px 0;
+	text-align: left;
+	border: 1px solid transparent;
+}
+.image-element a, .image-element a img{
+	cursor: pointer;
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element figure figcaption a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	background: none;
+	padding: 0;
+	zoom: 1;
+}
+.image-element.noHover figure *{
+	-webkit-transform: none !important;
+	-ms-transform: none !important;
+	-moz-transform: none !important;
+	-o-transform: none !important;
+	transform: none !important;
+	-webkit-transition: none !important;
+	-ms-transition: none !important;
+	-moz-transition: none !important;
+  	-o-transition: none !important;
+  	transition: none !important;
+	-webkit-transition-delay: none !important;
+	-ms-transition-delay: none !important;
+   	-moz-transition-delay: none !important;
+   	-o-transition-delay: none !important;
+   	transition-delay: none !important;
+}
+.image-element.noHover figure div.img{
+	filter: alpha(opacity=100) !important;
+	opacity: 1 !important;
+}
+.image-element.noHover figure figcaption, .image-element.noHover:hover figure figcaption{
+	filter: alpha(opacity=0) !important;
+	opacity: 0 !important;
+}
+
+.image-element figure.static-bottom figcaption *,.image-element figure.static-top figcaption *,
+.image-element figure.static-left figcaption *, .image-element figure.static-right figcaption *{
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+ 	-o-transition: none;
+  	transition: none;
+}
+.image-element figure.static-bottom figcaption, .image-element figure.static-top figcaption,
+.image-element figure.static-left figcaption, .image-element figure.static-right figcaption{
+	filter: alpha(opacity=100);
+	opacity: 1;
+	z-index: 0;
+}
+.image-element figure.static-bottom figcaption, .image-element figure.static-top figcaption {
+  	min-height: 90px;
+	height: 25%;
+	left: 0;
+}
+.image-element figure.static-bottom figcaption{
+	bottom: 0;
+}
+.image-element figure.static-top figcaption{
+	top: 0;
+}
+.image-element figure.static-left figcaption, .image-element figure.static-right figcaption {
+  	min-width: 90px;
+	width: 40%;
+	height: 100%;
+	top: 0;
+}
+.image-element figure.static-left figcaption{
+	left: 0;
+}
+.image-element figure.static-right figcaption{
+	right: 0;
+}
+
+.image-element figure.cover-fade figcaption {
+	filter: alpha(opacity=0);
+  	opacity: 0;
+	top: 0;
+  	left: 0;
+	height: 100%;
+	z-index: 0;
+}
+.image-element:hover figure.cover-fade figcaption,.image-element.hover figure.cover-fade figcaption {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.image-element figure.cover-push-left figcaption, .image-element figure.cover-push-right figcaption,
+.image-element figure.cover-push-up figcaption, .image-element figure.cover-push-down figcaption{
+	height: 100%;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.cover-push-up figcaption {
+	left: 0;
+	bottom: 0;
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+}
+.image-element figure.cover-push-down figcaption {
+	left: 0;
+	top: 0;
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+.image-element figure.cover-push-left figcaption {
+	top: 0;
+	right: 0;
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-o-transform: translateX(100%);
+	transform: translateX(100%);
+}
+.image-element figure.cover-push-right figcaption {
+	top: 0;
+	left: 0;
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+.image-element figure.cover-push-left div.img, .image-element figure.cover-push-right div.img,
+.image-element figure.cover-push-up div.img, .image-element figure.cover-push-down div.img {
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+	-o-transition: 500ms;
+	transition: 500ms;
+}
+.image-element figure.cover-push-left div.img, .image-element figure.cover-push-right div.img{
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+}
+.image-element figure.cover-push-up div.img, .image-element figure.cover-push-down div.img{
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+}
+.image-element:hover figure.cover-push-left figcaption, .image-element.hover figure.cover-push-left figcaption,
+.image-element:hover figure.cover-push-right figcaption, .image-element.hover figure.cover-push-right figcaption {
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.cover-push-up figcaption, .image-element.hover figure.cover-push-up figcaption,
+.image-element:hover figure.cover-push-down figcaption, .image-element.hover figure.cover-push-down figcaption {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.cover-push-left div.img, .image-element.hover figure.cover-push-left div.img {
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+.image-element:hover figure.cover-push-right div.img, .image-element.hover figure.cover-push-right div.img {
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-o-transform: translateX(100%);
+	transform: translateX(100%);
+}
+.image-element:hover figure.cover-push-up div.img, .image-element.hover figure.cover-push-up div.img {
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+.image-element:hover figure.cover-push-down div.img, .image-element.hover figure.cover-push-down div.img {
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+.image-element figure.cover-slide-up figcaption, .image-element figure.cover-slide-down figcaption,
+.image-element figure.cover-slide-left figcaption, .image-element figure.cover-slide-right figcaption{
+	left: 0;
+	height: 100%;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.cover-slide-up figcaption {
+	bottom: 0;
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+}
+.image-element figure.cover-slide-down figcaption {
+	top: 0;
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+.image-element figure.cover-slide-left figcaption {
+	top: 0;
+	right: 0;
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-o-transform: translateX(100%);
+	transform: translateX(100%);
+}
+.image-element figure.cover-slide-right figcaption {
+	top: 0;
+	left: 0;
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+.image-element figure.cover-slide-up div.img, .image-element figure.cover-slide-down div.img,
+.image-element figure.cover-slide-left div.img, .image-element figure.cover-slide-right div.img {
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+	-o-transition: 500ms;
+	transition: 500ms;
+}
+.image-element:hover figure.cover-slide-up figcaption, .image-element.hover figure.cover-slide-up figcaption,
+.image-element:hover figure.cover-slide-down figcaption, .image-element.hover figure.cover-slide-down figcaption{
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.cover-slide-left figcaption, .image-element.hover figure.cover-slide-left figcaption,
+.image-element:hover figure.cover-slide-right figcaption, .image-element.hover figure.cover-slide-right figcaption{
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.image-element figure.top-quarter-fade figcaption, .image-element figure.bottom-quarter-fade figcaption,
+.image-element figure.quarter-slide-left figcaption, .image-element figure.quarter-slide-right figcaption,
+.image-element figure.quarter-slide-down figcaption, .image-element figure.quarter-slide-up figcaption,
+.image-element figure.quarter-fall-left figcaption, .image-element figure.quarter-fall-right figcaption{
+	min-height: 90px;
+	height: 25%;
+}
+
+.image-element figure.top-quarter-fade figcaption, .image-element figure.bottom-quarter-fade figcaption,
+.image-element figure.left-quarter-fade figcaption, .image-element figure.right-quarter-fade figcaption {
+	filter: alpha(opacity=0);
+	opacity: 0;
+	z-index: 0;
+}
+.image-element figure.top-quarter-fade figcaption{
+	left: 0;
+	top: 0;
+}
+.image-element figure.bottom-quarter-fade figcaption {
+	left: 0;
+	bottom: 0;
+}
+.image-element figure.left-quarter-fade figcaption, .image-element figure.right-quarter-fade figcaption{
+	top: 0;
+	min-width: 90px;
+	width: 40%; 
+	height: 100%;
+}
+.image-element figure.left-quarter-fade figcaption{
+	left: 0;
+}
+.image-element figure.right-quarter-fade figcaption{
+	right: 0;
+}
+.image-element:hover figure.top-quarter-fade figcaption, .image-element.hover figure.top-quarter-fade figcaption,
+.image-element:hover figure.bottom-quarter-fade figcaption, .image-element.hover figure.bottom-quarter-fade figcaption,
+.image-element:hover figure.left-quarter-fade figcaption, .image-element.hover figure.left-quarter-fade figcaption,
+.image-element:hover figure.right-quarter-fade figcaption, .image-element.hover figure.right-quarter-fade figcaption{
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.image-element figure.quarter-slide-down figcaption, .image-element figure.quarter-slide-up figcaption{
+	left: 0;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.quarter-slide-down figcaption {
+	top: 0;
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-o-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+.image-element figure.quarter-slide-up figcaption {
+	bottom: 0;
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+}
+.image-element:hover figure.quarter-slide-down figcaption, .image-element.hover figure.quarter-slide-down figcaption,
+.image-element:hover figure.quarter-slide-up figcaption, .image-element.hover figure.quarter-slide-up figcaption{
+	filter: alpha(opacity=100);
+	opacity: 1;
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.image-element figure.quarter-slide-left figcaption, .image-element figure.quarter-slide-right figcaption{
+	bottom: 0;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.quarter-slide-left figcaption {
+	left: 0;
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-o-transform: translateX(100%);
+	transform: translateX(100%);
+}
+.image-element figure.quarter-slide-right figcaption {
+	right: 0;
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	transform: translateX(-100%);
+}
+.image-element:hover figure.quarter-slide-left figcaption, .image-element.hover figure.quarter-slide-left figcaption,
+.image-element:hover figure.quarter-slide-right figcaption, .image-element.hover figure.quarter-slide-right figcaption{
+	filter: alpha(opacity=100);
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+}
+
+.image-element figure.quarter-fall-left figcaption, .image-element figure.quarter-fall-right figcaption{
+	top: 0;
+	left: 0;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.quarter-fall-left figcaption {
+	-webkit-transform: translateX(-100%) rotate(20deg);
+	-moz-transform: translateX(-100%) rotate(20deg);
+	-ms-transform: translateX(-100%) rotate(20deg);
+	-o-transform: translateX(-100%) rotate(20deg);
+	transform: translateX(-100%) rotate(20deg);
+}
+.image-element figure.quarter-fall-right figcaption {
+	-webkit-transform: translateX(100%) rotate(20deg);
+	-moz-transform: translateX(100%) rotate(20deg);
+	-ms-transform: translateX(100%) rotate(20deg);
+	-o-transform: translateX(100%) rotate(20deg);
+	transform: translateX(100%) rotate(20deg);
+}
+.image-element:hover figure.quarter-fall-left figcaption, .image-element.hover figure.quarter-fall-left figcaption,
+.image-element:hover figure.quarter-fall-right figcaption, .image-element.hover figure.quarter-fall-right figcaption{
+	-webkit-transform: translateX(0) rotate(0deg);
+	-moz-transform: translateX(0) rotate(0deg);
+	-ms-transform: translateX(0) rotate(0deg);
+	-o-transform: translateX(0) rotate(0deg);
+	transform: translateX(0) rotate(0deg);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.image-element figure.revolving-door-left, .image-element figure.revolving-door-right,
+.image-element figure.revolving-door-top, .image-element figure.revolving-door-bottom {
+	overflow: hidden;
+}
+.image-element figure.revolving-door-left figcaption,
+.image-element figure.revolving-door-right figcaption{
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: perspective(1300px) rotateY(180deg);
+	-moz-transform: perspective(1300px) rotateY(180deg);
+	-ms-transform: perspective(1300px) rotateY(180deg);
+	-o-transform: perspective(1300px) rotateY(180deg);
+	transform: perspective(1300px) rotateY(180deg);
+	-webkit-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.revolving-door-left div.img,
+.image-element figure.revolving-door-right div.img {
+	-webkit-transform: perspective(1300px);
+	-moz-transform: perspective(1300px);
+	-ms-transform: perspective(1300px);
+	-o-transform: perspective(1300px);
+	transform: perspective(1300px);
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+	-o-transition: 500ms;
+	transition: 500ms;
+}
+.image-element figure.revolving-door-top figcaption, .image-element figure.revolving-door-bottom figcaption{
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: perspective(1300px) rotateX(180deg);
+	-moz-transform: perspective(1300px) rotateX(180deg);
+	-ms-transform: perspective(1300px) rotateX(180deg);
+	-o-transform: perspective(1300px) rotateX(180deg);
+	transform: perspective(1300px) rotateX(180deg);
+	-webkit-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.image-element figure.revolving-door-top div.img, .image-element figure.revolving-door-bottom div.img {
+	-webkit-transform: perspective(1300px);
+	-moz-transform: perspective(1300px);
+  	-ms-transform: perspective(1300px);
+  	-o-transform: perspective(1300px);
+  	transform: perspective(1300px);
+  	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+  	-o-transition: 500ms;
+  	transition: 500ms;
+}
+.image-element figure.revolving-door-left figcaption,
+.image-element figure.revolving-door-bottom figcaption{
+	-webkit-transition: 700ms;
+	-moz-transition: 700ms;
+	-ms-transition: 800ms;
+  	-o-transition: 700ms;
+  	transition: 700ms;
+}
+.image-element:hover figure.revolving-door-left figcaption, .image-element.hover figure.revolving-door-left figcaption{
+	-webkit-transform: perspective(1300px) rotateY(-360deg);
+	-moz-transform: perspective(1300px) rotateY(-360deg);
+	-ms-transform: perspective(1300px) rotateY(-360deg);
+	-o-transform: perspective(1300px) rotateY(-360deg);
+	transform: perspective(1300px) rotateY(-360deg);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.revolving-door-left div.img, .image-element.hover figure.revolving-door-left div.img{
+	-webkit-transform: perspective(1300px) rotateY(-180deg);
+	-moz-transform: perspective(1300px) rotateY(-180deg);
+	-ms-transform: perspective(1300px) rotateY(-180deg);
+	-o-transform: perspective(1300px) rotateY(-180deg);
+	transform: perspective(1300px) rotateY(-180deg);
+}
+.image-element:hover figure.revolving-door-right figcaption, .image-element.hover figure.revolving-door-right figcaption{
+	-webkit-transform: perspective(1300px) rotateY(360deg);
+	-moz-transform: perspective(1300px) rotateY(360deg);
+	-ms-transform: perspective(1300px) rotateY(360deg);
+	-o-transform: perspective(1300px) rotateY(360deg);
+  	transform: perspective(1300px) rotateY(360deg);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.revolving-door-right div.img, .image-element.hover figure.revolving-door-right div.img{
+	-webkit-transform: perspective(1300px) rotateY(180deg);
+	-moz-transform: perspective(1300px) rotateY(180deg);
+	-ms-transform: perspective(1300px) rotateY(180deg);
+	-o-transform: perspective(1300px) rotateY(180deg);
+	transform: perspective(1300px) rotateY(180deg);
+}
+.image-element:hover figure.revolving-door-top figcaption, .image-element.hover figure.revolving-door-top figcaption{
+  	-webkit-transform: perspective(1300px) rotateX(360deg);
+	-moz-transform: perspective(1300px) rotateX(360deg);
+  	-ms-transform: perspective(1300px) rotateX(360deg);
+  	-o-transform: perspective(1300px) rotateX(360deg);
+  	transform: perspective(1300px) rotateX(360deg);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.revolving-door-top div.img, .image-element.hover figure.revolving-door-top div.img{
+	-webkit-transform: perspective(1300px) rotateX(180deg);
+	-moz-transform: perspective(1300px) rotateX(180deg);
+  	-ms-transform: perspective(1300px) rotateX(180deg);
+  	-o-transform: perspective(1300px) rotateX(180deg);
+  	transform: perspective(1300px) rotateX(180deg);
+}
+.image-element:hover figure.revolving-door-bottom figcaption, .image-element.hover figure.revolving-door-bottom figcaption{
+  	-webkit-transform: perspective(1300px) rotateX(-360deg);
+	-moz-transform: perspective(1300px) rotateX(-360deg);
+  	-ms-transform: perspective(1300px) rotateX(-360deg);
+  	-o-transform: perspective(1300px) rotateX(-360deg);
+  	transform: perspective(1300px) rotateX(-360deg);
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.image-element:hover figure.revolving-door-bottom div.img, .image-element.hover figure.revolving-door-bottom div.img{
+  	-webkit-transform: perspective(1300px) rotateX(-180deg);
+	-moz-transform: perspective(1300px) rotateX(-180deg);
+  	-ms-transform: perspective(1300px) rotateX(-180deg);
+  	-o-transform: perspective(1300px) rotateX(-180deg);
+  	transform: perspective(1300px) rotateX(-180deg);
+}
+
+.image-element figure.bounce figcaption {
+   top: -100%;
+   width: 100%;
+   height: 100%;
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: 0.3s;
+   -moz-transition: 0.3s;
+   -o-transition: 0.3s;
+   -ms-transition: 0.3s;
+   transition: 0.3s;
+}
+.image-element figure.bounce figcaption div, .image-element figure.bounce figcaption span.caption-wrapper{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 25%;
+    margin: auto;
+}
+.image-element figure.bounce figcaption .title {
+   -webkit-transform: translateY(-100%);
+   -moz-transform: translateY(-100%);
+   -o-transform: translateY(-100%);
+   -ms-transform: translateY(-100%);
+   transform: translateY(-100%);
+   -webkit-transition: 0.3s;
+   -moz-transition: 0.3s;
+   -o-transition: 0.3s;
+   -ms-transition: 0.3s;
+   transition: 0.3s;
+   text-align: center;
+}
+.image-element figure.bounce figcaption .caption {
+   -webkit-transform: translateY(-200%);
+   -moz-transform: translateY(-200%);
+   -o-transform: translateY(-200%);
+   -ms-transform: translateY(-200%);
+   transform: translateY(-200%);
+   -webkit-transition: 0.3s;
+   -moz-transition: 0.3s;
+   -o-transition: 0.3s;
+   -ms-transition: 0.3s;
+   transition: 0.3s;
+   text-align: center;
+}
+.image-element:hover figure.bounce figcaption, .image-element.hover figure.bounce figcaption{
+   filter: alpha(opacity=100);
+   opacity: 1;
+   top: 0px;
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
+   -webkit-animation: bounceY 0.9s linear;
+   -moz-animation: bounceY 0.9s linear;
+   -ms-animation: bounceY 0.9s linear;
+   animation: bounceY 0.9s linear;
+}
+.image-element:hover figure.bounce figcaption .title, .image-element.hover figure.bounce figcaption .title{
+   -webkit-transform: translateY(0px);
+   -moz-transform: translateY(0px);
+   -o-transform: translateY(0px);
+   -ms-transform: translateY(0px);
+   transform: translateY(0px);
+   -webkit-transition-delay: 0.4s;
+   -moz-transition-delay: 0.4s;
+   -o-transition-delay: 0.4s;
+   -ms-transition-delay: 0.4s;
+   transition-delay: 0.4s;
+}
+.image-element:hover figure.bounce figcaption .caption, .image-element.hover figure.bounce figcaption .caption{
+   -webkit-transform: translateY(0px);
+   -moz-transform: translateY(0px);
+   -o-transform: translateY(0px);
+   -ms-transform: translateY(0px);
+   transform: translateY(0px);
+   -webkit-transition-delay: 0.2s;
+   -moz-transition-delay: 0.2s;
+   -o-transition-delay: 0.2s;
+   -ms-transition-delay: 0.2s;
+   transition-delay: 0.2s;
+}
+@keyframes bounceY {
+    0% { transform: translateY(-205px);}
+    40% { transform: translateY(-100px);}
+    65% { transform: translateY(-52px);}
+    82% { transform: translateY(-25px);}
+    92% { transform: translateY(-12px);}
+    55%, 75%, 87%, 97%, 100% { transform: translateY(0px);}
+}
+@-moz-keyframes bounceY {
+    0% { -moz-transform: translateY(-205px);}
+    40% { -moz-transform: translateY(-100px);}
+    65% { -moz-transform: translateY(-52px);}
+    82% { -moz-transform: translateY(-25px);}
+    92% { -moz-transform: translateY(-12px);}
+    55%, 75%, 87%, 97%, 100% { -moz-transform: translateY(0px);}
+}
+@-webkit-keyframes bounceY {
+    0% { -webkit-transform: translateY(-205px);}
+    40% { -webkit-transform: translateY(-100px);}
+    65% { -webkit-transform: translateY(-52px);}
+    82% { -webkit-transform: translateY(-25px);}
+    92% { -webkit-transform: translateY(-12px);}
+    55%, 75%, 87%, 97%, 100% { -webkit-transform: translateY(0px);}
+}
+
+
+.image-element figure.text-zoom div.img {
+   -webkit-transition: all 0.4s ease-in-out 0.5s;
+   -moz-transition: all 0.4s ease-in-out 0.5s;
+   -o-transition: all 0.4s ease-in-out 0.5s;
+   -ms-transition: all 0.4s ease-in-out 0.5s;
+   transition: all 0.4s ease-in-out 0.5s;
+}
+.image-element figure.text-zoom figcaption{
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.3s ease-in 0.4s;
+   -moz-transition: all 0.3s ease-in 0.4s;
+   -o-transition: all 0.3s ease-in 0.4s;
+   -ms-transition: all 0.3s ease-in 0.4s;
+   transition: all 0.3s ease-in 0.4s;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+}
+.image-element figure.text-zoom figcaption div, .image-element figure.text-zoom figcaption span.caption-wrapper{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 25%;
+    margin: auto;
+}
+.image-element figure.text-zoom figcaption .title {
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.1s;
+   -moz-transition: all 0.3s ease-in-out 0.1s;
+   -o-transition: all 0.3s ease-in-out 0.1s;
+   -ms-transition: all 0.3s ease-in-out 0.1s;
+   transition: all 0.3s ease-in-out 0.1s;
+   text-align: center;
+}
+.image-element figure.text-zoom .caption {
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.2s;
+   -moz-transition: all 0.3s ease-in-out 0.2s;
+   -o-transition: all 0.3s ease-in-out 0.2s;
+   -ms-transition: all 0.3s ease-in-out 0.2s;
+   transition: all 0.3s ease-in-out 0.2s;
+   text-align: center;
+}
+.image-element:hover figure.text-zoom figcaption,.image-element.hover figure.text-zoom figcaption {
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
+}
+.image-element:hover figure.text-zoom div.img, .image-element.hover figure.text-zoom div.img {
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
+}
+.image-element:hover figure.text-zoom figcaption .title,.image-element.hover figure.text-zoom figcaption .title {
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -webkit-transition-delay: 0.1s;
+   -moz-transition-delay: 0.1s;
+   -o-transition-delay: 0.1s;
+   -ms-transition-delay: 0.1s;
+   transition-delay: 0.1s;
+}
+.image-element:hover figure.text-zoom figcaption .caption, .image-element.hover figure.text-zoom figcaption .caption{
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -webkit-transition-delay: 0.2s;
+   -moz-transition-delay: 0.2s;
+   -o-transition-delay: 0.2s;
+   -ms-transition-delay: 0.2s;
+   transition-delay: 0.2s;
+}
+				
+.image-element figure.image-zoom div.img {
+   -webkit-transform: scaleY(1);
+   -moz-transform: scaleY(1);
+   -o-transform: scaleY(1);
+   -ms-transform: scaleY(1);
+   transform: scaleY(1);
+   -webkit-transition: all 0.7s ease-in-out;
+   -moz-transition: all 0.7s ease-in-out;
+   -o-transition: all 0.7s ease-in-out;
+   -ms-transition: all 0.7s ease-in-out;
+   transition: all 0.7s ease-in-out;
+}
+.image-element figure.image-zoom figcaption {
+   -webkit-transition: all 0.5s linear;
+   -moz-transition: all 0.5s linear;
+   -o-transition: all 0.5s linear;
+   -ms-transition: all 0.5s linear;
+   transition: all 0.5s linear;
+   filter: alpha(opacity=0);
+   opacity: 0;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+}
+.image-element figure.image-zoom figcaption div, .image-element figure.image-zoom figcaption span.caption-wrapper{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 25%;
+    margin: auto;	
+}
+.image-element figure.image-zoom figcaption span {
+   -webkit-transform: scale(0);
+   -moz-transform: scale(0);
+   -o-transform: scale(0);
+   -ms-transform: scale(0);
+   transform: scale(0);
+   -webkit-transition: all 0.5s linear;
+   -moz-transition: all 0.5s linear;
+   -o-transition: all 0.5s linear;
+   -ms-transition: all 0.5s linear;
+   transition: all 0.5s linear;
+   filter: alpha(opacity=0);
+   opacity: 0;
+   text-align: center;
+}
+.image-element:hover figure.image-zoom div.img,.image-element.hover figure.image-zoom div.img {
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   filter: alpha(opacity=0);
+   opacity: 0;
+}
+.image-element:hover figure.image-zoom figcaption, .image-element.hover figure.image-zoom figcaption{
+   filter: alpha(opacity=100);
+   opacity: 1;
+}
+.image-element:hover figure.image-zoom figcaption span,.image-element.hover figure.image-zoom figcaption span{
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   filter: alpha(opacity=100);
+   opacity: 1;
+}
+
+.no-csstransitions .image-element figure.cover-fade figcaption,
+.no-csstransitions .image-element figure.bottom-quarter-fade figcaption,
+.no-csstransitions .image-element figure.top-quarter-fade figcaption,
+.no-csstransitions .image-element figure.left-quarter-fade figcaption,
+.no-csstransitions .image-element figure.right-quarter-fade figcaption,
+.no-csstransitions .image-element figure.cover-slide-up figcaption,
+.no-csstransitions .image-element figure.cover-slide-down figcaption,
+.no-csstransitions .image-element figure.cover-slide-left figcaption,
+.no-csstransitions .image-element figure.cover-slide-right figcaption,
+.no-csstransitions .image-element figure.cover-push-up figcaption,
+.no-csstransitions .image-element figure.cover-push-down figcaption,
+.no-csstransitions .image-element figure.cover-push-left figcaption,
+.no-csstransitions .image-element figure.cover-push-right figcaption,
+.no-csstransitions .image-element figure.quarter-slide-up figcaption,
+.no-csstransitions .image-element figure.quarter-slide-down figcaption,
+.no-csstransitions .image-element figure.quarter-slide-left figcaption,
+.no-csstransitions .image-element figure.quarter-slide-right figcaption,
+.no-csstransitions .image-element figure.quarter-fall-left figcaption,
+.no-csstransitions .image-element figure.quarter-fall-right figcaption
+{
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+.no-csstransitions .image-element figure.cover-slide-up figcaption,
+.no-csstransitions .image-element figure.cover-slide-down figcaption,
+.no-csstransitions .image-element figure.cover-slide-left figcaption,
+.no-csstransitions .image-element figure.cover-slide-right figcaption,
+.no-csstransitions .image-element figure.cover-push-up figcaption,
+.no-csstransitions .image-element figure.cover-push-up div.img,
+.no-csstransitions .image-element figure.cover-push-down figcaption,
+.no-csstransitions .image-element figure.cover-push-down div.img,
+.no-csstransitions .image-element figure.cover-push-left figcaption,
+.no-csstransitions .image-element figure.cover-push-left div.img,
+.no-csstransitions .image-element figure.cover-push-right figcaption,
+.no-csstransitions .image-element figure.cover-push-right div.img,
+.no-csstransitions .image-element figure.quarter-slide-up figcaption,
+.no-csstransitions .image-element figure.quarter-slide-down figcaption,
+.no-csstransitions .image-element figure.quarter-slide-left figcaption,
+.no-csstransitions .image-element figure.quarter-slide-right figcaption
+{
+	-webkit-transform: none;
+   	-moz-transform: none;
+   	-o-transform: none;
+   	-ms-transform: none;
+   	transform: none;
+}
+.no-csstransitions .image-element figure.cover-slide-up figcaption,
+.no-csstransitions .image-element figure.cover-push-up figcaption,
+.no-csstransitions .image-element figure.quarter-slide-up figcaption{
+	bottom: -100%;
+}
+.no-csstransitions .image-element figure.cover-slide-down figcaption,
+.no-csstransitions .image-element figure.cover-push-down figcaption,
+.no-csstransitions .image-element figure.quarter-slide-down figcaption{
+	top: -100%;
+}
+.no-csstransitions .image-element figure.cover-slide-left figcaption,
+.no-csstransitions .image-element figure.cover-push-left figcaption,
+.no-csstransitions .image-element figure.quarter-slide-left figcaption,
+.no-csstransitions .image-element figure.quarter-fall-right figcaption{
+	top: 0;
+	left: 100%;
+}
+.no-csstransitions .image-element figure.cover-slide-right figcaption,
+.no-csstransitions .image-element figure.cover-push-right figcaption,
+.no-csstransitions .image-element figure.quarter-slide-right figcaption,
+.no-csstransitions .image-element figure.quarter-fall-left figcaption{
+	top: 0;
+	left: -100%;
+}	
+.no-csstransitions .image-element figure.quarter-slide-left figcaption,
+.no-csstransitions .image-element figure.quarter-slide-right figcaption{
+	top: auto;
+	bottom: 0;
+}
+.no-csstransitions .image-element figure.cover-push-up div.img{
+	bottom: 0;
+}
+.no-csstransitions .image-element figure.cover-push-down div.img{
+	top: 0;
+}
+.no-csstransitions .image-element figure.cover-push-left div.img,
+.no-csstransitions .image-element figure.cover-push-right div.img{
+	left: 0;
+}
+.no-csstransitions .image-element figure.quarter-fall-left figcaption,
+.no-csstransitions .image-element figure.quarter-fall-left figcaption{
+	webkit-transform: rotate(20deg);
+	-moz-transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-o-transform: rotate(20deg);
+	transform: rotate(20deg);
+}
+
+
+.no-csstransitions .image-element figure.bounce figcaption *,
+.no-csstransitions .image-element figure.text-zoom figcaption *,
+.no-csstransitions .image-element figure.image-zoom figcaption *,
+.no-csstransitions .image-element figure.revolving-door-top figcaption *,
+.no-csstransitions .image-element figure.revolving-door-bottom figcaption *,
+.no-csstransitions .image-element figure.revolving-door-left figcaption *,
+.no-csstransitions .image-element figure.revolving-door-right figcaption * 
+{
+    -webkit-transform: none;
+   	-moz-transform: none;
+   	-o-transform: none;
+   	-ms-transform: none;
+   	transform: none;
+	filter: alpha(opacity=100);
+	opacity: 1;
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+  	-o-transition: none;
+  	transition: none;
+	-webkit-backface-visibility: visible;
+	-ms-backface-visibility: visible;
+	-o-backface-visibility: visible;
+	backface-visibility: visible;
+}
+.no-csstransitions .image-element figure.bounce figcaption,
+.no-csstransitions .image-element figure.text-zoom figcaption,
+.no-csstransitions .image-element figure.image-zoom figcaption,
+.no-csstransitions .image-element figure.revolving-door-top figcaption,
+.no-csstransitions .image-element figure.revolving-door-bottom figcaption,
+.no-csstransitions .image-element figure.revolving-door-left figcaption,
+.no-csstransitions .image-element figure.revolving-door-right figcaption{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	zoom: 1;
+	display: none;
+}
+.no-csstransitions .image-element:hover figure.bounce figcaption *,.no-csstransitions .image-element.hover figure.bounce figcaption *,
+.no-csstransitions .image-element:hover figure.text-zoom figcaption *,.no-csstransitions .image-element.hover figure.text-zoom figcaption *,
+.no-csstransitions .image-element:hover figure.image-zoom figcaption *,.no-csstransitions .image-element.hover figure.image-zoom figcaption *,
+.no-csstransitions .image-element:hover figure.revolving-door-top figcaption *,.no-csstransitions .image-element.hover figure.revolving-door-top figcaption *,
+.no-csstransitions .image-element:hover figure.revolving-door-bottom figcaption *,.no-csstransitions .image-element.hover figure.revolving-door-bottom figcaption *,
+.no-csstransitions .image-element:hover figure.revolving-door-left figcaption *,.no-csstransitions .image-element.hover figure.revolving-door-left figcaption *,
+.no-csstransitions .image-element:hover figure.revolving-door-right figcaption *,.no-csstransitions .image-element.hover figure.revolving-door-right figcaption * 
+{
+	-webkit-transform: none;
+   	-moz-transform: none;
+   	-o-transform: none;
+   	-ms-transform: none;
+   	transform: none;
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+  	-o-transition: none;
+  	transition: none;
+}
+.no-csstransitions .image-element:hover figure.bounce figcaption, .no-csstransitions .image-element.hover figure.bounce figcaption,
+.no-csstransitions .image-element:hover figure.text-zoom figcaption, .no-csstransitions .image-element.hover figure.text-zoom figcaption, 
+.no-csstransitions .image-element:hover figure.image-zoom figcaption, .no-csstransitions .image-element.hover figure.image-zoom figcaption,
+.no-csstransitions .image-element:hover figure.revolving-door-top figcaption, .no-csstransitions .image-element.hover figure.revolving-door-top figcaption,
+.no-csstransitions .image-element:hover figure.revolving-door-bottom figcaption, .no-csstransitions .image-element.hover figure.revolving-door-bottom figcaption,
+.no-csstransitions .image-element:hover figure.revolving-door-left figcaption, .no-csstransitions .image-element.hover figure.revolving-door-left figcaption,
+.no-csstransitions .image-element:hover figure.revolving-door-right figcaption, .no-csstransitions .image-element.hover figure.revolving-door-right figcaption{
+	display: block;
+}
+.no-csstransitions .manualhover .image-element:hover figure.bounce figcaption, 
+.no-csstransitions .manualhover .image-element:hover figure.text-zoom figcaption, 
+.no-csstransitions .manualhover .image-element:hover figure.image-zoom figcaption, 
+.no-csstransitions .manualhover .image-element:hover figure.revolving-door-top figcaption,
+.no-csstransitions .manualhover .image-element:hover figure.revolving-door-bottom figcaption, 
+.no-csstransitions .manualhover .image-element:hover figure.revolving-door-left figcaption, 
+.no-csstransitions .manualhover .image-element:hover figure.revolving-door-right figcaption{
+	display: none;
+}
+.no-csstransitions .manualhover .image-element.hover figure.bounce figcaption, 
+.no-csstransitions .manualhover .image-element.hover figure.text-zoom figcaption, 
+.no-csstransitions .manualhover .image-element.hover figure.image-zoom figcaption, 
+.no-csstransitions .manualhover .image-element.hover figure.revolving-door-top figcaption,
+.no-csstransitions .manualhover .image-element.hover figure.revolving-door-bottom figcaption, 
+.no-csstransitions .manualhover .image-element.hover figure.revolving-door-left figcaption, 
+.no-csstransitions .manualhover .image-element.hover figure.revolving-door-right figcaption{
+	display: block;
+}

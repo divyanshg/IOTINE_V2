@@ -127,6 +127,10 @@ app.get("/ink", (req, res) => {
     res.sendFile(__dirname + '/ink/index.html')
 })
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/index/index.html')
+})
+
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/404.html');
 });

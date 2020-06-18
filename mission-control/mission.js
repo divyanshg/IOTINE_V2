@@ -1188,7 +1188,13 @@ socket.on('subscribe', (feed, msg, unit) => {
                     picId = msg.value.split("^")[0]
 
                     bytePos = msg.value.split("^")[1]
-                    mainByte = msg.value.split("^")[2].slice(1).slice(2).substring(0, msg.value.split("^")[2].length-1);
+
+                    if(bytePos == "1" || bytePos == 1){
+                        mainByte = msg.value.split("^")[2].slice(1).slice(2)
+                        mainByte = mainByte.substring(0, mainByte.length-1);
+                    }else{
+                        mainByte = msg.value.split("^")[2]
+                    }
 
                     //images.push({"id":picId, "imgByte": ""})
                     finalvalue += mainByte

@@ -12,8 +12,20 @@ var stateCheck = 0;
 
 exports.handler = async (event) => {
 
-    var payload = event.value
-    var mtime = event.timestamp;
+    //axios.get("http://localhost:5000?url="+event).then(resp => {
+        //console.log(resp.data)
+        /*sockClient.emit('publish', {
+            user: event.user,
+            deviceId: '_wlPFr8',
+            feed: 'sample_Picture',
+            value: "http://localhost:5000?url="+event.url,
+            unit:"imgproc",
+            time: new Date().toLocaleTimeString(),
+            from:"event"
+        })*/
+    //}).catch(err => {
+        //console.log(err)
+    //})
 
     //axios.get('http://192.168.31.72:5678/api').then(response => {
         /*sockClient.emit('publish', {
@@ -28,8 +40,6 @@ exports.handler = async (event) => {
     //}).catch(err => {
         //console.log(err)
     //})
-    
-    console.log(JSON.parse(payload))
 
     //sendMail(payload, mtime)
 }

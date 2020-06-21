@@ -2257,63 +2257,77 @@ hr {
     box-shadow: 0 1px 2px #00000033;
     padding: 32px;
     text-align: center;
-    color:var(--title)
+    color: var(--title)
 }
 
-.feature:hover{
+.feature:hover {
     cursor: pointer;
     box-shadow: var(--shadow);
 }
 
-.feature img{
-    height:100px;
-    width:90%;
+.feature img {
+    height: 100px;
+    width: 90%;
 }
-.feature h3{
+
+.feature h3 {
     font-weight: bold;
     color: var(--title)
 }
 
-.feature .save{
-    width:100% !important;
+.feature .save {
+    width: 100% !important;
 }
-.behave{
-    height:100%;
-    width:100%;
+
+.behave {
+    height: 100%;
+    width: 100%;
     background-color: var(--appInner);
 }
-.behaveBoxModal{
+
+.behaveBoxModal {
     height: 550px;
     background-color: var(--thm-wid);
     border-radius: 8px !important;
     margin: 16px;
     box-shadow: 0 1px 2px #00000033;
     padding: 32px;
-    color:var(--title)
+    color: var(--title)
 }
-.behaveForm{
+
+.behaveForm {
     display: flex;
 }
 
-.dtype{
-    padding:5px;
-    height:200px;
-    width:150px;
-    box-shadow:0 1px 2px #00000033;
-    border-radius:8px;
-    margin:16px;
+.dtype {
+    padding: 5px;
+    height: 200px;
+    width: 150px;
+    box-shadow: 0 1px 2px #00000033;
+    border-radius: 8px;
+    margin: 16px;
     cursor: pointer;
-    text-align:center;
+    text-align: center;
     background-color: var(--card-btn)
 }
 
-.dtype:hover{
+.dtype:hover {
     box-shadow: var(--shadow);
 }
 
-.dtype .intro-img{
+.dtype .intro-img {
     height: 50px;
     width: 50px;
-    flex-wrap: wrap;   
+    flex-wrap: wrap;
     margin-right: 0px !important;
+}
+
+.widget-image {
+    background-color: black;
+    max-width: 368px;
+    min-width:368px;
+    max-height: 170px;
+    min-height: 170px;
+    border-radius: 5px;
+    margin-top: 5px;
 }

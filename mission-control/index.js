@@ -226,33 +226,122 @@ var chunckCount = 0;
 var handlePublish = (msg) => {
     if (msg.feed.split("/")[0] != "$SYS") {
         if (msg.unit == "IMG" || msg.unit == "img") {
-            
-            var recievedByte = JSON.parse(msg.value);
 
-            var imgID = recievedByte.imgID
-            var userID = msg.user
-            var bytePos = recievedByte.bytePos
+            dataCamp.collection("feed_vals").find({
+                "user_id": msg.user,
+                "deviceID": msg.deviceId,
+                "name": msg.feed
+            }).toArray((err, feedInfo) => {
+                if (err) return err;
 
-            var byte = recievedByte.byte.slice(1).slice(1)
-            byte = byte.substring(0, byte.length-1);
-            
-            dataCamp.collection("chuncked_images").insertOne({
-                imgID,
-                userID,
-                bytePos,
-                byte
-            }, (err, res) => {
-                if (err) return err
-            });
-            chunckCount += 1;
-            if(chunckCount >= recievedByte.totalBytes){
-                
-                io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`, msg.unit)
-                chunckCount = 0;
-            
-            }
+                if (typeof feedInfo[0].events !== 'undefined') {
 
-            return
+                    Object.keys(require.cache).forEach(function (key) {
+                        delete require.cache[key]
+                    })
+                    var eventProcessor = require('./events/eventProcessor')
+                    var events = feedInfo[0].events
+
+                    var recievedByte = JSON.parse(msg.value);
+
+                    var imgID = recievedByte.imgID
+                    var userID = msg.user
+                    var bytePos = recievedByte.bytePos
+
+                    var byte = recievedByte.byte.slice(1).slice(1)
+                    byte = byte.substring(0, byte.length - 1);
+
+                    dataCamp.collection("chuncked_images").insertOne({
+                        imgID,
+                        userID,
+                        bytePos,
+                        byte
+                    }, (err, res) => {
+                        if (err) return err
+                    });
+
+                    events.forEach(event => {
+                        msg.timestamp = feedInfo[0].time
+                        eventProcessor.processEvent(`${msg.user}/${event}`, {"user":msg.user, "url": `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`}).then(async response => {
+
+                            chunckCount += 1;
+                            if (chunckCount >= recievedByte.totalBytes) {
+
+                                io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`, msg.unit)
+
+                                client.publish(msg.deviceId + "/" + msg.feed + "/NON", `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`)
+                                await saveToLake(msg)
+                                chunckCount = 0;
+
+                            }
+
+                            return
+
+                        }).catch(async (err) => {
+                            var recievedByte = JSON.parse(msg.value);
+
+                            var imgID = recievedByte.imgID
+                            var userID = msg.user
+                            var bytePos = recievedByte.bytePos
+
+                            var byte = recievedByte.byte.slice(1).slice(1)
+                            byte = byte.substring(0, byte.length - 1);
+
+                            dataCamp.collection("chuncked_images").insertOne({
+                                imgID,
+                                userID,
+                                bytePos,
+                                byte
+                            }, (err, res) => {
+                                if (err) return err
+                            });
+                            chunckCount += 1;
+                            if (chunckCount >= recievedByte.totalBytes) {
+
+                                io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`, msg.unit)
+
+                                client.publish(msg.deviceId + "/" + msg.feed + "/NON", `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`)
+                                await saveToLake(msg)
+                                chunckCount = 0;
+
+                            }
+
+                            return
+                        })
+                    })
+                } else {
+                    var recievedByte = JSON.parse(msg.value);
+
+                    var imgID = recievedByte.imgID
+                    var userID = msg.user
+                    var bytePos = recievedByte.bytePos
+
+                    var byte = recievedByte.byte.slice(1).slice(1)
+                    byte = byte.substring(0, byte.length - 1);
+
+                    dataCamp.collection("chuncked_images").insertOne({
+                        imgID,
+                        userID,
+                        bytePos,
+                        byte
+                    }, (err, res) => {
+                        if (err) return err
+                    });
+                    chunckCount += 1;
+                    if (chunckCount >= recievedByte.totalBytes) {
+
+                        io.to(msg.user).emit('subscribe', msg.feed, `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`, msg.unit)
+
+                        client.publish(msg.deviceId + "/" + msg.feed + "/NON", `https://iotine.zapto.org/app/imgStore/${userID}/${imgID}`)
+                        saveToLake(msg)
+                        chunckCount = 0;
+
+                    }
+
+                    return
+                }
+            })
+
         } else if (msg.feed == "FSYS") {
             io.to(msg.user).emit('FSYS', msg.value, msg.deviceId)
             saveToLake(msg)

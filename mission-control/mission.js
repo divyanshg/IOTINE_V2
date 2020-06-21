@@ -954,11 +954,15 @@ function createLog(feed, fedd, config, bdy) {
     bdy.appendChild(logCont)
 }
 
-function createImg(feed, config, bdy) {
+function createImg(wclass, feed, config, bdy) {
     var imgCont = document.createElement("img")
     imgCont.src = config.src
     imgCont.height = "180"
     imgCont.width = "380"
+
+    imgCont.title = feed
+
+    imgCont.className += `widget-image ${wclass}`
 
     bdy.appendChild(imgCont)
 }
@@ -1042,8 +1046,7 @@ async function createWidget() {
                     createVideo(widget.feed + "-" + widget.config.device, widget.feed, widget.config,
                         widgetBdy)
                 } else if (widget.type == "image") {
-                    createImg(widget.feed + "-" + widget.config.device, widget.feed, widget.config,
-                        widgetBdy)
+                    createImg(`image_${widget.feed}`, widget.feed, widget.config, widgetBdy)
                 } else if (widget.type == "iframe") {
                     createIFrame(widget.feed + "-" + widget.config.device, widget.feed, widget
                         .config, widgetBdy)
@@ -1188,26 +1191,21 @@ function updateLog(id, msg, feed) {
     cont.scrollTop = cont.scrollHeight - cont.clientHeight
 }
 
+function updateImage(feed, url){
+    var elem = document.querySelector(`.image_${feed}`)
+    elem.src = `http://localhost:5000?url=${url}`
+}
+
+recivedSize = 0;
 
 socket.on('subscribe', (feed, msg, unit) => {
     if (unit != "DIRS") {
         feeds.forEach(mfeed => {
             if (unit == "IMG") {
-
-                loadImage(msg).then(encodedImage => {
-                    try {
-                        encodedImage = encodedImage.image.replace("undefined", "")
-
-                        var image = document.querySelector(".testImager");
-                        image.src = `data:image/png;base64,${encodedImage}`;
-                    } catch (e) {
-                        return e
-                    }
-
-                }).catch(err => {
-                    console.log(err)
-                })
-
+                updateImage(feed, msg)
+            }else if(unit == "imgproc"){
+                var image = document.querySelector(".testImager");
+                image.src = msg.value;
             } else {
                 if (mfeed == feed + "-" + msg.deviceId) {
 

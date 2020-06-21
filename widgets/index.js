@@ -45,21 +45,24 @@ app.get('/login', (req, res) => {
     })
 })
 
-app.get('/imgStore/:user/:imgID', isAuthorized, (req, res) => {
-    jwt.verify(req.token, options.key, (err, data) => {
-        if(err) res.sendStatus(403)
-        dataCamp.collection("chuncked_images").find({userID: req.params.user, imgID: req.params.imgID}).toArray((err, bytes) => {
-            if(err) return err
-            
-            var arrange = (a,b) => {
+app.get('/imgStore/:user/:imgID', (req, res) => {
+    //jwt.verify(req.token, options.key, (err, data) => {
+    //if (err) res.sendStatus(403)
+    dataCamp.collection("chuncked_images").find({
+        userID: req.params.user,
+        imgID: req.params.imgID
+    }).toArray((err, bytes) => {
+        if (err) return res.sendStatus(404)
+        try {
+            var arrange = (a, b) => {
                 const posA = parseInt(a.bytePos);
                 const posB = parseInt(b.bytePos);
 
                 let comparison = 0;
 
-                if(posA > posB) {
+                if (posA > posB) {
                     comparison = 1;
-                }else if( posA < posB){
+                } else if (posA < posB) {
                     comparison = -1;
                 }
 
@@ -70,20 +73,35 @@ app.get('/imgStore/:user/:imgID', isAuthorized, (req, res) => {
 
             var mergedByte;
 
-            bytes.forEach(byte => { mergedByte += byte.byte })
+            bytes.forEach(byte => {
+                mergedByte += byte.byte
+            })
 
-            res.json({"image": mergedByte})
+            mergedByte = mergedByte.replace("undefined", "")
+
+            let buff = new Buffer.from(mergedByte, 'base64');
+
+            res.writeHead(200, {
+                'Content-Type': 'image/png',
+                'Content-Length': buff.length
+            });
+            res.end(buff);
 
             mergedByte = ''
-        })
+        } catch (e) {
+            return e
+        }
     })
+    //})
 })
 
 app.get('/dashboards/:user', isAuthorized, (req, res) => {
     jwt.verify(req.token, options.key, (err, data) => {
-        if(err) res.sendStatus(403)
-        dataCamp.collection("apps").find({user: req.params.user}).toArray((err, dashboards) => {
-            if(err) return err
+        if (err) res.sendStatus(403)
+        dataCamp.collection("apps").find({
+            user: req.params.user
+        }).toArray((err, dashboards) => {
+            if (err) return err
             res.json(dashboards)
         })
     })

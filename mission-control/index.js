@@ -26,13 +26,13 @@ var mqtt = require('mqtt')
 var redis = require("redis");
 
 var dataController_Pub = redis.createClient({
-    host: '192.168.31.72',
+    host: 'localhost',
     no_ready_check: true,
     auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",
 });
 
 var dataController_Sub = redis.createClient({
-    host: '192.168.31.72',
+    host: 'localhost',
     no_ready_check: true,
     auth_pass: "RBOJ9cCNoGCKhlEBwQLHri1g+atWgn4Xn4HwNUbtzoVxAYxkiYBi7aufl4MILv1nxBqR4L6NNzI0X6cE",
 });

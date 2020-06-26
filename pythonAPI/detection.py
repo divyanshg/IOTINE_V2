@@ -39,8 +39,8 @@ def home():
                 details = [{"coordinates": str((x, y)), "dimensions": str((x + height, y + width))}]
                 cv2.rectangle(img, (x, y),(x + height, y + width),(0, 255, 0), 5) 
             
-            cv2.imwrite('result.jpg', img)
-            return send_file('result.jpg', mimetype='image/jpg') #jsonify(details)
+        cv2.imwrite('result.jpg', img)
+        return send_file('result.jpg', mimetype='image/jpg') #jsonify(details)
 
         #plt.subplot(1, 1, 1) 
         #plt.imshow(img_rgb) 

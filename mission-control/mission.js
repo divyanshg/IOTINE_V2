@@ -1193,7 +1193,7 @@ function updateLog(id, msg, feed) {
 
 function updateImage(feed, url){
     var elem = document.querySelector(`.image_${feed}`)
-    elem.src = `http://localhost:5000?url=${url}`
+    elem.src = url //`http://localhost:5000?url=${url}`
 }
 
 recivedSize = 0;

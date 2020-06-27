@@ -12,7 +12,6 @@ const options = {
 const app = express();
 
 app.post('/authority/verify/:token/:dev', (req, res) => {
-
     var token = req.params.token
 
     if (token.charAt(0) == 'b') token = token.substring(2).slice(0, -1)

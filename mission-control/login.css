@@ -100,9 +100,7 @@ input:focus {
 }
 
 .logo {
-	height: 60px;
-	-ms-transform: rotate(13.5deg);
-	transform: rotate(13.5deg);
+	height: 30px;
 }
 
 .container {

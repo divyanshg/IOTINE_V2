@@ -479,7 +479,8 @@ body {
 
 .whiteboard, .storeboard {
   width: 100%;
-  cursor: crosshair;
+  cursor: url("https://upload.wikimedia.org/wikipedia/commons/0/0d/Demo_pencil.png"),
+  auto !important;
   margin-left: -5px;
 }
 

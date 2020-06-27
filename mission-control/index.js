@@ -54,32 +54,6 @@ var client = mqtt.connect('192.168.31.72:1883', {
     username: "MASTER@SERVER@WEB_DASH_HOST"
 })
 
-app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/login.html')
-})
-
-app.get('/login/:user/:pass', (req, res) => {
-    dataCamp.collection("users").find({
-        username: req.params.user,
-        password: req.params.pass
-    }).toArray((err, resp) => {
-        if (err) return err;
-
-        if (resp.length == 0) {
-            res.json({
-                status: 404
-            });
-            res.end();
-            return;
-        } else {
-            res.json({
-                status: 200
-            })
-            res.end()
-        }
-    })
-})
-
 app.get('/apps/:user', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
@@ -121,11 +95,7 @@ app.get('/theme', (req, res) => {
 
 app.get('/defend/:user/:app', (req, res) => {
     res.sendFile(__dirname + '/defend/index.html')
-})
-
-app.get("/ink", (req, res) => {
-    res.sendFile(__dirname + '/ink/index.html')
-})
+})                          
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/index/index.html')

@@ -16,13 +16,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <link rel="icon" href="https://iotine.zapto.org/logo.png" type="image/icon type">
+    <style>
+        .PzdTN {
+            background-color: white;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="inner">
             <div class="main-panel">
-                <button><img title="IOTINE" src="logo.png" alt=""></button>
+                <button><img title="IOTINE" src="https://iotine.zapto.org/logo.png" alt=""></button>
                 <button style="display:none;" v-on:click="toggleDevices"> <i class="material-icons">{{ icon }}</i>
                 </button>
             </div>
@@ -58,7 +65,7 @@
     </div>
 
     <div id="app">
-        
+
         <div class="sc-gtfDJT diMILA">
             <div class="sc-jMMfwr lhmKww">
                 <div class=" dash-size-regular sc-kGXeez fkEHRF">
@@ -102,7 +109,7 @@
         <div class="appInner" id="appInner" style="display:none;"></div>
         <div class="appInner">
             <div class="  sc-jwKygS lfArOz" id="main-container">
-                
+
                 <div class="sc-cmTdod fxybWW">
                     <div class="  sc-jwKygS lfArOz" id="main-container">
                         <header class="sc-hEsumM felvod">
@@ -129,9 +136,10 @@
                                     <div class=" dash-size-regular sc-kGXeez iEQOUk">
                                         <div class="sc-kAzzGY eMCnFW"><img class="avatar"
                                                 src="https://pro-icons-avatars.s3.amazonaws.com/icons/9.png?v=1"></div>
-                                        <div class="sc-kpOJdX iQYOlv" v-on:click="loadDashboard('./dashboard.html')">
-                                            <div style="margin-top:5px;" class="title-text sc-chPdSV jgeneq">{{ item.name }}</div>
-                                        </div>
+                                        <a class="sc-kpOJdX iQYOlv" :href="item.link">
+                                            <div style="margin-top:5px;" class="title-text sc-chPdSV jgeneq">
+                                                {{ item.name }}</div>
+                                        </a>
                                         <div class="sc-dxgOiQ gZqNqi">
                                             <div class="sc-ckVGcZ fzFmLW">
                                                 <div class="sc-bRBYWo glmmWo">
@@ -175,7 +183,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -248,6 +256,7 @@
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjp7InNlbnQiOiJzZW50X2Zyb21fSU9USU5FIn0sImlhdCI6MTU5MTI5MTg5NX0.tboASeYWxX7eb4o0t82IhkbWYIb_cxrz8MNMeqPi1Xg";
 
 
+        var username = localStorage["currentLoggedInUser"];
 
         function linkactive(elm) {
             var prev = document.querySelector('.active')
@@ -361,11 +370,14 @@
                     var dashboards = JSON.parse(xhttp.responseText);
                     Apps.appCount = dashboards.length
                     dashboards.forEach(dashboard => {
-                        Apps.items.push({name: dashboard.name})
+                        Apps.items.push({
+                            name: dashboard.name,
+                            link: `https://iotine.zapto.org/iot/dashboard/${username}/${dashboard.name}`
+                        })
                     })
                 }
             };
-            xhttp.open("GET", "https://iotine.zapto.org/app/dashboards/divyanshg21", true);
+            xhttp.open("GET", "https://iotine.zapto.org/app/dashboards/"+username, true);
             xhttp.setRequestHeader("Authorization", token)
             xhttp.send();
         }

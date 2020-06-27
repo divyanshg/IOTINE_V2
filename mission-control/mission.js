@@ -688,8 +688,8 @@ function loadLink(lnk, elm) {
 
 getUser();
 var user;
-var app = window.location.pathname.split("/")[3];
-var socket = io('iotine.zapto.org/', {
+var app = window.location.pathname.split("/")[4];
+var socket = io('iotine.zapto.org/iot/', {
     secure: true,
     rejectUnauthorized: false,
     transports: ['websocket'],

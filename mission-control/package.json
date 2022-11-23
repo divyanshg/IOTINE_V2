@@ -14,7 +14,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "redis": "^3.0.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
